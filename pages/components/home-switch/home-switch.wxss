@@ -1,0 +1,38 @@
+/* pages/component/home-switch/home-switch.wxss */
+/* 首页按钮 */
+.home-switch {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.switch-btn {
+  line-height: 5;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  background: #225597;
+  color: #fff;
+  margin-bottom: 15rpx;
+  font-size: 38rpx;
+}
+
+.sw-38 {
+  width: 38%;
+}
+
+.sw-50 {
+  width: 50%;
+}
+
+.sw-60 {
+  width: 60%;
+}
+
+.sw-100 {
+  width: 100%;
+}

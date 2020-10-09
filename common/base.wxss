@@ -1,0 +1,53 @@
+.page-init {
+  width: 92%;
+  padding: 0 4%;
+}
+
+/*轮播*/
+.swiper-box {
+  display: block;
+  width: 100%;
+  height: 600rpx;
+  padding-bottom: 40rpx;
+}
+
+.swiper-main {
+  height: 100%;
+}
+
+.silde-img {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+/* form 表单 */
+.cks-input-row{
+  display: flex;
+  width: 100%;
+  margin-bottom: 20rpx;
+
+  border-bottom: 1px solid #999999;
+}
+.cks-input-row.on{
+  border-color: #235697;
+}
+
+.cks-input{
+  padding: 20rpx 15rpx;
+  width: 100%;
+  line-height: 3;
+  font-size: 38rpx;
+}
+.cks-input-70{
+  width: 70%;
+}
+.btn-area{
+  padding: 50rpx 0;
+}
+button.btn-primary[type='primary']{
+  width: 100%;
+  background: #235698;
+  border-radius: 0;
+  padding: 10rpx 0;
+  line-height: 2;
+}

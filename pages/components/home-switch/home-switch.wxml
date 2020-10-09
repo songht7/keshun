@@ -1,0 +1,14 @@
+	<view class="home-switch">
+		<block wx:if="{{switchType==1}}">
+			<view class="switch-btn sw-38" bindtap="test">交货单查询</view>
+			<view class="switch-btn sw-60" bindtap="parTap">司机扫码定位</view>
+			<view class="switch-btn sw-100" bindtap="linkTo" data-page="my">进入后台</view>
+		</block>
+		<block wx:if="{{switchType==2}}">
+			<view class="switch-btn sw-38" bindtap="test">排队取号</view>
+			<view class="switch-btn sw-60" bindtap="parTap">客户签收</view>
+			<view class="switch-btn sw-100" bindtap="linkTo" data-page="my">GPS上传</view>
+			<view class="switch-btn sw-60" bindtap="test">我的交货单</view>
+			<view class="switch-btn sw-38" bindtap="parTap">交货单转入</view>
+		</block>
+	</view>
