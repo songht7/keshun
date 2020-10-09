@@ -33,7 +33,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.13.1",
 	"appid": "wx69ecaa1a4fb809ff",
-	"projectname": "%E7%A7%91%E9%A1%BA",
+	"projectname": "keshun",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

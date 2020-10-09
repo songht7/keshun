@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<import src="../component/swiper.wxml" />
+<import src="../components/swiper.wxml" />
 <view class="container">
 	<template is="swiper" data="{{silde: silde}}" />
 	<view class="userinfo">

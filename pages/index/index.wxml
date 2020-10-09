@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <import src="../components/swiper.wxml" />
 <view class="container">
-	<template is="swiper" data="{{silde: silde}}" />
+	<template wx:if="silde.length" is="swiper" data="{{silde}}" />
 	<view class="page-init">
 		<home-switch bind:parTap="parTap" switchType="{{switchType}}"></home-switch>
 	</view>

@@ -1,7 +1,7 @@
 <!--pages/sign/sign.wxml-->
 <view class="container">
 	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
-	<view class="page-init">
+	<view class="page-init" wx:if="{{!checkUser}}">
 		<form catchsubmit="formSubmit" catchreset="formReset">
 			<view class="cks-input-row {{inputFocus=='phone'?'on':''}}">
 				<input class="cks-input" type="number" name="phone" data-type="phone" bindfocus="onFocus" bindblur="onBlur" placeholder="请输入手机号" />

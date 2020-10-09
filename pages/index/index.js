@@ -1,6 +1,5 @@
 // pages/index/index.js
 const util = require('../../utils/util.js')
-
 Page({
 
   /**
@@ -9,7 +8,7 @@ Page({
   data: {
     loading: true,
     silde: [],
-    switchType: 1
+    switchType: 0
   },
 
   /**
@@ -17,18 +16,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-      wx.hideLoading()
-      let data = {
-        "inter": "slideShow",
-        "parm": "?id=1"
-      }
-      data["fun"] = function (res) {
-        console.log(res);
-        that.setData({
-          silde: res.list
-        })
-      }
-      util.getData(data)
+    wx.hideLoading();
+    that.getMyStorage();
+    that.slideShow();
   },
 
   /**
@@ -76,6 +66,38 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  slideShow() {
+    var that = this;
+    let data = {
+      "inter": "slideShow",
+      "parm": "?id=1"
+    }
+    data["fun"] = function (res) {
+      console.log(res);
+      that.setData({
+        silde: res.list
+      })
+    }
+    util.getData(data)
+  },
+  getMyStorage() {
+    var that = this;
+    /*****************************测试首页按钮************************************************/
+    wx.getStorage({
+      key: 'usrInfo',
+      success(res) {
+        if (res.data && res.data.id) {
+          let userType = res.data.id
+          that.setData({
+            switchType: userType
+          });
+        }
+      },
+      fail() {},
+      complete() {}
+    })
+    /*****************************************************************************/
   },
   /**
    *组件事件

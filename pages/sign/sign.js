@@ -5,26 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
+    checkUser: false,
     inputFocus: false
   },
+  Create() {
+    console.log("Create")
 
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const that = this;
     wx.showLoading({
       title: '加载中',
     })
-    try {
-      var usrInfo = wx.getStorageSync('usrInfo')
-      if (usrInfo && usrInfo.id) {
-        wx.redirectTo({
-          url: '/pages/index/index',
-        })
+    wx.getStorage({
+      key: 'usrInfo',
+      success(res) {
+        if (res.data && res.data.id) {
+          that.setData({
+            checkUser: true
+          });
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+          console.log(res.data);
+        }
+      },
+      fail() {
+        that.setData({
+          checkUser: false
+        });
+      },
+      complete() {
+        wx.hideLoading()
       }
-    } catch (e) {
-      wx.hideLoading()
-    }
+    })
   },
 
   /**

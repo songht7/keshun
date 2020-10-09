@@ -20,7 +20,11 @@
   margin-bottom: 15rpx;
   font-size: 38rpx;
 }
-
+.switch-icons{
+  width: 38rpx;
+  height: 38rpx;
+  padding-right: 5rpx;
+}
 .sw-38 {
   width: 38%;
 }
