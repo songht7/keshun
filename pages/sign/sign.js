@@ -15,14 +15,14 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    var usrInfo = wx.getStorageSync('usrInfo') || {}
-    //wx.setStorageSync('usrInfo', usrInfo)
-    if (usrInfo.id) { // == undefined
-      console.log(usrInfo.id);
-      wx.redirectTo({
-        url: '/pages/index/index',
-      })
-    } else {
+    try {
+      var usrInfo = wx.getStorageSync('usrInfo')
+      if (usrInfo && usrInfo.id) {
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    } catch (e) {
       wx.hideLoading()
     }
   },
@@ -77,6 +77,18 @@ Page({
   },
   formSubmit(e) {
     console.log(e.detail.value);
+    let formData = e.detail.value;
+    wx.setStorage({
+      key: 'usrInfo',
+      data: {
+        id: formData.phone
+      },
+      success() {
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    })
   },
   formReset(e) {
     console.log('form发生了reset事件，携带数据为：', e.detail.value)
