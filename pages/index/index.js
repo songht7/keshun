@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    const that = this;
     wx.hideLoading();
     that.getMyStorage();
     that.slideShow();
@@ -68,7 +68,7 @@ Page({
 
   },
   slideShow() {
-    var that = this;
+    const that = this;
     let data = {
       "inter": "slideShow",
       "parm": "?id=1"
@@ -82,7 +82,7 @@ Page({
     util.getData(data)
   },
   getMyStorage() {
-    var that = this;
+    const that = this;
     /*****************************测试首页按钮************************************************/
     wx.getStorage({
       key: 'usrInfo',

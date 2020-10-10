@@ -1,4 +1,6 @@
 // pages/sign/sign.js
+
+import graceChecker from "../../common/graceChecker.js";
 Page({
 
   /**
@@ -6,7 +8,12 @@ Page({
    */
   data: {
     checkUser: false,
-    inputFocus: false
+    inputFocus: false,
+    btnLoading: false,
+    seconds: 60,
+    getCodeTxt: "获取短信验证码",
+    phone: "",
+    code: ""
   },
   Create() {
     console.log("Create")
@@ -92,20 +99,87 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getCode() {
+    const that = this;
+    if (that.data.btnLoading) {
+      return
+    }
+    var rule = [{
+      name: "phone",
+      checkType: "phoneno",
+      checkRule: "",
+      errorMsg: "请填写正确的手机号"
+    }];
+    let _formData = {
+      "phone": that.data.phone
+    };
+    var checkRes = graceChecker.check(_formData, rule);
+    if (checkRes) {
+      that.setData({
+        btnLoading: true
+      });
+      wx.showToast({
+        title: '验证码已发送',
+        icon: 'none',
+        duration: 2000
+      })
+      //that.data.seconds = 10;
+      var countdown = setInterval(() => {
+        var s = that.data.seconds;
+        s--;
+        that.setData({
+          seconds: s
+        });
+        if (that.data.seconds < 0) {
+          that.setData({
+            getCodeTxt: "获取短信验证码",
+            seconds: 60,
+            btnLoading: false
+          });
+          clearInterval(countdown)
+          return
+        }
+        that.setData({
+          getCodeTxt: `${that.data.seconds} 秒后重试`
+        });
+      }, 1000)
+    } else {
+      wx.showToast({
+        title: graceChecker.error,
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
   formSubmit(e) {
     console.log(e.detail.value);
-    let formData = e.detail.value;
-    wx.setStorage({
-      key: 'usrInfo',
-      data: {
-        id: formData.phone
-      },
-      success() {
-        wx.redirectTo({
-          url: '/pages/index/index',
-        })
-      }
-    })
+    let _formData = e.detail.value;
+    var rule = [{
+      name: "phone",
+      checkType: "phoneno",
+      checkRule: "",
+      errorMsg: "请填写正确的手机号"
+    }];
+    var checkRes = graceChecker.check(_formData, rule);
+    if (checkRes) {
+      wx.setStorage({
+        key: 'usrInfo',
+        data: {
+          id: Math.floor(Math.random() * (3 - 1)) + 1 //测试 测试 测试 测试 测试 
+        },
+        success() {
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: graceChecker.error,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   formReset(e) {
     console.log('form发生了reset事件，携带数据为：', e.detail.value)

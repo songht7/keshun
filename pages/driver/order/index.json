@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "交货单查询",
+  "usingComponents": {
+    "scan-code": "../../components/scan-code/scan-code"
+  },
+  "backgroundColor": "#f3f3f3"
+}

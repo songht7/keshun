@@ -1,0 +1,20 @@
+<!--pages/components/order-status/order-status.wxml-->
+<view class="order-status">
+	<view class="status-box">
+		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
+			<view class="status-row">
+				<view class="status-block status-left">
+					<view class="status-date">{{item.date}}</view>
+					<view class="status-time">{{item.time}}</view>
+				</view>
+				<view class="status-block status-right">
+					<view class="status-title {{!item.title?'status-title-or':''}}">
+						<image wx:if="{{item.title}}" class="order-icon" src='/static/goods-1.png' mode="aspectFit"></image>
+						{{item.title}}
+					</view>
+					<view class="status-subtitle">{{item.subtitle}}</view>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>

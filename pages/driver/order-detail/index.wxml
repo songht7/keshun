@@ -1,0 +1,7 @@
+<!--pages/driver/order-detail/index.wxml-->
+<view class="container">
+	<map subkey="{{subKey}}" style="width: 100%; height: 300px;" latitude="{{map.latitude}}" longitude="{{map.longitude}}" scale="{{map.scale}}" markers="{{map.markers}}">
+	</map>
+	<view>{{code}}</view>
+		<order-status list="{{list}}"></order-status>
+</view>

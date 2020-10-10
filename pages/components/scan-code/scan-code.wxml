@@ -1,0 +1,12 @@
+<!--pages/components/scan-code/scan-code.wxml-->
+<view class="scan-code">
+	<view class="code-box">
+		<input class="code-inut" name="code" model:value="{{result}}" placeholder="{{holder}}"></input>
+		<image class="scanCode" bindtap="scanCode" src="../../../static/scan.png" mode="aspectFit"></image>
+	</view>
+	<view class="page-init">
+		<view class="btn-area">
+			<button type="primary" class="btn-primary" bindtap="seachCode">确定</button>
+		</view>
+	</view>
+</view>

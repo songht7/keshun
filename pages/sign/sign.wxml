@@ -1,13 +1,17 @@
 <!--pages/sign/sign.wxml-->
 <view class="container">
 	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+	<view class="logo-box">
+		<image class="logo" src="../../static/logo.png" mode="aspectFit"></image>
+	</view>
 	<view class="page-init" wx:if="{{!checkUser}}">
 		<form catchsubmit="formSubmit" catchreset="formReset">
 			<view class="cks-input-row {{inputFocus=='phone'?'on':''}}">
-				<input class="cks-input" type="number" name="phone" data-type="phone" bindfocus="onFocus" bindblur="onBlur" placeholder="请输入手机号" />
+				<input class="cks-input" type="number" name="phone" model:value="{{phone}}" data-type="phone" bindfocus="onFocus" bindblur="onBlur" placeholder="请输入手机号" />
 			</view>
 			<view class="cks-input-row {{inputFocus=='code'?'on':''}}">
-				<input class="cks-input" type="text" name="code" data-type="code" bindfocus="onFocus" bindblur="onBlur" placeholder="短信验证码" />
+				<input class="cks-input cks-input-40" type="text" name="code" model:value="{{code}}" data-type="code" bindfocus="onFocus" bindblur="onBlur" placeholder="短信验证码" />
+				<view class="get-code {{btnLoading?'get-code-off':''}}" bindtap="getCode">{{getCodeTxt}}</view>
 			</view>
 			<view class="btn-area">
 				<button type="primary" class="btn-primary" formType="submit">注册</button>

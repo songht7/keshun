@@ -1,11 +1,14 @@
 /**app.wxss**/
+page{
+  background-color: #fff
+}
 .container {
   height: 100%;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
+  box-sizing: border-box; */
 } 
 image{
   width: auto;

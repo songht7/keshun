@@ -15,16 +15,16 @@ Component({
         label: "交货单查询", //按钮名称
         icon: "icon-1.png", //按钮图标
         sw: "38", //按钮大小 38 60 100 50
-        tap: "childFun", //按钮点击事件
-        url: "/pages/hello/index" //按钮setdata值
+        tap: "linkTo", //按钮点击事件 childFun parTap linkTo
+        url: "/pages/driver/order/index" //按钮setdata值
       }, {
-        label: "交货单查询",
+        label: "司机扫码定位",
         icon: "icon-2.png",
         sw: "60",
         tap: "parTap",
         url: "/pages/hello/index"
       }, {
-        label: "交货单查询",
+        label: "进入后台",
         icon: "icon-3.png",
         sw: "100",
         tap: "linkTo",

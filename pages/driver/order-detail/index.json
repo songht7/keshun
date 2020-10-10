@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "交货单详细",
+  "usingComponents": {
+    "order-status": "../../components/order-status/order-status"
+  }
+}

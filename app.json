@@ -4,9 +4,14 @@
     "pages/index/index",
     "pages/hello/index",
     "pages/logs/logs",
-    "pages/components/home-switch/home-switch"
+    "pages/components/home-switch/home-switch",
+    "pages/components/scan-code/scan-code",
+    "pages/driver/order/index",
+    "pages/driver/order-detail/index"
   ],
+  "entryPagePath": "pages/driver/order-detail/index",
   "window": {
+    "backgroundColor": "#999",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "CKS 科顺",

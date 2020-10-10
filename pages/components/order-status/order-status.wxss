@@ -1,0 +1,62 @@
+/* pages/components/order-status/order-status.wxss */
+.order-status {
+  width: 100%;
+}
+
+.status-box {
+  padding: 40rpx;
+}
+
+.status-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-content: flex-start;
+  align-items: flex-start;
+  height: 150rpx;
+}
+
+.status-block {
+  height: inherit;
+}
+
+.status-left {
+  width: 25%;
+  text-align: right;
+  padding-right: 50rpx;
+}
+
+.status-right {
+  flex: 1;
+  padding:0 0 0 50rpx;
+  border-left: 1px dashed #cecece;
+}
+
+.status-row:last-child .status-right {
+  border: none
+}
+
+.status-date,
+.status-title {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.status-time,
+.status-subtitle {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.status-title {
+  position: relative;
+}
+
+.order-icon {
+  position: absolute;
+  top: 0;
+  left: -75rpx;
+  width: 50rpx;
+  height: 50rpx;
+}

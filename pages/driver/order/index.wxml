@@ -1,0 +1,4 @@
+<!--pages/driver/order/index.wxml-->
+<view class="container">
+	<scan-code bind:seachCode="seachCode"></scan-code>
+</view>

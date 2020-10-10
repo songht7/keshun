@@ -20,34 +20,54 @@
   height: 100%;
   display: inline-block;
 }
+
 /* form 表单 */
-.cks-input-row{
+.cks-input-row {
   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
   width: 100%;
   margin-bottom: 20rpx;
-
   border-bottom: 1px solid #999999;
 }
-.cks-input-row.on{
+
+.cks-input-row.on {
   border-color: #235697;
 }
 
-.cks-input{
+.cks-input {
   padding: 20rpx 15rpx;
   width: 100%;
   line-height: 3;
-  font-size: 38rpx;
+  font-size: 32rpx;
 }
-.cks-input-70{
-  width: 70%;
+
+.cks-input-40 {
+  width: 50%;
 }
-.btn-area{
+
+.get-code {
+  flex: 1;
+  text-align: center;
+  color: #235697;
+  line-height: 2;
+  height: 100%;
+}
+
+.get-code-off {
+  color: #666;
+}
+
+.btn-area {
   padding: 50rpx 0;
 }
-button.btn-primary[type='primary']{
+
+button.btn-primary[type='primary'] {
   width: 100%;
   background: #235698;
   border-radius: 0;
-  padding: 10rpx 0;
+  padding: 15rpx 0;
   line-height: 2;
 }
