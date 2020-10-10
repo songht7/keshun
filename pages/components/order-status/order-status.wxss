@@ -14,22 +14,22 @@
   flex-direction: row;
   align-content: flex-start;
   align-items: flex-start;
-  height: 150rpx;
 }
 
 .status-block {
-  height: inherit;
+  min-height: 100rpx;
+  padding-bottom: 20rpx;
 }
 
 .status-left {
-  width: 25%;
+  width: 20%;
   text-align: right;
   padding-right: 50rpx;
 }
 
 .status-right {
   flex: 1;
-  padding:0 0 0 50rpx;
+  padding-left: 50rpx;
   border-left: 1px dashed #cecece;
 }
 
@@ -52,11 +52,33 @@
 .status-title {
   position: relative;
 }
-
+.status-subtitle-icon:before{
+  content: " ";
+  width: 50rpx;
+  height: 50rpx;
+  background:#333;
+  border-radius: 50%;
+  position: absolute;
+  left: -80rpx;
+}
 .order-icon {
   position: absolute;
   top: 0;
   left: -75rpx;
   width: 50rpx;
   height: 50rpx;
+}
+
+.status-pic-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 10rpx 0;
+}
+
+.status-pic {
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid #999;
+  margin: 0 5rpx 0
 }

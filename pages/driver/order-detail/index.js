@@ -23,7 +23,7 @@ Page({
       time: "08:00",
       title: "已签收",
       subtitle: "收件人：急急急",
-      pic:"",
+      pic:"/static/goods-2.png",
       status: 2
     }, {
       date: "10-11",
