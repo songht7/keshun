@@ -9,7 +9,7 @@
     "pages/driver/order/index",
     "pages/driver/order-detail/index"
   ],
-  "entryPagePath": "pages/driver/order-detail/index",
+  "entryPagePath": "",
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",
