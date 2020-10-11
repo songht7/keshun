@@ -84,3 +84,41 @@ button.btn-primary[type='primary'] {
   height: 34rpx;
   padding-right: 10rpx;
 }
+
+/* 订阅dialog */
+.dialog-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.dialog-logo {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 15rpx;
+}
+
+.dialog-cont {
+  padding-top: 40rpx;
+  font-size: 32rpx;
+}
+
+.dialog-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding: 20rpx 0;
+}
+
+.dl-info {
+  font-size: 28rpx;
+}
+
+.dialog-row:first-child {
+  border-top: 1px solid #eaeaea;
+}

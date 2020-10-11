@@ -7,6 +7,20 @@ Page({
    */
   data: {
     loading: true,
+    typeT: false,
+    buttons: [{
+        type: 'default',
+        className: '',
+        text: '辅助操作',
+        value: 0
+      },
+      {
+        type: 'primary',
+        className: '',
+        text: '主操作',
+        value: 1
+      }
+    ],
     silde: [],
     switchType: 0
   },
@@ -88,9 +102,11 @@ Page({
       key: 'usrInfo',
       success(res) {
         if (res.data && res.data.id) {
-          let userType = res.data.id
+          let userType = res.data.id;
+          let subscribe = res.data.subscribe;
           that.setData({
-            switchType: userType
+            switchType: userType,
+            typeT: !subscribe
           });
         }
       },
@@ -99,10 +115,40 @@ Page({
     })
     /*****************************************************************************/
   },
+  reSetDialog() {
+    /* 取消订阅消息框 */
+    wx.getStorage({
+      key: 'usrInfo',
+      success(res) {
+        if (res.data && !res.data.subscribe) {
+          const _data = res.data;
+          _data["subscribe"] = true;
+          wx.setStorage({
+            key: 'usrInfo',
+            data: _data
+          })
+        }
+      }
+    })
+  },
   /**
    *组件事件
    * **/
   parTap(e) {
+    console.log(e.detail)
+  },
+  openTypeT: function () {
+    this.setData({
+      typeT: true
+    })
+  },
+  closeDialog() {
+    this.setData({
+      typeT: false
+    })
+    this.reSetDialog()
+  },
+  buttontap(e) {
     console.log(e.detail)
   }
 })

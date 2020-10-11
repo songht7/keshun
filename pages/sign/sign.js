@@ -165,7 +165,8 @@ Page({
       wx.setStorage({
         key: 'usrInfo',
         data: {
-          id: Math.floor(Math.random() * (3 - 1)) + 1 //测试 测试 测试 测试 测试 
+          id: Math.floor(Math.random() * (3 - 1)) + 1, //测试 测试 测试 测试 测试 
+          subscribe: false
         },
         success() {
           wx.redirectTo({
