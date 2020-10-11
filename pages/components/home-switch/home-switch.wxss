@@ -18,12 +18,12 @@
   background: #225597;
   color: #fff;
   margin-bottom: 15rpx;
-  font-size: 38rpx;
+  font-size: 28rpx;
 }
 .switch-icons{
-  width: 38rpx;
-  height: 38rpx;
-  padding-right: 5rpx;
+  width: 32rpx;
+  height: 32rpx;
+  padding-right: 8rpx;
 }
 .sw-38 {
   width: 38%;

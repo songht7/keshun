@@ -1,3 +1,9 @@
+@import "/common/weui.wxss";
+
+view {
+  font-size: 32rpx;
+}
+
 .page-init {
   width: 92%;
   padding: 0 4%;
@@ -41,7 +47,7 @@
   padding: 20rpx 15rpx;
   width: 100%;
   line-height: 3;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 
 .cks-input-40 {
@@ -70,4 +76,11 @@ button.btn-primary[type='primary'] {
   border-radius: 0;
   padding: 15rpx 0;
   line-height: 2;
+}
+
+/* icon */
+.icons {
+  width: 34rpx;
+  height: 34rpx;
+  padding-right: 10rpx;
 }

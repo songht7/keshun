@@ -21,8 +21,8 @@ Component({
         label: "司机扫码定位",
         icon: "icon-2.png",
         sw: "60",
-        tap: "parTap",
-        url: "/pages/hello/index"
+        tap: "linkTo",
+        url: "/pages/driver/location/index"
       }, {
         label: "进入后台",
         icon: "icon-3.png",

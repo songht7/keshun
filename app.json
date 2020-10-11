@@ -7,7 +7,9 @@
     "pages/components/home-switch/home-switch",
     "pages/components/scan-code/scan-code",
     "pages/driver/order/index",
-    "pages/driver/order-detail/index"
+    "pages/driver/order-detail/index",
+    "pages/driver/location/index",
+    "pages/driver/location-detail/index"
   ],
   "entryPagePath": "",
   "window": {

@@ -1,0 +1,5 @@
+/* pages/driver/location/index.wxss */
+@import "/common/base.wxss";
+page{
+  background-color: #f3f3f3
+}

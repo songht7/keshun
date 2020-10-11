@@ -1,0 +1,20 @@
+<!--pages/driver/location-detail/index.wxml-->
+<view class="container">
+	<view class="icon-box">
+		<icon class="icon-box-img icon-success" type="success" size="80" color="#08499a"></icon>
+		<view class="submit-status">{{status}}</view>
+	</view>
+	<!-- <text>{{code}}</text> -->
+	<view class="page-init">
+		<view class="status-list">
+			<view class="status-row">
+				<image class="icons icons-location" src="/static/icon-location.png" mode="scaleToFill"></image>
+				广东省佛山市顺德区容桂街道红旗中路38号
+			</view>
+			<view class="status-row">
+				<image class="icons icons-time" src="/static/icon-time.png" mode="scaleToFill"></image>
+				2020 年 9 月 20日 14 点 56 分
+			</view>
+		</view>
+	</view>
+</view>
