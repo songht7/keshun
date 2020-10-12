@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/sign/sign",
+    "pages/login/index",
     "pages/index/index",
     "pages/hello/index",
     "pages/logs/logs",
@@ -9,9 +9,10 @@
     "pages/driver/order/index",
     "pages/driver/order-detail/index",
     "pages/driver/location/index",
-    "pages/driver/location-detail/index"
+    "pages/driver/location-detail/index",
+    "pages/driver/sign/index"
   ],
-  "entryPagePath": "",
+  "entryPagePath": "pages/driver/sign/index",
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

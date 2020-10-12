@@ -1,0 +1,25 @@
+<!--pages/driver/sign/index.wxml-->
+<view class="container">
+	<view class="page-init">
+		<view class="sign-box">
+			<view class="sign-status">
+				<image class="sign-loading animate__rotate" src="/static/loading.png" mode="aspectFit"></image>
+				<image class="sign-bg" src="/static/sign-bg.png" mode="aspectFit"></image>
+				<view class="sing-label">{{signStatus?'已签到':'未签到'}}</view>
+			</view>
+		</view>
+		<view class="sign-info">
+			<image class="icons sign-info-icon" src="/static/{{signStatus?'face-smile.png':'face-cry.png'}}" mode="aspectFit"></image>{{signStatus?'签到成功':'签到失败请重新签到'}}
+		</view>
+		<view class="sign-qr-box">
+			<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
+			<view class="sign-qr-main">
+				<view class="wait">当前共有 <text class="wait-numb">{{wait}}</text> 人正在等待...</view>
+				<view class="qr-code">
+          <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image>
+          <view>进场时请出示二维码</view>
+        </view>
+			</view>
+		</view>
+	</view>
+</view>

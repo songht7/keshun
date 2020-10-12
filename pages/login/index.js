@@ -159,6 +159,11 @@ Page({
       checkType: "phoneno",
       checkRule: "",
       errorMsg: "请填写正确的手机号"
+    }, {
+      name: "code",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请输入验证码"
     }];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
