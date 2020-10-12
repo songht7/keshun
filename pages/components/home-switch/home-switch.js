@@ -35,7 +35,7 @@ Component({
         icon: "icon-4.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/driver/sign/index"
       }, {
         label: "客户签收",
         icon: "icon-5.png",
@@ -47,7 +47,7 @@ Component({
         icon: "icon-6.png",
         sw: "100",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/driver/gps/index"
       }, {
         label: "我的交货单",
         icon: "icon-7.png",

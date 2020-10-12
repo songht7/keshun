@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "扫码定位",
+  "navigationBarTitleText": "GPS上传",
   "usingComponents": {
     "location-list": "../../components/location-list/location-list",
     "mp-icon": "../../components/icon/icon"

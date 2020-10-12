@@ -16,9 +16,9 @@
 			<view class="sign-qr-main">
 				<view class="wait">当前共有 <text class="wait-numb">{{wait}}</text> 人正在等待...</view>
 				<view class="qr-code">
-          <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image>
-          <view>进场时请出示二维码</view>
-        </view>
+					<image class="qr" src="/static/qr-text.png" mode="aspectFit"></image>
+					<view>进场时请出示二维码</view>
+				</view>
 			</view>
 		</view>
 	</view>

@@ -1,0 +1,22 @@
+<!--pages/components/location-list/location-list.wxml-->
+<view class="location-list">
+	<view class="status-list">
+		<block wx:for="{{locationList}}" wx:key="*this" wx:for-item="item">
+			<view class="status-row">
+				<view class="status-block">
+					<view class="status-block-row">
+						<image class="icons icons-location" src="/static/icon-location.png" mode="scaleToFill"></image>
+						{{item.address}}
+					</view>
+					<view class="status-block-row">
+						<image class="icons icons-time" src="/static/icon-time.png" mode="scaleToFill"></image>
+						{{item.date}}
+					</view>
+				</view>
+				<view class="submitStatus" wx:if="{{item.submitStatus}}">
+					<icon class="icon-box-img icon-success" type="{{item.submitStatus=='success'?'success':'cancel'}}" size="22" color="{{item.submitStatus=='success'?'#008949':'#c53520'}}"></icon>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>

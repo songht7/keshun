@@ -10,9 +10,10 @@
     "pages/driver/order-detail/index",
     "pages/driver/location/index",
     "pages/driver/location-detail/index",
-    "pages/driver/sign/index"
+    "pages/driver/sign/index",
+    "pages/driver/gps/index"
   ],
-  "entryPagePath": "pages/driver/sign/index",
+  "entryPagePath": "",
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

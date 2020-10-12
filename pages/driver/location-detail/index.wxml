@@ -6,15 +6,6 @@
 	</view>
 	<!-- <text>{{code}}</text> -->
 	<view class="page-init">
-		<view class="status-list">
-			<view class="status-row">
-				<image class="icons icons-location" src="/static/icon-location.png" mode="scaleToFill"></image>
-				广东省佛山市顺德区容桂街道红旗中路38号
-			</view>
-			<view class="status-row">
-				<image class="icons icons-time" src="/static/icon-time.png" mode="scaleToFill"></image>
-				2020 年 9 月 20日 14 点 56 分
-			</view>
-		</view>
+		<location-list locationList="{{locationList}}"></location-list>
 	</view>
 </view>

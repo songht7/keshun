@@ -1,16 +1,18 @@
-// pages/driver/location-detail/index.js
+// pages/driver/gps/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    code: "",
-    status: "上传成功！",
     locationList: [{
       "address": "广东省佛山市顺德区容桂街道红旗中路38号",
       "date": "2020 年 9 月 20日 14 点 56 分",
-      // "submitStatus": "success"
+      "submitStatus": "success"
+    },{
+      "address": "广东省佛山市顺德区容桂街道红旗中路38号",
+      "date": "2020 年 9 月 20日 14 点 56 分",
+      "submitStatus": "fale"
     }]
   },
 
@@ -18,12 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that = this;
-    if (options.code) {
-      that.setData({
-        code: options.code
-      });
-    }
+
   },
 
   /**

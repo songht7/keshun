@@ -1,0 +1,6 @@
+<!--pages/driver/gps/index.wxml-->
+<view class="container">
+	<view class="page-init">
+		<location-list locationList="{{locationList}}"></location-list>
+	</view>
+</view>
