@@ -86,6 +86,13 @@ Page({
       urls: this.data.imageList
     })
   },
+  delImage(e) {
+    console.log(e);
+    const that = this;
+    that.setData({
+      imageList: []
+    })
+  },
   onSubmit(e) {
     const that = this;
     let formData = {

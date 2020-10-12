@@ -13,15 +13,21 @@
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files">
-								<block wx:for="{{imageList}}" wx:for-item="image">
-									<view class="weui-uploader__file">
-										<image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+								<block wx:for="{{imageList}}" wx:for-item="image" wx:key="key">
+									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+										<view class="delete" bindtap="delImage" data-key="{{key}}">[删除]</view>
+										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+									</view>
+								</block>
+								<block wx:if="{{imageList.length<=0}}">
+									<view class="weui-uploader__file order-pic">
+										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage"></image>
 									</view>
 								</block>
 							</view>
-							<view class="weui-uploader__input-box">
+							<!-- <view class="weui-uploader__input-box">
 								<view class="weui-uploader__input" bindtap="chooseImage"></view>
-							</view>
+							</view> -->
 						</view>
 					</view>
 				</view>
