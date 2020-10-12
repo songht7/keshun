@@ -7,6 +7,25 @@
 					<input class="code-inut" name="receivingCode" model:value="{{receivingCode}}" placeholder="请输入收货码"></input>
 				</view>
 			</view>
+			<view class="cust-block">
+				<view class="update">
+					<view class="update-title">交货单照片</view>
+					<view class="update-img">
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files">
+								<block wx:for="{{imageList}}" wx:for-item="image">
+									<view class="weui-uploader__file">
+										<image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+									</view>
+								</block>
+							</view>
+							<view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
 		</view>
 	</scan-code>
 </view>

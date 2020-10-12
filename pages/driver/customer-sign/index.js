@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    receivingCode: ""
+    receivingCode: "",
+    imageList: [],
   },
 
   /**
@@ -62,6 +63,28 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  chooseImage() {
+    const that = this
+    wx.chooseImage({
+      sourceType: ['camera', 'album'],
+      sizeType: ['compressed', 'original'],
+      count: 1,
+      success(res) {
+        console.log(res)
+        that.setData({
+          imageList: res.tempFilePaths
+        })
+      }
+    })
+  },
+  previewImage(e) {
+    const current = e.target.dataset.src
+
+    wx.previewImage({
+      current,
+      urls: this.data.imageList
+    })
   },
   onSubmit(e) {
     const that = this;
