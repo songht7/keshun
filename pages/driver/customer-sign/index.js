@@ -90,7 +90,8 @@ Page({
     const that = this;
     let formData = {
       orderCode: e.detail.orderCode,
-      receivingCode: that.data.receivingCode
+      receivingCode: that.data.receivingCode,
+      imageList: that.data.imageList,
     };
     console.log(formData);
   }
