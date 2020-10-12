@@ -1,4 +1,12 @@
 <!--pages/driver/customer-sign/index.wxml-->
 <view class="container">
-	<scan-code bind:seachCode="seachCode"></scan-code>
+	<scan-code bind:seachCode="onSubmit">
+		<view slot="cont">
+			<view class="cust-block">
+				<view class="code-box">
+					<input class="code-inut" name="receivingCode" model:value="{{receivingCode}}" placeholder="请输入收货码"></input>
+				</view>
+			</view>
+		</view>
+	</scan-code>
 </view>

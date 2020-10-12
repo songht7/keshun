@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    receivingCode: ""
   },
 
   /**
@@ -62,5 +62,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onSubmit(e) {
+    const that = this;
+    let formData = {
+      orderCode: e.detail.orderCode,
+      receivingCode: that.data.receivingCode
+    };
+    console.log(formData);
   }
 })

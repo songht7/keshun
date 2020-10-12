@@ -1,6 +1,8 @@
 // pages/components/scan-code/scan-code.js
 Component({
   options: {
+    multipleSlots: true,
+    addGlobalClass: true,
     virtualHost: true, //将这个自定义组件设置为“虚拟的”
   },
   externalClasses: ['class'], //接受外部传入的样式类
