@@ -20,9 +20,11 @@
 .status-row:last-child {
   border-bottom: none
 }
-.status-block{
+
+.status-block {
   width: 100%;
 }
+
 .status-block-row {
   display: flex;
   flex-direction: row;

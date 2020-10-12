@@ -41,7 +41,7 @@ Component({
         icon: "icon-5.png",
         sw: "60",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/driver/customer-sign/index"
       }, {
         label: "GPS上传",
         icon: "icon-6.png",

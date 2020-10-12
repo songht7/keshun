@@ -11,7 +11,8 @@
     "pages/driver/location/index",
     "pages/driver/location-detail/index",
     "pages/driver/sign/index",
-    "pages/driver/gps/index"
+    "pages/driver/gps/index",
+    "pages/driver/customer-sign/index"
   ],
   "entryPagePath": "",
   "window": {

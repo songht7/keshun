@@ -6,13 +6,13 @@ Component({
   externalClasses: ['class'], //接受外部传入的样式类
   properties: { // 定义 参数 属性可以拿到 对应 属性上设置的值
     style: String,
-    holder:{
-      type:String,
-      value:"请输入交货单号"
+    holder: {
+      type: String,
+      value: "请输入交货单号"
     }
   },
   data: {
-    result: ''
+    orderCode: ''
   },
   created: function () {
     console.log('[my-component] created')
@@ -39,8 +39,12 @@ Component({
         }
       })
     },
-    seachCode(){
-      this.triggerEvent('seachCode', this.data.result) //访问父组件事件
+    seachCode() {
+      const that = this;
+      let formData = {
+        orderCode: that.data.orderCode
+      }
+      this.triggerEvent('seachCode', formData) //访问父组件事件
     }
   }
 })

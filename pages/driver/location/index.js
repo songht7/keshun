@@ -66,8 +66,9 @@ Page({
   location(e) {
     const that = this;
     console.log(e.detail);
+    let formData = e.detail;
     wx.navigateTo({
-      url: '/pages/driver/location-detail/index?code=' + e.detail,
+      url: '/pages/driver/location-detail/index?code=' + formData.orderCode,
     })
   }
 })

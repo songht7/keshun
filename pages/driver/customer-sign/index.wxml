@@ -1,0 +1,4 @@
+<!--pages/driver/customer-sign/index.wxml-->
+<view class="container">
+	<scan-code bind:seachCode="seachCode"></scan-code>
+</view>

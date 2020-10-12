@@ -1,4 +1,4 @@
-// pages/driver/order/index.js
+// pages/driver/customer-sign/index.js
 Page({
 
   /**
@@ -62,14 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  //
-  seachCode(e) {
-    const that = this;
-    console.log(e.detail);
-    let formData = e.detail;
-    wx.navigateTo({
-      url: '/pages/driver/order-detail/index?code=' + formData.orderCode,
-    })
   }
 })

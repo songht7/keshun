@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "客户签收",
+  "usingComponents": {
+    "scan-code": "../../components/scan-code/scan-code"
+  }
+}
