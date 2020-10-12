@@ -49,17 +49,17 @@
   color: #666;
 }
 
-.status-title {
+.status-title,.status-subtitle-icon{
   position: relative;
 }
 .status-subtitle-icon:before{
   content: " ";
-  width: 50rpx;
-  height: 50rpx;
-  background:#333;
+  width: 30rpx;
+  height: 30rpx;
+  background:#535353;
   border-radius: 50%;
   position: absolute;
-  left: -80rpx;
+  left: -66rpx;
 }
 .order-icon {
   position: absolute;

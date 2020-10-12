@@ -5,4 +5,33 @@
 	<view class="page-init">
 		<home-switch bind:parTap="parTap" switchType="{{switchType}}"></home-switch>
 	</view>
+	<mp-halfScreenDialog show="{{typeT}}" closabled="{{false}}">
+		<!-- maskClosable="{{false}}" -->
+		<view slot="title">
+			<view class="dialog-head">
+				<image class="dialog-logo" src="/static/logo-2.png" mode="aspectFit"></image> 科顺返水 申请
+			</view>
+		</view>
+		<view slot="desc">发送一次以下消息通知</view>
+		<view slot="cont">
+			<view class="dialog-cont">
+				<view class="dialog-row">
+					<view class="dl-info">
+						<icon class="icon-box-img icon-success" type="success" size="22" color="#008949"></icon> GPS提醒
+					</view>
+					<icon class="icon-box-img icon-success" type="info_circle" size="22" color="#008949"></icon>
+				</view>
+				<view class="dialog-row">
+					<view class="dl-info">
+						<icon class="icon-box-img icon-success" type="success" size="22" color="#008949"></icon> 排队进场提醒
+					</view>
+					<icon class="icon-box-img icon-success" type="info_circle" size="22" color="#008949"></icon>
+				</view>
+			</view>
+		</view>
+		<view slot="footer">
+			<button type="default" class="weui-btn" bindtap="closeDialog">取消</button>
+			<button type="primary" class="weui-btn">允许</button>
+		</view>
+	</mp-halfScreenDialog>
 </view>

@@ -19,25 +19,32 @@ Page({
       }]
     },
     list: [{
-      date: "10-11",
+      date: "10-13",
       time: "08:00",
       title: "已签收",
-      subtitle: "收件人：急急急",
-      pic:"/static/goods-2.png",
+      subtitle: "快递已签收 签收人：曹操",
+      pic: "/static/goods-2.png",
       status: 2
+    }, {
+      date: "10-12",
+      time: "08:00",
+      title: "",
+      subtitle: "快递已到达广州",
+      pic: "",
+      status: 0
     }, {
       date: "10-11",
       time: "08:00",
       title: "",
       subtitle: "快递已离开上海",
-      pic:"",
+      pic: "",
       status: 0
     }, {
       date: "10-10",
       time: "08:00",
       title: "已发货",
       subtitle: "快递已发货",
-      pic:"",
+      pic: "",
       status: 1
     }]
   },

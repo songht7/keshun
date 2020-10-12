@@ -1,1 +1,10 @@
 /* pages/driver/order-detail/index.wxss */
+.code-info {
+  background: #d57038;
+  color: #fff;
+  line-height: 2;
+}
+
+.code-info text {
+  padding: 0 40rpx;
+}

@@ -1,0 +1,35 @@
+/* pages/driver/location-detail/index.wxss */
+@import "/common/base.wxss";
+
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.submit-status {
+  color: #08499a;
+  font-size: 36rpx;
+}
+
+.status-list {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  border-top: 1px dashed #c0c0bf;
+}
+
+.status-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: flex-start;
+  align-content: center;
+  padding-bottom: 20rpx;
+  font-size: 26rpx;
+}
+
+.status-row .icons {
+  padding-top: 5rpx;
+}

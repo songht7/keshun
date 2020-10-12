@@ -1,0 +1,4 @@
+<!--pages/driver/location/index.wxml-->
+<view class="container">
+	<scan-code bind:seachCode="location"></scan-code>
+</view>

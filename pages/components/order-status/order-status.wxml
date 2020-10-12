@@ -9,7 +9,7 @@
 				</view>
 				<view class="status-block status-right">
 					<view wx:if="{{item.title}}"  class="status-title">
-						<image class="order-icon" src='/static/goods-1.png' mode="aspectFit"></image>
+						<image class="order-icon" src="/static/goods-{{item.status==1?'1':'2'}}.png" mode="aspectFit"></image>
 						{{item.title}}
 					</view>
 					<view class="status-subtitle {{!item.title?'status-subtitle-icon':''}}">{{item.subtitle}}</view>

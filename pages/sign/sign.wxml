@@ -2,7 +2,7 @@
 <view class="container">
 	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 	<view class="logo-box">
-		<image class="logo" src="../../static/logo.png" mode="aspectFit"></image>
+		<image class="logo" src="/static/logo.png" mode="aspectFit"></image>
 	</view>
 	<view class="page-init" wx:if="{{!checkUser}}">
 		<form catchsubmit="formSubmit" catchreset="formReset">
