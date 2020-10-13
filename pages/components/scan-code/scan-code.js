@@ -33,11 +33,16 @@ Component({
         success(res) {
           console.log(res);
           that.setData({
-            result: res.result
+            orderCode: res.result
           })
         },
         fail(err) {
           console.log(err);
+          wx.showToast({
+            title: "扫码失败",
+            icon: 'none',
+            duration: 2000
+          })
         }
       })
     },

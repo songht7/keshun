@@ -1,0 +1,65 @@
+<!--pages/components/order-card/order-card.wxml-->
+<view class="order-card">
+	<checkbox-group bindchange="checkboxChange">
+		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
+			<view class="order-row">
+				<view class="order-head">
+					<label>
+						<checkbox wx:if="{{item.hasCheck}}" value="{{item.id}}" checked="{{item.checked}}"></checkbox>
+						交货单号：{{item.order}}
+					</label>
+				</view>
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-9.png" mode="scaleToFill"></image>
+							货物数量：<text>{{item.numb}}</text>
+						</view>
+						<view class="order-init">
+							总重量：<text>{{item.weight}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-10.png" mode="scaleToFill"></image>
+							收货地址：<text>{{item.address}}</text>
+						</view>
+					</view>
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
+							收货人：<text>{{item.name}}</text>
+						</view>
+					</view>
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-12.png" mode="scaleToFill"></image>
+							联系电话：<text>{{item.phone}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
+							发货地：<text>{{item.deliver}}</text>
+						</view>
+					</view>
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
+							预计到货时间：<text>{{item.estimate}}</text>
+						</view>
+					</view>
+				</view>
+				<block wx:if="{{item.checkBtn}}">
+					<view class="btn-area">
+						<button type="primary" class="btn-primary" bindtap="orderCardSubmit">{{btnLabel}}</button>
+					</view>
+				</block>
+			</view>
+		</block>
+	</checkbox-group>
+</view>

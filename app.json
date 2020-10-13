@@ -12,7 +12,10 @@
     "pages/driver/location-detail/index",
     "pages/driver/sign/index",
     "pages/driver/gps/index",
-    "pages/driver/customer-sign/index"
+    "pages/driver/customer-sign/index",
+    "pages/driver/my-order/index",
+    "pages/driver/order-into/index",
+    "pages/driver/order-into-detail/index"
   ],
   "entryPagePath": "",
   "window": {

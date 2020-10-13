@@ -1,0 +1,45 @@
+/* pages/components/order-card/order-card.wxss */
+
+
+.order-row {
+  background: #fff;
+  border-radius: 15rpx;
+  overflow: hidden;
+  margin-bottom: 40rpx;
+}
+
+.order-row .icons {
+  width: 36rpx;
+  height: 38rpx;
+}
+
+.order-head {
+  background: #08499a;
+  font-size: 34rpx;
+  line-height: 2;
+  color: #fff;
+  padding: 10rpx 20rpx;
+}
+
+.order-block {
+  padding: 20rpx 25rpx;
+  border-bottom: 1px dashed #939291;
+  color: #939291;
+}
+
+.order-block:last-child {
+  border-bottom: none;
+}
+
+.order-block text {
+  color: #333333;
+}
+
+.order-line {
+  line-height: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}

@@ -1,0 +1,18 @@
+<!--pages/driver/my-order/index.wxml-->
+<view class="container">
+	<view class="page-init">
+		<view class="my-order">
+			<view class="btn-area">
+				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
+			</view>
+			<view class="checkAll">
+				<checkbox-group bindchange="checkAll">
+					<label>
+						<checkbox value="all" checked="{{checkedAll}}" />全部选择
+					</label>
+				</checkbox-group>
+			</view>
+			<order-card list="{{list}}" bind:checkboxChange="checkboxChange"></order-card>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,24 @@
+/* pages/driver/my-order/index.wxss */
+@import "/common/base.wxss";
+
+page {
+  background-color: #f3f3f3
+}
+
+.my-order {
+  padding-bottom: 100rpx;
+  position: relative;
+}
+
+.btn-area {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 0;
+}
+
+.checkAll {
+  padding: 20rpx;
+}

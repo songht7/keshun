@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "交货单转入详细",
+  "usingComponents": {
+    "order-card": "../../components/order-card/order-card"
+  }
+}

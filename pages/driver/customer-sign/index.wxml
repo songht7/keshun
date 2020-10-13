@@ -13,9 +13,9 @@
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files">
-								<block wx:for="{{imageList}}" wx:for-item="image" wx:key="key">
+								<block wx:for="{{imageList}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
 									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-										<view class="delete" bindtap="delImage" data-key="{{key}}">[删除]</view>
+										<view class="delete" bindtap="chooseImage" data-idx="{{idx}}">[重传]</view>
 										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
 									</view>
 								</block>

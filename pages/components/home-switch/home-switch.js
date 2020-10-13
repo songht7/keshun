@@ -53,13 +53,13 @@ Component({
         icon: "icon-7.png",
         sw: "60",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/driver/my-order/index"
       }, {
         label: "交货单转入",
         icon: "icon-8.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/driver/order-into/index"
       }]
     }
   },

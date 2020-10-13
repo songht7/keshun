@@ -1,0 +1,9 @@
+<!--pages/driver/order-into-detail/index.wxml-->
+<view class="container">
+	<view class="page-init">
+		<view class="my-order">
+			<order-card list="{{list}}" bind:orderCardSubmit="orderCardSubmit" btnLabel="确认转入">
+      </order-card>
+		</view>
+	</view>
+</view>
