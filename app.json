@@ -15,7 +15,8 @@
     "pages/driver/customer-sign/index",
     "pages/driver/my-order/index",
     "pages/driver/order-into/index",
-    "pages/driver/order-into-detail/index"
+    "pages/driver/order-into-detail/index",
+    "pages/carrier/driver/index"
   ],
   "entryPagePath": "",
   "window": {

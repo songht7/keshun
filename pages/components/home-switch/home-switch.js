@@ -11,6 +11,7 @@ Component({
   data: {
     switchBtns: [],
     btns: {
+      /*首页switch-A*/
       "switch-A": [{
         label: "交货单查询", //按钮名称
         icon: "icon-1.png", //按钮图标
@@ -30,6 +31,7 @@ Component({
         tap: "linkTo",
         url: "/pages/hello/index"
       }],
+      /*司机switch-B*/
       "switch-B": [{
         label: "排队取号",
         icon: "icon-4.png",
@@ -60,6 +62,52 @@ Component({
         sw: "38",
         tap: "linkTo",
         url: "/pages/driver/order-into/index"
+      }],
+      /*门卫switch-C*/
+      "switch-C": [{
+        label: "车辆进场",
+        icon: "icon-4.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/driver/sign/index"
+      }, {
+        label: "车辆出场",
+        icon: "icon-5.png",
+        sw: "60",
+        tap: "linkTo",
+        url: "/pages/driver/customer-sign/index"
+      }],
+      /*承运商switch-D*/
+      "switch-D": [{
+        label: "车辆/司机分配",
+        icon: "icon-15.png",
+        sw: "60",
+        tap: "linkTo",
+        url: "/pages/carrier/driver/index"
+      }, {
+        label: "交货单查询",
+        icon: "icon-7.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/driver/customer-sign/index"
+      }, {
+        label: "司机管理",
+        icon: "icon-16.png",
+        sw: "100",
+        tap: "linkTo",
+        url: "/pages/driver/gps/index"
+      }, {
+        label: "车辆管理",
+        icon: "icon-17.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/driver/my-order/index"
+      }, {
+        label: "场内排队信息",
+        icon: "icon-18.png",
+        sw: "60",
+        tap: "linkTo",
+        url: "/pages/driver/order-into/index"
       }]
     }
   },
@@ -83,11 +131,21 @@ Component({
           switchBtns: this.properties.btns["switch-B"]
         });
         break;
+      case "3":
+        that.setData({
+          switchBtns: this.properties.btns["switch-C"]
+        });
+        break;
+      case "4":
+        that.setData({
+          switchBtns: this.properties.btns["switch-D"]
+        });
+        break;
 
       default:
         break;
     }
-    console.log("ready:", this.properties.switchBtns)
+    // console.log("ready:", this.properties.switchBtns)
   },
   methods: {
     parTap(e) {

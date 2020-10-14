@@ -1,0 +1,21 @@
+<!--pages/components/panel-list/panel-list.wxml-->
+<view class="panel-list">
+	<view class="searchbar">
+		<input type="text" bindinput="search" placeholder="{{holder}}"></input>
+	</view>
+	<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
+		<view class="panel-row">
+			<view class="panel-block">
+				<view class="panel-left">
+					<view class="panel-title">{{item.title}}</view>
+					<view class="panel-overview">
+						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>{{item.name}}
+					</view>
+				</view>
+				<view class="panel-right">
+					<view class="panel-arrow"></view>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
