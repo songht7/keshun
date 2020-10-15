@@ -19,7 +19,9 @@
     "pages/carrier/driver/index",
     "pages/carrier/driver-detail/index",
     "pages/carrier/car/index",
-    "pages/carrier/car-detail/index"
+    "pages/carrier/car-detail/index",
+    "pages/carrier/order/index",
+    "pages/carrier/order-detail/index"
   ],
   "entryPagePath": "",
   "window": {

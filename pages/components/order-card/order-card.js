@@ -14,6 +14,10 @@ Component({
     btnLabel: {
       type: String,
       value: "确认"
+    },
+    showMore: {
+      type: Boolean,
+      value: true
     }
   },
 
@@ -37,6 +41,12 @@ Component({
       const that = this;
       const orderId = that.data.list[0]["id"];
       this.triggerEvent('orderCardSubmit', orderId) //访问父组件事件
+    },
+    showMore() {
+      const that = this;
+      this.setData({
+        showMore: !that.properties.showMore
+      });
     }
   }
 })

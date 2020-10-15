@@ -83,19 +83,19 @@ Component({
         icon: "icon-15.png",
         sw: "60",
         tap: "linkTo",
-        url: "/pages/carrier/driver/index"
+        url: ""
       }, {
         label: "交货单查询",
         icon: "icon-7.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/driver/customer-sign/index"
+        url: "/pages/carrier/order/index"
       }, {
         label: "司机管理",
         icon: "icon-16.png",
         sw: "100",
         tap: "linkTo",
-        url: "/pages/driver/gps/index"
+        url: "/pages/carrier/driver/index"
       }, {
         label: "车辆管理",
         icon: "icon-17.png",
@@ -107,7 +107,7 @@ Component({
         icon: "icon-18.png",
         sw: "60",
         tap: "linkTo",
-        url: "/pages/driver/order-into/index"
+        url: ""
       }]
     }
   },

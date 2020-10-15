@@ -1,4 +1,4 @@
-/* pages/driver/order-detail/index.wxss */
+/* pages/carrier/order-detail/index.wxss */
 @import "../../../common/base.wxss";
 
 .code-info {

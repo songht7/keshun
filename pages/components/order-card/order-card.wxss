@@ -8,6 +8,10 @@
   margin-bottom: 40rpx;
 }
 
+.no-radius {
+  border-radius: 0
+}
+
 .order-row .icons {
   width: 36rpx;
   height: 38rpx;
@@ -42,4 +46,29 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+}
+
+.show-more {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  color: #5c5c5c;
+  font-size: 28rpx;
+  padding: 15rpx;
+}
+
+.show-more::before {
+  content: "";
+  width: 15rpx;
+  height: 15rpx;
+  margin-right: 15rpx;
+  border: 1px solid #5c5c5c;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
+.show-more-close::before {
+  transform: rotate(-135deg);
 }

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "交货单详细",
+  "usingComponents": {
+    "order-card": "../../components/order-card/order-card",
+    "order-status": "../../components/order-status/order-status"
+  }
+}

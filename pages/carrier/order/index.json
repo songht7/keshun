@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "交货单查询",
+  "usingComponents": {
+    "scan-code": "../../components/scan-code/scan-code"
+  }
+}
