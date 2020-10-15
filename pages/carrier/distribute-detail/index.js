@@ -119,25 +119,26 @@ Page({
   },
   chooseImage(e) {
     const that = this
-    const type = e.currentTarget.dataset.idx;
+    const type = e.target.dataset.idx;
+    console.log(type);
     wx.chooseImage({
       sourceType: ['camera', 'album'],
       sizeType: ['compressed', 'original'],
       count: 1,
       success(res) {
-        console.log(res)
-        switch (type) {
-          case 0:
+        console.log(type, res)
+        switch (type.toString()) {
+          case "1":
             that.setData({
               pic1: res.tempFilePaths
             })
             break;
-          case 1:
+          case "2":
             that.setData({
               pic2: res.tempFilePaths
             })
             break;
-          case 2:
+          case "3":
             that.setData({
               pic3: res.tempFilePaths
             })
@@ -149,21 +150,10 @@ Page({
     })
   },
   previewImage(e) {
-    const that=this;
+    const that = this;
     const current = e.target.dataset.src
     const type = e.target.dataset.idx;
-    let url = this.data.pic1;
-    switch (type) {
-      case 1:
-        url = that.data.pic2
-        break;
-      case 2:
-        url = that.data.pic3
-        break;
-      default:
-        url = that.data.pic1
-        break;
-    }
+    const url = this.data['pic' + type];
     wx.previewImage({
       current,
       urls: url

@@ -52,31 +52,46 @@
 				<view class="f-row-val">
 					<view class="update-img">
 						<view class="weui-uploader__bd">
-							<view class="weui-uploader__files">
-								<block wx:for="{{pic1}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
-									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-										<view class="delete" bindtap="chooseImage" data-idx="0">[重传]</view>
-										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="0"></image>
-									</view>
-								</block>
-								<block wx:if="{{pic1.length<=0}}">
-									<view class="weui-uploader__file order-pic">
-										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="0"></image>
-									</view>
-								</block>
-							</view>
-							<view class="weui-uploader__files">
-								<block wx:for="{{pic2}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
-									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-										<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="1"></image>
-									</view>
-								</block>
-								<block wx:if="{{pic2.length<=0}}">
-									<view class="weui-uploader__file order-pic">
-										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="1"></image>
-									</view>
-								</block>
+							<view class="weui-uploader__files pic-box">
+								<view class="pic-block">
+									<block wx:for="{{pic1}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
+											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="1"></image>
+										</view>
+									</block>
+									<block wx:if="{{pic1.length<=0}}">
+										<view class="weui-uploader__file order-pic">
+											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="1"></image>
+										</view>
+									</block>
+								</view>
+								<view class="pic-block">
+									<block wx:for="{{pic2}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+											<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
+											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="2"></image>
+										</view>
+									</block>
+									<block wx:if="{{pic2.length<=0}}">
+										<view class="weui-uploader__file order-pic">
+											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="2"></image>
+										</view>
+									</block>
+								</view>
+								<view class="pic-block">
+									<block wx:for="{{pic3}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+											<view class="delete" bindtap="chooseImage" data-idx="3">[重传]</view>
+											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="3"></image>
+										</view>
+									</block>
+									<block wx:if="{{pic3.length<=0}}">
+										<view class="weui-uploader__file order-pic">
+											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="3"></image>
+										</view>
+									</block>
+								</view>
 							</view>
 							<!-- <view class="weui-uploader__input-box">
 								<view class="weui-uploader__input" bindtap="chooseImage"></view>
