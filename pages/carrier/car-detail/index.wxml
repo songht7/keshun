@@ -1,0 +1,52 @@
+<!--pages/carrier/car-detail/index.wxml-->
+<view class="container">
+	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+	<view class="form-box">
+		<form catchsubmit="formSubmit" catchreset="formReset">
+			<view class="form-row">
+				<view class="f-row-label">车牌号码</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="NO" bindinput="bindInput" value="{{datas.NO}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">所属运输公司</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="logistics" bindinput="bindInput" value="{{datas.logistics}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">车辆行驶证</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="name" bindinput="bindInput" value="{{datas.name}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">车辆保险证明单号</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="phone" bindinput="bindInput" value="{{datas.phone}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">车辆尺寸（MM）</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="idCard" bindinput="bindInput" value="{{datas.idCard}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">核定载质量（KG）</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="empNO" bindinput="bindInput" value="{{datas.empNO}}" /></view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-img">
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+				</view>
+			</view>
+			<view class="page-init">
+				<view class="btn-area">
+					<button type="primary" class="btn-primary" formType="submit">确定</button>
+					<!-- <button formType="reset">Reset</button> -->
+				</view>
+			</view>
+		</form>
+	</view>
+</view>

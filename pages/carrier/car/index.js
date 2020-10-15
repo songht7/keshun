@@ -75,8 +75,8 @@ Page({
   onTap(e) {
     const that = this;
     const _id = e.detail;
-    // wx.navigateTo({
-    //   url: '/pages/carrier/driver-detail/index?id=' + _id,
-    // })
+    wx.navigateTo({
+      url: '/pages/carrier/car-detail/index?id=' + _id,
+    })
   }
 })

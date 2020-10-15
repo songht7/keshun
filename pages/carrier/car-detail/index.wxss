@@ -1,4 +1,4 @@
-/* pages/carrier/driver-detail/index.wxss */
+/* pages/carrier/car-detail/index.wxss */
 @import "/common/base.wxss";
 
 page {

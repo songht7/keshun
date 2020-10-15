@@ -122,3 +122,72 @@ button.btn-primary[type='primary'] {
 .dialog-row:first-child {
   border-top: 1px solid #eaeaea;
 }
+
+/* form row */
+.form-box {
+  padding: 20rpx 0;
+}
+
+.form-row {
+  background: #fff;
+  color: #333;
+  padding: 30rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.f-row-val {
+  text-align: right;
+}
+
+.form-row-input {
+  line-height: 3;
+  font-size: 28rpx;
+  color: #9a9a9a;
+}
+
+.gender {
+  border: 1px solid #251e23;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.gender-btn {
+  color: #333;
+  border-right: 1px solid #251e23;
+  font-size: 28rpx;
+  line-height: 1.8;
+  text-align: center;
+  width: 60rpx;
+}
+
+.gender-btn.on {
+  color: #fff;
+  background: #08499a;
+}
+
+.gender-btn:last-child {
+  border-right: none;
+}
+
+.f-row-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.f-img {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 10rpx 10rpx 0;
+}
