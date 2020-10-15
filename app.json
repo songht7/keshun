@@ -17,9 +17,10 @@
     "pages/driver/order-into/index",
     "pages/driver/order-into-detail/index",
     "pages/carrier/driver/index",
-    "pages/carrier/driver-detail/index"
+    "pages/carrier/driver-detail/index",
+    "pages/carrier/car/index"
   ],
-  "entryPagePath": "pages/carrier/driver-detail/index",
+  "entryPagePath": "",
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

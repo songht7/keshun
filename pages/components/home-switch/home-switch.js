@@ -101,7 +101,7 @@ Component({
         icon: "icon-17.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/driver/my-order/index"
+        url: "/pages/carrier/car/index"
       }, {
         label: "场内排队信息",
         icon: "icon-18.png",

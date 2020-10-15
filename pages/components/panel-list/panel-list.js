@@ -36,8 +36,14 @@ Component({
         const _list = this.properties.list;
         console.log(keyword, _list)
         _list.filter((obj, key) => {
-          if (obj['name'].match(keyword) != null) {
-            arr.push(obj);
+          if (obj['name']) {
+            if (obj['name'].match(keyword) != null) {
+              arr.push(obj);
+            }
+          } else if (obj['title']) {
+            if (obj['title'].match(keyword) != null) {
+              arr.push(obj);
+            }
           }
         });
         that.setData({

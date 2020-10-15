@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "车辆管理",
+  "usingComponents": {
+    "panel-list": "../../components/panel-list/panel-list"
+  }
+}

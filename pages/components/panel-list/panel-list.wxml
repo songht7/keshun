@@ -8,7 +8,7 @@
 			<view class="panel-block">
 				<view class="panel-left">
 					<view class="panel-title">{{item.title}}</view>
-					<view class="panel-overview">
+					<view class="panel-overview" wx:if="{{item.name}}">
 						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>{{item.name}}
 					</view>
 				</view>
