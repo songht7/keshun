@@ -1,0 +1,35 @@
+<!--pages/carrier/lineup/index.wxml-->
+<view class="container">
+	<view class="line-block">
+		<view class="line-title">当前可进场号</view>
+		<view class="line-main">
+			<view class="field-number">
+				<block wx:for="{{fieldNumber}}" wx:key="*this" wx:for-item="item">
+					<view class="fnumb">{{item}}</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="line-block">
+		<view class="line-title">排队信息</view>
+		<view class="line-main">
+			<view class="field-info">
+				<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
+					<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
+						<view class="panel-block">
+							<view class="panel-left">
+								<view class="panel-title">{{item.no}}</view>
+								<view class="panel-overview">{{item.phone}}</view>
+							</view>
+							<view class="panel-right">
+								<view class="field-number">
+									<view class="fnumb fnumb-small">{{item.field}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>

@@ -21,7 +21,8 @@
     "pages/carrier/car/index",
     "pages/carrier/car-detail/index",
     "pages/carrier/order/index",
-    "pages/carrier/order-detail/index"
+    "pages/carrier/order-detail/index",
+    "pages/carrier/lineup/index"
   ],
   "entryPagePath": "",
   "window": {

@@ -1,0 +1,73 @@
+/* pages/carrier/lineup/index.wxss */
+@import "/common/base.wxss";
+
+page {
+  background-color: #f3f3f3
+}
+
+.line-block {
+  background: #fff;
+  padding: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.line-title {
+  font-size: 34rpx;
+  line-height: 2;
+}
+
+.field-number {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.fnumb {
+  min-width: 65rpx;
+  height: 75rpx;
+  border: 1px solid #08499a;
+  background: #c4e3ff;
+  color: #08499a;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding: 0 5rpx;
+  /* margin: 0 20rpx 20rpx 0; */
+}
+
+.fnumb-small {
+  min-width: 40rpx;
+  height: 50rpx;
+}
+
+.panel-row {
+  background: #fff;
+  width: 100%;
+  margin: 10rpx 0;
+  border-bottom: 1px dashed #939291;
+}
+
+.panel-block {
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.panel-right {
+  height: 100%;
+  min-height: 80rpx;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

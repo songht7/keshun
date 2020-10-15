@@ -107,7 +107,7 @@ Component({
         icon: "icon-18.png",
         sw: "60",
         tap: "linkTo",
-        url: ""
+        url: "/pages/carrier/lineup/index"
       }]
     }
   },
