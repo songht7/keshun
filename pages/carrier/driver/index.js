@@ -74,5 +74,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onTap(e) {
+    const that = this;
+    const _id = e.detail;
+    wx.navigateTo({
+      url: '/pages/carrier/driver-detail/index?id=' + _id,
+    })
   }
 })

@@ -4,7 +4,7 @@
 		<input type="text" bindinput="search" placeholder="{{holder}}"></input>
 	</view>
 	<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
-		<view class="panel-row">
+		<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
 			<view class="panel-block">
 				<view class="panel-left">
 					<view class="panel-title">{{item.title}}</view>

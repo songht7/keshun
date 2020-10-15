@@ -5,9 +5,9 @@ Component({
    */
   properties: {
     list: Array,
-    holder:{
-      type:String,
-      value:"搜索司机名称"
+    holder: {
+      type: String,
+      value: "搜索司机名称"
     }
   },
 
@@ -48,6 +48,9 @@ Component({
           data: that.properties.list
         });
       }
+    },
+    onTap(e) {
+      this.triggerEvent('onTap', e.currentTarget.dataset.id);
     }
   }
 })

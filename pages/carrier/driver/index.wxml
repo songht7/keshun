@@ -1,4 +1,4 @@
 <!--pages/carrier/driver/index.wxml-->
 <view class="container">
-	<panel-list list="{{list}}"></panel-list>
+	<panel-list list="{{list}}" bind:onTap="onTap"></panel-list>
 </view>
