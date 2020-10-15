@@ -150,5 +150,8 @@ Page({
   },
   buttontap(e) {
     console.log(e.detail)
+  },
+  logout(){
+    util.logout()
   }
 })

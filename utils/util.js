@@ -9,7 +9,8 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  //return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -47,7 +48,19 @@ const getData = parm => {
     }
   })
 }
+const logout = parm => {
+  wx.removeStorage({
+    key: 'usrInfo',
+    success() {
+      wx.redirectTo({
+        url: '/pages/login/index',
+      })
+    }
+  })
+}
+
 module.exports = {
   formatTime,
-  getData
+  getData,
+  logout
 }
