@@ -26,7 +26,7 @@
     "pages/carrier/distribute/index",
     "pages/carrier/distribute-detail/index"
   ],
-  "entryPagePath": "pages/carrier/distribute-detail/index",
+  "entryPagePath": "",
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

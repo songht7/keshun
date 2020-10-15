@@ -56,8 +56,8 @@
 						</view>
 					</view>
 				</block>
-				<view wx:if="{{moreBtn}}" class="show-more {{showMore?'show-more-close':''}}" bindtap="showMore">
-					<text>{{showMore?'收起':'展开'}}</text>
+				<view wx:if="{{moreBtn}}" class="show-more {{!showMore?'show-more-close':''}}" bindtap="showMore">
+					<text>{{showMore?'展开':'收起'}}</text>
 				</view>
 				<block wx:if="{{item.checkBtn}}">
 					<view class="btn-area">

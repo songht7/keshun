@@ -4,7 +4,20 @@
 
 .searchbar {
   background: #fff;
+  position: relative;
   padding: 20rpx 30rpx;
+}
+
+.search-input {
+  padding-left: 50rpx;
+}
+
+.search-icon {
+  position: absolute;
+  top: 20rpx;
+  left: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .panel-row {

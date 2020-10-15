@@ -1,7 +1,8 @@
 <!--pages/components/panel-list/panel-list.wxml-->
 <view class="panel-list">
 	<view class="searchbar">
-		<input type="text" bindinput="search" placeholder="{{holder}}"></input>
+		<image class="search-icon" src="/static/icon-search.png" mode="scaleToFill"></image>
+		<input type="text" class="search-input" bindinput="search" placeholder="{{holder}}"></input>
 	</view>
 	<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
 		<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
