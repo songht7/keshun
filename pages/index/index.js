@@ -83,17 +83,22 @@ Page({
   },
   slideShow() {
     const that = this;
-    let data = {
-      "inter": "slideShow",
-      "parm": "?id=1"
-    }
-    data["fun"] = function (res) {
-      console.log(res);
-      that.setData({
-        silde: res.list
-      })
-    }
-    util.getData(data)
+    // let data = {
+    //   "inter": "slideShow",
+    //   "parm": "?id=1"
+    // }
+    // data["fun"] = function (res) {
+    //   console.log(res);
+    //   that.setData({
+    //     silde: res.list
+    //   })
+    // }
+    // util.getData(data)
+    that.setData({
+      silde: [{
+        original_src: '/static/default.jpg'
+      }]
+    })
   },
   getMyStorage() {
     const that = this;
@@ -151,7 +156,7 @@ Page({
   buttontap(e) {
     console.log(e.detail)
   },
-  logout(){
+  logout() {
     util.logout()
   }
 })

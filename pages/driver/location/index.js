@@ -1,18 +1,38 @@
 // pages/driver/location/index.js
+const util = require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    location: {},
+    date: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    let date = util.formatTime(new Date());
+    that.setData({
+      date: date
+    });
+    console.log(date);
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+        console.log(res);
+        that.setData({
+          location: res
+        });
+      }
+    })
   },
 
   /**
@@ -68,7 +88,7 @@ Page({
     console.log(e.detail);
     let formData = e.detail;
     wx.navigateTo({
-      url: '/pages/driver/location-detail/index?code=' + formData.orderCode,
+      url: '/pages/driver/location-detail/index?code=' + formData.orderCode + '&lat=' + that.data.location.latitude + '&long=' + that.data.location.longitude,
     })
   }
 })

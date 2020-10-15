@@ -7,6 +7,8 @@ Page({
   data: {
     code: "",
     status: "上传成功！",
+    latitude: "",
+    longitude: "",
     locationList: [{
       "address": "广东省佛山市顺德区容桂街道红旗中路38号",
       "date": "2020 年 9 月 20日 14 点 56 分",
@@ -19,8 +21,14 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    if (options.code) {
+    const code = options.code || "";
+    const lat = options.lat;
+    const long = options.long;
+    console.log(code, lat, long);
+    if (code) {
       that.setData({
+        latitude: lat,
+        longitude: long,
         code: options.code
       });
     }

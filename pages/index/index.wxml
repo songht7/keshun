@@ -31,8 +31,10 @@
 			</view>
 		</view>
 		<view slot="footer">
-			<button type="default" class="weui-btn" bindtap="closeDialog">取消</button>
-			<button type="primary" class="weui-btn">允许</button>
+			<view class="screen-dialog-footer">
+				<button type="default" class="weui-btn" bindtap="closeDialog">取消</button>
+				<button type="primary" class="weui-btn">允许</button>
+			</view>
 		</view>
 	</mp-halfScreenDialog>
 </view>

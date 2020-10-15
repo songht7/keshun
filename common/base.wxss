@@ -123,6 +123,12 @@ button.btn-primary[type='primary'] {
   border-top: 1px solid #eaeaea;
 }
 
+.screen-dialog-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /* form row */
 .form-box {
   padding: 20rpx 0;
