@@ -1,0 +1,96 @@
+<!--pages/carrier/distribute-detail/index.wxml-->
+<view class="container">
+	<view class="my-order">
+		<order-card list="{{list}}" listFull="{{true}}"></order-card>
+	</view>
+	<view class="form-box">
+		<form catchsubmit="formSubmit" catchreset="formReset">
+			<view class="form-row">
+				<view class="f-row-label">选择到场装货日期</view>
+				<view class="f-row-val">
+					<picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+						<view class="weui-input">{{date}}</view>
+					</picker>
+				</view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">选择到场装货时间段</view>
+				<view class="f-row-val">
+					<picker bindchange="bindPickerChange" value="{{timeSlotIndex}}" range="{{timeSlot}}">
+						<view class="weui-input">{{timeSlot[timeSlotIndex]}}</view>
+					</picker>
+				</view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">运输类型</view>
+				<view class="f-row-val">
+					<!-- <input class="form-row-input" value="{{data.gender}}" /> -->
+					<view class="radio">
+						<view class="radio-btn {{carType==1?'on':''}}" data-val="1" bindtap="selectRadio">整车</view>
+						<view class="radio-btn {{carType==2?'on':''}}" data-val="2" bindtap="selectRadio">零担</view>
+					</view>
+				</view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">选择车辆</view>
+				<view class="f-row-val">
+					<picker bindchange="bindPickerCar" value="{{carIndex}}" range="{{carList}}">
+						<view class="weui-input">{{carList[carIndex]}}</view>
+					</picker>
+				</view>
+			</view>
+			<view class="form-row">
+				<view class="f-row-label">选择司机</view>
+				<view class="f-row-val">
+					<picker bindchange="bindPickerDriver" value="{{driverIndex}}" range="{{driverList}}">
+						<view class="weui-input">{{driverList[driverIndex]}}</view>
+					</picker>
+				</view>
+			</view>
+			<view class="form-row form-column">
+				<view class="f-row-label">上传车辆照片</view>
+				<view class="f-row-val">
+					<view class="update-img">
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files">
+								<block wx:for="{{pic1}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+										<view class="delete" bindtap="chooseImage" data-idx="0">[重传]</view>
+										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="0"></image>
+									</view>
+								</block>
+								<block wx:if="{{pic1.length<=0}}">
+									<view class="weui-uploader__file order-pic">
+										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="0"></image>
+									</view>
+								</block>
+							</view>
+							<view class="weui-uploader__files">
+								<block wx:for="{{pic2}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+										<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
+										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="1"></image>
+									</view>
+								</block>
+								<block wx:if="{{pic2.length<=0}}">
+									<view class="weui-uploader__file order-pic">
+										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="1"></image>
+									</view>
+								</block>
+							</view>
+							<!-- <view class="weui-uploader__input-box">
+								<view class="weui-uploader__input" bindtap="chooseImage"></view>
+							</view> -->
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="page-init">
+				<view class="btn-area">
+					<button type="primary" class="btn-primary" formType="submit">确定</button>
+					<!-- <button formType="reset">Reset</button> -->
+				</view>
+			</view>
+		</form>
+	</view>
+</view>

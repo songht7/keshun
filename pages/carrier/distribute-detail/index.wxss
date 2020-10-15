@@ -1,0 +1,28 @@
+/* pages/carrier/distribute-detail/index.wxss */
+@import "/common/base.wxss";
+
+page {
+  background-color: #f3f3f3
+}
+
+.my-order {
+  padding: 20rpx 0 0;
+  position: relative;
+}
+
+.order-pic {
+  width: 150rpx;
+  height: 150rpx;
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  color: #eee;
+  line-height: 2;
+  width: 90%;
+  padding: 0 5%;
+  text-align: right;
+}

@@ -11,13 +11,17 @@ Component({
    */
   properties: {
     list: Array,
+    listFull: {
+      type: Boolean,
+      value: false
+    },
     btnLabel: {
       type: String,
       value: "确认"
     },
     showMore: {
       type: Boolean,
-      value: true
+      value: false
     }
   },
 
@@ -25,7 +29,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    moreBtn: false
+  },
+  ready: function () {
+    const that = this;
+    this.setData({
+      moreBtn: that.properties.showMore
+    });
   },
 
   /**
@@ -39,8 +49,13 @@ Component({
     },
     orderCardSubmit(e) {
       const that = this;
-      const orderId = that.data.list[0]["id"];
-      this.triggerEvent('orderCardSubmit', orderId) //访问父组件事件
+      const id = that.data.list[0]["id"];
+      this.triggerEvent('orderCardSubmit', id) //访问父组件事件
+    },
+    navDetail(e) {
+      const that = this;
+      const id = e.currentTarget.dataset.id;
+      this.triggerEvent('navDetail', id) //访问父组件事件
     },
     showMore() {
       const that = this;

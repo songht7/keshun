@@ -83,7 +83,7 @@ Component({
         icon: "icon-15.png",
         sw: "60",
         tap: "linkTo",
-        url: ""
+        url: "/pages/carrier/distribute/index"
       }, {
         label: "交货单查询",
         icon: "icon-7.png",

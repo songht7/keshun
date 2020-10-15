@@ -2,7 +2,7 @@
 <view class="order-card">
 	<checkbox-group bindchange="checkboxChange">
 		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
-			<view class="order-row {{list.length<=1?'no-radius':''}}">
+			<view class="order-row {{listFull?'no-radius':''}}" bindtap="navDetail" data-id="{{item.id}}">
 				<view class="order-head">
 					<label>
 						<checkbox wx:if="{{item.hasCheck}}" value="{{item.id}}" checked="{{item.checked}}"></checkbox>
@@ -20,7 +20,7 @@
 						</view>
 					</view>
 				</view>
-				<block wx:if="{{showMore}}">
+				<block wx:if="{{!showMore}}">
 					<view class="order-block">
 						<view class="order-line">
 							<view class="order-init">
@@ -56,7 +56,7 @@
 						</view>
 					</view>
 				</block>
-				<view class="show-more {{showMore?'show-more-close':''}}" bindtap="showMore">
+				<view wx:if="{{moreBtn}}" class="show-more {{showMore?'show-more-close':''}}" bindtap="showMore">
 					<text>{{showMore?'收起':'展开'}}</text>
 				</view>
 				<block wx:if="{{item.checkBtn}}">

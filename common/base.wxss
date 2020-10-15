@@ -140,6 +140,13 @@ button.btn-primary[type='primary'] {
   margin-bottom: 20rpx;
 }
 
+.form-column {
+  flex-direction: column;
+  justify-content: start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
 .f-row-val {
   text-align: right;
 }
@@ -150,7 +157,8 @@ button.btn-primary[type='primary'] {
   color: #9a9a9a;
 }
 
-.gender {
+.gender,
+.radio {
   border: 1px solid #251e23;
   border-radius: 8rpx;
   display: flex;
@@ -161,21 +169,25 @@ button.btn-primary[type='primary'] {
   overflow: hidden;
 }
 
-.gender-btn {
+.gender-btn,
+.radio-btn {
   color: #333;
   border-right: 1px solid #251e23;
   font-size: 28rpx;
   line-height: 1.8;
   text-align: center;
-  width: 60rpx;
+  min-width: 40rpx;
+  padding: 0 10rpx;
 }
 
-.gender-btn.on {
+.gender-btn.on,
+.radio-btn.on {
   color: #fff;
   background: #08499a;
 }
 
-.gender-btn:last-child {
+.gender-btn:last-child,
+.radio-btn:last-child {
   border-right: none;
 }
 
