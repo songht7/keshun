@@ -29,7 +29,7 @@ Component({
         icon: "icon-3.png",
         sw: "100",
         tap: "linkTo",
-        url: "/pages/hello/index"
+        url: "/pages/login/index"
       }],
       /*司机switch-B*/
       "switch-B": [{
@@ -63,22 +63,8 @@ Component({
         tap: "linkTo",
         url: "/pages/driver/order-into/index"
       }],
-      /*门卫switch-C*/
+      /*承运商switch-C*/
       "switch-C": [{
-        label: "车辆进场",
-        icon: "icon-4.png",
-        sw: "38",
-        tap: "linkTo",
-        url: "/pages/driver/sign/index"
-      }, {
-        label: "车辆出场",
-        icon: "icon-5.png",
-        sw: "60",
-        tap: "linkTo",
-        url: "/pages/driver/customer-sign/index"
-      }],
-      /*承运商switch-D*/
-      "switch-D": [{
         label: "车辆/司机分配",
         icon: "icon-15.png",
         sw: "60",
@@ -108,6 +94,20 @@ Component({
         sw: "60",
         tap: "linkTo",
         url: "/pages/carrier/lineup/index"
+      }],
+      /*门卫switch-D*/
+      "switch-D": [{
+        label: "车辆进场",
+        icon: "icon-4.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/driver/sign/index"
+      }, {
+        label: "车辆出场",
+        icon: "icon-5.png",
+        sw: "60",
+        tap: "linkTo",
+        url: "/pages/driver/customer-sign/index"
       }]
     }
   },
@@ -141,8 +141,10 @@ Component({
           switchBtns: this.properties.btns["switch-D"]
         });
         break;
-
       default:
+        that.setData({
+          switchBtns: this.properties.btns["switch-A"]
+        });
         break;
     }
     // console.log("ready:", this.properties.switchBtns)

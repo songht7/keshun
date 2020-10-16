@@ -1,4 +1,4 @@
-<!--pages/sign/sign.wxml-->
+<!--pages/login/index.wxml-->
 <view class="container">
 	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 	<view class="logo-box">

@@ -1,9 +1,7 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/index/index",
-    "pages/hello/index",
-    "pages/logs/logs",
+    "pages/login/index",
     "pages/components/home-switch/home-switch",
     "pages/components/scan-code/scan-code",
     "pages/driver/order/index",
@@ -24,7 +22,9 @@
     "pages/carrier/order-detail/index",
     "pages/carrier/lineup/index",
     "pages/carrier/distribute/index",
-    "pages/carrier/distribute-detail/index"
+    "pages/carrier/distribute-detail/index",
+    "pages/hello/index",
+    "pages/logs/logs"
   ],
   "entryPagePath": "",
   "permission": {

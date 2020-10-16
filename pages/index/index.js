@@ -7,6 +7,7 @@ Page({
    */
   data: {
     loading: true,
+    user: {},
     typeT: false,
     buttons: [{
         type: 'default',
@@ -110,6 +111,7 @@ Page({
           let userType = res.data.id;
           let subscribe = res.data.subscribe;
           that.setData({
+            user: res.data,
             switchType: userType,
             typeT: !subscribe
           });

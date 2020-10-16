@@ -9,7 +9,7 @@
 }
 
 .switch-btn {
-  line-height: 5;
+  line-height: 7;
   display: flex;
   justify-content: center;
   flex-direction: row;
