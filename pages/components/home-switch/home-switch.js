@@ -95,19 +95,39 @@ Component({
         tap: "linkTo",
         url: "/pages/carrier/lineup/index"
       }],
-      /*门卫switch-D*/
+      /*总部物流switch-D*/
       "switch-D": [{
-        label: "车辆进场",
-        icon: "icon-4.png",
+        label: "承运商分配",
+        icon: "icon-7.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/driver/sign/index"
+        url: ""
       }, {
-        label: "车辆出场",
-        icon: "icon-5.png",
+        label: "车辆/司机分配",
+        icon: "icon-15.png",
         sw: "60",
         tap: "linkTo",
-        url: "/pages/driver/customer-sign/index"
+        url: "/pages/carrier/distribute/index"
+      }, {
+        label: "司机管理",
+        icon: "icon-16.png",
+        sw: "60",
+        tap: "linkTo",
+        url: "/pages/carrier/driver/index"
+      }, {
+        label: "车辆管理",
+        icon: "icon-17.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/carrier/car/index"
+      }],
+      /*业务switch-E*/
+      "switch-E": [{
+        label: "交货单查询",
+        icon: "icon-7.png",
+        sw: "100",
+        tap: "linkTo",
+        url: "/pages/carrier/order/index"
       }]
     }
   },
@@ -120,30 +140,39 @@ Component({
   ready: function () {
     console.log('[my-component] ready')
     var that = this;
+    const menus = that.properties.btns
     switch (this.properties.switchType.toString()) {
       case "1":
+        const nav = menus["switch-A"].filter((obj, key) => {
+          return key < 2
+        });
         that.setData({
-          switchBtns: this.properties.btns["switch-A"]
+          switchBtns: nav
         });
         break;
       case "2":
         that.setData({
-          switchBtns: this.properties.btns["switch-B"]
+          switchBtns: menus["switch-B"]
         });
         break;
       case "3":
         that.setData({
-          switchBtns: this.properties.btns["switch-C"]
+          switchBtns: menus["switch-C"]
         });
         break;
       case "4":
         that.setData({
-          switchBtns: this.properties.btns["switch-D"]
+          switchBtns: menus["switch-D"]
+        });
+        break;
+      case "5":
+        that.setData({
+          switchBtns: menus["switch-E"]
         });
         break;
       default:
         that.setData({
-          switchBtns: this.properties.btns["switch-A"]
+          switchBtns: menus["switch-A"]
         });
         break;
     }

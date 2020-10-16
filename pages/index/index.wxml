@@ -6,8 +6,9 @@
 	<view class="page-init">
 		<home-switch bind:parTap="parTap" switchType="{{switchType}}"></home-switch>
 	</view>
-	<mp-halfScreenDialog show="{{typeT}}" closabled="{{false}}">
-		<!-- maskClosable="{{false}}" -->
+	<!-- 信息订阅 -->
+	<mp-halfScreenDialog wx:if="{{false}}" show="{{false}}" closabled="{{false}}">
+		<!-- show="{{typeT}}" maskClosable="{{false}}" -->
 		<view slot="title">
 			<view class="dialog-head">
 				<image class="dialog-logo" src="/static/logo-2.png" mode="aspectFit"></image> 科顺返水 申请
@@ -37,4 +38,5 @@
 			</view>
 		</view>
 	</mp-halfScreenDialog>
+	<!-- /信息订阅 -->
 </view>

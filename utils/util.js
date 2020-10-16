@@ -53,7 +53,7 @@ const logout = parm => {
     key: 'usrInfo',
     success() {
       wx.redirectTo({
-        url: '/pages/login/index',
+        url: '/pages/index/index',
       })
     }
   })
