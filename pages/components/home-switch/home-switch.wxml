@@ -1,4 +1,5 @@
 	<view class="home-switch">
+		<view class="page-type">{{pageTpe}}</view>
 		<block wx:for="{{switchBtns}}" wx:key="*this" wx:for-item="item">
 			<view class="switch-btn sw-{{item.sw}}" bindtap="{{item.tap}}" data-url="{{item.url}}">
 				<image class="switch-icons" src="../../../static/{{item.icon}}" mode="scaleToFill"></image>{{item.label}}

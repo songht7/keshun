@@ -20,11 +20,13 @@
   margin-bottom: 15rpx;
   font-size: 28rpx;
 }
-.switch-icons{
+
+.switch-icons {
   width: 32rpx;
   height: 32rpx;
   padding-right: 8rpx;
 }
+
 .sw-38 {
   width: 38%;
 }
@@ -39,4 +41,16 @@
 
 .sw-100 {
   width: 100%;
+}
+
+.page-type {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  line-height: 3;
+  text-align: center;
 }

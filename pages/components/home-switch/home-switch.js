@@ -10,6 +10,7 @@ Component({
   },
   data: {
     switchBtns: [],
+    pageTpe: "首页",
     btns: {
       /*首页switch-A*/
       "switch-A": [{
@@ -147,31 +148,37 @@ Component({
           return key < 2
         });
         that.setData({
+          pageTpe: "首页",
           switchBtns: nav
         });
         break;
       case "2":
         that.setData({
+          pageTpe: "司机",
           switchBtns: menus["switch-B"]
         });
         break;
       case "3":
         that.setData({
+          pageTpe: "承运商",
           switchBtns: menus["switch-C"]
         });
         break;
       case "4":
         that.setData({
+          pageTpe: "总部物流",
           switchBtns: menus["switch-D"]
         });
         break;
       case "5":
         that.setData({
+          pageTpe: "业务",
           switchBtns: menus["switch-E"]
         });
         break;
       default:
         that.setData({
+          pageTpe: "首页 - 未登录",
           switchBtns: menus["switch-A"]
         });
         break;
