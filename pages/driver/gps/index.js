@@ -101,6 +101,9 @@ Page({
           "date": date,
           "submitStatus": "success"
         }
+        that.setData({
+          locationList: [lct, ...that.data.locationList]
+        });
         //  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
         //  qqmapsdk.reverseGeocoder({
         //   location: {
