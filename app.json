@@ -29,6 +29,7 @@
   "entryPagePath": "",
   "permission": {
     "scope.userInfo": {},
+    "scope.userLocationBackground": {},
     "scope.userLocation": {
       "desc": "你的位置信息将用于定点记录"
     }

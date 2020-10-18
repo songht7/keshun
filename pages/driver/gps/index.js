@@ -1,5 +1,8 @@
 // pages/driver/gps/index.js
-const util = require('../../../utils/util.js')
+const util = require('../../../utils/util.js');
+// 引入SDK核心类
+// var QQMapWX = require('xxx/qqmap-wx.js');
+var interval = "";
 Page({
 
   /**
@@ -24,31 +27,21 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    let date = util.formatTime(new Date());
-    that.setData({
-      date: date
-    });
-    console.log(date);
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        console.log(res);
-        that.setData({
-          location: res
-        });
-      }
-    })
+    // // 实例化腾讯地图API核心类
+    // qqmapsdk = new QQMapWX({
+    //   key: '开发密钥（key）' // 必填
+    // });
+    that.setLocation();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const that = this;
+    interval = setInterval(() => {
+      that.setLocation()
+    }, 5000);
   },
 
   /**
@@ -69,7 +62,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(interval);
   },
 
   /**
@@ -91,5 +84,39 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  setLocation() {
+    const that = this;
+    const date = util.formatTime(new Date(), '年月日');
+    console.log(date);
+    const data = {
+      type: 'gcj02',
+      fun: function (res) {
+        // console.log(res);
+        // that.setData({
+        //   location: res
+        // });
+        let lct = {
+          "address": res.latitude + '-' + res.longitude,
+          "date": date,
+          "submitStatus": "success"
+        }
+        //  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        //  qqmapsdk.reverseGeocoder({
+        //   location: {
+        //     latitude: res.latitude,
+        //     longitude: res.longitude
+        //   },
+        //   success: function (addressRes) {
+        //     var address = addressRes.result.formatted_addresses.recommend;
+        //     that.setData({
+        //       console.log(address)
+        //     })
+        //   }
+        // })
+        console.log(lct)
+      }
+    };
+    util.getLocation(data);
   }
 })

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: "",
     orderCode: "",
     list: [{
       id: 1,
@@ -41,6 +42,14 @@ Page({
     that.setData({
       date: d.split(" ")[0]
     });
+    if (options.id) {
+      that.setData({
+        id: options.id
+      });
+      // that.setData({
+      //   datas: _data
+      // });
+    }
   },
 
   /**
@@ -159,4 +168,8 @@ Page({
       urls: url
     })
   },
+  formSubmit(e) {
+    console.log(e.detail.value);
+    let _formData = e.detail.value;
+  }
 })

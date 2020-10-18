@@ -26,7 +26,11 @@ Page({
       phone: "13918181818",
       deliver: "广州",
       estimate: "2020年10月30日"
-    }]
+    }],
+    addBtn: {
+      name: "添加",
+      url: "/pages/carrier/distribute-detail/index"
+    }
   },
 
   /**
