@@ -5,12 +5,19 @@
 			<view class="btn-area">
 				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
 			</view>
-			<view class="checkAll">
+			<view class="filter-box">
 				<checkbox-group bindchange="checkAll">
 					<label>
 						<checkbox value="all" checked="{{checkedAll}}" />全部选择
 					</label>
 				</checkbox-group>
+				<filter-box bind:filterSubmit="filterSubmit">
+					<view slot="cont">
+						<view class="filter-row">
+							<input name="no" placeholder="请输入订单号..."></input>
+						</view>
+					</view>
+				</filter-box>
 			</view>
 			<order-card list="{{list}}" bind:checkboxChange="checkboxChange"></order-card>
 		</view>

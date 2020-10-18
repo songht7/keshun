@@ -102,6 +102,9 @@ Page({
   onShareAppMessage: function () {
 
   },
+  filterSubmit() {
+    console.log('filterSubmit');
+  },
   checkAll(e) {
     console.log(e.detail.value);
     const that = this;
@@ -142,5 +145,16 @@ Page({
       }
     });
     console.log(cks);
+    setTimeout(() => {
+      const fL = list.filter((obj, key) => {
+        if (!cks.includes(obj['id'])) {
+          console.log(obj)
+          return obj
+        }
+      });
+      that.setData({
+        list: fL
+      });
+    }, 1000);
   }
 })

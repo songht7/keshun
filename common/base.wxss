@@ -155,6 +155,10 @@ button.btn-primary[type='primary'] {
 
 .f-row-val {
   text-align: right;
+  min-width: 40%;
+}
+.f-row-radio{
+  min-width: auto;
 }
 
 .form-row-input {

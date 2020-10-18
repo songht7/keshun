@@ -34,3 +34,7 @@ page {
   text-align: right;
   font-size: 28rpx;
 }
+
+.scroll-view-item {
+  margin: 20rpx;
+}

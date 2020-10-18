@@ -20,10 +20,26 @@ Page({
       estimate: "2020年10月30日"
     }],
     date: "/-/-/",
-    timeSlot: ['5:00 ~ 6:00', '6:00 ~ 7:00', '7:00 ~ 8:00', '8:00 ~ 9:00', '9:00 ~ 10:00'],
+    timeSlot: ['00:00 ~ 02:00', '02:00 ~ 04:00', '04:00 ~ 06:00', '06:00 ~ 08:00', '08:00 ~ 10:00', '10:00 ~ 12:00', '12:00 ~ 14:00', '14:00 ~ 16:00', '16:00 ~ 18:00', '18:00 ~ 20:00', '20:00 ~ 22:00', '22:00 ~ 00:00'],
     timeSlotIndex: 2,
     carType: 1,
-    carList: ['沪AG1234', '沪BC4567', '沪CD7890'],
+    selectCar: false,
+    carList: [{
+      id: 1,
+      name: '沪AG1234'
+    }, {
+      id: 2,
+      name: '沪BC4567'
+    }, {
+      id: 3,
+      name: '沪CD7890'
+    }, {
+      id: 4,
+      name: '沪FD7895'
+    }, {
+      id: 5,
+      name: '沪FD7899'
+    }],
     carIndex: 0,
     driverList: ['曹操', '刘备', '孙权'],
     driverIndex: 0,
@@ -124,6 +140,11 @@ Page({
   bindPickerDriver(e) { //选择车辆
     this.setData({
       driverIndex: e.detail.value
+    })
+  },
+  selectCarBtn(e) { ///自定义方法
+    this.setData({
+      selectCar: true
     })
   },
   chooseImage(e) {

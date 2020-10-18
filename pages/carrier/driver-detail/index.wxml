@@ -13,7 +13,7 @@
 			</view>
 			<view class="form-row">
 				<view class="f-row-label">驾驶员性别</view>
-				<view class="f-row-val">
+				<view class="f-row-val f-row-radio">
 					<!-- <input class="form-row-input" value="{{data.gender}}" /> -->
 					<view class="gender">
 						<view class="gender-btn {{datas.gender==1?'on':''}}" data-val="1" bindtap="selectGender">男</view>

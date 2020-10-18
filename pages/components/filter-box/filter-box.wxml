@@ -1,0 +1,15 @@
+<!--pages/components/filter-box/filter-box.wxml-->
+<view class="filter">
+	<view class="filter-btn" bindtap="filterShow">☰</view>
+	<view class="filter-main {{filterShow?'filter-show':''}}">
+		<view class="filter-cont">
+			<view class="filter-list">
+				<slot name="cont"></slot>
+			</view>
+			<view class="btn-box">
+				<button type="default" class="btn cancel" bindtap="closeFilter">取消</button>
+				<button type="primary" class="btn submit" bindtap="filterSubmit">确定</button>
+			</view>
+		</view>
+	</view>
+</view>
