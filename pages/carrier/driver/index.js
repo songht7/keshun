@@ -17,7 +17,11 @@ Page({
       id: 3,
       title: "841025523xYS122",
       name: "张飞"
-    }]
+    }],
+    addBtn: {
+      name: "添加",
+      url: "/pages/carrier/driver-detail/index"
+    }
   },
 
   /**

@@ -22,5 +22,12 @@ Component({
    */
   methods: {
 
+    previewImage(e) {
+      const current = e.target.dataset.src;
+      console.log("previewImage:", current)
+      wx.previewImage({
+        urls: [current]
+      })
+    },
   }
 })

@@ -14,7 +14,11 @@ Page({
     }, {
       id: 3,
       title: "苏CL666"
-    }]
+    }],
+    addBtn: {
+      name: "添加",
+      url: "/pages/carrier/car-detail/index"
+    }
   },
 
   /**

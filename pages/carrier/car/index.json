@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "车辆管理",
   "usingComponents": {
-    "panel-list": "../../components/panel-list/panel-list"
+    "panel-list": "../../components/panel-list/panel-list",
+    "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
   }
 }

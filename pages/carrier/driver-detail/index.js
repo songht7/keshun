@@ -1,5 +1,16 @@
 // pages/carrier/driver-detail/index.js
 import graceChecker from "../../../common/graceChecker.js";
+const _data = {
+  id: 1,
+  NO: "32038119841025523xYS120",
+  name: "关羽",
+  gender: 1,
+  phone: "13918181818",
+  logistics: "东顺物流",
+  idCard: "310110202010109999",
+  empNO: "JK0909090909",
+  driverLicense: "5566778899"
+}
 Page({
 
   /**
@@ -7,17 +18,7 @@ Page({
    */
   data: {
     id: "",
-    datas: {
-      id: 1,
-      NO: "32038119841025523xYS120",
-      name: "关羽",
-      gender: 1,
-      phone: "13918181818",
-      logistics: "东顺物流",
-      idCard: "310110202010109999",
-      empNO: "JK0909090909",
-      driverLicense: "5566778899"
-    }
+    datas: {}
   },
 
   /**
@@ -25,9 +26,14 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.setData({
-      id: options.id || ""
-    });
+    if (options.id) {
+      that.setData({
+        id: options.id
+      });
+      that.setData({
+        datas: _data
+      });
+    }
   },
 
   /**

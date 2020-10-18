@@ -19,7 +19,7 @@
 						<view class="panel-block">
 							<view class="panel-left">
 								<view class="panel-title">{{item.no}}</view>
-								<view class="panel-overview">{{item.phone}}</view>
+								<view class="panel-overview">{{item.name}} {{item.phone}}</view>
 							</view>
 							<view class="panel-right">
 								<view class="field-number">

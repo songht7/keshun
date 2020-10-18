@@ -1,4 +1,17 @@
 // pages/carrier/car-detail/index.js
+const _data = {
+  id: 1,
+  NO: "1910255",
+  name: "关羽",
+  gender: 1,
+  phone: "13918181818",
+  logistics: "东顺物流",
+  idCard: "31011020",
+  empNO: "JK09090",
+  driverLicense: "556677",
+  driverName: "赵云",
+  driverPhone: "12334513231"
+}
 Page({
 
   /**
@@ -6,17 +19,7 @@ Page({
    */
   data: {
     id: "",
-    datas: {
-      id: 1,
-      NO: "1910255",
-      name: "关羽",
-      gender: 1,
-      phone: "13918181818",
-      logistics: "东顺物流",
-      idCard: "31011020",
-      empNO: "JK09090",
-      driverLicense: "556677"
-    }
+    datas: {}
   },
 
   /**
@@ -24,9 +27,14 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.setData({
-      id: options.id || ""
-    });
+    if (options.id) {
+      that.setData({
+        id: options.id
+      });
+      that.setData({
+        datas: _data
+      });
+    }
   },
 
   /**

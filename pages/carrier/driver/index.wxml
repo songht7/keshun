@@ -1,4 +1,5 @@
 <!--pages/carrier/driver/index.wxml-->
 <view class="container">
 	<panel-list list="{{list}}" bind:onTap="onTap"></panel-list>
+	<fixed-btns addBtn="{{addBtn}}"></fixed-btns>
 </view>

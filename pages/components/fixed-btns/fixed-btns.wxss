@@ -1,0 +1,19 @@
+/* pages/components/fixed-btns/fixed-btn.wxss */
+
+/* 悬浮按钮 */
+.fixed-btn {
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  background: #225597;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 28rpx;
+  bottom: 100rpx;
+  right: 20rpx;
+  border-radius: 50%;
+  z-index: 10;
+}

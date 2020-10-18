@@ -28,9 +28,7 @@
   ],
   "entryPagePath": "",
   "permission": {
-    "scope.userInfo": {
-      "desc": "你的信息仅用于科顺小程序"
-    },
+    "scope.userInfo": {},
     "scope.userLocation": {
       "desc": "你的位置信息将用于定点记录"
     }

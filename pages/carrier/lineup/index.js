@@ -9,16 +9,19 @@ Page({
     list: [{
       id: 1,
       no: '沪AG123',
+      name: '曹操',
       phone: '13918181811',
       field: 1
     }, {
       id: 2,
       no: '沪AG456',
+      name: '荀彧',
       phone: '13918181812',
       field: 99
     }, {
       id: 3,
       no: '沪AG789',
+      name: '郭嘉',
       phone: '13918181813',
       field: 999
     }]

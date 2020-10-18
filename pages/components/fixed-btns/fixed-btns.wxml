@@ -1,0 +1,2 @@
+<!--pages/components/fixed-btns/fixed-btns.wxml-->
+<view class="fixed-btn fixed-add" bindtap="onAdd">{{addBtn.name}}</view>
