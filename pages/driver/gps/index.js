@@ -39,9 +39,6 @@ Page({
    */
   onReady: function () {
     const that = this;
-    interval = setInterval(() => {
-      that.setLocation()
-    }, 10000);
   },
 
   /**
@@ -61,10 +58,7 @@ Page({
    */
   onUnload: function () {
     clearInterval(interval);
-    const _locationChangeFn = function (res) {
-      console.log('location change', res)
-    }
-    wx.offLocationChange(_locationChangeFn)
+    util.offLocationChange();
   },
 
   /**
@@ -88,6 +82,9 @@ Page({
 
   },
   setLocation() {
+    // interval = setInterval(() => {
+    //   that.setLocation()
+    // }, 10000);
     const that = this;
     const date = util.formatTime(new Date(), '年月日');
     console.log(date);
@@ -122,6 +119,6 @@ Page({
         console.log(lct)
       }
     };
-    util.getLocation(data);
+    util.startLocation(data);
   }
 })

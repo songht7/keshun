@@ -33,23 +33,18 @@ const funs = {
       }
     })
   },
-  getLocation: parm => {
+  startLocation: parm => {
     var result = {};
     wx.startLocationUpdateBackground({
       // type: parm.type || 'wgs84',
-      success(ress) {
+      success(res) {
         // const latitude = res.latitude
         // const longitude = res.longitude
         // const speed = res.speed
         // const accuracy = res.accuracy
         // console.log("startLocationUpdateBackground:", ress);
-        result = ress;
-        const _locationChangeFn = function (res) {
-          console.log('_locationChangeFn', res)
-          result = res;
-        }
-        wx.onLocationChange(_locationChangeFn)
-        //  wx.offLocationChange(_locationChangeFn)
+        result = res;
+        funs.getLocation(parm)
       },
       fail(err) {
         console.log("startLocationUpdateBackground---err:", err);
@@ -59,13 +54,28 @@ const funs = {
           "err": err
         }
       },
-      complete() {
-        if (parm.fun) {
-          console.log('complete', result)
-          new parm.fun(result)
-        }
-      }
+      complete() {}
     })
+  },
+  getLocation: parm => {
+    const _locationChangeFn = function (res) {
+      console.log('_locationChangeFn', res)
+      if (parm.fun) {
+        new parm.fun(res)
+      }
+    }
+    wx.onLocationChange(_locationChangeFn)
+  },
+  offLocationChange: parm => {
+    wx.stopLocationUpdate({
+      success(res) {},
+      fail(err) {},
+      complete() {}
+    })
+    const _locationChangeFn = function (res) {
+      console.log('location change', res)
+    }
+    wx.offLocationChange(_locationChangeFn)
   },
   logout: parm => {
     wx.removeStorage({
