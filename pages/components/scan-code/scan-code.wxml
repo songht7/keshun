@@ -1,7 +1,7 @@
 <!--pages/components/scan-code/scan-code.wxml-->
 <view class="scan-code">
 	<view class="code-box">
-		<input class="code-inut" name="orderCode" model:value="{{orderCode}}" placeholder="{{holder}}" disabled></input>
+		<input class="code-inut" name="orderCode" model:value="{{orderCode}}" placeholder="{{holder}}" disabled="{{disabled}}"></input>
 		<image class="scanCode" bindtap="scanCode" src="../../../static/scan.png" mode="aspectFit"></image>
 	</view>
 	<slot name="cont"></slot>

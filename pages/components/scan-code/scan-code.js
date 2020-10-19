@@ -11,6 +11,10 @@ Component({
     holder: {
       type: String,
       value: "请输入交货单号"
+    },
+    disabled: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
