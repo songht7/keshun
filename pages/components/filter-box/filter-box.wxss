@@ -58,7 +58,7 @@
 }
 
 .filter-show {
-  animation: filterShow .3s linear 1;
+  animation: filterShow .1s linear 1;
   animation-fill-mode: forwards;
 }
 
