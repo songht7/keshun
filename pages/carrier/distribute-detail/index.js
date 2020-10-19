@@ -40,13 +40,29 @@ Page({
       id: 5,
       name: '沪FD7899'
     }],
-    carIndex: 0,
-    driverList: ['曹操', '刘备', '孙权'],
-    driverIndex: 0,
+    carShow: false,
+    carData: {
+      id: "",
+      value: ""
+    },
+    driverList: [{
+      id: 1,
+      name: '曹操'
+    }, {
+      id: 2,
+      name: '刘备'
+    }, {
+      id: 3,
+      name: '孙权'
+    }],
+    driverShow: false,
+    driverData: {
+      id: "",
+      value: ""
+    },
     pic1: [],
     pic2: [],
     pic3: []
-
   },
 
   /**
@@ -132,20 +148,61 @@ Page({
       carType: val
     });
   },
-  bindPickerCar(e) { //选择车辆
+  carShow(parm) { ///选择车辆
+    console.log('carShow', parm)
     this.setData({
-      carIndex: e.detail.value
+      carShow: !this.data.carShow
     })
   },
-  bindPickerDriver(e) { //选择车辆
+  driverShow(parm) { ///选择司机
+    console.log('driverShow', parm)
     this.setData({
-      driverIndex: e.detail.value
+      driverShow: !this.data.driverShow
     })
   },
-  selectCarBtn(e) { ///自定义方法
-    this.setData({
-      selectCar: true
-    })
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    switch (data.type) {
+      case 'carShow':
+        that.setData({
+          carShow: false
+        })
+        break;
+      case 'driverShow':
+        that.setData({
+          driverShow: false
+        })
+        break;
+      default:
+        break;
+    }
+  },
+  pickerSelected(parm) {
+    const that = this;
+    const data = parm.detail;
+    switch (data.type) {
+      case 'carShow':
+        that.setData({
+          carData: {
+            id: data.id,
+            value: data.val
+          },
+          carShow: false
+        })
+        break;
+      case 'driverShow':
+        that.setData({
+          driverData: {
+            id: data.id,
+            value: data.val
+          },
+          driverShow: false
+        })
+        break;
+      default:
+        break;
+    }
   },
   chooseImage(e) {
     const that = this

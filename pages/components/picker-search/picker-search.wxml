@@ -1,7 +1,20 @@
 <!--pages/components/picker-search/picker-search.wxml-->
-<view style="width:{{_width}};height:{{_height}};" class="picker-search">
-	<input value="{{picker_value}}" class="picker-item-input" bindinput="bindkeyinput" />
-	<picker style="width:30%;height:100%;" bindchange="bindchange" value="{{list2[index][actualvalue]}}" range-key="{{showvalue}}" range="{{list2}}">
-		<view class='picker-icon'></view>
-	</picker>
+<view class="picker-search {{show ? 'picker-show' :'picker-hidden'}}">
+	<view class="picker-search-bg" bindtap="maskClose"></view>
+	<view class="picker-search-main">
+		<view class="picker-search-cont">
+			<view wx:if="{{title}}" class="picker-search-title">{{title}}</view>
+			<view class="picker-search-input">
+				<image class="search-icon" src="/static/icon-search.png" mode="scaleToFill"></image>
+				<input bindinput="search" class="search-input" placeholder="搜索..." />
+			</view>
+			<view class="picker-search-list">
+				<scroll-view scroll-y="true" style="height: 500rpx;">
+					<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
+						<view class="scroll-view-item" data-id="{{item.id}}" data-type="{{type}}" data-val="{{item.name}}" bindtap="pickerSelected">{{item.name}}</view>
+					</block>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
 </view>

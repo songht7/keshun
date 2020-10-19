@@ -31,49 +31,17 @@
 					</view>
 				</view>
 			</view>
-			<view class="form-row" bindtap="selectCarBtn">
+			<view class="form-row" bindtap="carShow">
 				<view class="f-row-label">选择车辆</view>
-				<view class="f-row-val">
-					<mp-halfScreenDialog show="{{selectCar}}" closabled="{{false}}" maskClosable="{{false}}">
-						<!-- show="{{typeT}}" -->
-						<view slot="title">
-							<view class="dialog-head">
-								选择车辆
-							</view>
-						</view>
-						<view slot="desc">
-							<view class="dialog-cont">
-								<view class="dialog-row">
-									<input name="" placeholder="搜索..."></input>
-									<scroll-view scroll-y="true" style="height: 200rpx;">
-										<block wx:for="{{carList}}" wx:key="*this" wx:for-item="item">
-											<view class="scroll-view-item" data-id="{{item.id}}">{{item.name}}</view>
-										</block>
-									</scroll-view>
-								</view>
-							</view>
-							<!-- <panel-list list="{{carList}}" bind:onTap="onTap"></panel-list> -->
-						</view>
-						<view slot="cont">
-							<view class="dialog-cont">
-
-							</view>
-						</view>
-						<view slot="footer">
-							<view></view>
-						</view>
-					</mp-halfScreenDialog>
+				<view class="f-row-val">{{carData['value']}}
 					<!-- <picker bindchange="bindPickerCar" value="{{carIndex}}" range="{{carList}}">
 						<view class="weui-input">{{carList[carIndex]}}</view>
 					</picker> -->
 				</view>
 			</view>
-			<view class="form-row">
+			<view class="form-row" bindtap="driverShow">
 				<view class="f-row-label">选择司机</view>
-				<view class="f-row-val">
-					<picker bindchange="bindPickerDriver" value="{{driverIndex}}" range="{{driverList}}">
-						<view class="weui-input">{{driverList[driverIndex]}}</view>
-					</picker>
+				<view class="f-row-val">{{driverData['value']}}
 				</view>
 			</view>
 			<view class="form-row form-column">
@@ -90,8 +58,9 @@
 										</view>
 									</block>
 									<block wx:if="{{pic1.length<=0}}">
-										<view class="weui-uploader__file order-pic">
-											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="1"></image>
+										<view class="weui-uploader__file order-pic order-pic-nomal">
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="1"></image>
+											<view class="pic-txt">上传车身照</view>
 										</view>
 									</block>
 								</view>
@@ -103,8 +72,9 @@
 										</view>
 									</block>
 									<block wx:if="{{pic2.length<=0}}">
-										<view class="weui-uploader__file order-pic">
-											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="2"></image>
+										<view class="weui-uploader__file order-pic order-pic-nomal">
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="2"></image>
+											<view class="pic-txt">上传车头照</view>
 										</view>
 									</block>
 								</view>
@@ -116,8 +86,9 @@
 										</view>
 									</block>
 									<block wx:if="{{pic3.length<=0}}">
-										<view class="weui-uploader__file order-pic">
-											<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage" data-idx="3"></image>
+										<view class="weui-uploader__file order-pic order-pic-nomal">
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="3"></image>
+											<view class="pic-txt">上传车厢照</view>
 										</view>
 									</block>
 								</view>
@@ -135,6 +106,10 @@
 					<!-- <button formType="reset">Reset</button> -->
 				</view>
 			</view>
+			<!---筛选选择器--->
+			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<!--- 、筛选选择器 --->
 		</form>
 	</view>
 </view>
