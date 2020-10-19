@@ -41,7 +41,7 @@ Page({
     const that = this;
     interval = setInterval(() => {
       that.setLocation()
-    }, 5000);
+    }, 10000);
   },
 
   /**
@@ -54,15 +54,17 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
     clearInterval(interval);
+    const _locationChangeFn = function (res) {
+      console.log('location change', res)
+    }
+    wx.offLocationChange(_locationChangeFn)
   },
 
   /**
@@ -92,7 +94,7 @@ Page({
     const data = {
       type: 'gcj02',
       fun: function (res) {
-        // console.log(res);
+        console.log(res);
         // that.setData({
         //   location: res
         // });

@@ -35,16 +35,24 @@ const funs = {
   },
   getLocation: parm => {
     var result = {};
-    wx.getLocation({
-      type: parm.type || 'wgs84',
-      success(res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        result = res;
+    wx.startLocationUpdateBackground({
+      // type: parm.type || 'wgs84',
+      success(ress) {
+        // const latitude = res.latitude
+        // const longitude = res.longitude
+        // const speed = res.speed
+        // const accuracy = res.accuracy
+        // console.log("startLocationUpdateBackground:", ress);
+        result = ress;
+        const _locationChangeFn = function (res) {
+          console.log('_locationChangeFn', res)
+          result = res;
+        }
+        wx.onLocationChange(_locationChangeFn)
+        //  wx.offLocationChange(_locationChangeFn)
       },
       fail(err) {
+        console.log("startLocationUpdateBackground---err:", err);
         result = {
           "success": false,
           "msg": "定位失败",
@@ -53,6 +61,7 @@ const funs = {
       },
       complete() {
         if (parm.fun) {
+          console.log('complete', result)
           new parm.fun(result)
         }
       }
