@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20rpx;
+  padding: 20rpx 0;
 }
 
 .sign-status {
@@ -109,7 +109,7 @@
   align-items: center;
 }
 
-.qr {
+.qr-canvas {
   width: 100%;
   height: 100%;
   margin-bottom: 10rpx;
