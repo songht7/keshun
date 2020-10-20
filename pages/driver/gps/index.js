@@ -11,6 +11,8 @@ Page({
   data: {
     location: {},
     date: "",
+    timer: null,
+    _location: {},
     locationList: [{
       "address": "广东省佛山市顺德区容桂街道红旗中路38号",
       "date": "2020 年 9 月 20日 14 点 56 分",
@@ -31,7 +33,61 @@ Page({
     // qqmapsdk = new QQMapWX({
     //   key: '开发密钥（key）' // 必填
     // });
-    that.setLocation();
+    const data = {
+      fun: function (res) {
+        //  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        //  qqmapsdk.reverseGeocoder({
+        //   location: {
+        //     latitude: res.latitude,
+        //     longitude: res.longitude
+        //   },
+        //   success: function (addressRes) {
+        //     var address = addressRes.result.formatted_addresses.recommend;
+        //     that.setData({
+        //       console.log(address)
+        //     })
+        //   }
+        // })
+      }
+    };
+    wx.startLocationUpdateBackground({
+      success() {
+        wx.onLocationChange((loc) => {
+          const date = util.formatTime(new Date(), '年月日');
+          console.log("onLocationChange:", date, loc)
+          that.data._location = {
+            ...loc,
+            time: Date.now(),
+            date: date
+          }
+        })
+      },
+      fail(e) {
+        console.log(e)
+      }
+    })
+    clearInterval(that.data.timer)
+    that.data.timer = setInterval(() => {
+      console.log("setInterval:", that.data._location);
+      /// 异常点返回
+      if (!that.data._location.latitude && !that.data._location.latitude) {
+        return false;
+      }
+      ///////////////////////////////////////////////
+      let lct = {
+        "address": that.data._location.time + " / " + that.data._location.latitude + '——' + that.data._location.longitude,
+        "date": that.data._location.date,
+        "submitStatus": "success"
+      }
+      that.setData({
+        locationList: [lct, ...that.data.locationList]
+      });
+      ////////////////////////////////////////////////
+      /// 速度大于1才记录
+      if (!(that.data._location.speed > 0)) {
+        return false;
+      }
+    }, 10000)
   },
 
   /**
@@ -57,8 +113,10 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(interval);
-    util.offLocationChange();
+    // clearInterval(interval);
+    console.log("onUnload");
+    util.stopLocation();
+    clearInterval(this.data.timer)
   },
 
   /**
@@ -82,43 +140,7 @@ Page({
 
   },
   setLocation() {
-    // interval = setInterval(() => {
-    //   that.setLocation()
-    // }, 10000);
     const that = this;
-    const date = util.formatTime(new Date(), '年月日');
-    console.log(date);
-    const data = {
-      type: 'gcj02',
-      fun: function (res) {
-        console.log(res);
-        // that.setData({
-        //   location: res
-        // });
-        let lct = {
-          "address": res.latitude + '-' + res.longitude,
-          "date": date,
-          "submitStatus": "success"
-        }
-        that.setData({
-          locationList: [lct, ...that.data.locationList]
-        });
-        //  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
-        //  qqmapsdk.reverseGeocoder({
-        //   location: {
-        //     latitude: res.latitude,
-        //     longitude: res.longitude
-        //   },
-        //   success: function (addressRes) {
-        //     var address = addressRes.result.formatted_addresses.recommend;
-        //     that.setData({
-        //       console.log(address)
-        //     })
-        //   }
-        // })
-        console.log(lct)
-      }
-    };
-    util.startLocation(data);
+
   }
 })

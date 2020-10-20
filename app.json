@@ -29,11 +29,17 @@
   "entryPagePath": "",
   "permission": {
     "scope.userInfo": {},
-    "scope.userLocationBackground":{},
+    "scope.userLocationBackground": {
+      "desc": "你的位置信息将用于定点记录"
+    },
     "scope.userLocation": {
       "desc": "你的位置信息将用于定点记录"
     }
   },
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

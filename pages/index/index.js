@@ -31,7 +31,6 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    wx.hideLoading();
     that.getMyStorage();
     that.slideShow();
   },

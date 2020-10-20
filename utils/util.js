@@ -33,42 +33,36 @@ const funs = {
       }
     })
   },
-  startLocation: parm => {
+  getLocation: parm => {
     var result = {};
-    wx.startLocationUpdateBackground({
-      // type: parm.type || 'wgs84',
+    wx.getLocation({
+      type: parm.type || 'wgs84',
       success(res) {
-        // const latitude = res.latitude
-        // const longitude = res.longitude
-        // const speed = res.speed
-        // const accuracy = res.accuracy
-        // console.log("startLocationUpdateBackground:", ress);
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
         result = res;
-        funs.getLocation(parm)
       },
       fail(err) {
-        console.log("startLocationUpdateBackground---err:", err);
         result = {
           "success": false,
           "msg": "定位失败",
           "err": err
-        }
+        };
       },
-      complete() {}
+      complete() {
+        if (parm.fun) {
+          new parm.fun(result)
+        }
+      }
     })
   },
-  getLocation: parm => {
-    const _locationChangeFn = function (res) {
-      console.log('_locationChangeFn', res)
-      if (parm.fun) {
-        new parm.fun(res)
-      }
-    }
-    wx.onLocationChange(_locationChangeFn)
-  },
-  offLocationChange: parm => {
+  stopLocation: parm => {
     wx.stopLocationUpdate({
-      success(res) {},
+      success(res) {
+        console.log('stopLocation:', res);
+      },
       fail(err) {},
       complete() {}
     })
