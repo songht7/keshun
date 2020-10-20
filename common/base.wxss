@@ -44,10 +44,16 @@ view {
 }
 
 .cks-input {
-  padding: 20rpx 15rpx;
+  padding: 20rpx 25rpx;
   width: 100%;
   line-height: 3;
   font-size: 28rpx;
+}
+.not-null::before{
+  content: "*";
+  color: #f40;
+  position: relative;
+  left: -5rpx;
 }
 
 .cks-input-40 {

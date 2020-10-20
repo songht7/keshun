@@ -14,7 +14,9 @@ Page({
       markers: [{
         latitude: 23.099994,
         longitude: 113.324520,
-        iconPath: '/static/location.png',
+        iconPath: '/static/icon-car.png',
+        width: 25,
+        height: 25
         // name: 'T.I.T 创意园'
       }]
     },

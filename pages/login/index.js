@@ -120,7 +120,7 @@ Page({
       });
       wx.showToast({
         title: '验证码已发送',
-        icon: 'none',
+        icon: 'success',
         duration: 2000
       })
       //that.data.seconds = 10;
@@ -146,12 +146,14 @@ Page({
     } else {
       wx.showToast({
         title: graceChecker.error,
+        // image: '/static/tip.png',
         icon: 'none',
         duration: 2000
       })
     }
   },
   formSubmit(e) {
+    const that = this;
     console.log(e.detail.value);
     let _formData = e.detail.value;
     var rule = [{
@@ -181,8 +183,10 @@ Page({
         }
       })
     } else {
+      that.data.error = graceChecker.error;
       wx.showToast({
         title: graceChecker.error,
+        // image: '/static/tip.png',
         icon: 'none',
         duration: 2000
       })
