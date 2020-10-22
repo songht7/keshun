@@ -37,7 +37,7 @@ Page({
     const that = this;
     that.getMyStorage();
     that.getData({
-      inter: 'addCar',
+      inter: '',
       method: "POST"
     });
   },
@@ -92,6 +92,9 @@ Page({
   },
   getData(parm) {
     const that = this;
+    if(!parm.inter){
+      return false
+    }
     let data = {
       "inter": parm.inter,
       "method": parm.method

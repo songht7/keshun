@@ -41,6 +41,12 @@
 					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
 				</view>
 			</view>
+			<view class="form-row form-column">
+				<view class="f-row-label">备注</view>
+				<view class="f-row-area">
+					<textarea class="form-row-area" name="Remark" bindblur="bindTextAreaBlur" auto-height value="{{datas.Remark}}" placeholder=""/>
+					</view>
+			</view>
 			<view class="page-init">
 				<view class="btn-area">
 					<button type="primary" class="btn-primary" formType="submit">确定</button>

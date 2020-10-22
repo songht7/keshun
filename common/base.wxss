@@ -49,7 +49,8 @@ view {
   line-height: 3;
   font-size: 28rpx;
 }
-.not-null::before{
+
+.not-null::before {
   content: "*";
   color: #f40;
   position: relative;
@@ -163,7 +164,14 @@ button.btn-primary[type='primary'] {
   text-align: right;
   min-width: 40%;
 }
-.f-row-radio{
+
+.f-row-area {
+  text-align: left;
+  width: 100%;
+  color: #9a9a9a;
+}
+
+.f-row-radio {
   min-width: auto;
 }
 
@@ -171,6 +179,13 @@ button.btn-primary[type='primary'] {
   line-height: 3;
   font-size: 28rpx;
   color: #9a9a9a;
+}
+
+textarea.form-row-area {
+  width: 100%;
+  min-height: 300rpx;
+  font-size: 28rpx;
+  line-height: 2;
 }
 
 .gender,

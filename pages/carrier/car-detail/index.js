@@ -7,7 +7,7 @@ const _data = {
   NumberPlate: "1910255",
   DrivingIicense: "关羽",
   InsuranceCertificateNumber: 1,
-  Images: [],
+  Images: '/static/default.jpg',
   Remark: "13918181818"
 }
 Page({
@@ -18,7 +18,7 @@ Page({
   data: {
     id: "",
     datas: {
-      Images: []
+      Images: '/static/default.jpg'
     },
     Carrier: {
       CarrierId: 33,
@@ -101,6 +101,10 @@ Page({
     const that = this;
     let _formData = e.detail.value;
     _formData["Images"] = that.data.datas.Images;
+    _formData = {
+      ..._formData,
+      ...that.data.Carrier
+    }
     // let _formData = this.data.datas;
     console.log(_formData);
     var rule = [{
@@ -125,9 +129,17 @@ Page({
       errorMsg: "请上传车辆图片"
     }];
     var checkRes = graceChecker.check(_formData, rule);
-    console.log(checkRes);
     if (checkRes) {
       console.log("graceChecker---true");
+      let data = {
+        "inter": "carAdd",
+        "method": "POST",
+        "data": _formData
+      }
+      data["fun"] = function (res) {
+        console.log(res);
+      }
+      util.getData(data)
     } else {
       that.setData({
         error: graceChecker.error

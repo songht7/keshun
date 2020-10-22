@@ -9,6 +9,8 @@ const funs = {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
     var result = [];
+    console.log("request-url:", _url)
+    console.log("request-parm:", parm)
     wx.request({
       url: _url,
       data: parm.data || {},
@@ -17,14 +19,19 @@ const funs = {
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
         //console.log(res)
-        if (res.data.success) {
+        if (res.data.status) {
           result = res.data.data
+        }else{
+        result = {
+          "status": false,
+          "msg": res.data.msg
+        }
         }
       },
       fail(err) {
         console.log("getData-err-", parm.inter, "：", err)
         result = {
-          "success": false,
+          "status": false,
           "msg": "接口请求失败",
           "err": err
         }
