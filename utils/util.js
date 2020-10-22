@@ -2,6 +2,9 @@ import common from "./common.js"
 const ctx = common.Interface
 
 const funs = {
+  config: {
+    ...ctx
+  },
   getData: parm => {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm

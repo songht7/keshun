@@ -1,8 +1,8 @@
 // pages/driver/gps/index.js
 const util = require('../../../utils/util.js');
 // 引入SDK核心类
-// var QQMapWX = require('xxx/qqmap-wx.js');
-var interval = "";
+var QQMapWX = require('../../../common/qqmap-wx-jssdk.min.js');
+var qqmapsdk, interval = "";
 Page({
 
   /**
@@ -13,15 +13,13 @@ Page({
     date: "",
     timer: null,
     _location: {},
-    locationList: [{
-      "address": "广东省佛山市顺德区容桂街道红旗中路38号",
-      "date": "2020 年 9 月 20日 14 点 56 分",
-      "submitStatus": "success"
-    }, {
-      "address": "广东省佛山市顺德区容桂街道红旗中路38号",
-      "date": "2020 年 9 月 20日 14 点 56 分",
-      "submitStatus": "fale"
-    }]
+    locationList: [
+      //   {
+      //   "address": "广东省佛山市顺德区容桂街道红旗中路38号",
+      //   "date": "2020 年 9 月 20日 14 点 56 分",
+      //   "submitStatus": "success"//"fale"
+      // }
+    ]
   },
 
   /**
@@ -30,36 +28,20 @@ Page({
   onLoad: function (options) {
     const that = this;
     // // 实例化腾讯地图API核心类
-    // qqmapsdk = new QQMapWX({
-    //   key: '开发密钥（key）' // 必填
-    // });
-    const data = {
-      fun: function (res) {
-        //  //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
-        //  qqmapsdk.reverseGeocoder({
-        //   location: {
-        //     latitude: res.latitude,
-        //     longitude: res.longitude
-        //   },
-        //   success: function (addressRes) {
-        //     var address = addressRes.result.formatted_addresses.recommend;
-        //     that.setData({
-        //       console.log(address)
-        //     })
-        //   }
-        // })
+    qqmapsdk = new QQMapWX({
+      key: util.config.mapkey // 必填
+    });
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log("getLocationgetLocationgetLocation:", res);
+        that.setLocation(res);
       }
-    };
+    })
     wx.startLocationUpdateBackground({
       success() {
         wx.onLocationChange((loc) => {
-          const date = util.formatTime(new Date(), '年月日');
-          console.log("onLocationChange:", date, loc)
-          that.data._location = {
-            ...loc,
-            time: Date.now(),
-            date: date
-          }
+          that.setLocation(loc);
         })
       },
       fail(e) {
@@ -68,20 +50,13 @@ Page({
     })
     clearInterval(that.data.timer)
     that.data.timer = setInterval(() => {
-      console.log("setInterval:", that.data._location);
+      const _location = that.data._location;
       /// 异常点返回
-      if (!that.data._location.latitude && !that.data._location.latitude) {
+      if (!_location.latitude && !_location.latitude) {
         return false;
       }
       ///////////////////////////////////////////////
-      let lct = {
-        "address": that.data._location.time + " / " + that.data._location.latitude + '——' + that.data._location.longitude,
-        "date": that.data._location.date,
-        "submitStatus": "success"
-      }
-      that.setData({
-        locationList: [lct, ...that.data.locationList]
-      });
+      that.getSDKAddress(_location)
       ////////////////////////////////////////////////
       /// 速度大于1才记录
       if (!(that.data._location.speed > 0)) {
@@ -139,8 +114,44 @@ Page({
   onShareAppMessage: function () {
 
   },
-  setLocation() {
+  setLocation(loc) {
     const that = this;
-
+    const date = util.formatTime(new Date(), '年月日');
+    console.log("onLocationChange:", date, loc)
+    that.data._location = {
+      ...loc,
+      time: Date.now(),
+      date: date
+    }
+    if (!that.data.timer) {
+      that.getSDKAddress(that.data._location)
+    }
+  },
+  getSDKAddress(_location) {
+    const that = this;
+    //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+    console.log("setInterval:", _location);
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: _location.latitude,
+        longitude: _location.longitude
+      },
+      success: function (addressRes) {
+        console.log("address:", addressRes)
+        // var address = addressRes.result.formatted_addresses.recommend;
+        var address = addressRes.result.address;
+        let lct = {
+          "address": address,
+          "date": that.data._location.date,
+          "submitStatus": "success"
+        }
+        that.setData({
+          locationList: [lct, ...that.data.locationList]
+        });
+      },
+      fail(err) {
+        console.log("===qqmapsdk-err===", err);
+      }
+    })
   }
 })

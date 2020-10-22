@@ -32,7 +32,10 @@ Page({
   onLoad: function (options) {
     const that = this;
     that.getMyStorage();
-    that.slideShow();
+    that.getData({
+      inter: 'addCar',
+      method: "POST"
+    });
   },
 
   /**
@@ -83,24 +86,16 @@ Page({
   onShareAppMessage: function () {
 
   },
-  slideShow() {
+  getData(parm) {
     const that = this;
-    // let data = {
-    //   "inter": "slideShow",
-    //   "parm": "?id=1"
-    // }
-    // data["fun"] = function (res) {
-    //   console.log(res);
-    //   that.setData({
-    //     silde: res.list
-    //   })
-    // }
-    // util.getData(data)
-    that.setData({
-      silde: [{
-        original_src: '/static/default.jpg'
-      }]
-    })
+    let data = {
+      "inter": parm.inter,
+      "method": parm.method
+    }
+    data["fun"] = function (res) {
+      console.log(res);
+    }
+    util.getData(data)
   },
   getMyStorage() {
     const that = this;
