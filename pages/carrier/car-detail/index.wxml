@@ -1,52 +1,43 @@
 <!--pages/carrier/car-detail/index.wxml-->
 <view class="container">
-	<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="form-box">
 		<form catchsubmit="formSubmit" catchreset="formReset">
 			<view class="form-row">
-				<view class="f-row-label">车牌号码</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="NO" bindinput="bindInput" value="{{datas.NO}}" /></view>
+				<view class="f-row-label not-null">车牌号码</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="NumberPlate" name="NumberPlate" bindinput="bindInput" value="{{datas.NumberPlate}}" /></view>
 			</view>
-			<view class="form-row">
+			<!-- <view class="form-row">
 				<view class="f-row-label">所属运输公司</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="logistics" bindinput="bindInput" value="{{datas.logistics}}" /></view>
+			</view> -->
+			<view class="form-row">
+				<view class="f-row-label not-null">车辆行驶证</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="DrivingIicense" name="DrivingIicense" bindinput="bindInput" value="{{datas.DrivingIicense}}" /></view>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label">车辆行驶证</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="name" bindinput="bindInput" value="{{datas.name}}" /></view>
+				<view class="f-row-label not-null">车辆保险证明单号</view>
+				<view class="f-row-val"><input class="form-row-input" data-name="InsuranceCertificateNumber" name="InsuranceCertificateNumber" bindinput="bindInput" value="{{datas.InsuranceCertificateNumber}}" /></view>
 			</view>
-			<view class="form-row">
-				<view class="f-row-label">车辆保险证明单号</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="phone" bindinput="bindInput" value="{{datas.phone}}" /></view>
-			</view>
-			<view class="form-row">
+			<!-- <view class="form-row">
 				<view class="f-row-label">车辆尺寸（MM）</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="idCard" bindinput="bindInput" value="{{datas.idCard}}" /></view>
 			</view>
 			<view class="form-row">
 				<view class="f-row-label">核定载质量（KG）</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="empNO" bindinput="bindInput" value="{{datas.empNO}}" /></view>
-			</view>
-			<view class="form-row">
+			</view> -->
+			<!-- <view class="form-row">
 				<view class="f-row-label">驾驶员姓名</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="driverName" bindinput="bindInput" value="{{datas.driverName}}" /></view>
 			</view>
 			<view class="form-row">
 				<view class="f-row-label">驾驶员电话</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="driverPhone" bindinput="bindInput" value="{{datas.driverPhone}}" /></view>
-			</view>
-			<view class="form-row">
-				<view class="f-row-label"></view>
+			</view> -->
+			<view class="form-row form-column">
+				<view class="f-row-label not-null">车辆图片</view>
 				<view class="f-row-img">
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
 					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
 				</view>
 			</view>

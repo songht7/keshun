@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "车辆管理详情",
-  "usingComponents": {
-    "mp-toptips": "../../components/toptips/toptips"
-  }
+  "usingComponents": {}
 }

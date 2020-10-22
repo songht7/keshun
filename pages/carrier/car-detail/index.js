@@ -1,16 +1,14 @@
 // pages/carrier/car-detail/index.js
+const util = require('../../../utils/util.js')
+import graceChecker from "../../../common/graceChecker.js";
+
 const _data = {
   id: 1,
-  NO: "1910255",
-  name: "关羽",
-  gender: 1,
-  phone: "13918181818",
-  logistics: "东顺物流",
-  idCard: "31011020",
-  empNO: "JK09090",
-  driverLicense: "556677",
-  driverName: "赵云",
-  driverPhone: "12334513231"
+  NumberPlate: "1910255",
+  DrivingIicense: "关羽",
+  InsuranceCertificateNumber: 1,
+  Images: [],
+  Remark: "13918181818"
 }
 Page({
 
@@ -19,7 +17,13 @@ Page({
    */
   data: {
     id: "",
-    datas: {}
+    datas: {
+      Images: []
+    },
+    Carrier: {
+      CarrierId: 33,
+      CarrierDesc: '江苏建伟物流股份有限公司'
+    }
   },
 
   /**
@@ -94,16 +98,40 @@ Page({
     });
   },
   formSubmit(e) {
-    // let _formData = e.detail.value;
-    let _formData = this.data.datas;
+    const that = this;
+    let _formData = e.detail.value;
+    _formData["Images"] = that.data.datas.Images;
+    // let _formData = this.data.datas;
     console.log(_formData);
     var rule = [{
-      name: "phone",
-      checkType: "phoneno",
+      name: "NumberPlate",
+      checkType: "notnull",
       checkRule: "",
-      errorMsg: "请填写正确的手机号"
+      errorMsg: "请填写车牌号"
+    }, {
+      name: "DrivingIicense",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请填写行驶证"
+    }, {
+      name: "InsuranceCertificateNumber",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请填写保险证明单号"
+    }, {
+      name: "Images",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请上传车辆图片"
     }];
     var checkRes = graceChecker.check(_formData, rule);
-    if (checkRes) {} else {}
+    console.log(checkRes);
+    if (checkRes) {
+      console.log("graceChecker---true");
+    } else {
+      that.setData({
+        error: graceChecker.error
+      });
+    }
   }
 })

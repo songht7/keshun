@@ -20,7 +20,9 @@ export default {
     "appName": api[lks]["appName"],
     "mapkey": "6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q",
     "addr": {
-      "addCar": "/api/Car/Add", //添加车辆【post】
+      "carAdd": "/api/Car/Add", //车辆添加【post】
+      "carUpdate": "/api/Car/Update", //车辆修改【post】
+      "carDelete": "/api/Car/Delete", //车辆删除【post】
     }
   }
 }

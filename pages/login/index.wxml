@@ -1,6 +1,6 @@
 <!--pages/login/index.wxml-->
 <view class="container">
-    <top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="logo-box">
 		<image class="logo" src="/static/logo.png" mode="aspectFit"></image>
 	</view>
