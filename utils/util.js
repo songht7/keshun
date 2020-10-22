@@ -74,6 +74,35 @@ const funs = {
     }
     wx.offLocationChange(_locationChangeFn)
   },
+  uploadFile: parm => {
+    wx.uploadFile({
+      url: "http://localhost:8080/upload/upload",
+      filePath: parm.imgPath,
+      name: "upload_file",
+      // 请求携带的额外form data
+      /*formData: {
+        "id": id
+      },*/
+      header: {
+        'Content-Type': "multipart/form-data"
+      },
+      success: function (res) {
+        wx.showToast({
+          title: "图像上传成功！",
+          duration: 1500,
+          mask: true
+        });
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "上传失败，请检查网络或稍后重试。",
+          icon: "none",
+          duration: 1500,
+          mask: true
+        });
+      }
+    })
+  },
   logout: parm => {
     wx.removeStorage({
       key: 'usrInfo',
