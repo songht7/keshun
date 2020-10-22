@@ -40,6 +40,9 @@
     "audio",
     "location"
   ],
+  "usingComponents": {
+    "top-tips": "/pages/components/toptips/toptips"
+  },
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",

@@ -64,5 +64,26 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  submitForm() {
+      this.selectComponent('#form').validate((valid, errors) => {
+          console.log('valid', valid, errors)
+          if (!valid) {
+              const firstError = Object.keys(errors)
+              if (firstError.length) {
+                  this.setData({
+                      error: errors[firstError[0]].message
+                  })
+
+              }
+          } else {
+              wx.showToast({
+                  title: '校验通过'
+              })
+          }
+      })
+      // this.selectComponent('#form').validateField('mobile', (valid, errors) => {
+      //     console.log('valid', valid, errors)
+      // })
   }
 })

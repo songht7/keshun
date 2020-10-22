@@ -1,5 +1,6 @@
 // pages/sign/sign.js
 
+const util = require('../../utils/util.js')
 import graceChecker from "../../common/graceChecker.js";
 Page({
 
@@ -144,12 +145,15 @@ Page({
         });
       }, 1000)
     } else {
-      wx.showToast({
-        title: graceChecker.error,
-        // image: '/static/tip.png',
-        icon: 'none',
-        duration: 2000
-      })
+      that.setData({
+        error: graceChecker.error
+      });
+      // wx.showToast({
+      //   title: graceChecker.error,
+      //   // image: '/static/tip.png',
+      //   icon: 'none',
+      //   duration: 2000
+      // })
     }
   },
   formSubmit(e) {
@@ -183,13 +187,15 @@ Page({
         }
       })
     } else {
-      that.data.error = graceChecker.error;
-      wx.showToast({
-        title: graceChecker.error,
-        // image: '/static/tip.png',
-        icon: 'none',
-        duration: 2000
-      })
+      that.setData({
+        error: graceChecker.error
+      });
+      // wx.showToast({
+      //   title: graceChecker.error,
+      //   // image: '/static/tip.png',
+      //   icon: 'none',
+      //   duration: 2000
+      // })
     }
   },
   formReset(e) {
