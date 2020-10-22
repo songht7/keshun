@@ -1,0 +1,2 @@
+/* pages/components/icon-font/icon-font.wxss */
+@import "/common/iconfont.wxss";

@@ -1,0 +1,2 @@
+<!--pages/components/icon-font/icon-font.wxml-->
+<view class="iconfont icon-{{type}}" style="color:{{color}};font-size:{{size}}rpx" bindtap="iconClick">{{label}}</view>

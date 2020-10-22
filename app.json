@@ -41,7 +41,8 @@
     "location"
   ],
   "usingComponents": {
-    "top-tips": "/pages/components/toptips/toptips"
+    "top-tips": "/pages/components/toptips/toptips",
+    "icon-font": "/pages/components/icon-font/icon-font"
   },
   "window": {
     "backgroundColor": "#999",
