@@ -138,10 +138,11 @@ Page({
       },
       success: function (addressRes) {
         console.log("address:", addressRes)
-        // var address = addressRes.result.formatted_addresses.recommend;
-        var address = addressRes.result.address;
+        var city = addressRes.result.address_component.city + ',' + addressRes.result.address_component.district;
+        var address = addressRes.result.formatted_addresses.recommend;
+        // var address = addressRes.result.address;
         let lct = {
-          "address": address,
+          "address": city + ',' + address,
           "date": that.data._location.date,
           "submitStatus": "success"
         }
