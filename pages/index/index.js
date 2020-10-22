@@ -22,7 +22,11 @@ Page({
         value: 1
       }
     ],
-    silde: [],
+    silde: [{
+      original_src: '/static/default.jpg'
+    }, {
+      original_src: '/static/default.jpg'
+    }],
     switchType: 0
   },
 
