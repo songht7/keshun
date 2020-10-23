@@ -145,5 +145,18 @@ Page({
         error: graceChecker.error
       });
     }
+  },
+  delete(e) {
+    const that = this;
+    const _id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '确定删除该车牌？',
+      content: '车牌号：' + that.data.datas.NumberPlate,
+      success(res) {
+        if (res.confirm) {
+          console.log('删除成功！');
+        } else if (res.cancel) {}
+      }
+    })
   }
 })

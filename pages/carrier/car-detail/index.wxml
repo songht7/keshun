@@ -49,7 +49,8 @@
 			</view>
 			<view class="page-init">
 				<view class="btn-area">
-					<button type="primary" class="btn-primary" formType="submit">确定</button>
+					<view wx:if="{{datas.id}}" class="btn-grey btn-half" bindtap="delete" data-id="{{datas.id}}">删除</view>
+					<button type="primary" class="btn-primary {{datas.id?'btn-half':''}}" formType="submit">确定</button>
 					<!-- <button formType="reset">Reset</button> -->
 				</view>
 			</view>
