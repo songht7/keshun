@@ -31,26 +31,6 @@ Page({
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填
     });
-    wx.getSetting({
-      // withSubscriptions: true,
-      success(res) {
-        console.log("getSetting-success:", res.authSetting)
-        if (!res.authSetting['scope.userLocation'] || !res.authSetting['scope.userLocationBackground']) {
-          res.authSetting = {
-            "scope.userLocationBackground": true,
-            "scope.userLocation": true
-          }
-          wx.openSetting({
-            success(res) {
-              console.log("openSetting-success:", res.authSetting)
-            },
-            fail(err) {
-              console.log("openSetting-err:", err)
-            }
-          })
-        }
-      }
-    })
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -96,7 +76,38 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const that = this;
+    wx.getSetting({
+      // withSubscriptions: true,
+      success(res) {
+        console.log("getSetting-success:", res.authSetting)
+        if (!res.authSetting['scope.userLocation'] || !res.authSetting['scope.userLocationBackground']) {
+          res.authSetting = {
+            "scope.userLocationBackground": true,
+            "scope.userLocation": true
+          }
+          wx.showModal({
+            title: '请开启位置服务',
+            content: '“使用小程序期间和离开后”',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success(res) {
+                    console.log("openSetting-success:", res.authSetting)
+                  },
+                  fail(err) {
+                    console.log("openSetting-err:", err)
+                  }
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   /**
