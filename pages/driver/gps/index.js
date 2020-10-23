@@ -31,6 +31,26 @@ Page({
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填
     });
+    wx.getSetting({
+      // withSubscriptions: true,
+      success(res) {
+        console.log("getSetting-success:", res.authSetting)
+        if (!res.authSetting['scope.userLocation'] || !res.authSetting['scope.userLocationBackground']) {
+          res.authSetting = {
+            "scope.userLocationBackground": true,
+            "scope.userLocation": true
+          }
+          wx.openSetting({
+            success(res) {
+              console.log("openSetting-success:", res.authSetting)
+            },
+            fail(err) {
+              console.log("openSetting-err:", err)
+            }
+          })
+        }
+      }
+    })
     wx.getLocation({
       type: 'wgs84',
       success(res) {
