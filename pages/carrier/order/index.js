@@ -68,6 +68,12 @@ Page({
     const that = this;
     console.log(e.detail);
     let formData = e.detail;
+    if (!formData.orderCode) {
+      that.setData({
+        error: "交货单号不能为空"
+      });
+      return
+    }
     wx.navigateTo({
       url: '/pages/carrier/order-detail/index?code=' + formData.orderCode,
     })

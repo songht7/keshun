@@ -8,13 +8,15 @@ Page({
     code: "",
     subKey: '',
     map: {
-      latitude: "23.099994",
-      longitude: "113.324520",
+      latitude: 31.233501,
+      longitude: 121.505406,
       scale: 14,
       markers: [{
-        latitude: 23.099994,
-        longitude: 113.324520,
-        iconPath: '/static/location.png',
+        latitude: 31.233501,
+        longitude: 121.505406,
+        iconPath: '/static/icon-car.png',
+        width: 25,
+        height: 25
         // name: 'T.I.T 创意园'
       }]
     },
