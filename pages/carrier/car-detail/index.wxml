@@ -37,14 +37,33 @@
 			</view> -->
 			<view class="form-row form-column">
 				<view class="f-row-label not-null">车辆图片</view>
-				<view class="f-row-img">
-					<image class="f-img" src="/static/default.jpg" mode="aspectFit"></image>
+				<view class="f-row-img pic-big">
+					<view class="update-img">
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files pic-box">
+								<view class="pic-block">
+									<block wx:if="{{Images}}">
+										<view class="weui-uploadr__file order-pic order-pic-big" hover-class="pic-hover">
+											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
+											<image class="weui-uploader__img" src="{{Images}}" data-src="{{Images}}" bindtap="previewImage"></image>
+										</view>
+									</block>
+									<block wx:else>
+										<view class="weui-uploader__file order-pic order-pic-nomal">
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit"></image>
+										</view>
+									</block>
+								</view>
+							</view>
+						</view>
+					</view>
+					<!-- <image class="f-img" src="/static/default.jpg" mode="aspectFit"></image> -->
 				</view>
 			</view>
 			<view class="form-row form-column">
 				<view class="f-row-label">备注</view>
 				<view class="f-row-area">
-					<textarea class="form-row-area" name="Remark" bindblur="bindTextAreaBlur" auto-height value="{{datas.Remark}}" placeholder=""/>
+					<textarea class="form-row-area" name="Remark" bindblur="bindTextAreaBlur" auto-height value="{{datas.Remark}}" placeholder="" />
 					</view>
 			</view>
 			<view class="page-init">

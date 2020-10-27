@@ -18,7 +18,7 @@ Page({
   data: {
     id: "",
     datas: {
-      Images: '/static/default.jpg'
+      Images: ''
     },
     Carrier: {
       CarrierId: 33,
@@ -96,6 +96,30 @@ Page({
     this.setData({
       datas: _datas
     });
+  },
+  chooseImage(e) {
+    const that = this
+    wx.chooseImage({
+      sourceType: ['camera', 'album'],
+      sizeType: ['compressed', 'original'],
+      count: 1,
+      success(res) {
+        let _datas = that.data.datas;
+        _datas["Images"] = res.tempFilePaths[0];
+        that.setData({
+          ..._datas
+        });
+      }
+    })
+  },
+  previewImage(e) {
+    const that = this;
+    const current = e.target.dataset.src
+    const url = that.data.datas['Images'];
+    wx.previewImage({
+      current,
+      urls: [url]
+    })
   },
   formSubmit(e) {
     const that = this;
