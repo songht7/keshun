@@ -26,7 +26,7 @@
     "pages/hello/index",
     "pages/logs/logs"
   ],
-  "entryPagePath": "pages/carrier/car-detail/index",
+  "entryPagePath": "",
   "permission": {
     "scope.camera": {},
     "scope.userInfo": {},

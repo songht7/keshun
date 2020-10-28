@@ -6,6 +6,7 @@ const funs = {
     ...ctx
   },
   cksToken: "",
+  tempData:{},
   getData: parm => {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
@@ -22,7 +23,7 @@ const funs = {
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
         //console.log(res)
-        if (res.data.status) {
+        if (!res.data.status) {
           result = res.data
         } else {
           result = {

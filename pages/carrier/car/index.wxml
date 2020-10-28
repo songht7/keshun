@@ -1,5 +1,5 @@
 <!--pages/carrier/car/index.wxml-->
 <view class="container">
-	<panel-list list="{{list}}" bind:onTap="onTap"></panel-list>
+	<panel-list list="{{list}}" bind:onTap="onTap" bind:search="search" storageSearch="{{false}}" field="{{field}}" holder="搜索车牌号"></panel-list>
 	<fixed-btns addBtn="{{addBtn}}"></fixed-btns>
 </view>

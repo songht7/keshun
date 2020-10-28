@@ -4,13 +4,13 @@
 		<image class="search-icon" src="/static/icon-search.png" mode="scaleToFill"></image>
 		<input type="text" class="search-input" bindinput="search" placeholder="{{holder}}"></input>
 	</view>
-	<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
-		<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
+	<block wx:for="{{data}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
+		<view class="panel-row" bindtap="onTap" data-id="{{item[field.id]}}" data-index="{{index}}">
 			<view class="panel-block">
 				<view class="panel-left">
 					<view class="panel-title">{{item.title}}</view>
-					<view class="panel-overview" wx:if="{{item.name}}">
-						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>{{item.name}}
+					<view class="panel-overview" wx:if="{{item[field.name]}}">
+						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>{{item[field.name]}}
 					</view>
 				</view>
 				<view class="panel-right">

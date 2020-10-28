@@ -1,17 +1,7 @@
 // pages/carrier/car-detail/index.js
 const util = require('../../../utils/util.js')
 import graceChecker from "../../../common/graceChecker.js";
-
-const _data = {
-  id: 1,
-  NumberPlate: "1910255",
-  DrivingIicense: "关羽",
-  InsuranceCertificateNumber: 1,
-  Images: '/static/default.jpg',
-  Remark: "13918181818"
-}
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -35,18 +25,25 @@ Page({
   onLoad: function (options) {
     const that = this;
     if (options.id) {
+      console.log("detail-id:", options.id);
+      console.log("util.tempData:", util.tempData);
       that.setData({
-        id: options.id
+        id: options.id,
+        datas: util.tempData,
+        carrier: {
+          CarrierId: util.tempData.CarrierId,
+          CarrierDesc: util.tempData.CarrierDesc
+        },
       });
     }
-    that.getCarrier();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const that = this;
+    that.getCarrier();
   },
 
   /**
@@ -144,8 +141,10 @@ Page({
       return false;
     }
     let _formData = e.detail.value;
+    const Id = that.data.id;
     _formData["Images"] = that.data.datas.Images;
     _formData = {
+      Id,
       ...that.data.carrier,
       ..._formData
     }
@@ -184,7 +183,7 @@ Page({
         loading: true
       });
       let data = {
-        "inter": "carAdd",
+        "inter": Id ? "carUpdate" : "carAdd",
         "method": "POST",
         "data": _formData
       }
@@ -192,7 +191,7 @@ Page({
         console.log(res);
         if (res.status) {
           wx.showToast({
-            title: '添加成功！',
+            title: Id ? "编辑成功！" : "添加成功！",
             icon: "success"
           })
         } else {
@@ -213,13 +212,33 @@ Page({
   },
   delete(e) {
     const that = this;
-    const _id = e.currentTarget.dataset.id;
+    // const _id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '确定删除该车牌？',
       content: '车牌号：' + that.data.datas.NumberPlate,
       success(res) {
         if (res.confirm) {
-          console.log('删除成功！');
+          let data = {
+            "inter": "carDelete",
+            "method": "POST",
+            "data": {
+              Id: that.data.id
+            }
+          }
+          data["fun"] = function (res) {
+            console.log(res);
+            if (res.status) {
+              wx.showToast({
+                title: "删除成功！",
+                icon: "success"
+              })
+            } else {
+              that.setData({
+                error: res.msg
+              });
+            }
+          }
+          util.getData(data)
         } else if (res.cancel) {}
       }
     })
