@@ -230,7 +230,13 @@ Page({
             if (res.status) {
               wx.showToast({
                 title: "删除成功！",
-                icon: "success"
+                icon: "success",
+                complete() {
+                  wx.redirectTo({
+                    url: '/pages/carrier/car/index'
+                  })
+
+                }
               })
             } else {
               that.setData({
