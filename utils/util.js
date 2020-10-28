@@ -5,6 +5,7 @@ const funs = {
   config: {
     ...ctx
   },
+  cksToken: "",
   getData: parm => {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
@@ -15,17 +16,19 @@ const funs = {
       url: _url,
       data: parm.data || {},
       method: parm.method || "GET",
-      header: parm.header || {},
+      header: parm.header || {
+        Authorization: funs.cksToken
+      },
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
         //console.log(res)
         if (res.data.status) {
-          result = res.data.data
-        }else{
-        result = {
-          "status": false,
-          "msg": res.data.msg
-        }
+          result = res.data
+        } else {
+          result = {
+            "status": false,
+            "msg": res.data.msg
+          }
         }
       },
       fail(err) {
@@ -119,6 +122,53 @@ const funs = {
         })
       }
     })
+  },
+  checkToken: parm => {
+    var setToken = function () {
+      let data = {
+        "inter": "getToken"
+      }
+      data["fun"] = function (res) {
+        if (res.status && res.data.token) {
+          var deadline = funs.setDeadline();
+          wx.setStorage({
+            key: 'cksToken',
+            data: {
+              token: res.data.token,
+              deadline: deadline
+            },
+            success() {
+              funs.cksToken = res.data.token;
+              console.log("-----setStorage-token-success-----")
+            }
+          })
+        }
+      }
+      funs.getData(data)
+    }
+    wx.getStorage({
+      key: 'cksToken',
+      success(res) {
+        let cksToken = res.data;
+        funs.cksToken = res.data.token;
+        let timestamp = Math.round(new Date().getTime() / 1000);
+        if (!cksToken.deadline || timestamp >= cksToken.deadline) {
+          console.log("-----reSetCksToken-----")
+          setToken()
+        }
+      },
+      fail() {
+        setToken()
+      }
+    })
+  },
+  setDeadline: parm => {
+    var x = funs.formatTime(new Date())
+    var time = new Date(x);
+    var timeNum = ctx.deadline; //小时数
+    time.setHours(time.getHours() + timeNum);
+    var deadline = Math.round(new Date(funs.formatTime(time)).getTime() / 1000);
+    return deadline
   },
   formatTime: (date, mark) => {
     const year = date.getFullYear()

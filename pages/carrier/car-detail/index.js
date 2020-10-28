@@ -16,14 +16,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: false,
     id: "",
     datas: {
       Images: ''
     },
-    Carrier: {
-      CarrierId: 33,
-      CarrierDesc: '江苏建伟物流股份有限公司'
-    }
+    carrier: {
+      CarrierId: "",
+      CarrierDesc: ""
+    },
+    carrierList: [],
+    carrierShow: false
   },
 
   /**
@@ -35,10 +38,8 @@ Page({
       that.setData({
         id: options.id
       });
-      that.setData({
-        datas: _data
-      });
     }
+    that.getCarrier();
   },
 
   /**
@@ -89,6 +90,21 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getCarrier() {
+    const that = this;
+    let data = {
+      "inter": "dropdownList",
+      "parm": "?type=CarrierNo"
+    }
+    data["fun"] = function (res) {
+      // console.log(res);
+      that.setData({
+        carrierList: res.data,
+        count: res.count
+      });
+    }
+    util.getData(data)
+  },
   bindInput(e) {
     const name = e.currentTarget.dataset.name;
     const _datas = this.data.datas;
@@ -123,15 +139,24 @@ Page({
   },
   formSubmit(e) {
     const that = this;
+    const loading = that.data.loading;
+    if (loading) {
+      return false;
+    }
     let _formData = e.detail.value;
     _formData["Images"] = that.data.datas.Images;
     _formData = {
-      ..._formData,
-      ...that.data.Carrier
+      ...that.data.carrier,
+      ..._formData
     }
     // let _formData = this.data.datas;
     console.log(_formData);
     var rule = [{
+      name: "CarrierId",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请选择承运商"
+    }, {
       name: "NumberPlate",
       checkType: "notnull",
       checkRule: "",
@@ -155,6 +180,9 @@ Page({
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       console.log("graceChecker---true");
+      that.setData({
+        loading: true
+      });
       let data = {
         "inter": "carAdd",
         "method": "POST",
@@ -162,6 +190,19 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
+        if (res.status) {
+          wx.showToast({
+            title: '添加成功！',
+            icon: "success"
+          })
+        } else {
+          that.setData({
+            error: res.msg
+          });
+        }
+        that.setData({
+          loading: false
+        });
       }
       util.getData(data)
     } else {
@@ -182,5 +223,29 @@ Page({
         } else if (res.cancel) {}
       }
     })
-  }
+  },
+  carrierShow(parm) { ///选择承运商
+    console.log('carrierShow', parm)
+    this.setData({
+      carrierShow: !this.data.carrierShow
+    })
+  },
+  pickerSelected(parm) {
+    const that = this;
+    const data = parm.detail;
+    that.setData({
+      carrier: {
+        CarrierId: parseInt(data.id),
+        CarrierDesc: data.val
+      },
+      carrierShow: false
+    })
+  },
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      carrierShow: false
+    })
+  },
 })

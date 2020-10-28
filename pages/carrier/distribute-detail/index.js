@@ -62,7 +62,11 @@ Page({
     },
     pic1: [],
     pic2: [],
-    pic3: []
+    pic3: [],
+    field: {
+      id: 'id',
+      val: 'name'
+    }
   },
 
   /**

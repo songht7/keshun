@@ -3,6 +3,10 @@
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="form-box">
 		<form catchsubmit="formSubmit" catchreset="formReset">
+			<view class="form-row" bindtap="carrierShow">
+				<view class="f-row-label not-null">承运商名称</view>
+				<view class="f-row-val">{{carrier['CarrierDesc']}}</view>
+			</view>
 			<view class="form-row">
 				<view class="f-row-label not-null">车牌号码</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="NumberPlate" name="NumberPlate" bindinput="bindInput" value="{{datas.NumberPlate}}" /></view>
@@ -72,7 +76,10 @@
 					<button type="primary" class="btn-primary {{datas.id?'btn-half':''}}" formType="submit">确定</button>
 					<!-- <button formType="reset">Reset</button> -->
 				</view>
-			</view>
+			</view>	
+			<!---筛选选择器--->
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<!--- 、筛选选择器 --->
 		</form>
 	</view>
 </view>

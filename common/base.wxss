@@ -183,6 +183,8 @@ button.btn-primary.btn-half,
 .f-row-val {
   text-align: right;
   min-width: 40%;
+  max-width: 55%;
+  color: #9a9a9a;
 }
 
 .f-row-area {

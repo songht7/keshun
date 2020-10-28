@@ -107,7 +107,7 @@
 				</view>
 			</view>
 			<!---筛选选择器--->
-			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!--- 、筛选选择器 --->
 		</form>

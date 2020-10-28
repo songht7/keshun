@@ -8,7 +8,16 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    list: Array,
+    list: {
+      type: Array,
+      value: [],
+      observer: function (newVal) {
+        this.setData({
+          data: newVal
+        });
+        return newVal;
+      }
+    },
     title: String,
     type: String,
     show: {
@@ -18,6 +27,13 @@ Component({
     maskClose: {
       type: Boolean,
       value: true
+    },
+    field: {
+      type: Object,
+      value: {
+        id: "key",
+        val: "value"
+      }
     }
   },
 
@@ -29,10 +45,12 @@ Component({
   },
   ready: function () {
     const that = this;
-    this.setData({
-      data: that.properties.list
-    });
+    // console.log("picker-search-ready:", that.properties.list);
+    // this.setData({
+    //   data: that.properties.list
+    // });
   },
+
 
   /**
    * 组件的方法列表
@@ -44,14 +62,15 @@ Component({
       if (keyword != "") {
         const arr = [];
         const _list = this.properties.list;
-        console.log(keyword, _list)
+        const _field = this.properties.field;
+        console.log(keyword, _list, _field)
         _list.filter((obj, key) => {
-          if (obj['name']) {
-            if (obj['name'].match(keyword) != null) {
+          if (obj[_field.val]) {
+            if (obj[_field.val].match(keyword) != null) {
               arr.push(obj);
             }
-          } else if (obj['title']) {
-            if (obj['title'].match(keyword) != null) {
+          } else if (obj[_field.type]) {
+            if (obj[_field.type].match(keyword) != null) {
               arr.push(obj);
             }
           }

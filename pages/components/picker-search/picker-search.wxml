@@ -10,8 +10,8 @@
 			</view>
 			<view class="picker-search-list">
 				<scroll-view scroll-y="true" style="height: 500rpx;">
-					<block wx:for="{{data}}" wx:key="*this" wx:for-item="item">
-						<view class="scroll-view-item" data-id="{{item.id}}" data-type="{{type}}" data-val="{{item.name}}" bindtap="pickerSelected">{{item.name}}</view>
+					<block wx:if="{{item[field.id]&&item[field.val]}}" wx:for="{{data}}" wx:key="*this" wx:for-item="item">
+						<view class="scroll-view-item" data-id="{{item[field.id]}}" data-val="{{item[field.val]}}" bindtap="pickerSelected" data-type="{{type}}">{{item[field.val]}}</view>
 					</block>
 				</scroll-view>
 			</view>

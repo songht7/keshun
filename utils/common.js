@@ -1,12 +1,12 @@
 var api = {
   "formal": {
-    "apiurl": "https://api.jobpgroup.com", //接口
-    "domain": "http://expo.bdmartech.com",
+    "apiurl": "", //接口
+    "domain": "",
     "appName": "CKS 科顺",
   },
   "dev": {
     "apiurl": "http://118.178.145.27:8099", //接口
-    "domain": "http://expo.bdmartech.com",
+    "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   }
@@ -19,10 +19,19 @@ export default {
     "domain": api[lks]["domain"],
     "appName": api[lks]["appName"],
     "mapkey": "6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q",
+    "Itype": "minipro",
+    "deadline": 2, //token失效时间n小时
     "addr": {
+      "getToken": "/api/InterfaceUser/GetToken?Itype=minipro", //GetToken
+      "carList": "/api/Car/QueryByPage", //车辆列表
       "carAdd": "/api/Car/Add", //车辆添加【post】
       "carUpdate": "/api/Car/Update", //车辆修改【post】
       "carDelete": "/api/Car/Delete", //车辆删除【post】
+      "dropdownList": "/api/DropdownList/QueryInfo", //列表信息[type:CarrierNo承运商]
+      "driverList": " /api/Driver/QueryByPage", //司机列表
+      "driverAdd": "/api/Driver/Add", //司机添加【post】
+      "driverUpdate": "/api/Driver/Update", //司机修改【post】
+      "driverDelete": "/api/Driver/Delete", //司机删除【post】
     }
   }
 }
