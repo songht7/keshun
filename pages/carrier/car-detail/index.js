@@ -189,7 +189,7 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
-        if (res.status) {
+        if (res.status > 0) {
           wx.showToast({
             title: Id ? "编辑成功！" : "添加成功！",
             icon: "success"

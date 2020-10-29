@@ -8,9 +8,11 @@
 		<view class="panel-row" bindtap="onTap" data-id="{{item[field.id]}}" data-index="{{index}}">
 			<view class="panel-block">
 				<view class="panel-left">
-					<view class="panel-title">{{item.title}}</view>
+					<view class="panel-title" wx:if="{{item[field.title]}}">{{item[field.title]}}</view>
 					<view class="panel-overview" wx:if="{{item[field.name]}}">
-						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>{{item[field.name]}}
+						<image class="icons" src="/static/icon-19.png" mode="scaleToFill"></image>
+						<text>{{item[field.name]}}</text>
+						<text class="sub-title" wx:if="{{item[field.subTitle]}}">{{item[field.subTitle]}}</text>
 					</view>
 				</view>
 				<view class="panel-right">

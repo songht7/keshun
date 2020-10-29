@@ -3,5 +3,7 @@
   "usingComponents": {
     "panel-list": "/pages/components/panel-list/panel-list",
     "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

@@ -28,7 +28,7 @@ export default {
       "carUpdate": "/api/Car/Update", //车辆修改【post】
       "carDelete": "/api/Car/Delete", //车辆删除【post】
       "dropdownList": "/api/DropdownList/QueryInfo", //列表信息[type:CarrierNo承运商]
-      "driverList": " /api/Driver/QueryByPage", //司机列表
+      "driverList": "/api/Driver/QueryByPage", //司机列表
       "driverAdd": "/api/Driver/Add", //司机添加【post】
       "driverUpdate": "/api/Driver/Update", //司机修改【post】
       "driverDelete": "/api/Driver/Delete", //司机删除【post】

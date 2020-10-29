@@ -23,7 +23,7 @@ const funs = {
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
         //console.log(res)
-        if (!res.data.status) {
+        if (res.data.status) {
           result = res.data
         } else {
           result = {

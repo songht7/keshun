@@ -16,7 +16,7 @@ Component({
     },
     holder: {
       type: String,
-      value: "搜索司机名称"
+      value: "搜索..."
     },
     storageSearch: {
       type: Boolean,
@@ -26,7 +26,9 @@ Component({
       type: Object,
       value: {
         id: "Id",
-        name: "Name"
+        name: "Name",
+        title: "Title",
+        subTitle:"SubTitle"
       }
     }
   },

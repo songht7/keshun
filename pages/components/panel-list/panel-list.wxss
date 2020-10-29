@@ -53,3 +53,8 @@
   width: 25rpx;
   height: 25rpx;
 }
+
+.sub-title {
+  padding-left: 20rpx;
+  color: #666;
+}

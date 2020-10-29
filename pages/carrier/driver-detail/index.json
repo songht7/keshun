@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "司机管理详情",
   "usingComponents": {
-    "mp-toptips": "../../components/toptips/toptips"
+    "picker-search": "/pages/components/picker-search/picker-search"
   }
 }
