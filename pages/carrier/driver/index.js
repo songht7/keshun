@@ -14,6 +14,12 @@ Page({
       DriverLicense: "",
       ContactPhone: ""
     },
+    carrier: {
+      CarrierId: "",
+      CarrierDesc: ""
+    },
+    carrierList: [],
+    carrierShow: false,
     list: [],
     count: 0,
     field: {
@@ -32,9 +38,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中',
-    })
   },
 
   /**
@@ -43,6 +46,7 @@ Page({
   onReady: function () {
     const that = this;
     that.getList();
+    that.getCarrier();
   },
 
   /**
@@ -102,6 +106,9 @@ Page({
       "inter": "driverList",
       "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&CarrierId=" + _parm.CarrierId + "&DriverName=" + _parm.DriverName + "&DriverLicense=" + _parm.DriverLicense + "&ContactPhone=" + _parm.ContactPhone
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     data["fun"] = function (res) {
       console.log(res);
       wx.hideLoading()
@@ -120,6 +127,22 @@ Page({
     }
     util.getData(data)
   },
+  iconClick(e) {
+    const name = e.currentTarget.dataset.name;
+    let parm = this.data.parm;
+    parm[name] = "";
+    this.setData({
+      parm
+    });
+  },
+  bindInput(e) {
+    const name = e.currentTarget.dataset.name;
+    const _datas = this.data.parm;
+    _datas[name] = e.detail.value;
+    this.setData({
+      parm: _datas
+    });
+  },
   search(e) {
     const that = this;
     const keyword = e.detail;
@@ -128,6 +151,15 @@ Page({
     parm['DriverName'] = keyword;
     parm['page'] = 1;
     that.getList();
+  },
+  filterSubmit() {
+    const that = this;
+    const parm = that.data.parm;
+    parm['page'] = 1;
+    console.log(parm);
+    that.getList();
+    const FilterBox = this.selectComponent('#FilterBox');
+    FilterBox.closeFilter()
   },
   onTap(e) {
     const that = this;
@@ -142,5 +174,49 @@ Page({
     wx.navigateTo({
       url: '/pages/carrier/driver-detail/index?id=' + e.detail.id,
     })
-  }
+  },
+  getCarrier() {
+    const that = this;
+    let data = {
+      "inter": "dropdownList",
+      "parm": "?type=CarrierNo"
+    }
+    data["fun"] = function (res) {
+      // console.log(res);
+      that.setData({
+        carrierList: [{
+          key: 999999,
+          value: "全部"
+        }, ...res.data],
+        count: res.count
+      });
+    }
+    util.getData(data)
+  },
+  carrierShow(parm) { ///选择承运商
+    console.log('carrierShow', parm)
+    this.setData({
+      carrierShow: !this.data.carrierShow
+    })
+  },
+  pickerSelected(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['CarrierId'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    that.setData({
+      carrier: {
+        CarrierId: parseInt(data.id),
+        CarrierDesc: data.val
+      },
+      carrierShow: false
+    })
+  },
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      carrierShow: false
+    })
+  },
 })

@@ -1,5 +1,50 @@
 <!--pages/carrier/car/index.wxml-->
 <view class="container">
+	<view class="top-filter">
+		<filter-box id="FilterBox" bind:filterSubmit="filterSubmit">
+			<view slot="cont">
+				<view class="form-box">
+					<form catchsubmit="formSubmit" catchreset="formReset">
+						<view class="form-row">
+							<view class="form-title">更多搜索条件</view>
+						</view>
+						<view class="form-row form-column" bindtap="carrierShow">
+							<view class="f-row-label">承运商名称</view>
+							<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
+						</view>
+						<!-- <view class="form-row form-column">
+							<view class="f-row-label">车牌号</view>
+							<view class="f-row-val"><input class="form-row-input" data-name="NumberPlate" name="NumberPlate" bindinput="bindInput" model:value="{{parm.NumberPlate}}" /></view>
+						</view> -->
+						<view class="form-row form-column">
+							<view class="f-row-label">车辆行驶证</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="DrivingIicense" name="DrivingIicense" bindinput="bindInput" value="{{parm.DrivingIicense}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="DrivingIicense"></icon-font>
+							</view>
+						</view>
+						<view class="form-row form-column">
+							<view class="f-row-label">车辆保险证明单号</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="InsuranceCertificateNumber" name="InsuranceCertificateNumber" bindinput="bindInput" value="{{parm.InsuranceCertificateNumber}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="InsuranceCertificateNumber"></icon-font>
+							</view>
+						</view>
+						<view class="form-row form-column">
+							<view class="f-row-label">其他</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="Remark" name="Remark" bindinput="bindInput" value="{{parm.Remark}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="Remark"></icon-font>
+							</view>
+						</view>
+					</form>
+				</view>
+			</view>
+		</filter-box>
+	</view>
 	<panel-list list="{{list}}" bind:onTap="onTap" bind:search="search" storageSearch="{{false}}" field="{{field}}" holder="搜索车牌号"></panel-list>
+	<!---筛选选择器--->
+	<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+	<!--- 、筛选选择器 --->
 	<fixed-btns addBtn="{{addBtn}}"></fixed-btns>
 </view>

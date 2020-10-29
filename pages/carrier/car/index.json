@@ -2,7 +2,9 @@
   "navigationBarTitleText": "车辆管理",
   "usingComponents": {
     "panel-list": "/pages/components/panel-list/panel-list",
-    "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
+    "fixed-btns": "/pages/components/fixed-btns/fixed-btns",
+    "filter-box": "/pages/components/filter-box/filter-box",
+    "picker-search": "/pages/components/picker-search/picker-search"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50

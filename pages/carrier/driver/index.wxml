@@ -1,5 +1,39 @@
 <!--pages/carrier/driver/index.wxml-->
 <view class="container">
+	<view class="top-filter">
+		<filter-box id="FilterBox" bind:filterSubmit="filterSubmit">
+			<view slot="cont">
+				<view class="form-box">
+					<form catchsubmit="formSubmit" catchreset="formReset">
+						<view class="form-row">
+							<view class="form-title">更多搜索条件</view>
+						</view>
+						<view class="form-row form-column" bindtap="carrierShow">
+							<view class="f-row-label">承运商名称</view>
+							<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
+						</view>
+						<view class="form-row form-column">
+							<view class="f-row-label">驾驶证号</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="DriverLicense" name="DriverLicense" bindinput="bindInput" value="{{parm.DriverLicense}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="DriverLicense"></icon-font>
+							</view>
+						</view>
+						<view class="form-row form-column">
+							<view class="f-row-label">联系电话</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="ContactPhone" name="ContactPhone" bindinput="bindInput" value="{{parm.ContactPhone}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="ContactPhone"></icon-font>
+							</view>
+						</view>
+					</form>
+				</view>
+			</view>
+		</filter-box>
+	</view>
 	<panel-list list="{{list}}" bind:onTap="onTap" bind:search="search" storageSearch="{{false}}" field="{{field}}" holder="搜索司机姓名"></panel-list>
+	<!---筛选选择器--->
+	<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+	<!--- 、筛选选择器 --->
 	<fixed-btns addBtn="{{addBtn}}"></fixed-btns>
 </view>
