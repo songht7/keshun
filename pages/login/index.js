@@ -1,5 +1,5 @@
 // pages/sign/sign.js
-
+const app = getApp()
 const util = require('../../utils/util.js')
 import graceChecker from "../../common/graceChecker.js";
 Page({
@@ -14,7 +14,10 @@ Page({
     seconds: 60,
     getCodeTxt: "获取短信验证码",
     phone: "",
-    code: ""
+    code: "",
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   Create() {
     console.log("Create")
@@ -213,7 +216,12 @@ Page({
     });
   },
   /**用户登录**/
-  getUserInfo() {
+  getUserInfo(e) {
+    console.log("getUserInfo:", e)
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
     // 登录
     wx.login({
       success: res => {
@@ -228,14 +236,15 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              console.log("resresresres:", res)
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+              // this.globalData.userInfo = res.userInfo
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+              // if (this.userInfoReadyCallback) {
+              //   this.userInfoReadyCallback(res)
+              // }
             }
           })
         }
