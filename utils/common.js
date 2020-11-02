@@ -23,6 +23,7 @@ export default {
     "deadline": 2, //token失效时间n小时
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?Itype=minipro", //GetToken
+      "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
       "carList": "/api/Car/QueryByPage", //车辆列表

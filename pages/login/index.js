@@ -31,6 +31,24 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              // that.setUserInfo(res.userInfo);
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              // if (this.userInfoReadyCallback) {
+              //   this.userInfoReadyCallback(res)
+              // }
+            }
+          })
+        }
+      }
+    })
     wx.getStorage({
       key: 'usrInfo',
       success(res) {
@@ -215,40 +233,29 @@ Page({
       inputFocus: false
     });
   },
-  /**用户登录**/
   getUserInfo(e) {
     console.log("getUserInfo:", e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    this.setUserInfo(e.detail.userInfo);
     // 登录
     wx.login({
       success: res => {
         console.log("wx.login:", res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        let data = {
+          "inter": "getOpenId",
+          "parm": "?code=" + res.code
+        }
+        data["fun"] = function (res) {
+          console.log(res);
+        }
+        util.getData(data)
       }
     })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              console.log("resresresres:", res)
-              // 可以将 res 发送给后台解码出 unionId
-              // this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              // if (this.userInfoReadyCallback) {
-              //   this.userInfoReadyCallback(res)
-              // }
-            }
-          })
-        }
-      }
+  },
+  setUserInfo(data) {
+    this.setData({
+      userInfo: data,
+      hasUserInfo: true
     })
   }
 })
