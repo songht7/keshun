@@ -1,3 +1,4 @@
+const app = getApp()
 import common from "./common.js"
 const ctx = common.Interface
 
@@ -6,7 +7,7 @@ const funs = {
     ...ctx
   },
   cksToken: "",
-  tempData:{},
+  tempData: {},
   getData: parm => {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
@@ -18,7 +19,7 @@ const funs = {
       data: parm.data || {},
       method: parm.method || "GET",
       header: parm.header || {
-        Authorization: funs.cksToken
+        Authorization: 'BasicAuth ' + funs.cksToken
       },
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
@@ -41,6 +42,16 @@ const funs = {
         }
       },
       complete() {
+        if (result.msg == 'token无效') {
+          wx.removeStorage({
+            key: 'cksToken',
+            success() {},
+            complete() {
+              funs.checkToken();
+              // wx.navigateBack({delta: 1});
+            }
+          })
+        }
         if (parm.fun) {
           new parm.fun(result)
         }
@@ -60,7 +71,7 @@ const funs = {
       },
       fail(err) {
         result = {
-          "success": false,
+          "status": false,
           "msg": "定位失败",
           "err": err
         };
@@ -114,6 +125,19 @@ const funs = {
       }
     })
   },
+  login: parm => {
+    const that = this;
+    let data = {
+      "inter": "login",
+      "method": "POST",
+      "data": {}
+    }
+    data["fun"] = function (res) {
+      console.log("app-login-res:", res);
+      return res;
+    }
+    funs.getData(data)
+  },
   logout: parm => {
     wx.removeStorage({
       key: 'usrInfo',
@@ -160,6 +184,24 @@ const funs = {
       },
       fail() {
         setToken()
+      }
+    })
+  },
+  checkUser: parm => {
+    wx.getStorage({
+      key: 'userInfo',
+      success(res) {
+        let user = res.data;
+        if (user.Id) {
+          app.globalData.userInfo = user;
+          let r = {
+            "status": true
+          }
+          return r
+        }
+      },
+      fail() {
+        funs.login();
       }
     })
   },

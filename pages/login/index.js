@@ -15,7 +15,7 @@ Page({
     getCodeTxt: "获取短信验证码",
     phone: "",
     code: "",
-    userInfo: {},
+    wxInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -30,54 +30,34 @@ Page({
     const that = this;
     wx.showLoading({
       title: '加载中',
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // that.setUserInfo(res.userInfo);
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              // if (this.userInfoReadyCallback) {
-              //   this.userInfoReadyCallback(res)
-              // }
-            }
-          })
-        }
-      }
-    })
-    wx.getStorage({
-      key: 'usrInfo',
-      success(res) {
-        if (res.data && res.data.id) {
-          that.setData({
-            checkUser: true
-          });
-          wx.redirectTo({
-            url: '/pages/index/index',
-          })
-          console.log(res.data);
-        }
-      },
-      fail() {
-        that.setData({
-          checkUser: false
-        });
-      },
-      complete() {
-        wx.hideLoading()
-      }
-    })
+    });
+    const checkUser=util.checkUser();
+    console.log(checkUser);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const that = this;
+    wx.getStorage({
+      key: 'wxInfo',
+      success(res) {
+        if (res.data && res.data.openid) {
+          that.setUserInfo(res.data)
+          that.setData({
+            checkUser: false
+          });
+          // wx.redirectTo({
+          //   url: '/pages/index/index',
+          // })
+        }
+      },
+      fail() {},
+      complete() {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
@@ -195,18 +175,18 @@ Page({
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       const tst = _formData['phone'].substring(_formData['phone'].length - 1);
-      wx.setStorage({
-        key: 'usrInfo',
-        data: {
-          id: tst, //测试 测试 测试 测试 测试 
-          subscribe: false
-        },
-        success() {
-          wx.redirectTo({
-            url: '/pages/index/index',
-          })
-        }
-      })
+      console.log("注册注册");
+      // wx.setStorage({
+      //   key: 'userInfo',
+      //   data: {
+      //     id: tst, //测试 测试 测试 测试 测试 
+      //   },
+      //   success() {
+      //     wx.redirectTo({
+      //       url: '/pages/index/index',
+      //     })
+      //   }
+      // })
     } else {
       that.setData({
         error: graceChecker.error
@@ -234,8 +214,8 @@ Page({
     });
   },
   getUserInfo(e) {
+    const that = this;
     console.log("getUserInfo:", e)
-    this.setUserInfo(e.detail.userInfo);
     // 登录
     wx.login({
       success: res => {
@@ -247,6 +227,18 @@ Page({
         }
         data["fun"] = function (res) {
           console.log(res);
+          let _data = {
+            ...e.detail.userInfo,
+            ...res.data
+          }
+          that.setUserInfo(_data);
+          wx.setStorage({
+            key: 'wxInfo',
+            data: _data,
+            success() {
+              util.login();
+            }
+          })
         }
         util.getData(data)
       }
@@ -254,8 +246,9 @@ Page({
   },
   setUserInfo(data) {
     this.setData({
-      userInfo: data,
+      wxInfo: data,
       hasUserInfo: true
-    })
+    });
+    app.globalData.wxInfo = data
   }
 })

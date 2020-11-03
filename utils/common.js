@@ -5,7 +5,7 @@ var api = {
     "appName": "CKS 科顺",
   },
   "dev": {
-    "apiurl": "http://118.178.145.27:8099", //接口
+    "apiurl": "https://www.codesystem.com.cn/cks_api", //接口
     "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
@@ -22,7 +22,7 @@ export default {
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
     "addr": {
-      "getToken": "/api/InterfaceUser/GetToken?Itype=minipro", //GetToken
+      "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录

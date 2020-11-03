@@ -12,9 +12,10 @@ App({
     checkToken();
   },
   onShow: function () {
-    //console.log('App Show')
+    console.log('App Show')
   },
   globalData: {
-    userInfo: null
+    userInfo: {},
+    wxInfo: {}
   }
 })
