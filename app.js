@@ -14,8 +14,5 @@ App({
   onShow: function () {
     console.log('App Show')
   },
-  globalData: {
-    userInfo: {},
-    wxInfo: {}
-  }
+  globalData: {}
 })

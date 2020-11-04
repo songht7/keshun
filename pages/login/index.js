@@ -31,8 +31,7 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    const checkUser=util.checkUser();
-    console.log(checkUser);
+    util.checkUser();
   },
 
   /**
@@ -41,16 +40,13 @@ Page({
   onReady: function () {
     const that = this;
     wx.getStorage({
-      key: 'wxInfo',
+      key: 'userInfo',
       success(res) {
         if (res.data && res.data.openid) {
           that.setUserInfo(res.data)
           that.setData({
             checkUser: false
           });
-          // wx.redirectTo({
-          //   url: '/pages/index/index',
-          // })
         }
       },
       fail() {},
@@ -174,29 +170,37 @@ Page({
     }];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
-      const tst = _formData['phone'].substring(_formData['phone'].length - 1);
-      console.log("注册注册");
-      // wx.setStorage({
-      //   key: 'userInfo',
-      //   data: {
-      //     id: tst, //测试 测试 测试 测试 测试 
-      //   },
-      //   success() {
-      //     wx.redirectTo({
-      //       url: '/pages/index/index',
-      //     })
-      //   }
-      // })
+      let data = {
+        "inter": "register",
+        "method": "POST",
+        "data": {
+          UserName: '',
+          WeChatOpenId: util.userInfo.openid,
+          HeadPortrait: util.userInfo.avatarUrl,
+          Nickname: util.userInfo.nickName,
+          WeChatID: util.userInfo.unionid,
+          PhoneNumber: _formData['phone'],
+          code: _formData['code']
+        }
+      }
+      data["fun"] = function (res) {
+        console.log(res);
+        if (res.status > 0) {
+          that.setUserInfo(res.data);
+          util.setStorageUser({
+            data: res.data
+          });
+        } else {
+          that.setData({
+            error: res.msg
+          });
+        }
+      }
+      util.getData(data)
     } else {
       that.setData({
         error: graceChecker.error
       });
-      // wx.showToast({
-      //   title: graceChecker.error,
-      //   // image: '/static/tip.png',
-      //   icon: 'none',
-      //   duration: 2000
-      // })
     }
   },
   formReset(e) {
@@ -223,7 +227,7 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         let data = {
           "inter": "getOpenId",
-          "parm": "?code=" + res.code
+          "parm": "?code=" + res.code + '&encryptdata=' + e.detail.encryptdata + '&iv=' + e.detail.iv
         }
         data["fun"] = function (res) {
           console.log(res);
@@ -233,7 +237,7 @@ Page({
           }
           that.setUserInfo(_data);
           wx.setStorage({
-            key: 'wxInfo',
+            key: 'userInfo',
             data: _data,
             success() {
               util.login();
@@ -249,6 +253,6 @@ Page({
       wxInfo: data,
       hasUserInfo: true
     });
-    app.globalData.wxInfo = data
+    util.userInfo = data;
   }
 })

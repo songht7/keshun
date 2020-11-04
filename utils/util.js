@@ -1,4 +1,3 @@
-const app = getApp()
 import common from "./common.js"
 const ctx = common.Interface
 
@@ -7,6 +6,7 @@ const funs = {
     ...ctx
   },
   cksToken: "",
+  userInfo: {},
   tempData: {},
   getData: parm => {
     let _parm = parm.parm || '';
@@ -125,22 +125,62 @@ const funs = {
       }
     })
   },
+  setStorageUser: parm => {
+    wx.getStorage({
+      key: 'userInfo',
+      success(ress) {
+        const _userInfo = {
+          ...ress.data,
+          loginInfo: {
+            ...parm.data
+          }
+        };
+        wx.setStorage({
+          key: 'userInfo',
+          data: _userInfo,
+          success() {}
+        });
+        funs.userInfo = _userInfo;
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 2000,
+          complete() {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }
+        })
+      },
+      fail() {}
+    })
+  },
   login: parm => {
     const that = this;
+    const unionid = funs.userInfo.unionid || '';
+    if (unionid == '') {
+      // return
+    }
     let data = {
       "inter": "login",
       "method": "POST",
-      "data": {}
+      "data": {
+        WeChatID: unionid
+      }
     }
     data["fun"] = function (res) {
       console.log("app-login-res:", res);
-      return res;
+      if (res.status > 0) {
+        funs.setStorageUser({
+          data: res.data
+        });
+      }
     }
     funs.getData(data)
   },
   logout: parm => {
     wx.removeStorage({
-      key: 'usrInfo',
+      key: 'userInfo',
       success() {
         wx.redirectTo({
           url: '/pages/index/index',
@@ -191,13 +231,9 @@ const funs = {
     wx.getStorage({
       key: 'userInfo',
       success(res) {
-        let user = res.data;
-        if (user.Id) {
-          app.globalData.userInfo = user;
-          let r = {
-            "status": true
-          }
-          return r
+        let user = res.data.loginInfo;
+        if (user && user.Id) {
+          funs.userInfo = res.data;
         }
       },
       fail() {
