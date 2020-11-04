@@ -227,10 +227,16 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         let data = {
           "inter": "getOpenId",
-          "parm": "?code=" + res.code + '&encryptdata=' + e.detail.encryptdata + '&iv=' + e.detail.iv
+          "method": "POST",
+          "data": {
+            code: res.code,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            rawData: e.detail.rawData,
+            signature: e.detail.signature
+          }
         }
         data["fun"] = function (res) {
-          console.log(res);
           let _data = {
             ...e.detail.userInfo,
             ...res.data
