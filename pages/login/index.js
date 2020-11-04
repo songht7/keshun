@@ -236,6 +236,7 @@ Page({
             signature: e.detail.signature
           }
         }
+        console.log(data);
         data["fun"] = function (res) {
           let _data = {
             ...e.detail.userInfo,
@@ -250,7 +251,7 @@ Page({
             }
           })
         }
-        util.getData(data)
+        // util.getData(data)
       }
     })
   },
