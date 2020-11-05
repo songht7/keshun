@@ -174,13 +174,13 @@ Page({
         "inter": "register",
         "method": "POST",
         "data": {
-          UserName: '',
-          WeChatOpenId: util.userInfo.openid,
+          UserName: _formData['phone'],
+          // WeChatOpenId: util.userInfo.openid,
           HeadPortrait: util.userInfo.avatarUrl,
           Nickname: util.userInfo.nickName,
-          WeChatID: util.userInfo.unionid,
-          PhoneNumber: _formData['phone'],
-          code: _formData['code']
+          WeChatID: util.userInfo.openid,
+          //PhoneNumber: _formData['phone'],
+          //code: _formData['code']
         }
       }
       data["fun"] = function (res) {
@@ -247,15 +247,16 @@ Page({
             key: 'userInfo',
             data: _data,
             success() {
-              util.login();
+              util.login(_data);
             }
           })
         }
-        // util.getData(data)
+        util.getData(data)
       }
     })
   },
   setUserInfo(data) {
+    // console.log("setUserInfo:", data);
     this.setData({
       wxInfo: data,
       hasUserInfo: true

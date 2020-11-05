@@ -45,7 +45,9 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () {
+    util.checkUser();
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -92,7 +94,7 @@ Page({
   },
   getData(parm) {
     const that = this;
-    if(!parm.inter){
+    if (!parm.inter) {
       return false
     }
     let data = {

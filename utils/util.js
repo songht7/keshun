@@ -155,17 +155,18 @@ const funs = {
       fail() {}
     })
   },
-  login: parm => {
+  login(parm = {}) {
     const that = this;
-    const unionid = funs.userInfo.unionid || '';
-    if (unionid == '') {
-      // return
+    console.log("login-fun-userInfo:", funs.userInfo);
+    const openid = parm.openid ? parm.openid : (funs.userInfo.openid ? funs.userInfo.openid : '');
+    if (openid == '') {
+      return
     }
     let data = {
       "inter": "login",
       "method": "POST",
       "data": {
-        WeChatID: unionid
+        WeChatID: openid
       }
     }
     data["fun"] = function (res) {
@@ -231,12 +232,15 @@ const funs = {
     wx.getStorage({
       key: 'userInfo',
       success(res) {
-        let user = res.data.loginInfo;
-        if (user && user.Id) {
-          funs.userInfo = res.data;
+        console.log("checkUser-success")
+        let logined = res.data.loginInfo;
+        funs.userInfo = res.data;
+        if (!logined) {
+          funs.login();
         }
       },
       fail() {
+        console.log("checkUser-fail")
         funs.login();
       }
     })
