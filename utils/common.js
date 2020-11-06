@@ -35,6 +35,8 @@ export default {
       "driverAdd": "/api/Driver/Add", //司机添加【post】
       "driverUpdate": "/api/Driver/Update", //司机修改【post】
       "driverDelete": "/api/Driver/Delete", //司机删除【post】
+      "updateForwarder": "/api/Order/UpdateForwarder", //手动分配承运商【post】
+      "orderList": "/api/Order/QueryByPage", //获取订单列表
     }
   }
 }
