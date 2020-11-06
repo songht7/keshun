@@ -1,5 +1,6 @@
 // pages/carrier/driver/index.js
-const util = require('../../../utils/util.js')
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**

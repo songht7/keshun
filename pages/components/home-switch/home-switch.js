@@ -1,4 +1,13 @@
 // pages/component/home-switch/home-switch.js
+
+/*
+ * 12312312313  1 对应科顺员工(物流干事)
+ * 12312312314  2  对应承运商
+ * 12312312312  3 对应司机 
+ * 12312312315  4  对应科顺员工(商务)
+ */
+const app = getApp();
+const util = app.globalData;
 Component({
   options: {
     virtualHost: true, //将这个自定义组件设置为“虚拟的”
@@ -141,42 +150,44 @@ Component({
   ready: function () {
     console.log('[my-component] ready')
     var that = this;
-    const menus = that.properties.btns
-    switch (this.properties.switchType.toString()) {
+    const menus = that.properties.btns;
+    const _loginInfo = util.userInfo.loginInfo || '';
+    const userType = _loginInfo && _loginInfo['PostId'] ? _loginInfo['PostId'].toString() : '';
+    /* PostId 对应 1是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）*/
+    switch (userType) {
       case "1":
-        const nav = menus["switch-A"].filter((obj, key) => {
-          return key < 2
-        });
-        that.setData({
-          pageTpe: "首页",
-          switchBtns: nav
-        });
-        break;
-      case "2":
-        that.setData({
-          pageTpe: "司机",
-          switchBtns: menus["switch-B"]
-        });
-        break;
-      case "3":
-        that.setData({
-          pageTpe: "承运商",
-          switchBtns: menus["switch-C"]
-        });
-        break;
-      case "4":
         that.setData({
           pageTpe: "总部物流",
           switchBtns: menus["switch-D"]
         });
         break;
-      case "5":
+      case "2":
+        that.setData({
+          pageTpe: "承运商",
+          switchBtns: menus["switch-C"]
+        });
+        break;
+      case "3":
+        that.setData({
+          pageTpe: "司机",
+          switchBtns: menus["switch-B"]
+        });
+        break;
+      case "4":
         that.setData({
           pageTpe: "业务",
           switchBtns: menus["switch-E"]
         });
         break;
       default:
+        // const nav = menus["switch-A"].filter((obj, key) => {
+        //   return key < 2
+        // });
+        // that.setData({
+        //   pageTpe: "首页",
+        //   switchBtns: nav
+        // });
+        // break;
         that.setData({
           pageTpe: "首页 - 未登录",
           switchBtns: menus["switch-A"]

@@ -1,7 +1,5 @@
 //app.js
-const {
-  checkToken
-} = require('./utils/util.js')
+import util from './utils/util.js';
 App({
   onLaunch: function () {
     console.log('App onLaunch')
@@ -9,10 +7,13 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
-    checkToken();
+    this.globalData.checkToken();
+    this.globalData.checkUser();
   },
   onShow: function () {
     console.log('App Show')
   },
-  globalData: {}
+  globalData: {
+    ...util
+  }
 })

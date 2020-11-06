@@ -1,13 +1,14 @@
 // pages/sign/sign.js
-const app = getApp()
-const util = require('../../utils/util.js')
 import graceChecker from "../../common/graceChecker.js";
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    loginAuto: false, //授权后是否自动登录
     checkUser: false,
     inputFocus: false,
     btnLoading: false,
@@ -220,6 +221,9 @@ Page({
   getUserInfo(e) {
     const that = this;
     console.log("getUserInfo:", e)
+    wx.showLoading({
+      title: '授权中...',
+    })
     // 登录
     wx.login({
       success: res => {
@@ -236,8 +240,9 @@ Page({
             signature: e.detail.signature
           }
         }
-        console.log(data);
+        // console.log(data);
         data["fun"] = function (res) {
+          wx.hideLoading()
           let _data = {
             ...e.detail.userInfo,
             ...res.data
@@ -247,11 +252,19 @@ Page({
             key: 'userInfo',
             data: _data,
             success() {
-              util.login(_data);
+              if (that.data.loginAuto) {
+                util.login(_data); //授权后自动登录
+              }
             }
           })
         }
         util.getData(data)
+      },
+      fail() {
+        that.setData({
+          error: '授权失败'
+        });
+        wx.hideLoading()
       }
     })
   },

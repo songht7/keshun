@@ -1,5 +1,6 @@
 // pages/index/index.js
-const util = require('../../utils/util.js')
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
    */
   data: {
     loading: true,
-    user: {},
+    user: util.userInfo || {},
     typeT: false,
     buttons: [{
         type: 'default',
@@ -35,7 +36,6 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.getMyStorage();
     that.getData({
       inter: '',
       method: "POST"
@@ -46,7 +46,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    util.checkUser();
+    // console.log('onReady', util.userInfo)
+    this.setData({
+      user: util.userInfo
+    });
   },
 
   /**
@@ -105,27 +108,6 @@ Page({
       console.log(res);
     }
     util.getData(data)
-  },
-  getMyStorage() {
-    const that = this;
-    /*****************************测试首页按钮************************************************/
-    wx.getStorage({
-      key: 'usrInfo',
-      success(res) {
-        if (res.data && res.data.id) {
-          let userType = res.data.id;
-          let subscribe = res.data.subscribe;
-          that.setData({
-            user: res.data,
-            switchType: userType,
-            typeT: !subscribe
-          });
-        }
-      },
-      fail() {},
-      complete() {}
-    })
-    /*****************************************************************************/
   },
   reSetDialog() {
     /* 取消订阅消息框 */

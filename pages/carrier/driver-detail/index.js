@@ -1,6 +1,7 @@
 // pages/carrier/driver-detail/index.js
-const util = require('../../../utils/util.js')
 import graceChecker from "../../../common/graceChecker.js";
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -169,6 +170,11 @@ Page({
             title: Id ? "编辑成功！" : "添加成功！",
             icon: "success"
           })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 0,
+            })
+          }, 2000)
         } else {
           that.setData({
             error: res.msg

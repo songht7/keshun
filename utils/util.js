@@ -8,7 +8,8 @@ const funs = {
   cksToken: "",
   userInfo: {},
   tempData: {},
-  getData: parm => {
+  getData(parm = {}) {
+    const that = this;
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
     var result = [];
@@ -19,7 +20,7 @@ const funs = {
       data: parm.data || {},
       method: parm.method || "GET",
       header: parm.header || {
-        Authorization: 'BasicAuth ' + funs.cksToken
+        Authorization: 'BasicAuth ' + that.cksToken
       },
       success(res) {
         console.log("getData-success-", parm.inter, "：", res)
@@ -47,7 +48,7 @@ const funs = {
             key: 'cksToken',
             success() {},
             complete() {
-              funs.checkToken();
+              that.checkToken();
               // wx.navigateBack({delta: 1});
             }
           })
@@ -58,7 +59,8 @@ const funs = {
       }
     })
   },
-  getLocation: parm => {
+  getLocation(parm = {}) {
+    const that = this;
     var result = {};
     wx.getLocation({
       type: parm.type || 'wgs84',
@@ -83,7 +85,8 @@ const funs = {
       }
     })
   },
-  stopLocation: parm => {
+  stopLocation(parm = {}) {
+    const that = this;
     wx.stopLocationUpdate({
       success(res) {
         console.log('stopLocation:', res);
@@ -96,7 +99,8 @@ const funs = {
     }
     wx.offLocationChange(_locationChangeFn)
   },
-  uploadFile: parm => {
+  uploadFile(parm = {}) {
+    const that = this;
     wx.uploadFile({
       url: "http://localhost:8080/upload/upload",
       filePath: parm.imgPath,
@@ -125,7 +129,8 @@ const funs = {
       }
     })
   },
-  setStorageUser: parm => {
+  setStorageUser(parm = {}) {
+    const that = this;
     wx.getStorage({
       key: 'userInfo',
       success(ress) {
@@ -140,7 +145,7 @@ const funs = {
           data: _userInfo,
           success() {}
         });
-        funs.userInfo = _userInfo;
+        that.userInfo = _userInfo;
         wx.showToast({
           title: '登录成功',
           icon: 'success',
@@ -157,8 +162,8 @@ const funs = {
   },
   login(parm = {}) {
     const that = this;
-    console.log("login-fun-userInfo:", funs.userInfo);
-    const openid = parm.openid ? parm.openid : (funs.userInfo.openid ? funs.userInfo.openid : '');
+    console.log("login-fun-userInfo:", that.userInfo);
+    const openid = parm.openid ? parm.openid : (that.userInfo.openid ? that.userInfo.openid : '');
     if (openid == '') {
       return
     }
@@ -172,31 +177,34 @@ const funs = {
     data["fun"] = function (res) {
       console.log("app-login-res:", res);
       if (res.status > 0) {
-        funs.setStorageUser({
+        that.setStorageUser({
           data: res.data
         });
       }
     }
-    funs.getData(data)
+    that.getData(data)
   },
-  logout: parm => {
+  logout(parm = {}) {
+    const that = this;
     wx.removeStorage({
       key: 'userInfo',
       success() {
         wx.redirectTo({
           url: '/pages/index/index',
         })
+        that.userInfo = {}
       }
     })
   },
-  checkToken: parm => {
+  checkToken(parm = {}) {
+    const that = this;
     var setToken = function () {
       let data = {
         "inter": "getToken"
       }
       data["fun"] = function (res) {
         if (res.status && res.data.token) {
-          var deadline = funs.setDeadline();
+          var deadline = that.setDeadline();
           wx.setStorage({
             key: 'cksToken',
             data: {
@@ -204,19 +212,19 @@ const funs = {
               deadline: deadline
             },
             success() {
-              funs.cksToken = res.data.token;
+              that.cksToken = res.data.token;
               console.log("-----setStorage-token-success-----")
             }
           })
         }
       }
-      funs.getData(data)
+      that.getData(data)
     }
     wx.getStorage({
       key: 'cksToken',
       success(res) {
         let cksToken = res.data;
-        funs.cksToken = res.data.token;
+        that.cksToken = res.data.token;
         let timestamp = Math.round(new Date().getTime() / 1000);
         if (!cksToken.deadline || timestamp >= cksToken.deadline) {
           console.log("-----reSetCksToken-----")
@@ -228,32 +236,38 @@ const funs = {
       }
     })
   },
-  checkUser: parm => {
+  checkUser(parm = {}) {
+    const that = this;
     wx.getStorage({
       key: 'userInfo',
       success(res) {
-        console.log("checkUser-success")
+        // that.userInfo = res.data;
+        that.userInfo = res.data;
         let logined = res.data.loginInfo;
-        funs.userInfo = res.data;
         if (!logined) {
-          funs.login();
+          that.login();
         }
       },
       fail() {
         console.log("checkUser-fail")
-        funs.login();
+        that.login();
+      },
+      complete() {
+        console.log("checkUser", that.userInfo)
       }
     })
   },
-  setDeadline: parm => {
-    var x = funs.formatTime(new Date())
+  setDeadline(parm = {}) {
+    const that = this;
+    var x = that.formatTime(new Date())
     var time = new Date(x);
     var timeNum = ctx.deadline; //小时数
     time.setHours(time.getHours() + timeNum);
-    var deadline = Math.round(new Date(funs.formatTime(time)).getTime() / 1000);
+    var deadline = Math.round(new Date(that.formatTime(time)).getTime() / 1000);
     return deadline
   },
-  formatTime: (date, mark) => {
+  formatTime(date, mark) {
+    const that = this;
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
