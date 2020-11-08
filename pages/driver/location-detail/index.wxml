@@ -1,5 +1,6 @@
 <!--pages/driver/location-detail/index.wxml-->
 <view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<block wx:if="{{!loading}}">
 		<view class="icon-box">
 			<icon-font class="icon-box-img" type="{{status?'wuuiconxuan':'baocuo'}}" color="{{status?'#08499a':'#f40'}}" size="160"></icon-font>

@@ -37,6 +37,9 @@ Page({
         longitude: long,
         code: code
       });
+      wx.showLoading({
+        title: '加载中',
+      })
       qqmapsdk = new QQMapWX({
         key: util.config.mapkey // 必填
       });
@@ -106,9 +109,6 @@ Page({
         Source: _data.source
       }
     }
-    wx.showLoading({
-      title: '加载中',
-    })
     data["fun"] = function (res) {
       wx.hideLoading()
       that.setData({
@@ -154,7 +154,11 @@ Page({
         that.getData();
       },
       fail(err) {
-        console.log("===qqmapsdk-err===", err);
+        wx.hideLoading();
+        that.setData({
+          error: "获取位置信息失败"
+        });
+        // console.log("===qqmapsdk-err===", err);
       }
     })
   }
