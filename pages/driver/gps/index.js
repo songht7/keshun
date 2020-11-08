@@ -28,6 +28,7 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    console.log(util.userInfo.loginInfo.PhoneNumber);
     // // 实例化腾讯地图API核心类
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填

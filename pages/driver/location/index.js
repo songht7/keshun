@@ -1,5 +1,7 @@
 // pages/driver/location/index.js
-const util = require('../../../utils/util.js')
+import graceChecker from "../../../common/graceChecker.js";
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -87,8 +89,14 @@ Page({
     const that = this;
     console.log(e.detail);
     let formData = e.detail;
-    wx.navigateTo({
-      url: '/pages/driver/location-detail/index?code=' + formData.orderCode + '&lat=' + that.data.location.latitude + '&long=' + that.data.location.longitude,
-    })
+    if (formData.orderCode) {
+      wx.navigateTo({
+        url: '/pages/driver/location-detail/index?code=' + formData.orderCode + '&lat=' + that.data.location.latitude + '&long=' + that.data.location.longitude,
+      })
+    } else {
+      that.setData({
+        error: "交货单号不能为空"
+      });
+    }
   }
 })

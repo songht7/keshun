@@ -10,7 +10,7 @@
 				<view class="status-block status-right">
 					<view wx:if="{{item.ReceiptImage||index+1==count}}" class="status-title">
 						<image wx:if="{{index+1==count||index==0}}" class="order-icon" src="/static/goods-{{!item.ReceiptImage?'1':'2'}}.png" mode="aspectFit"></image>
-						{{item.Address}} - {{index+1}} - {{count}}
+						{{item.Address}}
 					</view>
 					<view wx:if="{{!item.ReceiptImage}}" class="status-subtitle {{index>0&&!item.ReceiptImage&&(index+1!=count||index==0)?'status-subtitle-icon':''}}">{{item.Address}}</view>
 					<view class="status-pic-list" wx:if="{{item.ReceiptImage}}">
