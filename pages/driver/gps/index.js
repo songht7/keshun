@@ -36,7 +36,14 @@ Page({
       type: 'wgs84',
       success(res) {
         console.log("getLocationgetLocationgetLocation:", res);
-        that.setLocation(res);
+        const date = util.formatTime(new Date(), '年月日');
+        const _location = {
+          ...res,
+          time: Date.now(),
+          date: date
+        }
+        that.data._location = _location
+        that.getSDKAddress(_location)
       }
     })
     wx.startLocationUpdateBackground({
@@ -52,6 +59,12 @@ Page({
     clearInterval(that.data.timer)
     that.data.timer = setInterval(() => {
       const _location = that.data._location;
+      const date = util.formatTime(new Date(), '年月日');
+      that.data._location = {
+        ..._location,
+        time: Date.now(),
+        date: date
+      }
       /// 异常点返回
       if (!_location.latitude && !_location.latitude) {
         return false;
@@ -148,13 +161,7 @@ Page({
   },
   setLocation(loc) {
     const that = this;
-    const date = util.formatTime(new Date(), '年月日');
-    console.log("onLocationChange:", date, loc)
-    that.data._location = {
-      ...loc,
-      time: Date.now(),
-      date: date
-    }
+    console.log("setLocation:", that.data.timer);
     if (!that.data.timer) {
       that.getSDKAddress(that.data._location)
     }
@@ -162,7 +169,7 @@ Page({
   getSDKAddress(_location) {
     const that = this;
     //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
-    console.log("setInterval:", _location);
+    console.log("getSDKAddress:", _location);
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: _location.latitude,

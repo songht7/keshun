@@ -1,20 +1,20 @@
 <!--pages/components/order-status/order-status.wxml-->
 <view class="order-status">
 	<view class="status-box">
-		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
+		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
 			<view class="status-row">
 				<view class="status-block status-left">
-					<view class="status-date">{{item.date}}</view>
-					<view class="status-time">{{item.time}}</view>
+					<view class="status-date">{{item.CreateDate}}</view>
+					<!-- <view class="status-time">{{item.time}}</view> -->
 				</view>
 				<view class="status-block status-right">
-					<view wx:if="{{item.title}}" class="status-title">
-						<image class="order-icon" src="/static/goods-{{item.status==1?'1':'2'}}.png" mode="aspectFit"></image>
-						{{item.title}}
+					<view wx:if="{{item.Address}}" class="status-title">
+						<image class="order-icon" src="/static/goods-{{item.ReceiptImage.length>0?'1':'2'}}.png" mode="aspectFit"></image>
+						{{item.Address}}
 					</view>
-					<view class="status-subtitle {{!item.title?'status-subtitle-icon':''}}">{{item.subtitle}}</view>
-					<view class="status-pic-list" wx:if="{{item.pic}}">
-						<image class="status-pic" src="{{item.pic}}" mode="aspectFit" bindtap="previewImage" data-src="{{item.pic}}"></image>
+					<view class="status-subtitle {{index>0&&item.ReceiptImage.length<=0?'status-subtitle-icon':''}}">{{item.subtitle}}</view>
+					<view class="status-pic-list" wx:if="{{item.ReceiptImage}}">
+						<image class="status-pic" src="{{item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit" bindtap="previewImage" data-src="{{item.ReceiptImage[0]['ImageAddress']}}"></image>
 					</view>
 				</view>
 			</view>
