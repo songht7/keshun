@@ -4,15 +4,15 @@
 		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
 			<view class="status-row">
 				<view class="status-block status-left">
-					<view class="status-date">{{item.CreateDate}}</view>
-					<!-- <view class="status-time">{{item.time}}</view> -->
+					<view class="status-date">{{item.Date}}</view>
+					<view class="status-time">{{item.Time}}</view>
 				</view>
 				<view class="status-block status-right">
-					<view wx:if="{{item.Address}}" class="status-title">
-						<image class="order-icon" src="/static/goods-{{item.ReceiptImage.length>0?'1':'2'}}.png" mode="aspectFit"></image>
-						{{item.Address}}
+					<view wx:if="{{item.ReceiptImage||index+1==count}}" class="status-title">
+						<image wx:if="{{index+1==count||index==0}}" class="order-icon" src="/static/goods-{{!item.ReceiptImage?'1':'2'}}.png" mode="aspectFit"></image>
+						{{item.Address}} - {{index+1}} - {{count}}
 					</view>
-					<view class="status-subtitle {{index>0&&item.ReceiptImage.length<=0?'status-subtitle-icon':''}}">{{item.subtitle}}</view>
+					<view wx:if="{{!item.ReceiptImage}}" class="status-subtitle {{index>0&&!item.ReceiptImage&&(index+1!=count||index==0)?'status-subtitle-icon':''}}">{{item.Address}}</view>
 					<view class="status-pic-list" wx:if="{{item.ReceiptImage}}">
 						<image class="status-pic" src="{{item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit" bindtap="previewImage" data-src="{{item.ReceiptImage[0]['ImageAddress']}}"></image>
 					</view>

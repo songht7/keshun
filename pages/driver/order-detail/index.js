@@ -23,35 +23,8 @@ Page({
         // name: 'T.I.T 创意园'
       }]
     },
-    list: [{
-      date: "10-13",
-      time: "08:00",
-      title: "已签收",
-      subtitle: "快递已签收 签收人：曹操",
-      pic: "/static/goods-2.png",
-      status: 2
-    }, {
-      date: "10-12",
-      time: "08:00",
-      title: "",
-      subtitle: "快递已到达广州",
-      pic: "",
-      status: 0
-    }, {
-      date: "10-11",
-      time: "08:00",
-      title: "",
-      subtitle: "快递已离开上海",
-      pic: "",
-      status: 0
-    }, {
-      date: "10-10",
-      time: "08:00",
-      title: "已发货",
-      subtitle: "快递已发货",
-      pic: "",
-      status: 1
-    }]
+    list: [],
+    count: 0
   },
 
   /**
@@ -129,9 +102,21 @@ Page({
       wx.hideLoading()
       if (res.status > 0) {
         const _list = res.data;
+        _list.map((obj, key) => {
+          let date = obj['CreateDate'].split(" ");
+          obj['Date'] = date[0];
+          obj['Time'] = date[1];
+        });
+        let map = that.data.map;
+        map['latitude'] = _list[0]['Latitude'];
+        map['longitude'] = _list[0]['Longitude'];
+        map['markers'][0]['latitude'] = parseFloat(_list[0]['Latitude']);
+        map['markers'][0]['longitude'] = parseFloat(_list[0]['Longitude']);
+        console.log(map)
         that.setData({
+          map,
           list: _list,
-          count: res.count
+          count: _list.length
         });
       } else {
         wx.showToast({

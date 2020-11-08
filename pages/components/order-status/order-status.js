@@ -7,7 +7,11 @@ Component({
     virtualHost: true, //将这个自定义组件设置为“虚拟的”
   },
   properties: {
-    list: Array
+    list: Array,
+    count: {
+      type: Number,
+      value: 0
+    }
   },
 
   /**
@@ -16,6 +20,7 @@ Component({
   data: {
 
   },
+  computed: {},
 
   /**
    * 组件的方法列表
@@ -23,11 +28,19 @@ Component({
   methods: {
 
     previewImage(e) {
+      const that = this;
       const current = e.target.dataset.src;
       console.log("previewImage:", current)
-      wx.previewImage({
-        urls: [current]
-      })
+      const _urls = [];
+      let img = that.data.list[0]['ReceiptImage'];
+      img.map((obj, key) => {
+        _urls.push(obj.ImageAddress)
+      });
+      // console.log("previewImage:", _urls);
+        wx.previewImage({
+          current: current,
+          urls: _urls
+        })
     },
   }
 })
