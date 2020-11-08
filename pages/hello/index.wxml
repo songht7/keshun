@@ -12,5 +12,6 @@
 	<view class="usermotto">
 		<image class="logo" src="/static/logo.png" mode="scaleToFill"></image>
 		<text class="user-motto">{{motto}}</text>
+		<icon-font type="smile" color="#f40" size="32" label="myicon" bind:iconClick="iconClick"></icon-font>
 	</view>
 </view>

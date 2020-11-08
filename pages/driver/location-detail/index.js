@@ -10,7 +10,8 @@ Page({
    */
   data: {
     code: "",
-    status: "上传成功！",
+    statusVal: "",
+    status: 0,
     latitude: "",
     longitude: "",
     address: "",
@@ -111,11 +112,15 @@ Page({
     data["fun"] = function (res) {
       wx.hideLoading()
       if (res.status > 0) {
-
+        that.setData({
+          status: 1,
+          statusVal: "上传成功！"
+        });
       } else {
-        wx.showToast({
-          title: '获取订单信息失败！',
-        })
+        that.setData({
+          status: 0,
+          statusVal: "上传失败！"
+        });
       }
 
     }

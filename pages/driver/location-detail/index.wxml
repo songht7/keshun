@@ -1,8 +1,8 @@
 <!--pages/driver/location-detail/index.wxml-->
 <view class="container">
 	<view class="icon-box">
-		<icon class="icon-box-img icon-success" type="success" size="80" color="#08499a"></icon>
-		<view class="submit-status">{{status}}</view>
+		<icon-font class="icon-box-img" type="{{status?'wuuiconxuan':'baocuo'}}" color="{{status?'#08499a':'#f40'}}" size="160"></icon-font>
+		<view class="submit-status">{{statusVal}}</view>
 	</view>
 	<!-- <text>{{code}}</text> -->
 	<view class="page-init">

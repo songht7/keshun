@@ -14,13 +14,8 @@ Page({
     date: "",
     timer: null,
     _location: {},
-    locationList: [
-      //   {
-      //   "address": "广东省佛山市顺德区容桂街道红旗中路38号",
-      //   "date": "2020 年 9 月 20日 14 点 56 分",
-      //   "submitStatus": "success"//"fale"
-      // }
-    ]
+    locationList: [],
+    source: 'JK'
   },
 
   /**
@@ -28,7 +23,6 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    console.log(util.userInfo.loginInfo.PhoneNumber);
     // // 实例化腾讯地图API核心类
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填
@@ -180,15 +174,35 @@ Page({
         console.log("address:", addressRes)
         var city = addressRes.result.address_component.city + ',' + addressRes.result.address_component.district;
         var address = addressRes.result.formatted_addresses.recommend;
+        var _address = city + ',' + address;
         // var address = addressRes.result.address;
-        let lct = {
-          "address": city + ',' + address,
-          "date": that.data._location.date,
-          "submitStatus": "success"
+        let data = {
+          "inter": "uploadPhoneGPS",
+          "method": "POST",
+          "data": {
+            Phone: util.userInfo.loginInfo.PhoneNumber,
+            Latitude: _location.latitude,
+            Longitude: _location.longitude,
+            Address: _address,
+            Source: that.data.source
+          }
         }
-        that.setData({
-          locationList: [lct, ...that.data.locationList]
-        });
+        data["fun"] = function (res) {
+          let lct = {
+            "address": _address,
+            "date": that.data._location.date,
+            "submitStatus": "success"
+          }
+          if (res.status > 0) {
+            lct['submitStatus'] = "success";
+          } else {
+            lct['submitStatus'] = "fail";
+          }
+          that.setData({
+            locationList: [lct, ...that.data.locationList]
+          });
+        }
+        util.getData(data)
       },
       fail(err) {
         console.log("===qqmapsdk-err===", err);
