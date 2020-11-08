@@ -164,14 +164,14 @@ Page({
   getSDKAddress(_location) {
     const that = this;
     //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
-    console.log("getSDKAddress:", _location);
+    // console.log("getSDKAddress:", _location);
     qqmapsdk.reverseGeocoder({
       location: {
         latitude: _location.latitude,
         longitude: _location.longitude
       },
       success: function (addressRes) {
-        console.log("address:", addressRes)
+        // console.log("address:", addressRes)
         var city = addressRes.result.address_component.city + ',' + addressRes.result.address_component.district;
         var address = addressRes.result.formatted_addresses.recommend;
         var _address = city + ',' + address;
@@ -191,16 +191,18 @@ Page({
           let lct = {
             "address": _address,
             "date": that.data._location.date,
+            "latitude": _location.latitude,
+            "longitude": _location.longitude,
             "submitStatus": "success"
           }
           if (res.status > 0) {
             lct['submitStatus'] = "success";
+            that.setData({
+              locationList: [lct, ...that.data.locationList]
+            });
           } else {
             lct['submitStatus'] = "fail";
           }
-          that.setData({
-            locationList: [lct, ...that.data.locationList]
-          });
         }
         util.getData(data)
       },
@@ -208,5 +210,12 @@ Page({
         console.log("===qqmapsdk-err===", err);
       }
     })
+  },
+  iconClick(e) {
+    const that = this;
+    // console.log(e.detail.data);
+    if (e.detail.data.status != 'success') {
+      // that.getSDKAddress(e.detail.data)
+    }
   }
 })

@@ -1,6 +1,6 @@
 <!--pages/driver/gps/index.wxml-->
 <view class="container">
 	<view class="page-init">
-		<location-list locationList="{{locationList}}"></location-list>
+		<location-list locationList="{{locationList}}" bind:iconClick="iconClick"></location-list>
 	</view>
 </view>

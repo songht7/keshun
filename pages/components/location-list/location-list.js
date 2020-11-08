@@ -18,6 +18,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    iconClick(e) {
+      let data = {
+        data: e.currentTarget.dataset
+      }
+      this.triggerEvent("iconClick", data);
+    }
   }
 })
