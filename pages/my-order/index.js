@@ -179,13 +179,13 @@ Page({
     const cks = [];
     list.map((obj, key) => {
       if (obj.checked) {
-        cks.push(obj.id)
+        cks.push(obj.Id)
       }
     });
     console.log(cks);
     setTimeout(() => {
       const fL = list.filter((obj, key) => {
-        if (!cks.includes(obj['id'])) {
+        if (!cks.includes(obj['Id'])) {
           console.log(obj)
           return obj
         }
@@ -228,9 +228,11 @@ Page({
         const _list = res.data;
         /** 设置列表可选择 **/
         _list.map(obj => {
+          obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
           obj['checked'] = false;
           obj['hasCheck'] = true;
         });
+        console.log(_list)
         /** /设置列表可选择 **/
         if (type == 'more') {
           that.setData({

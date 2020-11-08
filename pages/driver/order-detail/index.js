@@ -1,4 +1,7 @@
 // pages/driver/order-detail/index.js
+import graceChecker from "../../../common/graceChecker.js";
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -59,6 +62,7 @@ Page({
     that.setData({
       code: options.code
     });
+    that.getList()
   },
 
   /**
@@ -108,5 +112,34 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getList(type) {
+    const that = this;
+    let data = {
+      "inter": "orderGPS",
+      "method": "POST",
+      "data": {
+        Dn_No: that.data.code
+      }
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    data["fun"] = function (res) {
+      wx.hideLoading()
+      if (res.status > 0) {
+        const _list = res.data;
+        that.setData({
+          list: _list,
+          count: res.count
+        });
+      } else {
+        wx.showToast({
+          title: '获取订单信息失败！',
+        })
+      }
+
+    }
+    util.getData(data)
+  },
 })

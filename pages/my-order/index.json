@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的交货单",
+  "usingComponents": {
+    "scan-code": "/pages/components/scan-code/scan-code",
+    "order-card": "/pages/components/order-card/order-card",
+    "filter-box": "/pages/components/filter-box/filter-box",
+    "picker-search": "/pages/components/picker-search/picker-search"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

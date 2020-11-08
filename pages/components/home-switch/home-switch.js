@@ -1,5 +1,6 @@
 // pages/component/home-switch/home-switch.js
-
+/*"T202011050001" "6100067363"*/
+/*"T202011050002" "6100067368"*/
 /*
  * 12312312313  1 对应科顺员工(物流干事)
  * 12312312314  2  对应承运商
@@ -111,7 +112,7 @@ Component({
         icon: "icon-7.png",
         sw: "38",
         tap: "linkTo",
-        url: ""
+        url: "/pages/my-order/index"
       }, {
         label: "车辆/司机分配",
         icon: "icon-15.png",

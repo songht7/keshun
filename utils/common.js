@@ -37,6 +37,9 @@ export default {
       "driverDelete": "/api/Driver/Delete", //司机删除【post】
       "updateForwarder": "/api/Order/UpdateForwarder", //手动分配承运商【post】
       "orderList": "/api/Order/QueryByPage", //获取订单列表
+      "orderGPS": "/api/OrderGPS/SelectOrderTrackGPSInfo", //根据订单号查询订单所有的跟踪信息【post】
+      "uploadOrderGPS": "/api/OrderGPS/UploadOrderGPS", //根据订单号保存经度纬度地址信息【post】
+      "uploadPhoneGPS": "/api/OrderGPS/UploadPhoneGPS", //根据用户手机号找到订单保存经度纬度地址信息【post】
     }
   }
 }

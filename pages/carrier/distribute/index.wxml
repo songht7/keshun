@@ -4,6 +4,6 @@
 		<view class="my-order">
 			<order-card list="{{list}}" bind:navDetail="navDetail"></order-card>
 		</view>
-		<fixed-btns addBtn="{{addBtn}}"></fixed-btns>
+		<!-- <fixed-btns addBtn="{{addBtn}}"></fixed-btns> -->
 	</view>
 </view>

@@ -1,5 +1,6 @@
 // pages/driver/gps/index.js
-const util = require('../../../utils/util.js');
+const app = getApp();
+const util = app.globalData;
 // 引入SDK核心类
 var QQMapWX = require('../../../common/qqmap-wx-jssdk.min.js');
 var qqmapsdk, interval = "";

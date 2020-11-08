@@ -1,5 +1,6 @@
 // pages/carrier/distribute-detail/index.js
-const util = require('../../../utils/util.js')
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -8,17 +9,7 @@ Page({
   data: {
     id: "",
     orderCode: "",
-    list: [{
-      id: 1,
-      order: "ks0020020090093231",
-      numb: "1000件",
-      weight: "2吨",
-      address: "上海中心大厦",
-      name: "曹操",
-      phone: "13918181818",
-      deliver: "广州",
-      estimate: "2020年10月30日"
-    }],
+    list: [],
     date: "/-/-/",
     timeSlot: ['00:00 ~ 02:00', '02:00 ~ 04:00', '04:00 ~ 06:00', '06:00 ~ 08:00', '08:00 ~ 10:00', '10:00 ~ 12:00', '12:00 ~ 14:00', '14:00 ~ 16:00', '16:00 ~ 18:00', '18:00 ~ 20:00', '20:00 ~ 22:00', '22:00 ~ 00:00'],
     timeSlotIndex: 2,
@@ -80,11 +71,9 @@ Page({
     });
     if (options.id) {
       that.setData({
+        list: [util.tempData],
         id: options.id
       });
-      // that.setData({
-      //   datas: _data
-      // });
     }
   },
 

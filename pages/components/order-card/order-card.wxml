@@ -2,19 +2,19 @@
 <view class="order-card">
 	<checkbox-group bindchange="checkboxChange">
 		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
-			<view class="order-row {{listFull?'no-radius':''}}" bindtap="navDetail" data-id="{{item.id}}">
+			<view class="order-row {{listFull?'no-radius':''}}" bindtap="navDetail" data-id="{{item.Id}}">
 				<view class="order-head">
 					<label>
-						<checkbox wx:if="{{item.hasCheck}}" value="{{item.id}}" checked="{{item.checked}}"></checkbox>
-						交货单号：{{item.order}}
+						<checkbox wx:if="{{item.hasCheck}}" value="{{item.Id}}" checked="{{item.checked}}"></checkbox>
+						交货单号：{{item.DN_No}}
 					</label>
 				</view>
 				<view class="order-block">
 					<view class="order-line">
-						<view class="order-init">
+						<!-- <view class="order-init">
 							<image class="icons" src="/static/icon-9.png" mode="scaleToFill"></image>
 							货物数量：<text>{{item.numb}}</text>
-						</view>
+						</view> -->
 						<view class="order-init">
 							总重量：<text>{{item.weight}}</text>
 						</view>
@@ -25,19 +25,13 @@
 						<view class="order-line">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-10.png" mode="scaleToFill"></image>
-								收货地址：<text>{{item.address}}</text>
+								收货地址：<text>{{item.ArrivalAddress}}</text>
 							</view>
 						</view>
 						<view class="order-line">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
-								收货人：<text>{{item.name}}</text>
-							</view>
-						</view>
-						<view class="order-line">
-							<view class="order-init">
-								<image class="icons" src="/static/icon-12.png" mode="scaleToFill"></image>
-								联系电话：<text>{{item.phone}}</text>
+								收货人及电话：<text>{{item.DeliveryPhoneNum}}</text>
 							</view>
 						</view>
 					</view>
@@ -45,13 +39,14 @@
 						<view class="order-line">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
-								发货地：<text>{{item.deliver}}</text>
+								发货地：<text>{{item.WareHouseName?item.WareHouseName:''}}</text>
 							</view>
 						</view>
+						<!-- wx:if="" -->
 						<view class="order-line">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
-								预计到货时间：<text>{{item.estimate}}</text>
+								预计到货时间：<text>{{item.PlanDeliveryDate}}</text>
 							</view>
 						</view>
 					</view>

@@ -124,8 +124,8 @@ Page({
     const that = this;
     const _parm = that.data.parm;
     let data = {
-      "inter": "carList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&CarrierId=" + _parm.CarrierId + "&NumberPlate=" + _parm.NumberPlate + "&DrivingIicense=" + _parm.DrivingIicense + "&InsuranceCertificateNumber=" + _parm.InsuranceCertificateNumber + "&Remark=" + _parm.Remark
+      "inter": "orderList",
+      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&ForwarderNo=" + _parm.ForwarderNo + "&OrderNo=" + _parm.OrderNo + "&DN_No=" + _parm.DN_No + "&OrderType=" + _parm.OrderType + "&FreightPayType=" + _parm.FreightPayType + "&SaleGroupName=" + _parm.SaleGroupName + "&CustomerNo=" + _parm.CustomerNo + "&FactoryNo=" + _parm.FactoryNo + "&WareHouseNo=" + _parm.WareHouseNo + "&ArrivalAddress=" + _parm.ArrivalAddress + "&Status=" + _parm.Status + "&Type=" + _parm.Type
     }
     wx.showLoading({
       title: '加载中',
@@ -194,6 +194,13 @@ Page({
   },
   navDetail(e) {
     console.log("子组件返回值ID：", e.detail);
+    const that = this;
+    const temp = that.data.list.filter((obj, key) => {
+      if (obj.Id == e.detail) {
+        return obj
+      }
+    });
+    util.tempData = temp[0];
     wx.navigateTo({
       url: '/pages/carrier/distribute-detail/index?id=' + e.detail,
     })

@@ -1,4 +1,8 @@
 // pages/driver/location-detail/index.js
+const app = getApp();
+const util = app.globalData;
+var QQMapWX = require('../../../common/qqmap-wx-jssdk.min.js');
+var qqmapsdk, interval = "";
 Page({
 
   /**
@@ -9,10 +13,11 @@ Page({
     status: "上传成功！",
     latitude: "",
     longitude: "",
+    address: "",
+    source: "JK",
     locationList: [{
-      "address": "广东省佛山市顺德区容桂街道红旗中路38号",
-      "date": "2020 年 9 月 20日 14 点 56 分",
-      // "submitStatus": "success"
+      "address": "",
+      "date": ""
     }]
   },
 
@@ -29,8 +34,12 @@ Page({
       that.setData({
         latitude: lat,
         longitude: long,
-        code: options.code
+        code: code
       });
+      qqmapsdk = new QQMapWX({
+        key: util.config.mapkey // 必填
+      });
+      that.getSDKAddress()
     }
   },
 
@@ -81,5 +90,64 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getData() {
+    const that = this;
+    const _data = that.data;
+    let data = {
+      "inter": "uploadOrderGPS",
+      "method": "POST",
+      "data": {
+        Dn_No: _data.code,
+        Longitude: _data.longitude,
+        Latitude: _data.latitude,
+        Address: _data.address,
+        Source: _data.source
+      }
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    data["fun"] = function (res) {
+      wx.hideLoading()
+      if (res.status > 0) {
+
+      } else {
+        wx.showToast({
+          title: '获取订单信息失败！',
+        })
+      }
+
+    }
+    util.getData(data)
+  },
+  getSDKAddress() {
+    const that = this;
+    const date = util.formatTime(new Date(), '年月日');
+    //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: that.data.latitude,
+        longitude: that.data.longitude
+      },
+      success: function (addressRes) {
+        // console.log("address:", addressRes)
+        var city = addressRes.result.address_component.city + ',' + addressRes.result.address_component.district;
+        var address = addressRes.result.formatted_addresses.recommend;
+        // var address = addressRes.result.address;
+        const _locationList = [{
+          "address": city + ',' + address,
+          "date": date
+        }]
+        that.setData({
+          address: city + ',' + address,
+          locationList: _locationList
+        });
+        that.getData();
+      },
+      fail(err) {
+        console.log("===qqmapsdk-err===", err);
+      }
+    })
   }
 })
