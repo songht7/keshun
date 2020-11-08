@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: true,
     code: "",
     statusVal: "",
     status: 0,
@@ -30,7 +31,6 @@ Page({
     const code = options.code || "";
     const lat = options.lat;
     const long = options.long;
-    console.log(code, lat, long);
     if (code) {
       that.setData({
         latitude: lat,
@@ -111,6 +111,9 @@ Page({
     })
     data["fun"] = function (res) {
       wx.hideLoading()
+      that.setData({
+        loading: false
+      });
       if (res.status > 0) {
         that.setData({
           status: 1,

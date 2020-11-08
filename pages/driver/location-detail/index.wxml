@@ -1,11 +1,13 @@
 <!--pages/driver/location-detail/index.wxml-->
 <view class="container">
-	<view class="icon-box">
-		<icon-font class="icon-box-img" type="{{status?'wuuiconxuan':'baocuo'}}" color="{{status?'#08499a':'#f40'}}" size="160"></icon-font>
-		<view class="submit-status">{{statusVal}}</view>
-	</view>
-	<!-- <text>{{code}}</text> -->
-	<view class="page-init">
-		<location-list locationList="{{locationList}}"></location-list>
-	</view>
+	<block wx:if="{{!loading}}">
+		<view class="icon-box">
+			<icon-font class="icon-box-img" type="{{status?'wuuiconxuan':'baocuo'}}" color="{{status?'#08499a':'#f40'}}" size="160"></icon-font>
+			<view class="submit-status">{{statusVal}}</view>
+		</view>
+		<!-- <text>{{code}}</text> -->
+		<view class="page-init">
+			<location-list locationList="{{locationList}}"></location-list>
+		</view>
+	</block>
 </view>
