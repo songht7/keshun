@@ -1,0 +1,24 @@
+<!--pages/carrier/distribute-detail/index.wxml-->
+<view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<view class="form-box">
+		<form catchsubmit="formSubmit" catchreset="formReset">
+			<view class="my-order">
+				<order-card list="{{list}}" listFull="{{true}}"></order-card>
+			</view>
+			<view class="form-row" bindtap="carrierShow">
+				<view class="f-row-label">选择承运商</view>
+				<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
+			</view>
+			<view class="page-init">
+				<view class="btn-area">
+					<button type="primary" class="btn-primary" formType="submit">确定</button>
+					<!-- <button formType="reset">Reset</button> -->
+				</view>
+			</view>
+			<!---筛选选择器--->
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<!--- 、筛选选择器 --->
+		</form>
+	</view>
+</view>

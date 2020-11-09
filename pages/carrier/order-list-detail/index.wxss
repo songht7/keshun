@@ -1,0 +1,11 @@
+/* pages/carrier/distribute-detail/index.wxss */
+@import "/common/base.wxss";
+
+page {
+  background-color: #f3f3f3
+}
+
+.my-order {
+  padding: 20rpx 0 0;
+  position: relative;
+}

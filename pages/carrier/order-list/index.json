@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "车辆司机分配",
+  "usingComponents": {
+    "order-card": "/pages/components/order-card/order-card",
+    "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
+  }
+}

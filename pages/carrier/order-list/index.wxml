@@ -1,0 +1,9 @@
+<!--pages/carrier/distribute/index.wxml-->
+<view class="container">
+	<view class="page-init">
+		<view class="my-order">
+			<order-card list="{{list}}" bind:navDetail="navDetail"></order-card>
+		</view>
+		<!-- <fixed-btns addBtn="{{addBtn}}"></fixed-btns> -->
+	</view>
+</view>

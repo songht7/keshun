@@ -112,7 +112,7 @@ Component({
         icon: "icon-7.png",
         sw: "38",
         tap: "linkTo",
-        url: "/pages/my-order/index"
+        url: "/pages/carrier/order-list/index"
       }, {
         label: "车辆/司机分配",
         icon: "icon-15.png",

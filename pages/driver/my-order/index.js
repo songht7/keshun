@@ -62,6 +62,11 @@ Page({
     },
     carrierList: [],
     carrierShow: false,
+    carrierVal: {
+      CarrierId: "",
+      CarrierDesc: ""
+    },
+    selectCarrierShow: false,
     list: [],
     count: 0,
     checkedAll: false
@@ -176,24 +181,46 @@ Page({
   onSubmit() {
     const that = this;
     const list = that.data.list;
+    const carrierVal = that.data.carrierVal;
     const cks = [];
     list.map((obj, key) => {
       if (obj.checked) {
-        cks.push(obj.id)
+        cks.push(obj.Id)
       }
     });
-    console.log(cks);
-    setTimeout(() => {
-      const fL = list.filter((obj, key) => {
-        if (!cks.includes(obj['id'])) {
-          console.log(obj)
-          return obj
-        }
-      });
-      that.setData({
-        list: fL
-      });
-    }, 1000);
+    console.log(cks, carrierVal);
+    let data = {
+      // "inter": "updateForwarder",
+      "method": "POST",
+      "data": {
+        // Id: cks[0],
+        // ForwarderId: carrierVal.CarrierId,
+        // ForwarderDesc: carrierVal.CarrierDesc,
+      }
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    data["fun"] = function (res) {
+      console.log(res);
+      wx.hideLoading()
+      if (res.status > 0) {
+        const fL = list.filter((obj, key) => {
+          if (!cks.includes(obj['Id'])) {
+            console.log(obj)
+            return obj
+          }
+        });
+        that.setData({
+          list: fL
+        });
+      } else {
+        that.setData({
+          error: res.msg
+        });
+      }
+    }
+    // util.getData(data)
   },
   iconClick(e) {
     const name = e.currentTarget.dataset.name;
@@ -228,9 +255,11 @@ Page({
         const _list = res.data;
         /** 设置列表可选择 **/
         _list.map(obj => {
+          obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
           obj['checked'] = false;
           obj['hasCheck'] = true;
         });
+        console.log(_list)
         /** /设置列表可选择 **/
         if (type == 'more') {
           that.setData({
@@ -289,6 +318,33 @@ Page({
     const data = e.detail;
     that.setData({
       carrierShow: false
+    })
+  },
+  selectCarrierShow(parm) { ///选择承运商
+    this.setData({
+      selectCarrierShow: !this.data.selectCarrierShow
+    })
+  },
+  selectCarrier(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['CarrierId'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    wx.showModal({
+      title: '确定选择该承运商？',
+      content: data.val,
+      success(res) {
+        if (res.confirm) {
+          that.setData({
+            carrierVal: {
+              CarrierId: parseInt(data.id),
+              CarrierDesc: data.val
+            },
+            selectCarrierShow: false
+          })
+          that.onSubmit();
+        } else if (res.cancel) {}
+      }
     })
   },
 })

@@ -1,5 +1,6 @@
 <!--pages/driver/my-order/index.wxml-->
 <view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="page-init">
 		<view class="my-order">
 			<view class="filter-box">
@@ -39,6 +40,7 @@
 			</view>
 			<!---筛选选择器--->
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{selectCarrierShow}}" type="selectCarrierShow" bind:maskClose="maskClose" bind:pickerSelected="selectCarrier"></picker-search>
 			<!--- 、筛选选择器 --->
 		</view>
 	</view>
