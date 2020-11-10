@@ -20,7 +20,10 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    const _id = options.id ? options.id : 0;
+    const id = options.id ? options.id : 0;
+    that.setData({
+      id
+    })
   },
 
   /**

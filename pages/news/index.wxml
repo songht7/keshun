@@ -2,6 +2,7 @@
 <view class="container">
 	<my-swiper wx:if="silde.length" is="swiper" data="{{silde}}"></my-swiper>
 	<view class="page-init" style="padding:25rpx 30rpx">
+		<view>{{id}}</view>
 		<rich-text nodes="{{detail}}"></rich-text>
 	</view>
 </view>
