@@ -6,5 +6,5 @@
 	<view class="code-info">
 		<text>交货单号：{{code}}</text>
 	</view>
-	<order-status list="{{list}}"></order-status>
+	<order-status list="{{list}}" count="{{count}}"></order-status>
 </view>

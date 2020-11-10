@@ -1,4 +1,6 @@
 // pages/carrier/order-detail/index.js
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
@@ -20,46 +22,8 @@ Page({
         // name: 'T.I.T 创意园'
       }]
     },
-    order: [{
-      id: 1,
-      order: "ks0020020090093231",
-      numb: "1000件",
-      weight: "2吨",
-      address: "上海中心大厦",
-      name: "曹操",
-      phone: "13918181818",
-      deliver: "广州",
-      estimate: "2020年10月30日"
-    }],
-    list: [{
-      date: "10-13",
-      time: "08:00",
-      title: "已签收",
-      subtitle: "快递已签收 签收人：曹操",
-      pic: "/static/goods-2.png",
-      status: 2
-    }, {
-      date: "10-12",
-      time: "08:00",
-      title: "",
-      subtitle: "快递已到达广州",
-      pic: "",
-      status: 0
-    }, {
-      date: "10-11",
-      time: "08:00",
-      title: "",
-      subtitle: "快递已离开上海",
-      pic: "",
-      status: 0
-    }, {
-      date: "10-10",
-      time: "08:00",
-      title: "已发货",
-      subtitle: "快递已发货",
-      pic: "",
-      status: 1
-    }]
+    order: [],
+    count: 0
   },
 
   /**
@@ -70,6 +34,7 @@ Page({
     that.setData({
       code: options.code
     });
+    that.getList()
   },
 
   /**
@@ -119,5 +84,46 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getList(type) {
+    const that = this;
+    let data = {
+      "inter": "orderGPS",
+      "method": "POST",
+      "data": {
+        Dn_No: that.data.code
+      }
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    data["fun"] = function (res) {
+      wx.hideLoading()
+      if (res.status > 0) {
+        const _list = res.data;
+        _list.map((obj, key) => {
+          let date = obj['CreateDate'].split(" ");
+          obj['Date'] = date[0];
+          obj['Time'] = date[1];
+        });
+        let map = that.data.map;
+        map['latitude'] = _list[0]['Latitude'];
+        map['longitude'] = _list[0]['Longitude'];
+        map['markers'][0]['latitude'] = parseFloat(_list[0]['Latitude']);
+        map['markers'][0]['longitude'] = parseFloat(_list[0]['Longitude']);
+        console.log(map)
+        that.setData({
+          map,
+          list: _list,
+          count: _list.length
+        });
+      } else {
+        wx.showToast({
+          title: '获取订单信息失败！',
+        })
+      }
+
+    }
+    util.getData(data)
+  },
 })
