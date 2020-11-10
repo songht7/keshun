@@ -22,7 +22,20 @@ Page({
         // name: 'T.I.T 创意园'
       }]
     },
-    order: [],
+    order: [
+    //   {
+    //   id: 1,
+    //   order: "ks0020020090093231",
+    //   numb: "1000件",
+    //   weight: "2吨",
+    //   address: "上海中心大厦",
+    //   name: "曹操",
+    //   phone: "13918181818",
+    //   deliver: "广州",
+    //   estimate: "2020年10月30日"
+    // }
+  ],
+    list: [],
     count: 0
   },
 

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
+    "my-swiper": "/pages/components/swiper/swiper",
     "home-switch": "/pages/components/home-switch/home-switch",
     "mp-halfScreenDialog": "/pages/components/half-screen-dialog/half-screen-dialog"
   }

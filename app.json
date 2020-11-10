@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/news/index",
     "pages/login/index",
+    "pages/components/swiper/swiper",
     "pages/components/home-switch/home-switch",
     "pages/components/scan-code/scan-code",
     "pages/driver/order/index",

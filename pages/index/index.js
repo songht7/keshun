@@ -24,9 +24,11 @@ Page({
       }
     ],
     silde: [{
-      original_src: '/static/default.jpg'
+      Id:1,
+      Original_src: '/static/default.jpg'
     }, {
-      original_src: '/static/default.jpg'
+      Id:2,
+      Original_src: '/static/default.jpg'
     }],
     switchType: 0
   },

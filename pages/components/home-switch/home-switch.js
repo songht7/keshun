@@ -158,7 +158,7 @@ Component({
     switch (userType) {
       case "1":
         that.setData({
-          pageTpe: "总部物流",
+          pageTpe: "科顺员工(物流干事)",
           switchBtns: menus["switch-D"]
         });
         break;
@@ -176,7 +176,7 @@ Component({
         break;
       case "4":
         that.setData({
-          pageTpe: "业务",
+          pageTpe: "科顺员工(商务)",
           switchBtns: menus["switch-E"]
         });
         break;

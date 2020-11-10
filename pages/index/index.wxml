@@ -1,7 +1,8 @@
 <!--pages/index/index.wxml-->
 <import src="../components/swiper.wxml" />
 <view class="container">
-	<template wx:if="silde.length" is="swiper" data="{{silde}}" />
+	<!-- <template wx:if="silde.length" is="swiper" data="{{silde}}" /> -->
+	<my-swiper wx:if="silde.length" is="swiper" data="{{silde}}" navto="true"></my-swiper>
 	<view wx:if="{{user.loginInfo&&user.loginInfo.Id}}" class="logout" bindtap="logout">登出</view>
 	<view class="page-init">
 		<home-switch bind:parTap="parTap" switchType="{{switchType}}"></home-switch>

@@ -1,9 +1,9 @@
 <template name="swiper">
 	<view class="swiper-box">
-		<swiper class="swiper-main" indicator-dots="true" autoplay="true" interval="3000" duration="500" indicator-color="#8aa4c5" indicator-active-color="#225597">
+		<swiper class="swiper-main" indicator-dots="{{silde.length>1?true:false}}" autoplay="true" interval="3000" duration="500" indicator-color="#8aa4c5" indicator-active-color="#225597">
 			<block wx:for="{{silde}}" wx:for-item="item" wx:key="*this">
-					<swiper-item>
-					<image class="silde-img" src="{{item.original_src}}" mode="scaleToFill"></image>
+				<swiper-item>
+					<image class="silde-img" src="{{item.Original_src}}" mode="scaleToFill"></image>
 				</swiper-item>
 			</block>
 		</swiper>

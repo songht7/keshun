@@ -1,0 +1,10 @@
+<!--pages/components/swiper/index.wxml-->
+	<view class="swiper-box">
+		<swiper class="swiper-main" indicator-dots="{{data.length>1?true:false}}" autoplay="true" interval="3000" duration="500" indicator-color="#8aa4c5" indicator-active-color="#225597">
+			<block wx:for="{{data}}" wx:for-item="item" wx:key="*this">
+				<swiper-item bindtap="navTo" data-id="{{item.Id}}">
+					<image class="silde-img" src="{{item.Original_src}}" mode="scaleToFill"></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
