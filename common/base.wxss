@@ -17,6 +17,10 @@ view {
   padding-bottom: 40rpx;
 }
 
+.swiper-box.height-auto {
+  height: auto;
+}
+
 .swiper-main {
   height: 100%;
 }

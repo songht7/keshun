@@ -1,8 +1,14 @@
 <!--pages/news/index.wxml-->
 <view class="container">
-	<my-swiper wx:if="silde.length" is="swiper" data="{{silde}}"></my-swiper>
-	<view class="page-init" style="padding:25rpx 30rpx">
-		<view>{{id}}</view>
-		<rich-text nodes="{{detail}}"></rich-text>
-	</view>
+	<block wx:if="detail.Id">
+		<my-swiper wx:if="{{detail.length}}" is="swiper" data="{{detail}}"></my-swiper>
+		<view class="page-init" style="padding:25rpx 30rpx">
+			<view>{{id}}</view>
+			<rich-text nodes="{{detail[0]['Content']}}"></rich-text>
+			<rich-text nodes="{{detail[0]['Remark']}}"></rich-text>
+		</view>
+	</block>
+	<block wx:else>
+		<view>暂无通知详细</view>
+	</block>
 </view>

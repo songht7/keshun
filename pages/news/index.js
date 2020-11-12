@@ -8,11 +8,7 @@ Page({
    */
   data: {
     id: 0,
-    silde: [{
-      Id: 1,
-      Original_src: '/static/default.jpg'
-    }],
-    detail: "<h1>大标题</h1><div>通知内容</div><div>通知内容</div><div>通知内容</div>"
+    detail:[]
   },
 
   /**
@@ -23,7 +19,13 @@ Page({
     const id = options.id ? options.id : 0;
     that.setData({
       id
-    })
+    });
+    console.log(util.tempData)
+    if (util.tempData.Id) {
+      that.setData({
+        detail: [util.tempData]
+      });
+    }
   },
 
   /**

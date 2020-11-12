@@ -23,13 +23,7 @@ Page({
         value: 1
       }
     ],
-    silde: [{
-      Id:1,
-      Original_src: '/static/default.jpg'
-    }, {
-      Id:2,
-      Original_src: '/static/default.jpg'
-    }],
+    silde: [],
     switchType: 0
   },
 
@@ -49,9 +43,26 @@ Page({
    */
   onReady: function () {
     // console.log('onReady', util.userInfo)
+    const that = this;
     this.setData({
       user: util.userInfo
     });
+    if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
+      that.getData({
+        inter: "notice",
+        parm: "?page=1&limit=5"
+      });
+    } else {
+      that.setData({
+        silde: [{
+          Id: 1,
+          TitleImage: '/static/default.jpg'
+        }, {
+          Id: 2,
+          TitleImage: '/static/default.jpg'
+        }]
+      });
+    }
   },
 
   /**
@@ -104,10 +115,23 @@ Page({
     }
     let data = {
       "inter": parm.inter,
-      "method": parm.method
+      "method": parm.method ? parm.method : "GET",
+      "parm": parm.parm ? parm.parm : ""
     }
     data["fun"] = function (res) {
       console.log(res);
+      if (res.status > 0) {
+        switch (parm.inter) {
+          case 'notice':
+            that.setData({
+              silde: res.data
+            });
+            break;
+
+          default:
+            break;
+        }
+      }
     }
     util.getData(data)
   },

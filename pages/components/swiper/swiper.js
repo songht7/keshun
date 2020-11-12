@@ -1,4 +1,6 @@
 // pages/components/swiper/index.js
+const app = getApp();
+const util = app.globalData;
 Component({
   options: {
     multipleSlots: true,
@@ -24,6 +26,12 @@ Component({
       const that = this;
       const data = e.currentTarget.dataset;
       if (data.id && that.data.navto) {
+        const temp = that.data.data.filter((obj, key) => {
+          if (key == data.index && obj.Id == data.id) {
+            return obj
+          }
+        });
+        util.tempData = temp[0];
         wx.navigateTo({
           url: '/pages/news/index?id=' + data.id,
         })

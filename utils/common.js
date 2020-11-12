@@ -26,6 +26,7 @@ export default {
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
+      "notice": "/api/Notice/QueryList", //获取公告信息
       "carList": "/api/Car/QueryByPage", //车辆列表
       "carAdd": "/api/Car/Add", //车辆添加【post】
       "carUpdate": "/api/Car/Update", //车辆修改【post】
