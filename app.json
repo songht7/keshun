@@ -28,7 +28,7 @@
     "pages/hello/index",
     "pages/logs/logs"
   ],
-  "entryPagePath": "",
+  "entryPagePath": "pages/index/index",
   "permission": {
     "scope.camera": {},
     "scope.userInfo": {},
