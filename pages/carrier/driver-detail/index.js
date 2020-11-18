@@ -125,9 +125,11 @@ Page({
     let _formData = e.detail.value;
     const Id = that.data.id;
     _formData = {
-      Id,
       ...that.data.carrier,
       ..._formData
+    }
+    if (Id) {
+      _formData["Id"] = Id;
     }
     // let _formData = this.data.datas;
     console.log(_formData);
