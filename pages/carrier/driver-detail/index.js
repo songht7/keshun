@@ -129,7 +129,7 @@ Page({
       ..._formData
     }
     if (Id) {
-      _formData["Id"] = Id;
+      _formData["Id"] = parseFloat(Id);
     }
     // let _formData = this.data.datas;
     console.log(_formData);
