@@ -3,9 +3,8 @@
 	<block wx:if="detail.Id">
 		<my-swiper wx:if="{{detail.length}}" is="swiper" data="{{detail}}"></my-swiper>
 		<view class="page-init" style="padding:25rpx 30rpx">
-			<view>{{id}}</view>
-			<rich-text nodes="{{detail[0]['Content']}}"></rich-text>
-			<rich-text nodes="{{detail[0]['Remark']}}"></rich-text>
+			<rich-text nodes="{{detail[0]['Title']}}"></rich-text>
+			<rich-text nodes="{{detail[0]['Remark']?detail[0]['Remark']:''}}"></rich-text>
 		</view>
 	</block>
 	<block wx:else>
