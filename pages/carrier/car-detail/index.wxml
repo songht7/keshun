@@ -46,10 +46,10 @@
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files pic-box">
 								<view class="pic-block">
-									<block wx:if="{{Images}}">
+									<block wx:if="{{tempImg||Images}}">
 										<view class="weui-uploadr__file order-pic order-pic-big" hover-class="pic-hover">
 											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-											<image class="weui-uploader__img" src="{{Images}}" data-src="{{Images}}" bindtap="previewImage"></image>
+											<image class="weui-uploader__img" src="{{tempImg||Images}}" data-src="{{tempImg||Images}}" bindtap="previewImage"></image>
 										</view>
 									</block>
 									<block wx:else>

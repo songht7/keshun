@@ -10,7 +10,8 @@ Page({
     loading: false,
     id: "",
     datas: {
-      Images: ''
+      Images: '',
+      tempImg: '',
     },
     carrier: {
       CarrierId: "",
@@ -119,14 +120,16 @@ Page({
       count: 1,
       success(res) {
         console.log("chooseImage:", res);
+        const _tempFile = res.tempFilePaths[0];
         let data = {
           "inter": "uploadImage",
-          "filePath": res.tempFilePaths[0]
+          "filePath": _tempFile
         }
         data["fun"] = function (res) {
           console.log(res);
           if (res.status > 0) {
             let _datas = that.data.datas;
+            _datas["tempImg"] = _tempFile;
             _datas["Images"] = res.msg;
             that.setData({
               ..._datas
@@ -144,7 +147,9 @@ Page({
   previewImage(e) {
     const that = this;
     const current = e.target.dataset.src
-    const url = that.data.datas['Images'];
+    const url1 = that.data.datas['Images'];
+    const url2 = that.data.datas['tempImg'];
+    const url = url2 ? url2 : url1;
     wx.previewImage({
       current,
       urls: [url]

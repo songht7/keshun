@@ -115,12 +115,14 @@ const funs = {
         "type": "minipro"
       },
       header: {
-        'Content-Type': "multipart/form-data"
+        'Content-Type': 'multipart/form-data' //application/json
       },
       success: function (res) {
         console.log("uploadFile-success:", res);
-        if (res.data.status) {
-          result = res.data;
+        let ress = JSON.parse(res.data);
+        if (ress.status) {
+          console.log("uploadFile-ress:", ress);
+          result = ress;
           // wx.showToast({
           //   title: "图像上传成功！",
           //   duration: 1500,
