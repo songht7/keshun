@@ -151,7 +151,7 @@ Page({
         wx.hideLoading()
         if (res.status > 0) {
           wx.showToast({
-            title: '转出成功',
+            title: '修改成功',
           })
         } else {
           that.setData({

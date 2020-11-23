@@ -118,11 +118,26 @@ Page({
       sizeType: ['compressed', 'original'],
       count: 1,
       success(res) {
-        let _datas = that.data.datas;
-        _datas["Images"] = res.tempFilePaths[0];
-        that.setData({
-          ..._datas
-        });
+        console.log("chooseImage:", res);
+        let data = {
+          "inter": "uploadImage",
+          "filePath": res.tempFilePaths[0]
+        }
+        data["fun"] = function (res) {
+          console.log(res);
+          if (res.status > 0) {
+            let _datas = that.data.datas;
+            _datas["Images"] = res.msg;
+            that.setData({
+              ..._datas
+            });
+          } else {
+            that.setData({
+              error: res.msg
+            });
+          }
+        }
+        util.uploadFile(data)
       }
     })
   },

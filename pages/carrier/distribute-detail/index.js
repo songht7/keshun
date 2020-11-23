@@ -57,7 +57,13 @@ Page({
     field: {
       id: 'id',
       val: 'name'
-    }
+    },
+    carrier: {
+      CarrierId: "",
+      CarrierDesc: ""
+    },
+    carrierList: [],
+    carrierShow: false,
   },
 
   /**
@@ -74,6 +80,7 @@ Page({
         list: [util.tempData],
         id: options.id
       });
+      that.getCarrier();
     }
   },
 
@@ -242,5 +249,44 @@ Page({
   formSubmit(e) {
     console.log(e.detail.value);
     let _formData = e.detail.value;
-  }
+  },
+  getCarrier() {
+    const that = this;
+    let data = {
+      "inter": "dropdownList",
+      "parm": "?type=CarrierNo"
+    }
+    data["fun"] = function (res) {
+      // console.log(res);
+      that.setData({
+        carrierList: [...res.data],
+        count: res.count
+      });
+    }
+    util.getData(data)
+  },
+  carrierShow(parm) { ///选择承运商
+    console.log('carrierShow', parm)
+    this.setData({
+      carrierShow: !this.data.carrierShow
+    })
+  },
+  pickerSelected(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      carrier: {
+        CarrierId: parseInt(data.id),
+        CarrierDesc: data.val
+      },
+      carrierShow: false
+    })
+  },
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      carrierShow: false
+    })
+  },
 })

@@ -7,6 +7,7 @@ const funs = {
   },
   cksToken: "",
   userInfo: {},
+  userType: 0,
   tempData: {},
   getData(parm = {}) {
     const that = this;
@@ -101,31 +102,55 @@ const funs = {
   },
   uploadFile(parm = {}) {
     const that = this;
+    let _parm = parm.parm || '';
+    let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
+    console.log("uploadFile-url:", _url, parm.filePath)
+    var result = [];
     wx.uploadFile({
-      url: "http://localhost:8080/upload/upload",
-      filePath: parm.imgPath,
-      name: "upload_file",
-      // 请求携带的额外form data
-      /*formData: {
-        "id": id
-      },*/
+      url: _url,
+      filePath: parm.filePath,
+      name: "minipro",
+      formData: {
+        "file": parm.filePath,
+        "type": "minipro"
+      },
       header: {
         'Content-Type': "multipart/form-data"
       },
       success: function (res) {
-        wx.showToast({
-          title: "图像上传成功！",
-          duration: 1500,
-          mask: true
-        });
+        console.log("uploadFile-success:", res);
+        if (res.data.status) {
+          result = res.data;
+          // wx.showToast({
+          //   title: "图像上传成功！",
+          //   duration: 1500,
+          //   mask: true
+          // });
+        } else {
+          result = {
+            "status": false,
+            "msg": res.data.msg
+          }
+        }
       },
-      fail: function (res) {
+      fail: function (err) {
+        console.log("uploadFile-fail:", err);
+        result = {
+          "status": false,
+          "msg": "上传失败",
+          "err": err
+        };
         wx.showToast({
           title: "上传失败，请检查网络或稍后重试。",
           icon: "none",
           duration: 1500,
           mask: true
         });
+      },
+      complete() {
+        if (parm.fun) {
+          new parm.fun(result)
+        }
       }
     })
   },
@@ -189,10 +214,11 @@ const funs = {
     wx.removeStorage({
       key: 'userInfo',
       success() {
+        that.userInfo = {};
+        that.userType = 0;
         wx.redirectTo({
           url: '/pages/index/index',
         })
-        that.userInfo = {}
       }
     })
   },
@@ -244,6 +270,9 @@ const funs = {
         // that.userInfo = res.data;
         that.userInfo = res.data;
         let logined = res.data.loginInfo;
+        if (logined) {
+          that.userType = logined.PostId;
+        }
         if (!logined) {
           that.login();
         }

@@ -8,6 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: util.userInfo,
+    userType: util.userType,
     loading: false,
     id: "",
     datas: {},
@@ -42,6 +44,10 @@ Page({
   onReady: function () {
     const that = this;
     that.getCarrier();
+    that.setData({
+      userInfo: util.userInfo,
+      userType: util.userType,
+    });
   },
 
   /**
@@ -133,12 +139,7 @@ Page({
     }
     // let _formData = this.data.datas;
     console.log(_formData);
-    var rule = [{
-      name: "CarrierId",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请选择承运商"
-    }, {
+    let rule = [{
       name: "DriverName",
       checkType: "notnull",
       checkRule: "",
@@ -154,6 +155,17 @@ Page({
       checkRule: "",
       errorMsg: "请填写正确的联系电话"
     }];
+    if (that.data.userType != 2) {
+      let r = [{
+        name: "CarrierId",
+        checkType: "notnull",
+        checkRule: "",
+        errorMsg: "请选择承运商"
+      }]
+      rule = [...r, ...rule];
+    }
+    // console.log("formSubmit:rule:", rule)
+    // return
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       console.log("graceChecker---true");

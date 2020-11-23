@@ -6,7 +6,7 @@
 				<order-card list="{{list}}" listFull="{{true}}"></order-card>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label">选择到场装货日期</view>
+				<view class="f-row-label not-null">选择到场装货日期</view>
 				<view class="f-row-val">
 					<picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
 						<view class="weui-input">{{date}}</view>
@@ -14,7 +14,7 @@
 				</view>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label">选择到场装货时间段</view>
+				<view class="f-row-label not-null">选择到场装货时间段</view>
 				<view class="f-row-val">
 					<picker bindchange="bindPickerChange" value="{{timeSlotIndex}}" range="{{timeSlot}}">
 						<view class="weui-input">{{timeSlot[timeSlotIndex]}}</view>
@@ -22,7 +22,7 @@
 				</view>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label">运输类型</view>
+				<view class="f-row-label not-null">运输类型</view>
 				<view class="f-row-val f-row-radio">
 					<!-- <input class="form-row-input" value="{{data.gender}}" /> -->
 					<view class="radio">
@@ -32,7 +32,7 @@
 				</view>
 			</view>
 			<view class="form-row" bindtap="carShow">
-				<view class="f-row-label">选择车辆</view>
+				<view class="f-row-label not-null">选择车辆</view>
 				<view class="f-row-val">{{carData['value']}}
 					<!-- <picker bindchange="bindPickerCar" value="{{carIndex}}" range="{{carList}}">
 						<view class="weui-input">{{carList[carIndex]}}</view>
@@ -40,12 +40,16 @@
 				</view>
 			</view>
 			<view class="form-row" bindtap="driverShow">
-				<view class="f-row-label">选择司机</view>
+				<view class="f-row-label not-null">选择司机</view>
 				<view class="f-row-val">{{driverData['value']}}
 				</view>
 			</view>
+			<view class="form-row" bindtap="carrierShow">
+				<view class="f-row-label not-null">选择承运商</view>
+				<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
+			</view>
 			<view class="form-row form-column">
-				<view class="f-row-label">上传车辆照片</view>
+				<view class="f-row-label not-null">上传车辆照片</view>
 				<view class="f-row-val">
 					<view class="update-img">
 						<view class="weui-uploader__bd">
@@ -109,6 +113,7 @@
 			<!---筛选选择器--->
 			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!--- 、筛选选择器 --->
 		</form>
 	</view>
