@@ -56,10 +56,10 @@ Page({
       that.setData({
         silde: [{
           Id: 1,
-          TitleImage: '/static/default.jpg'
+          TitleImage: '/static/default/cks1.jpg'
         }, {
           Id: 2,
-          TitleImage: '/static/default.jpg'
+          TitleImage: '/static/default/cks2.jpg'
         }]
       });
     }
