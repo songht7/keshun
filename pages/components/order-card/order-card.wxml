@@ -20,6 +20,13 @@
 						</view>
 					</view>
 				</view>
+				<view wx:if="{{item.ForwarderDesc}}" class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							承运商：<text>{{item.ForwarderDesc}}</text>
+						</view>
+					</view>
+				</view>
 				<block wx:if="{{!showMore}}">
 					<view class="order-block">
 						<view class="order-line">

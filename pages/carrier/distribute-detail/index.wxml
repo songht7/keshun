@@ -44,10 +44,11 @@
 				<view class="f-row-val">{{driverData['value']}}
 				</view>
 			</view>
-			<view class="form-row" bindtap="carrierShow">
+			<!-- <view class="form-row" bindtap="carrierShow">
 				<view class="f-row-label not-null">选择承运商</view>
 				<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
-			</view>
+			</view> -->
+			<!-- 物流干事 上传委托书，承运商上传 车头 车身 车厢 -->
 			<view class="form-row form-column">
 				<view class="f-row-label not-null">上传车辆照片</view>
 				<view class="f-row-val">
@@ -111,8 +112,8 @@
 				</view>
 			</view>
 			<!---筛选选择器--->
-			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
-			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerCar"></picker-search>
+			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" field="{{field}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerDriver"></picker-search>
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!--- 、筛选选择器 --->
 		</form>

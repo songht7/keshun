@@ -1,5 +1,6 @@
 // pages/driver/sign/index.js
-const util = require('../../../utils/util.js');
+const app = getApp();
+const util = app.globalData;
 import QRCode from "../../../common/qrcode.js";
 var qrcode = ""
 Page({
@@ -11,6 +12,7 @@ Page({
       QRCodeImg: "",
       QRSize: 240
     },
+    location: {},
     signStatus: 0, //0:未签到 1:已签到
     wait: 20,
     myNO: 18
@@ -21,6 +23,8 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    that.getGroup();//获取仓库
+    that.getLocation();
     qrcode = new QRCode('qrcode-canvas', {
       // usingIn: this,
       text: "CKS 科顺",
@@ -87,13 +91,57 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getLocation() {
+    const that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log("getLocation:", res);
+        that.setData({
+          location: res
+        });
+      }
+    })
+  },
+  getGroup() {
+    const that = this;
+    let data = {
+      "inter": "signWHGroup",
+      "method": "POST",
+      "data": {
+        WeChatID: util.userInfo.openid,
+        PhoneNumber: util.userInfo.loginInfo.PhoneNumber
+      }
+    }
+    data["fun"] = function (res) {
+      console.log("getGroup:", res);
+      that.setData({});
+    }
+    util.getData(data)
+  },
   mySign() {
     const that = this;
-    let t = that.data.signStatus;
-    t++;
-    that.setData({
-      signStatus: t
-    });
+    // let t = that.data.signStatus;
+    // t++;
+    // that.setData({
+    //   signStatus: t
+    // });
+    const location = that.data.location;
+    let data = {
+      "inter": "sign",
+      "method": "POST",
+      "data": {
+        WeChatID: util.userInfo.openid,
+        WHGroupId: "", //仓库组合ID
+        Latitude: location.latitude,
+        Longitude: location.longitude
+      }
+    }
+    data["fun"] = function (res) {
+      console.log("getGroup:", res);
+      that.setData({});
+    }
+    util.getData(data)
   },
   confirmHandler: function (e) {
     var value = e.detail.value

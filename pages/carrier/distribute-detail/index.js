@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: util.userInfo,
+    userType: util.userType,
     id: "",
     orderCode: "",
     list: [],
@@ -82,7 +84,7 @@ Page({
         list: [util.tempData],
         id: options.id
       });
-      that.getCarrier();
+      // that.getCarDriver();
     }
   },
 
@@ -90,7 +92,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const that = this;
+    that.getCarrier();
+    that.setData({
+      userInfo: util.userInfo,
+      userType: util.userType,
+    });
   },
 
   /**
@@ -252,6 +259,18 @@ Page({
     console.log(e.detail.value);
     let _formData = e.detail.value;
   },
+  getCarDriver() {
+    const that = this;
+    let data = {
+      "inter": "dropdownList",
+      "parm": "?type=CarrierNo&term=33"
+    }
+    data["fun"] = function (res) {
+      console.log("getCarDriver:", res);
+      that.setData({});
+    }
+    util.getData(data)
+  },
   getCarrier() {
     const that = this;
     let data = {
@@ -282,6 +301,28 @@ Page({
         CarrierDesc: data.val
       },
       carrierShow: false
+    })
+  },
+  pickerCar(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      carData: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      carShow: false
+    })
+  },
+  pickerDriver(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      driverData: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      driverShow: false
     })
   },
   maskClose(e) {

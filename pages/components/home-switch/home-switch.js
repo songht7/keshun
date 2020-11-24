@@ -6,6 +6,7 @@
  * 12312312314  2  对应承运商
  * 12312312312  3 对应司机 
  * 12312312315  4  对应科顺员工(商务)
+ * 13220046241  3 对应司机 带仓库
  */
 const app = getApp();
 const util = app.globalData;
@@ -16,7 +17,8 @@ Component({
   externalClasses: ['class'], //接受外部传入的样式类
   properties: { // 定义 参数 属性可以拿到 对应 属性上设置的值
     style: String,
-    switchType: Number
+    switchType: Number,
+    siteType:String
   },
   data: {
     switchBtns: [],

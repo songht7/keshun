@@ -45,7 +45,8 @@ Page({
     // console.log('onReady', util.userInfo)
     const that = this;
     this.setData({
-      user: util.userInfo
+      user: util.userInfo,
+      siteType: util.config.siteType
     });
     if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
       that.getData({

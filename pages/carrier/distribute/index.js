@@ -45,7 +45,7 @@ Page({
       WareHouseNo: "",
       ArrivalAddress: "",
       Status: "", //状态: 0.待处理 1.已派车 2.已签到 3.已入场 4.已出厂 5.已跟踪 6.已回单 7.已结单
-      Type: ""
+      Type: "手动分配"
     },
     carrier: {
       CarrierId: "",
