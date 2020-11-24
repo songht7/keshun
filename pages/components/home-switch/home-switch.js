@@ -106,7 +106,7 @@ Component({
         tap: "linkTo",
         url: "/pages/carrier/lineup/index"
       }],
-      /*总部物流switch-D*/
+      /*科顺员工(物流干事)switch-D*/
       "switch-D": [{
         label: "承运商分配",
         icon: "icon-7.png",
@@ -132,7 +132,7 @@ Component({
         tap: "linkTo",
         url: "/pages/carrier/car/index"
       }],
-      /*业务switch-E*/
+      /*科顺员工(商务)switch-E*/
       "switch-E": [{
         label: "交货单查询",
         icon: "icon-7.png",

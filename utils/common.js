@@ -1,3 +1,9 @@
+/* PostId 对应 1是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）
+* 科顺员工（物流干事）Cks = 1
+* 承运商 Forward = 2
+* 司机   Driver = 3
+* 科顺员工（商务） Business = 4
+*/
 var api = {
   "formal": {
     "apiurl": "", //接口
