@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo: util.userInfo,
+    userType: util.userType,
     loading: false,
     id: "",
     datas: {
@@ -46,6 +48,10 @@ Page({
   onReady: function () {
     const that = this;
     that.getCarrier();
+    that.setData({
+      userInfo: util.userInfo,
+      userType: util.userType,
+    });
   },
 
   /**
@@ -162,7 +168,7 @@ Page({
       return false;
     }
     let _formData = e.detail.value;
-    const Id = that.data.id;
+    const Id = parseInt(that.data.id);
     _formData["Images"] = that.data.datas.Images;
     _formData = {
       Id,
@@ -172,11 +178,6 @@ Page({
     // let _formData = this.data.datas;
     console.log(_formData);
     var rule = [{
-      name: "CarrierId",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请选择承运商"
-    }, {
       name: "NumberPlate",
       checkType: "notnull",
       checkRule: "",
@@ -197,6 +198,20 @@ Page({
       checkRule: "",
       errorMsg: "请上传车辆图片"
     }];
+    if (that.data.userType != 2) {
+      let r = [{
+        name: "CarrierId",
+        checkType: "notnull",
+        checkRule: "",
+        errorMsg: "请选择承运商"
+      }]
+      rule = [...r, ...rule];
+    }
+    if (that.data.userType == 2) {
+      const user = that.data.userInfo.loginInfo;
+      _formData["CarrierId"] = user.ForwarderId;
+      _formData["CarrierDesc"] = user.ForwarderName;
+    }
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       console.log("graceChecker---true");
