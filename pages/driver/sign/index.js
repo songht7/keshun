@@ -1,6 +1,7 @@
 // pages/driver/sign/index.js
 const app = getApp();
 const util = app.globalData;
+import graceChecker from "../../../common/graceChecker.js";
 import QRCode from "../../../common/qrcode.js";
 var qrcode = ""
 Page({
@@ -15,7 +16,17 @@ Page({
     location: {},
     signStatus: 0, //0:未签到 1:已签到
     wait: 20,
-    myNO: 18
+    myNO: 18,
+    groupShow: false,
+    groupList: [],
+    groupData: {
+      id: "",
+      value: ""
+    },
+    field: {
+      id: 'Id',
+      val: 'WarehouseAddress'
+    },
   },
 
   /**
@@ -23,7 +34,7 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.getGroup();//获取仓库
+    that.getGroup(); //获取仓库
     that.getLocation();
     qrcode = new QRCode('qrcode-canvas', {
       // usingIn: this,
@@ -115,7 +126,11 @@ Page({
     }
     data["fun"] = function (res) {
       console.log("getGroup:", res);
-      that.setData({});
+      if (res.status > 0) {
+        that.setData({
+          groupList: res.data
+        });
+      }
     }
     util.getData(data)
   },
@@ -126,20 +141,46 @@ Page({
     // that.setData({
     //   signStatus: t
     // });
+    console.log(that.data.groupData);
     const location = that.data.location;
+    if (that.data.groupData.id == '') {
+      that.setData({
+        error: "请填选择仓库"
+      });
+      return false
+    }
+    if (location.latitude == '' || location.longitude == '') {
+      that.setData({
+        error: "定位失败！请返回重试"
+      });
+      return false
+    }
     let data = {
       "inter": "sign",
       "method": "POST",
       "data": {
         WeChatID: util.userInfo.openid,
-        WHGroupId: "", //仓库组合ID
+        WHGroupId: that.data.groupData.id, //仓库组合ID
         Latitude: location.latitude,
         Longitude: location.longitude
       }
     }
     data["fun"] = function (res) {
-      console.log("getGroup:", res);
-      that.setData({});
+      console.log("mySignMySign:", res);
+      if (res.status) {
+        that.setData({
+          signStatus: 1
+        });
+        wx.showToast({
+          title: "签到成功！",
+          duration: 1500,
+          mask: true
+        });
+      } else {
+        that.setData({
+          error: res.msg
+        });
+      }
     }
     util.getData(data)
   },
@@ -174,5 +215,29 @@ Page({
         }
       }
     })
-  }
+  },
+  pickerGroup(e) {
+
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      groupData: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      groupShow: false
+    })
+  },
+  groupShow(parm) { ///选择仓库
+    this.setData({
+      groupShow: !this.data.groupShow
+    })
+  },
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      groupShow: false
+    })
+  },
 })

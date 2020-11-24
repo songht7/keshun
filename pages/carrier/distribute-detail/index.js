@@ -178,6 +178,11 @@ Page({
           carShow: false
         })
         break;
+      case 'carrierShow':
+        that.setData({
+          carrierShow: false
+        })
+        break;
       case 'driverShow':
         that.setData({
           driverShow: false
@@ -198,6 +203,15 @@ Page({
             value: data.val
           },
           carShow: false
+        })
+        break;
+      case 'carrierShow':
+        that.setData({
+          carrier: {
+            CarrierId: parseInt(data.id),
+            CarrierDesc: data.val
+          },
+          carrierShow: false
         })
         break;
       case 'driverShow':
@@ -290,46 +304,6 @@ Page({
     console.log('carrierShow', parm)
     this.setData({
       carrierShow: !this.data.carrierShow
-    })
-  },
-  pickerSelected(e) {
-    const that = this;
-    const data = e.detail;
-    that.setData({
-      carrier: {
-        CarrierId: parseInt(data.id),
-        CarrierDesc: data.val
-      },
-      carrierShow: false
-    })
-  },
-  pickerCar(e) {
-    const that = this;
-    const data = e.detail;
-    that.setData({
-      carData: {
-        id: parseInt(data.id),
-        value: data.val
-      },
-      carShow: false
-    })
-  },
-  pickerDriver(e) {
-    const that = this;
-    const data = e.detail;
-    that.setData({
-      driverData: {
-        id: parseInt(data.id),
-        value: data.val
-      },
-      driverShow: false
-    })
-  },
-  maskClose(e) {
-    const that = this;
-    const data = e.detail;
-    that.setData({
-      carrierShow: false
     })
   },
 })

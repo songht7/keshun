@@ -1,7 +1,13 @@
 <!--pages/driver/sign/index.wxml-->
 <view class="container">
 	<view class="page-init">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 		<block wx:if="{{signStatus<=1}}">
+			<view class="form-row" bindtap="groupShow">
+				<view class="f-row-label not-null">选择仓库</view>
+				<view class="f-row-val">{{groupData['value']}}
+				</view>
+			</view>
 			<view class="sign-box">
 				<view class="sign-status" bindtap="mySign">
 					<image class="sign-loading animate__rotate" src="/static/loading.png" mode="aspectFit"></image>
@@ -24,5 +30,8 @@
 				</view>
 			</view>
 		</view>
+			<!---筛选选择器--->
+			<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
+			<!--- 、筛选选择器 --->
 	</view>
 </view>

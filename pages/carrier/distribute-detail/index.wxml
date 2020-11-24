@@ -112,8 +112,8 @@
 				</view>
 			</view>
 			<!---筛选选择器--->
-			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerCar"></picker-search>
-			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" field="{{field}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerDriver"></picker-search>
+			<picker-search list="{{carList}}" title="选择车辆" show="{{carShow}}" field="{{field}}" type="carShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{driverList}}" title="选择司机" show="{{driverShow}}" field="{{field}}" type="driverShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!--- 、筛选选择器 --->
 		</form>
