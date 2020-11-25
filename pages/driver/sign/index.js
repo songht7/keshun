@@ -37,31 +37,15 @@ Page({
     const that = this;
     that.getGroup(); //获取仓库
     that.getLocation();
-    qrcode = new QRCode('qrcode-canvas', {
-      // usingIn: this,
-      text: "CKS 科顺",
-      image: '/static/logo-2.png',
-      padding: 5,
-      width: that.data.qrCode['QRSize'],
-      height: that.data.qrCode['QRSize'],
-      colorDark: "#333",
-      colorLight: "white",
-      correctLevel: QRCode.CorrectLevel.H,
-      callback: (res) => {
-        // 生成二维码的临时文件
-        console.log("生成二维码:")
-        // that.data.qrCode['QRCodeImg'] = res.path;
-      }
-    });
+    that.QRCode();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let date = util.formatTime(new Date());
-    date = date + ' / ' + Date.now();
-    this.tapHandler(date);
+    // let date = util.formatTime(new Date());
+    // date = date + ' / ' + Date.now();
   },
 
   /**
@@ -102,6 +86,25 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  QRCode(val) {
+    const that = this;
+    qrcode = new QRCode('qrcode-canvas', {
+      // usingIn: this,
+      text: val || "CKS 科顺",
+      image: '/static/logo-2.png',
+      padding: 5,
+      width: that.data.qrCode['QRSize'],
+      height: that.data.qrCode['QRSize'],
+      colorDark: "#333",
+      colorLight: "white",
+      correctLevel: QRCode.CorrectLevel.H,
+      callback: (res) => {
+        // 生成二维码的临时文件
+        console.log("生成二维码:")
+        // that.data.qrCode['QRCodeImg'] = res.path;
+      }
+    });
   },
   getLocation() {
     const that = this;
@@ -148,11 +151,18 @@ Page({
     data["fun"] = function (res) {
       // console.log("signInfo:::signInfo:::", res);
       if (res.status > 0) {
+        that.tapHandler(res.data.Id);
         that.setData({
-          signStatus: 1
+          signInfo: 1,
+          signStatus: 1,
+          signData: res.data
         });
       } else {
         that.setData({
+          error: res.msg
+        });
+        that.setData({
+          signInfo: 0,
           signStatus: 0
         });
       }
@@ -183,6 +193,7 @@ Page({
       "inter": "sign",
       "method": "POST",
       "data": {
+        PhoneNumber: util.userInfo.loginInfo.PhoneNumber,
         WeChatID: util.userInfo.openid,
         WHGroupId: that.data.groupData.id, //仓库组合ID
         Latitude: location.latitude,
@@ -192,8 +203,11 @@ Page({
     data["fun"] = function (res) {
       console.log("mySignMySign:", res);
       if (res.status) {
+        that.tapHandler(res.data.Id);
         that.setData({
-          signStatus: 1
+          signInfo: 1,
+          signStatus: 1,
+          signData: res.data
         });
         wx.showToast({
           title: "签到成功！",
@@ -219,7 +233,7 @@ Page({
     })
   },
   tapHandler: function (txt) {
-    console.log(txt);
+    // console.log(txt);
     // 传入字符串生成qrcode
     qrcode.makeCode(txt)
   },
