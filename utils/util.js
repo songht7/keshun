@@ -211,6 +211,88 @@ const funs = {
     }
     that.getData(data)
   },
+  subscribeMessage() { //订阅消息
+    const that = this;
+    wx.getStorage({
+      key: 'subscribeMessage',
+      success(res) {
+        if (!res.data) {
+          that.openSubscribeMessage();
+        }
+      },
+      fail() {
+        that.openSubscribeMessage();
+      }
+    })
+  },
+  openSubscribeMessage() {
+    const that = this;
+    let _tmplIds = [];
+    switch (that.userType) {
+      case 2:
+        _tmplIds = ctx.tmplIds2
+        break;
+      case 3:
+        _tmplIds = [...ctx.tmplIds1, ...ctx.tmplIds3]
+        break;
+      default:
+        break;
+    }
+    if (_tmplIds.length <= 0) {
+      return false
+    }
+    wx.showModal({
+      title: '温馨提示',
+      content: '为促进服务，需要向您发送消息',
+      confirmText: "同意",
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          wx.requestSubscribeMessage({
+            tmplIds: _tmplIds,
+            success(res) {
+              /*
+               *[TEMPLATE_ID]是动态的键，即模板id，
+               *'accept'表示用户同意订阅该条id对应的模板消息，
+               *'reject'表示用户拒绝订阅该条id对应的模板消息，
+               *'ban'表示已被后台封禁。
+               */
+              // console.log("subscribeMessage-success:", res);
+              if (res.errMsg == 'requestSubscribeMessage:ok') {
+                let ckm = _tmplIds.filter((obj, k) => res[obj] == 'reject');
+                if (ckm.length > 0) {
+                  that.subscribeMessage();
+                } else {
+                  wx.setStorage({
+                    key: "subscribeMessage",
+                    data: true
+                  })
+                }
+              }
+            },
+            fail(err) {
+              console.log("subscribeMessage-fail:", err);
+            },
+            complete() {
+              that.getSetting();
+            }
+          })
+        } else if (res.cancel) {}
+      }
+    });
+  },
+  getSetting() {
+    wx.getSetting({
+      withSubscriptions: true,
+      success(res) {
+        console.log("getSetting:", res)
+        // res.authSetting = {
+        //   "scope.userInfo": true,
+        //   "scope.userLocation": true
+        // }
+      }
+    })
+  },
   logout(parm = {}) {
     const that = this;
     wx.removeStorage({

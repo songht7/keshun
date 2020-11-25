@@ -14,7 +14,8 @@ Page({
       QRSize: 240
     },
     location: {},
-    signStatus: 0, //0:未签到 1:已签到
+    signStatus: 1, //页面状态 0:未签到 1:已签到
+    signInfo: 0, //接口返回 0:签到失败 1:签到成功
     wait: 20,
     myNO: 18,
     groupShow: false,
@@ -134,6 +135,30 @@ Page({
     }
     util.getData(data)
   },
+  signInfo(groupId) {
+    const that = this;
+    let data = {
+      "inter": "signInfo",
+      "method": "POST",
+      "data": {
+        PhoneNumber: util.userInfo.loginInfo.PhoneNumber,
+        WHGroupId: groupId || that.data.groupData.id, //仓库组合ID
+      }
+    }
+    data["fun"] = function (res) {
+      // console.log("signInfo:::signInfo:::", res);
+      if (res.status > 0) {
+        that.setData({
+          signStatus: 1
+        });
+      } else {
+        that.setData({
+          signStatus: 0
+        });
+      }
+    }
+    util.getData(data)
+  },
   mySign() {
     const that = this;
     // let t = that.data.signStatus;
@@ -141,7 +166,6 @@ Page({
     // that.setData({
     //   signStatus: t
     // });
-    console.log(that.data.groupData);
     const location = that.data.location;
     if (that.data.groupData.id == '') {
       that.setData({
@@ -217,7 +241,6 @@ Page({
     })
   },
   pickerGroup(e) {
-
     const that = this;
     const data = e.detail;
     that.setData({
@@ -227,6 +250,7 @@ Page({
       },
       groupShow: false
     })
+    that.signInfo(parseInt(data.id));
   },
   groupShow(parm) { ///选择仓库
     this.setData({

@@ -49,6 +49,7 @@ Page({
       siteType: util.config.siteType
     });
     if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
+      util.subscribeMessage();
       that.getData({
         inter: "notice",
         parm: "?page=1&limit=5"

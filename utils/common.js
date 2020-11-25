@@ -25,6 +25,9 @@ export default {
     "apiurl": api[lks]["apiurl"],
     "domain": api[lks]["domain"],
     "appName": api[lks]["appName"],
+    "tmplIds1": ['B66_D9NkrnVDAizTMyRdiA30JARndj9XaV-7w2r1G8A'], //订阅id 司机 物流系统异常告警通知
+    "tmplIds2": ['WOuSGOStDcSThrsFPsYzb5lVqDH58NClQqBq4hCqo2s'], //车辆入场通知
+    "tmplIds3": ['L1-kaHy258MuLl1Ed89JX6Zx7J_0dGGL-Z_Rwut37p0'], //排队到号通知
     "source": 'JK',
     "mapkey": "6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q",
     "Itype": "minipro",
@@ -41,6 +44,7 @@ export default {
       "carUpdate": "/api/Car/Update", //车辆修改【post】
       "carDelete": "/api/Car/Delete", //车辆删除【post】
       "dropdownList": "/api/DropdownList/QueryInfo", //列表信息[type:CarrierNo承运商,term:承运商Id（承运商对应车辆或司机）]
+      "addCarAndDriver": "/api/Order/AddCarAndDriver", //分配司机车辆
       "driverList": "/api/Driver/QueryByPage", //司机列表
       "driverAdd": "/api/Driver/Add", //司机添加【post】
       "driverUpdate": "/api/Driver/Update", //司机修改【post】
@@ -52,6 +56,7 @@ export default {
       "uploadPhoneGPS": "/api/OrderGPS/UploadPhoneGPS", //根据用户手机号找到订单保存经度纬度地址信息【post】
       "signWHGroup": "/api/AccessSign/SignWHGroup", //获取可签到的仓库组合【post】
       "sign": "/api/AccessSign/Sign", //签到【post】
+      "signInfo": "/api/AccessSign/SignInfo", //获取签到数据
     }
   }
 }
