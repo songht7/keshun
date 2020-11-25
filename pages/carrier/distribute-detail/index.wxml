@@ -1,5 +1,6 @@
 <!--pages/carrier/distribute-detail/index.wxml-->
 <view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="form-box">
 		<form catchsubmit="formSubmit" catchreset="formReset">
 			<view class="my-order">
@@ -33,7 +34,7 @@
 			</view>
 			<view class="form-row" bindtap="carShow">
 				<view class="f-row-label not-null">选择车辆</view>
-				<view class="f-row-val">{{carData['value']}}
+				<view class="f-row-val">{{carData['value']?carData['value']:'请选择...'}}
 					<!-- <picker bindchange="bindPickerCar" value="{{carIndex}}" range="{{carList}}">
 						<view class="weui-input">{{carList[carIndex]}}</view>
 					</picker> -->
@@ -41,7 +42,7 @@
 			</view>
 			<view class="form-row" bindtap="driverShow">
 				<view class="f-row-label not-null">选择司机</view>
-				<view class="f-row-val">{{driverData['value']}}
+				<view class="f-row-val">{{driverData['value']?driverData['value']:'请选择...'}}
 				</view>
 			</view>
 			<!-- <view class="form-row" bindtap="carrierShow">
@@ -50,53 +51,55 @@
 			</view> -->
 			<!-- 物流干事 上传委托书，承运商上传 车头 车身 车厢 -->
 			<view class="form-row form-column">
-				<view class="f-row-label not-null">上传车辆照片</view>
+				<view class="f-row-label not-null">{{list[0]['ShippingTypeNo']=='001'?'上传委托书':'上传车辆照片'}}</view>
 				<view class="f-row-val">
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files pic-box">
 								<view class="pic-block">
-									<block wx:for="{{pic1}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+									<block wx:if="{{tempImg1||pic1}}">
 										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="1"></image>
+											<image class="weui-uploader__img" src="{{tempImg1?tempImg1:pic1}}" data-src="{{tempImg1?tempImg1:pic1}}" bindtap="previewImage" data-idx="1"></image>
 										</view>
 									</block>
-									<block wx:if="{{pic1.length<=0}}">
+									<block wx:else>
 										<view class="weui-uploader__file order-pic order-pic-nomal">
 											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="1"></image>
-											<view class="pic-txt">上传车身照</view>
+											<view class="pic-txt">{{list[0]['ShippingTypeNo']=='001'?'委托书':'上传车身照'}}</view>
 										</view>
 									</block>
 								</view>
-								<view class="pic-block">
-									<block wx:for="{{pic2}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
-										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-											<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
-											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="2"></image>
-										</view>
-									</block>
-									<block wx:if="{{pic2.length<=0}}">
-										<view class="weui-uploader__file order-pic order-pic-nomal">
-											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="2"></image>
-											<view class="pic-txt">上传车头照</view>
-										</view>
-									</block>
-								</view>
-								<view class="pic-block">
-									<block wx:for="{{pic3}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
-										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-											<view class="delete" bindtap="chooseImage" data-idx="3">[重传]</view>
-											<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" data-idx="3"></image>
-										</view>
-									</block>
-									<block wx:if="{{pic3.length<=0}}">
-										<view class="weui-uploader__file order-pic order-pic-nomal">
-											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="3"></image>
-											<view class="pic-txt">上传车厢照</view>
-										</view>
-									</block>
-								</view>
+								<block wx:if="{{list[0]['ShippingTypeNo']=='002'}}">
+									<view class="pic-block">
+										<block  wx:if="{{tempImg2||pic2}}">
+											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+												<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
+												<image class="weui-uploader__img" src="{{tempImg2?tempImg2:pic2}}" data-src="{{tempImg2?tempImg2:pic2}}" bindtap="previewImage" data-idx="2"></image>
+											</view>
+										</block>
+										<block wx:else>
+											<view class="weui-uploader__file order-pic order-pic-nomal">
+												<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="2"></image>
+												<view class="pic-txt">上传车头照</view>
+											</view>
+										</block>
+									</view>
+									<view class="pic-block">
+										<block wx:if="{{tempImg3||pic3}}">
+											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
+												<view class="delete" bindtap="chooseImage" data-idx="3">[重传]</view>
+												<image class="weui-uploader__img" src="{{tempImg3?tempImg3:pic3}}" data-src="{{tempImg3?tempImg3:pic3}}" bindtap="previewImage" data-idx="3"></image>
+											</view>
+										</block>
+										<block wx:else>
+											<view class="weui-uploader__file order-pic order-pic-nomal">
+												<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="3"></image>
+												<view class="pic-txt">上传车厢照</view>
+											</view>
+										</block>
+									</view>
+								</block>
 							</view>
 							<!-- <view class="weui-uploader__input-box">
 								<view class="weui-uploader__input" bindtap="chooseImage"></view>
