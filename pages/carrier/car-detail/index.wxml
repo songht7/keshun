@@ -3,7 +3,7 @@
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="form-box">
 		<form catchsubmit="formSubmit" catchreset="formReset">
-			<view class="form-row" bindtap="carrierShow">
+			<view wx-if="{{userType&&userType!=2}}" class="form-row" bindtap="carrierShow">
 				<view class="f-row-label not-null">承运商名称</view>
 				<view class="f-row-val">{{carrier['CarrierDesc']}}</view>
 			</view>
@@ -46,10 +46,10 @@
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files pic-box">
 								<view class="pic-block">
-									<block wx:if="{{tempImg||Images}}">
+									<block wx:if="{{tempImg||datas.Images}}">
 										<view class="weui-uploadr__file order-pic order-pic-big" hover-class="pic-hover">
 											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-											<image class="weui-uploader__img" src="{{tempImg||Images}}" data-src="{{tempImg||Images}}" bindtap="previewImage"></image>
+											<image class="weui-uploader__img" src="{{tempImg?tempImg:datas.Images}}" data-src="{{tempImg?tempImg:datas.Images}}" bindtap="previewImage"></image>
 										</view>
 									</block>
 									<block wx:else>

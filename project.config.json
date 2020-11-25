@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.13.1",
+	"libVersion": "2.14.0",
 	"appid": "wx25f61e4ffcead9c7",
 	"projectname": "keshun",
 	"debugOptions": {

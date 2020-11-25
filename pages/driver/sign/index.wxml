@@ -1,22 +1,27 @@
 <!--pages/driver/sign/index.wxml-->
 <view class="container">
 	<view class="page-init">
+		<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 		<block wx:if="{{signStatus<=1}}">
-			<view class="sign-box">
+			<view class="form-row" bindtap="groupShow">
+				<view class="f-row-label not-null">选择仓库</view>
+				<view class="f-row-val">{{groupData['value']?groupData['value']:'请选择...'}}</view>
+			</view>
+			<view wx:if="{{signStatus<=0}}" class="sign-box">
 				<view class="sign-status" bindtap="mySign">
 					<image class="sign-loading animate__rotate" src="/static/loading.png" mode="aspectFit"></image>
 					<image class="sign-bg" src="/static/sign-bg.png" mode="aspectFit"></image>
-					<view class="sing-label">{{signStatus>1?'已签到':'未签到'}}</view>
+					<view class="sing-label">{{signStatus==1?'已签到':'未签到'}}</view>
 				</view>
 			</view>
-			<view wx:if="{{signStatus==1}}" class="sign-info">
-				<image class="icons sign-info-icon" src="/static/{{signStatus>1?'face-smile.png':'face-cry.png'}}" mode="aspectFit"></image>{{signStatus>1?'签到成功':'签到失败请重新签到'}}
+			<view wx:if="{{signInfo}}" class="sign-info">
+				<!-- <image class="icons sign-info-icon" src="/static/{{signInfo>=1?'face-smile.png':'face-cry.png'}}" mode="aspectFit"></image>{{signInfo>=1?'签到成功':'签到失败请重新签到'}} -->
 			</view>
 		</block>
-		<view wx:if="{{signStatus==2}}" class="sign-qr-box">
+		<view wx:if="{{signInfo>0&&signData.Id}}" class="sign-qr-box">
 			<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
 			<view class="sign-qr-main">
-				<view class="wait">你的牌号为<text class="wait-numb">{{myNO}}</text>，前面还有 <text class="wait-numb">{{wait}}</text> 人</view>
+				<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
 				<view class="qr-code">
 					<canvas class="qr-canvas" canvas-id="qrcode-canvas" style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
 					<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
@@ -24,5 +29,8 @@
 				</view>
 			</view>
 		</view>
+		<!---筛选选择器--->
+		<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
+		<!--- 、筛选选择器 --->
 	</view>
 </view>

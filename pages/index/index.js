@@ -45,9 +45,11 @@ Page({
     // console.log('onReady', util.userInfo)
     const that = this;
     this.setData({
-      user: util.userInfo
+      user: util.userInfo,
+      siteType: util.config.siteType
     });
     if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
+      util.subscribeMessage();
       that.getData({
         inter: "notice",
         parm: "?page=1&limit=5"
@@ -55,11 +57,9 @@ Page({
     } else {
       that.setData({
         silde: [{
-          Id: 1,
-          TitleImage: '/static/default.jpg'
+          TitleImage: '/static/default/cks1.jpg'
         }, {
-          Id: 2,
-          TitleImage: '/static/default.jpg'
+          TitleImage: '/static/default/cks2.jpg'
         }]
       });
     }

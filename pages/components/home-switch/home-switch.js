@@ -6,6 +6,7 @@
  * 12312312314  2  对应承运商
  * 12312312312  3 对应司机 
  * 12312312315  4  对应科顺员工(商务)
+ * 13220046241  3 对应司机 带仓库
  */
 const app = getApp();
 const util = app.globalData;
@@ -16,7 +17,8 @@ Component({
   externalClasses: ['class'], //接受外部传入的样式类
   properties: { // 定义 参数 属性可以拿到 对应 属性上设置的值
     style: String,
-    switchType: Number
+    switchType: Number,
+    siteType:String
   },
   data: {
     switchBtns: [],
@@ -106,7 +108,7 @@ Component({
         tap: "linkTo",
         url: "/pages/carrier/lineup/index"
       }],
-      /*总部物流switch-D*/
+      /*科顺员工(物流干事)switch-D*/
       "switch-D": [{
         label: "承运商分配",
         icon: "icon-7.png",
@@ -132,7 +134,7 @@ Component({
         tap: "linkTo",
         url: "/pages/carrier/car/index"
       }],
-      /*业务switch-E*/
+      /*科顺员工(商务)switch-E*/
       "switch-E": [{
         label: "交货单查询",
         icon: "icon-7.png",
