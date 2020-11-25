@@ -304,6 +304,10 @@ const funs = {
           url: '/pages/index/index',
         })
       }
+    });
+    wx.removeStorage({
+      key: 'subscribeMessage',
+      success() {}
     })
   },
   checkToken(parm = {}) {
