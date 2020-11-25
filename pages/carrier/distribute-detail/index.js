@@ -279,7 +279,7 @@ Page({
       Id: parseInt(_data.id),
       CarId: parseInt(_data.carData['id']),
       CarNo: _data.carData['value'],
-      DriverId: _data.driverData['value'],
+      DriverId: parseInt(_data.driverData['id']),
       DriverName: _data.driverData['value'],
       FreightType: parseInt(_data.carType),
       PlanArriveDate1: _data.date,
@@ -348,10 +348,15 @@ Page({
       data["fun"] = function (res) {
         console.log(res);
         if (res.status > 0) {
-          // wx.showToast({
-          //   title: Id ? "编辑成功！" : "添加成功！",
-          //   icon: "success"
-          // })
+          wx.showToast({
+            title: res.msg,
+            icon: "success"
+          });
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 0,
+            })
+          }, 2000)
         } else {
           that.setData({
             error: res.msg

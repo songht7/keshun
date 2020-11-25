@@ -66,7 +66,7 @@
 									<block wx:else>
 										<view class="weui-uploader__file order-pic order-pic-nomal">
 											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="1"></image>
-											<view class="pic-txt">{{list[0]['ShippingTypeNo']=='001'?'委托书':'上传车身照'}}</view>
+											<view class="pic-txt">{{list[0]['ShippingTypeNo']=='001'?'委托书':'上传车头照'}}</view>
 										</view>
 									</block>
 								</view>
@@ -81,7 +81,7 @@
 										<block wx:else>
 											<view class="weui-uploader__file order-pic order-pic-nomal">
 												<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="2"></image>
-												<view class="pic-txt">上传车头照</view>
+												<view class="pic-txt">上传车身照</view>
 											</view>
 										</block>
 									</view>
@@ -95,7 +95,7 @@
 										<block wx:else>
 											<view class="weui-uploader__file order-pic order-pic-nomal">
 												<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit" data-idx="3"></image>
-												<view class="pic-txt">上传车厢照</view>
+												<view class="pic-txt">上传车尾照</view>
 											</view>
 										</block>
 									</view>
