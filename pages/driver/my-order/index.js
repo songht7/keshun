@@ -2,37 +2,7 @@
 const app = getApp();
 const util = app.globalData;
 
-const list = [{
-  id: 1,
-  order: "ks0020020090093231",
-  numb: "1000件",
-  weight: "2吨",
-  address: "上海中心大厦",
-  name: "曹操",
-  phone: "13918181818",
-  deliver: "广州",
-  estimate: "2020年10月30日"
-}, {
-  id: 2,
-  order: "ks0020020090093232",
-  numb: "1000件",
-  weight: "2吨",
-  address: "上海中心大厦",
-  name: "曹操",
-  phone: "13918181818",
-  deliver: "广州",
-  estimate: "2020年10月30日"
-}, {
-  id: 3,
-  order: "ks0020020090093233",
-  numb: "1000件",
-  weight: "2吨",
-  address: "上海中心大厦",
-  name: "曹操",
-  phone: "13918181818",
-  deliver: "广州",
-  estimate: "2020年10月30日"
-}]
+const list = []
 Page({
 
   /**
@@ -42,19 +12,8 @@ Page({
     parm: {
       page: 1,
       limit: 15,
-      ForwarderNo: "",
-      OrderNo: "",
-      DN_No: "",
-      OrderType: "",
-      FreightPayType: "",
-      SaleGroupName: "",
-      CustomerNo: "",
-      CustomerName: "",
-      FactoryNo: "",
-      WareHouseNo: "",
-      ArrivalAddress: "",
-      Status: "", //状态: 0.待处理 1.已派车 2.已签到 3.已入场 4.已出厂 5.已跟踪 6.已回单 7.已结单
-      Type: ""
+      DriverId: 0, //必须 司机id
+      Status: "" //0待处理 1已派车 2已签到 3已入厂 4已出厂 5已跟踪 6已回单 7已结单 8已转出
     },
     carrier: {
       CarrierId: "",
@@ -67,6 +26,42 @@ Page({
       CarrierDesc: ""
     },
     selectCarrierShow: false,
+    orderStatus: [{
+      key: 999999,
+      value: "全部"
+    }, {
+      key: 0,
+      value: "待处理"
+    }, {
+      key: 1,
+      value: "已派车"
+    }, {
+      key: 2,
+      value: "已签到"
+    }, {
+      key: 3,
+      value: "已入厂"
+    }, {
+      key: 4,
+      value: "已出厂"
+    }, {
+      key: 5,
+      value: "已跟踪"
+    }, {
+      key: 6,
+      value: "已回单"
+    }, {
+      key: 7,
+      value: "已结单"
+    }, {
+      key: 8,
+      value: "已转出"
+    }],
+    orderStatusShow: false,
+    orderStatusVal: {
+      id: "",
+      value: ""
+    },
     list: [],
     count: 0,
     checkedAll: false
@@ -77,7 +72,6 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.getList()
     that.getCarrier();
   },
 
@@ -92,7 +86,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const that = this;
+    const user = util.userInfo.loginInfo;
+    let parm = that.data.parm;
+    parm['DriverId'] = user.Id ? user.Id : 0;
+    that.getList()
   },
 
   /**
@@ -241,9 +239,13 @@ Page({
   getList(type) {
     const that = this;
     const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      //return encodeURIComponent(key) + "=" + encodeURIComponent(_parm[key]);
+      return key + "=" + _parm[key];
+    }).join("&");
     let data = {
-      "inter": "orderList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit
+      "inter": "deliveryList",
+      "parm": "?" + params
     }
     wx.showLoading({
       title: '加载中',
@@ -255,7 +257,7 @@ Page({
         const _list = res.data;
         /** 设置列表可选择 **/
         _list.map(obj => {
-          obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
+          // obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
           obj['checked'] = false;
           obj['hasCheck'] = true;
         });
@@ -311,6 +313,24 @@ Page({
         CarrierDesc: data.val
       },
       carrierShow: false
+    })
+  },
+  orderStatusShow(parm) { ///选择订单状态
+    this.setData({
+      orderStatusShow: !this.data.orderStatusShow
+    })
+  },
+  orderStatusSelected(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['Status'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    that.setData({
+      orderStatusVal: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      orderStatusShow: false
     })
   },
   maskClose(e) {

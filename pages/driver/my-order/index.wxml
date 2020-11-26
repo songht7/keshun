@@ -17,17 +17,21 @@
 									<view class="form-row">
 										<view class="form-title">更多搜索条件</view>
 									</view>
-									<view class="form-row form-column" bindtap="carrierShow">
+									<!-- <view class="form-row form-column" bindtap="carrierShow">
 										<view class="f-row-label">承运商名称</view>
 										<view class="f-row-val">{{carrier['CarrierDesc']?carrier['CarrierDesc']:'请选择...'}}</view>
+									</view> -->
+									<view class="form-row form-column" bindtap="orderStatusShow">
+										<view class="f-row-label">订单状态</view>
+										<view class="f-row-val">{{orderStatusVal['value']?orderStatusVal['value']:'请选择...'}}</view>
 									</view>
-									<view class="form-row form-column">
+									<!-- <view class="form-row form-column">
 										<view class="f-row-label">其他</view>
 										<view class="f-row-val">
 											<input class="form-row-input" data-name="Remark" name="Remark" bindinput="bindInput" value="{{parm.Remark}}" />
 											<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="Remark"></icon-font>
 										</view>
-									</view>
+									</view> -->
 								</form>
 							</view>
 						</view>
@@ -38,8 +42,11 @@
 			<view class="btn-area">
 				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
 			</view>
-			<!---筛选选择器--->
+			<!---搜索条件-承运商--->
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<!---搜索条件-承运商--->
+			<picker-search list="{{orderStatus}}" title="订单状态" show="{{orderStatusShow}}" type="orderStatusShow" bind:maskClose="maskClose" bind:pickerSelected="orderStatusSelected"></picker-search>
+			<!---转出对象-承运商--->
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{selectCarrierShow}}" type="selectCarrierShow" bind:maskClose="maskClose" bind:pickerSelected="selectCarrier"></picker-search>
 			<!--- 、筛选选择器 --->
 		</view>

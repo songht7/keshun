@@ -35,6 +35,7 @@ export default {
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】
+      "getVerify": "/api/Message/GetVerify_Response", //发送验证码【post】
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
       "uploadImage": "/api/File/UploadImage", //图片上传【post】
@@ -53,6 +54,8 @@ export default {
       "updateForwarder": "/api/Order/UpdateForwarder", //手动分配承运商【post】
       "orderList": "/api/Order/QueryByPage", //获取订单列表
       "orderList2": "/api/Order/GetOrderInfo", //获取订单列表(分配车辆司机用)(只显示 待处理，已派车)
+      "deliveryList": "/api/Order/GetDeliveryOrderList", //根据条件获取交货单列表
+      "getOrderByDNNO": "/api/Order/GetOrderByDNNO", //根据DN单号查询订单信息
       "orderGPS": "/api/OrderGPS/SelectOrderTrackGPSInfo", //根据订单号查询订单所有的跟踪信息【post】
       "uploadOrderGPS": "/api/OrderGPS/UploadOrderGPS", //根据订单号保存经度纬度地址信息【post】
       "uploadPhoneGPS": "/api/OrderGPS/UploadPhoneGPS", //根据用户手机号找到订单保存经度纬度地址信息【post】

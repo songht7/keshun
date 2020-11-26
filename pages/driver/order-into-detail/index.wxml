@@ -1,9 +1,15 @@
 <!--pages/driver/order-into-detail/index.wxml-->
 <view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="page-init">
 		<view class="my-order">
-			<order-card list="{{list}}" bind:orderCardSubmit="orderCardSubmit" btnLabel="确认转入">
-      </order-card>
+			<block wx:if="{{!hasNull}}">
+				<order-card list="{{list}}" bind:orderCardSubmit="orderCardSubmit" btnLabel="确认转入">
+				</order-card>
+			</block>
+			<block wx:else>
+				<view>未查询到DN单号[{{dn_no}}]的有关信息</view>
+			</block>
 		</view>
 	</view>
 </view>

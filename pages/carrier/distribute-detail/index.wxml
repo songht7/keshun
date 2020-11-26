@@ -17,8 +17,8 @@
 			<view class="form-row">
 				<view class="f-row-label not-null">选择到场装货时间段</view>
 				<view class="f-row-val">
-					<picker bindchange="bindPickerChange" value="{{timeSlotIndex}}" range="{{timeSlot}}">
-						<view class="weui-input">{{planArriveDate2?planArriveDate2:timeSlot[timeSlotIndex]}}</view>
+					<picker value="{{timeSlotIndex}}" range="{{timeSlot}}" bindchange="bindPickerChange">
+						<view class="weui-input">{{PlanArriveDate2?PlanArriveDate2:timeSlot[timeSlotIndex]}}</view>
 					</picker>
 				</view>
 			</view>
@@ -42,8 +42,7 @@
 			</view>
 			<view class="form-row" bindtap="driverShow">
 				<view class="f-row-label not-null">选择司机</view>
-				<view class="f-row-val">{{driverData['value']?driverData['value']:'请选择...'}}
-				</view>
+				<view class="f-row-val">{{driverData['value']?driverData['value']+(driverData['phone']?'-'+driverData['phone']:''):'请选择...'}}</view>
 			</view>
 			<!-- <view class="form-row" bindtap="carrierShow">
 				<view class="f-row-label not-null">选择承运商</view>
@@ -72,7 +71,7 @@
 								</view>
 								<block wx:if="{{list[0]['ShippingTypeNo']=='002'}}">
 									<view class="pic-block">
-										<block  wx:if="{{tempImg2||pic2}}">
+										<block wx:if="{{tempImg2||pic2}}">
 											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 												<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
 												<image class="weui-uploader__img" src="{{tempImg2?tempImg2:pic2}}" data-src="{{tempImg2?tempImg2:pic2}}" bindtap="previewImage" data-idx="2"></image>

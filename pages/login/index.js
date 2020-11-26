@@ -114,14 +114,26 @@ Page({
     };
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
+      let data = {
+        "inter": "getVerify",
+        "method": "POST",
+        "data": {
+          phone: _formData['phone']
+        }
+      }
+      data["fun"] = function (res) {
+        console.log(res);
+        wx.showToast({
+          title: '验证码已发送',
+          icon: 'success',
+          duration: 2000
+        })
+        if (res.status > 0) {} else {}
+      }
+      util.getData(data)
       that.setData({
         btnLoading: true
       });
-      wx.showToast({
-        title: '验证码已发送',
-        icon: 'success',
-        duration: 2000
-      })
       //that.data.seconds = 10;
       var countdown = setInterval(() => {
         var s = that.data.seconds;
@@ -146,12 +158,6 @@ Page({
       that.setData({
         error: graceChecker.error
       });
-      // wx.showToast({
-      //   title: graceChecker.error,
-      //   // image: '/static/tip.png',
-      //   icon: 'none',
-      //   duration: 2000
-      // })
     }
   },
   formSubmit(e) {

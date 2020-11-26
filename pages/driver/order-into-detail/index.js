@@ -1,22 +1,15 @@
 // pages/driver/order-into-detail/index.js
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderCode: "",
-    list: [{
-      id: 1,
-      order: "ks0020020090093231",
-      numb: "1000件",
-      weight: "2吨",
-      address: "上海中心大厦",
-      name: "曹操",
-      phone: "13918181818",
-      deliver: "广州",
-      estimate: "2020年10月30日"
-    }]
+    dn_no: "",
+    list: [],
+    hasNull: false
   },
 
   /**
@@ -24,14 +17,11 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    const list = that.data.list;
-    const orderCode = options.code;
-    list.map(obj => {
-      obj['checkBtn'] = true;
-    });
+    const dn_no = options.code;
     that.setData({
-      list
+      dn_no
     });
+    that.getData();
   },
 
   /**
@@ -84,5 +74,34 @@ Page({
   },
   orderCardSubmit(e) {
     console.log("子组件返回值ID：", e.detail);
+  },
+  getData() {
+    const that = this;
+    let data = {
+      "inter": "getOrderByDNNO",
+      "parm": "?dn_no=" + that.data.dn_no
+    }
+    wx.showLoading({
+      title: '加载中...',
+    })
+    data["fun"] = function (res) {
+      console.log(res);
+      wx.hideLoading();
+      if (res.status > 0) {
+        const list = res.data;
+        list.map(obj => {
+          obj['checkBtn'] = true;
+        });
+        that.setData({
+          list
+        });
+      } else {
+        that.setData({
+          // error: res.msg,
+          hasNull: true
+        });
+      }
+    }
+    util.getData(data)
   }
 })
