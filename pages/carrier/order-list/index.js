@@ -102,9 +102,12 @@ Page({
   getList(type) {
     const that = this;
     const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      return key + "=" + _parm[key];
+    }).join("&");
     let data = {
       "inter": "orderList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&ForwarderNo=" + _parm.ForwarderNo + "&OrderNo=" + _parm.OrderNo + "&DN_No=" + _parm.DN_No + "&OrderType=" + _parm.OrderType + "&FreightPayType=" + _parm.FreightPayType + "&SaleGroupName=" + _parm.SaleGroupName + "&CustomerNo=" + _parm.CustomerNo + "&FactoryNo=" + _parm.FactoryNo + "&WareHouseNo=" + _parm.WareHouseNo + "&ArrivalAddress=" + _parm.ArrivalAddress + "&Status=" + _parm.Status + "&Type=" + _parm.Type
+      "parm": "?" + params
     }
     wx.showLoading({
       title: '加载中',

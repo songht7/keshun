@@ -31,8 +31,9 @@ Page({
   data: {
     orderCode: "",
     parm: {
-      page: 1,
-      limit: 15,
+      page: 1, //必须, 页码
+      limit: 15, //必须, 页大小
+      ForwarderId: "",
       ForwarderNo: "",
       OrderNo: "",
       DN_No: "",
@@ -45,7 +46,8 @@ Page({
       WareHouseNo: "",
       ArrivalAddress: "",
       Status: "", //状态: 0.待处理 1.已派车 2.已签到 3.已入场 4.已出厂 5.已跟踪 6.已回单 7.已结单
-      Type: "手动分配"
+      Type: "手动分配",
+      FreightType: 0 //必须, 运输方式（0.专车 1.零担)
     },
     carrier: {
       CarrierId: "",
@@ -123,9 +125,13 @@ Page({
   getList(type) {
     const that = this;
     const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      //return encodeURIComponent(key) + "=" + encodeURIComponent(_parm[key]);
+      return key + "=" + _parm[key];
+    }).join("&");
     let data = {
       "inter": "orderList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&ForwarderNo=" + _parm.ForwarderNo + "&OrderNo=" + _parm.OrderNo + "&DN_No=" + _parm.DN_No + "&OrderType=" + _parm.OrderType + "&FreightPayType=" + _parm.FreightPayType + "&SaleGroupName=" + _parm.SaleGroupName + "&CustomerNo=" + _parm.CustomerNo + "&FactoryNo=" + _parm.FactoryNo + "&WareHouseNo=" + _parm.WareHouseNo + "&ArrivalAddress=" + _parm.ArrivalAddress + "&Status=" + _parm.Status + "&Type=" + _parm.Type
+      "parm": "?" + params
     }
     wx.showLoading({
       title: '加载中',

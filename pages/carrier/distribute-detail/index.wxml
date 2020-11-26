@@ -27,8 +27,8 @@
 				<view class="f-row-val f-row-radio">
 					<!-- <input class="form-row-input" value="{{data.gender}}" /> -->
 					<view class="radio">
-						<view class="radio-btn {{carType==1?'on':''}}" data-val="1" bindtap="selectRadio">整车</view>
-						<view class="radio-btn {{carType==2?'on':''}}" data-val="2" bindtap="selectRadio">零担</view>
+						<view class="radio-btn {{carType=='0'?'on':''}}" data-val="0" bindtap="selectRadio">专车</view>
+						<view class="radio-btn {{carType=='1'?'on':''}}" data-val="1" bindtap="selectRadio">零担</view>
 					</view>
 				</view>
 			</view>

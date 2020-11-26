@@ -38,8 +38,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -103,9 +102,12 @@ Page({
   getList(type) {
     const that = this;
     const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      return key + "=" + _parm[key];
+    }).join("&");
     let data = {
       "inter": "driverList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&CarrierId=" + _parm.CarrierId + "&DriverName=" + _parm.DriverName + "&DriverLicense=" + _parm.DriverLicense + "&ContactPhone=" + _parm.ContactPhone
+      "parm": "?" + params
     }
     wx.showLoading({
       title: '加载中',

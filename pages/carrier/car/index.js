@@ -102,9 +102,12 @@ Page({
   getList(type) {
     const that = this;
     const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      return key + "=" + _parm[key];
+    }).join("&");
     let data = {
       "inter": "carList",
-      "parm": "?page=" + _parm.page + "&limit=" + _parm.limit + "&CarrierId=" + _parm.CarrierId + "&NumberPlate=" + _parm.NumberPlate + "&DrivingIicense=" + _parm.DrivingIicense + "&InsuranceCertificateNumber=" + _parm.InsuranceCertificateNumber + "&Remark=" + _parm.Remark
+      "parm": "?" + params
     }
     wx.showLoading({
       title: '加载中',
