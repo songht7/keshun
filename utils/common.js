@@ -38,6 +38,7 @@ export default {
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
       "uploadImage": "/api/File/UploadImage", //图片上传【post】
+      "imageList": "/api/Order/OrderCarImageList", //获取图片 OrderID
       "notice": "/api/Notice/QueryList", //获取公告信息
       "carList": "/api/Car/QueryByPage", //车辆列表
       "carAdd": "/api/Car/Add", //车辆添加【post】

@@ -47,8 +47,6 @@ Page({
     const that = this;
     const list = that.data.list;
     const orderCode = options.code;
-    that.getList()
-    that.getCarrier();
   },
 
   /**
@@ -62,7 +60,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const that = this;
+    that.getList()
+    that.getCarrier();
   },
 
   /**

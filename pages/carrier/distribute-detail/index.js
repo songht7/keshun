@@ -60,6 +60,7 @@ Page({
     });
     if (options.id) {
       const _temp = util.tempData;
+      console.log("_temp::_temp::_temp::", _temp)
       that.setData({
         id: options.id,
         list: [_temp],
@@ -74,11 +75,12 @@ Page({
           id: _temp.DriverId || "",
           value: _temp.DriverName || ""
         },
-        pic1: _temp.EntrustImage ? _temp.EntrustImage : _temp.FrontImage,
+        pic1: _temp.EntrustImage ? _temp.EntrustImage : (_temp.FrontImage ? _temp.FrontImage : ''),
         pic2: _temp.MiddleImage || "",
         pic3: _temp.AfterImage || "",
       });
       let term = util.userInfo.loginInfo.ForwarderId ? util.userInfo.loginInfo.ForwarderId : 1;
+      that.getImgs(options.id);
       that.getCarDriver('CarNo', term);
       that.getCarDriver('DriverPhone', term);
     }
@@ -155,13 +157,13 @@ Page({
     });
   },
   carShow(parm) { ///选择车辆
-    console.log('carShow', parm)
+    // console.log('carShow', parm)
     this.setData({
       carShow: !this.data.carShow
     })
   },
   driverShow(parm) { ///选择司机
-    console.log('driverShow', parm)
+    // console.log('driverShow', parm)
     this.setData({
       driverShow: !this.data.driverShow
     })
@@ -227,20 +229,20 @@ Page({
   chooseImage(e) {
     const that = this
     const type = e.target.dataset.idx;
-    console.log(type);
+    // console.log(type);
     wx.chooseImage({
       sourceType: ['camera', 'album'],
       sizeType: ['compressed', 'original'],
       count: 1,
       success(ress) {
-        console.log(type, ress)
+        // console.log(type, ress)
         const _tempFile = ress.tempFilePaths[0];
         let data = {
           "inter": "uploadImage",
           "filePath": _tempFile
         }
         data["fun"] = function (res) {
-          console.log(res);
+          // console.log(res);
           if (res.status > 0) {
             switch (type.toString()) {
               case "1":
@@ -370,8 +372,8 @@ Page({
             icon: "success"
           });
           setTimeout(() => {
-            wx.navigateTo({
-              url: '/pages/carrier/distribute/index',
+            wx.navigateBack({
+              delta: 0
             })
           }, 2000)
         } else {
@@ -389,6 +391,27 @@ Page({
         error: graceChecker.error
       });
     }
+  },
+  getImgs(orderId) {
+    const that = this;
+    let data = {
+      "inter": "imageList",
+      "parm": "?OrderID=" + orderId
+    }
+    data["fun"] = function (res) {
+      console.log("getImgs：：：", res);
+      if (res.status > 0) {
+        if (res.data.length > 0) {
+          const _data = res.data[0];
+          that.setData({
+            pic1: _data.EntrustImage ? _data.EntrustImage : (_data.FrontImage ? _data.FrontImage : ""),
+            pic2: _data.MiddleImage || "",
+            pic3: _data.AfterImage || "",
+          });
+        }
+      }
+    }
+    util.getData(data)
   },
   getCarDriver(type, term) {
     const that = this;
@@ -412,7 +435,6 @@ Page({
         default:
           break;
       }
-      that.setData({});
     }
     util.getData(data)
   },

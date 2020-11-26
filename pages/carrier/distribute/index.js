@@ -48,16 +48,7 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    const list = that.data.list;
     const orderCode = options.code;
-    const user = util.userInfo.loginInfo;
-    let parm = that.data.parm;
-    parm['ForwarderId'] = user.ForwarderId ? user.ForwarderId : 1;
-    // that.setData({
-    //   parm: [...parm]
-    // })
-    that.getList()
-    that.getCarrier();
   },
 
   /**
@@ -71,7 +62,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const that = this;
+    const list = that.data.list;
+    const user = util.userInfo.loginInfo;
+    let parm = that.data.parm;
+    parm['ForwarderId'] = user.ForwarderId ? user.ForwarderId : 1;
+    // that.setData({
+    //   parm: [...parm]
+    // })
+    that.getList()
+    that.getCarrier();
   },
 
   /**
