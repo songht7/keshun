@@ -18,6 +18,7 @@ Page({
     today: "/-/-/",
     timeSlot: ['00:00 ~ 02:00', '02:00 ~ 04:00', '04:00 ~ 06:00', '06:00 ~ 08:00', '08:00 ~ 10:00', '10:00 ~ 12:00', '12:00 ~ 14:00', '14:00 ~ 16:00', '16:00 ~ 18:00', '18:00 ~ 20:00', '20:00 ~ 22:00', '22:00 ~ 00:00'],
     timeSlotIndex: 2,
+    planArriveDate2: "",
     carType: "0",
     selectCar: false,
     carList: [],
@@ -58,9 +59,24 @@ Page({
       today: d.split(" ")[0]
     });
     if (options.id) {
+      const _temp = util.tempData;
       that.setData({
-        list: [util.tempData],
-        id: options.id
+        id: options.id,
+        list: [_temp],
+        date: _temp.PlanArriveDate1 ? _temp['PlanArriveDate1'].split(" ")[0] : d.split(" ")[0],
+        planArriveDate2: _temp.PlanArriveDate2 ? _temp.PlanArriveDate2 : "",
+        carType: _temp.FreightType ? _temp.FreightType : 0,
+        carData: {
+          id: _temp.CarId || "",
+          value: _temp.CarNo || ""
+        },
+        driverData: {
+          id: _temp.DriverId || "",
+          value: _temp.DriverName || ""
+        },
+        pic1: _temp.EntrustImage ? _temp.EntrustImage : _temp.FrontImage,
+        pic2: _temp.MiddleImage || "",
+        pic3: _temp.AfterImage || "",
       });
       let term = util.userInfo.loginInfo.ForwarderId ? util.userInfo.loginInfo.ForwarderId : 1;
       that.getCarDriver('CarNo', term);
@@ -128,7 +144,8 @@ Page({
   },
   bindPickerChange(e) { //选择时间段
     this.setData({
-      timeSlotIndex: e.detail.value
+      timeSlotIndex: e.detail.value,
+      PlanArriveDate2: ""
     })
   },
   selectRadio(e) { //运输类型
@@ -283,7 +300,7 @@ Page({
       DriverName: _data.driverData['value'],
       FreightType: parseInt(_data.carType),
       PlanArriveDate1: _data.date,
-      PlanArriveDate2: _data.timeSlot[_data.timeSlotIndex],
+      PlanArriveDate2: _data.PlanArriveDate2 ? _data.PlanArriveDate2 : _data.timeSlot[_data.timeSlotIndex],
       CreateUser: _data.userInfo.loginInfo.CreateUser
     };
     var rule = [{
@@ -353,8 +370,8 @@ Page({
             icon: "success"
           });
           setTimeout(() => {
-            wx.navigateBack({
-              delta: 0,
+            wx.navigateTo({
+              url: '/pages/carrier/distribute/index',
             })
           }, 2000)
         } else {
