@@ -2,6 +2,9 @@
   "navigationBarTitleText": "车辆司机分配",
   "usingComponents": {
     "order-card": "/pages/components/order-card/order-card",
+    "filter-box": "/pages/components/filter-box/filter-box",
     "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

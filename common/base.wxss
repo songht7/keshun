@@ -282,6 +282,10 @@ textarea.form-row-area {
 }
 
 /* 搜索框 表单 */
+.top-station {
+  height: 60rpx;
+}
+
 .top-filter {
   position: absolute;
   top: 10rpx;

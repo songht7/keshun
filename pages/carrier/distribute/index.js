@@ -2,27 +2,7 @@
 const app = getApp();
 const util = app.globalData;
 
-const list = [{
-  id: 1,
-  order: "ks0020020090093231",
-  numb: "1000件",
-  weight: "2吨",
-  address: "上海中心大厦",
-  name: "曹操",
-  phone: "13918181818",
-  deliver: "广州",
-  estimate: "2020年10月30日"
-}, {
-  id: 2,
-  order: "ks0020020090093232",
-  numb: "1000件",
-  weight: "2吨",
-  address: "上海中心大厦",
-  name: "曹操",
-  phone: "13918181818",
-  deliver: "广州",
-  estimate: "2020年10月30日"
-}]
+const list = []
 Page({
 
   /**
@@ -33,8 +13,8 @@ Page({
     parm: {
       page: 1, //必须, 页码
       limit: 15, //必须, 页大小
-      ForwarderId: "",
-      ForwarderNo: "",
+      ForwarderId: 0, //必须, 承运商ID
+      // ForwarderNo: "",
       OrderNo: "",
       DN_No: "",
       OrderType: "",
@@ -47,7 +27,7 @@ Page({
       ArrivalAddress: "",
       Status: "", //状态: 0.待处理 1.已派车 2.已签到 3.已入场 4.已出厂 5.已跟踪 6.已回单 7.已结单
       Type: "手动分配",
-      FreightType: 0 //必须, 运输方式（0.专车 1.零担)
+      FreightType: '' // 运输方式（0.专车 1.零担)
     },
     carrier: {
       CarrierId: "",
@@ -70,6 +50,12 @@ Page({
     const that = this;
     const list = that.data.list;
     const orderCode = options.code;
+    const user = util.userInfo.loginInfo;
+    let parm = that.data.parm;
+    parm['ForwarderId'] = user.ForwarderId ? user.ForwarderId : 1;
+    // that.setData({
+    //   parm: [...parm]
+    // })
     that.getList()
     that.getCarrier();
   },
@@ -106,13 +92,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    const that = this;
+    const parm = that.data.parm;
+    parm['page'] == 1;
+    that.getList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    const that = this;
+    const parm = that.data.parm;
+    if (that.data.list.length >= that.data.count) {
+      return
+    }
+    parm['page']++;
+    that.getList('more');
 
   },
 
@@ -130,7 +126,7 @@ Page({
       return key + "=" + _parm[key];
     }).join("&");
     let data = {
-      "inter": "orderList",
+      "inter": "orderList2",
       "parm": "?" + params
     }
     wx.showLoading({
@@ -197,6 +193,31 @@ Page({
     that.setData({
       carrierShow: false
     })
+  },
+  iconClick(e) {
+    const name = e.currentTarget.dataset.name;
+    let parm = this.data.parm;
+    parm[name] = "";
+    this.setData({
+      parm
+    });
+  },
+  bindInput(e) {
+    const name = e.currentTarget.dataset.name;
+    const _datas = this.data.parm;
+    _datas[name] = e.detail.value;
+    this.setData({
+      parm: _datas
+    });
+  },
+  filterSubmit() {
+    const that = this;
+    const parm = that.data.parm;
+    parm['page'] = 1;
+    console.log(parm);
+    that.getList();
+    const FilterBox = this.selectComponent('#FilterBox');
+    FilterBox.closeFilter()
   },
   navDetail(e) {
     console.log("子组件返回值ID：", e.detail);
