@@ -23,7 +23,7 @@
 									</view> -->
 									<view class="form-row form-column" bindtap="orderStatusShow">
 										<view class="f-row-label">订单状态</view>
-										<view class="f-row-val">{{orderStatusVal['value']?orderStatusVal['value']:'请选择...'}}</view>
+										<view class="f-row-val">{{orderStatusVal['value']?orderStatusVal['value']:'全部'}}</view>
 									</view>
 									<!-- <view class="form-row form-column">
 										<view class="f-row-label">其他</view>
@@ -38,7 +38,12 @@
 					</filter-box>
 				</view>
 			</view>
-			<order-card list="{{list}}" bind:checkboxChange="checkboxChange"></order-card>
+			<block wx:if="{{list.length>0}}">
+				<order-card list="{{list}}" bind:checkboxChange="checkboxChange"></order-card>
+			</block>
+			<block wx:if="{{!loading&&list.length<=0}}">
+				<view class="page-tips">暂无 {{orderStatusVal['value']!='全部'?'['+orderStatusVal['value']+']':''}} 订单</view>
+			</block>
 			<view class="btn-area">
 				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
 			</view>

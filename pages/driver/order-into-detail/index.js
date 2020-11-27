@@ -9,6 +9,7 @@ Page({
   data: {
     dn_no: "",
     list: [],
+    numberPlate: "", //车牌号
     hasNull: false
   },
 
@@ -74,6 +75,49 @@ Page({
   },
   orderCardSubmit(e) {
     console.log("子组件返回值ID：", e.detail);
+    const that = this;
+    const user = util.userInfo.loginInfo;
+    const list = that.data.list[0];
+    const numberPlate = that.data.numberPlate;
+    if (numberPlate == '') {
+      that.setData({
+        error: "请填写您的车牌号",
+      });
+      return false
+    }
+    let data = {
+      "inter": "deliveryOrderIn",
+      "method": "POST",
+      "data": {
+        OrderId: e.detail,
+        UserId: user.Id,
+        UserMobile: user.PhoneNumber,
+        CarrierId: list.ForwarderId,
+        NumberPlate: numberPlate
+      }
+    }
+    wx.showLoading({
+      title: '加载中...',
+    })
+    data["fun"] = function (res) {
+      console.log(res);
+      wx.hideLoading();
+      if (res.status > 0) {
+        wx.showToast({
+          title: '转入成功',
+        });
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 0
+          })
+        }, 2000)
+      } else {
+        that.setData({
+          error: res.msg
+        });
+      }
+    }
+    util.getData(data)
   },
   getData() {
     const that = this;
@@ -87,8 +131,10 @@ Page({
     data["fun"] = function (res) {
       console.log(res);
       wx.hideLoading();
-      if (res.status > 0) {
-        const list = res.data;
+      if (res.status > 0 && res.data) {
+        const list = [{
+          ...res.data
+        }];
         list.map(obj => {
           obj['checkBtn'] = true;
         });

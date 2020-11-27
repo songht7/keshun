@@ -35,7 +35,7 @@ export default {
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】
-      "getVerify": "/api/Message/GetVerify_Response", //发送验证码【post】
+      "getVerify": "/api/Message/GetVerify_Response", //发送验证码
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
       "uploadImage": "/api/File/UploadImage", //图片上传【post】
@@ -51,6 +51,8 @@ export default {
       "driverAdd": "/api/Driver/Add", //司机添加【post】
       "driverUpdate": "/api/Driver/Update", //司机修改【post】
       "driverDelete": "/api/Driver/Delete", //司机删除【post】
+      "batchDeliveryOrderOut": "/api/Order/BatchDeliveryOrderOut", //批量转出交货单【post】
+      "deliveryOrderIn": "/api/Order/DeliveryOrderIn", //转入交货单【post】
       "updateForwarder": "/api/Order/UpdateForwarder", //手动分配承运商【post】
       "orderList": "/api/Order/QueryByPage", //获取订单列表
       "orderList2": "/api/Order/GetOrderInfo", //获取订单列表(分配车辆司机用)(只显示 待处理，已派车)

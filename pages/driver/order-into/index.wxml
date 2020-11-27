@@ -1,4 +1,5 @@
 <!--pages/driver/order-into/index.wxml-->
 <view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<scan-code bind:seachCode="seachCode"></scan-code>
 </view>

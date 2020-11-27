@@ -1,5 +1,5 @@
 // pages/component/home-switch/home-switch.js
-/*"T202011050001" "6100067363"*/
+/*"T202011050001" "6100067363" 6100067363 */
 /*"T202011050002" "6100067368"*/
 /*
  * 12312312313  1 对应科顺员工(物流干事)
@@ -18,7 +18,7 @@ Component({
   properties: { // 定义 参数 属性可以拿到 对应 属性上设置的值
     style: String,
     switchType: Number,
-    siteType:String
+    siteType: String
   },
   data: {
     switchBtns: [],

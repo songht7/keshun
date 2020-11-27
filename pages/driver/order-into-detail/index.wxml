@@ -4,11 +4,14 @@
 	<view class="page-init">
 		<view class="my-order">
 			<block wx:if="{{!hasNull}}">
+				<view class="cks-input-row cks-input-card not-null">
+					<input class="cks-input" type="numberPlate" name="numberPlate" model:value="{{numberPlate}}" data-type="numberPlate" placeholder="请输入您的车牌号" />
+				</view>
 				<order-card list="{{list}}" bind:orderCardSubmit="orderCardSubmit" btnLabel="确认转入">
 				</order-card>
 			</block>
 			<block wx:else>
-				<view>未查询到DN单号[{{dn_no}}]的有关信息</view>
+				<view class="page-tips">未查询到DN单号[{{dn_no}}]的有关信息</view>
 			</block>
 		</view>
 	</view>

@@ -9,3 +9,8 @@ page {
   padding: 40rpx 0;
   position: relative;
 }
+.cks-input-card{
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}

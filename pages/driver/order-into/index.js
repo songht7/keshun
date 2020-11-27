@@ -1,4 +1,7 @@
 // pages/driver/order-into/index.js
+import graceChecker from "../../../common/graceChecker.js";
+// const app = getApp();
+// const util = app.globalData;
 Page({
 
   /**
@@ -67,8 +70,14 @@ Page({
     const that = this;
     console.log(e.detail);
     let formData = e.detail;
-    wx.navigateTo({
-      url: '/pages/driver/order-into-detail/index?code=' + formData.orderCode,
-    })
+    if (formData.orderCode) {
+      wx.navigateTo({
+        url: '/pages/driver/order-into-detail/index?code=' + formData.orderCode,
+      })
+    } else {
+      that.setData({
+        error: "交货单号不能为空"
+      });
+    }
   }
 })

@@ -116,10 +116,11 @@ Page({
     if (checkRes) {
       let data = {
         "inter": "getVerify",
-        "method": "POST",
-        "data": {
-          phone: _formData['phone']
-        }
+        "parm": "?phone=" + _formData['phone'],
+        // "method": "POST",
+        // "data": {
+        //   phone: _formData['phone']
+        // }
       }
       data["fun"] = function (res) {
         console.log(res);

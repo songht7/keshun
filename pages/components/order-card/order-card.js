@@ -49,7 +49,7 @@ Component({
     },
     orderCardSubmit(e) {
       const that = this;
-      const id = that.data.list[0]["id"];
+      const id = that.data.list[0]["Id"];
       this.triggerEvent('orderCardSubmit', id) //访问父组件事件
     },
     navDetail(e) {

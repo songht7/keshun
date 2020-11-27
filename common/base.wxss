@@ -9,6 +9,12 @@ view {
   padding: 0 4%;
 }
 
+.page-tips {
+  line-height: 3;
+  text-align: center;
+  color: #999;
+}
+
 /*轮播*/
 .swiper-box {
   display: block;

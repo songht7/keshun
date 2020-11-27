@@ -9,11 +9,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: true,
+    submitLoading: false,
     parm: {
       page: 1,
       limit: 15,
-      DriverId: 0, //必须 司机id
-      Status: "" //0待处理 1已派车 2已签到 3已入厂 4已出厂 5已跟踪 6已回单 7已结单 8已转出
+      UserId: 0,
+      UserMobile: "",
+      // DriverId: 0, //必须 司机id
+      Status: -1 //0待处理 1已派车 2已签到 3已入厂 4已出厂 5已跟踪 6已回单 7已结单 8已转出
     },
     carrier: {
       CarrierId: "",
@@ -89,7 +93,9 @@ Page({
     const that = this;
     const user = util.userInfo.loginInfo;
     let parm = that.data.parm;
-    parm['DriverId'] = user.Id ? user.Id : 0;
+    parm['UserId'] = user.Id ? user.Id : 0;
+    parm['UserMobile'] = user.PhoneNumber ? user.PhoneNumber : 0;
+    // parm['DriverId'] = user.Id ? user.Id : 0;
     that.getList()
   },
 
@@ -151,11 +157,18 @@ Page({
     const that = this;
     const list = that.data.list;
     const ck = e.detail.value[0];
+    let cks = [];
     list.map((obj) => {
-      obj.checked = ck == 'all' ? true : false
+      obj.checked = ck == 'all' ? true : false;
+      if (ck == 'all') {
+        cks.push(parseInt(obj.Id))
+      } else {
+        cks = [];
+      }
     });
     that.setData({
-      list
+      list,
+      cks
     });
   },
   checkboxChange(e) {
@@ -163,6 +176,13 @@ Page({
     const that = this;
     const list = that.data.list;
     const values = e.detail;
+    const cks = [];
+    values.map((obj, key) => {
+      cks.push(parseInt(obj))
+    });
+    that.setData({
+      cks
+    });
     for (let i = 0, lenI = list.length; i < lenI; ++i) {
       list[i].checked = false;
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -178,47 +198,61 @@ Page({
   },
   onSubmit() {
     const that = this;
+    if (that.data.submitLoading) {
+      return
+    }
     const list = that.data.list;
     const carrierVal = that.data.carrierVal;
-    const cks = [];
-    list.map((obj, key) => {
-      if (obj.checked) {
-        cks.push(obj.Id)
-      }
-    });
+    const cks = that.data.cks;
     console.log(cks, carrierVal);
-    let data = {
-      // "inter": "updateForwarder",
-      "method": "POST",
-      "data": {
-        // Id: cks[0],
-        // ForwarderId: carrierVal.CarrierId,
-        // ForwarderDesc: carrierVal.CarrierDesc,
+    if (cks.length > 0) {
+      const user = util.userInfo.loginInfo;
+      let data = {
+        "inter": "batchDeliveryOrderOut",
+        "method": "POST",
+        "data": {
+          OrderList: cks,
+          UserId: user.Id,
+          UserMobile: user.PhoneNumber
+        }
       }
-    }
-    wx.showLoading({
-      title: '加载中',
-    })
-    data["fun"] = function (res) {
-      console.log(res);
-      wx.hideLoading()
-      if (res.status > 0) {
-        const fL = list.filter((obj, key) => {
-          if (!cks.includes(obj['Id'])) {
-            console.log(obj)
-            return obj
-          }
-        });
+      wx.showLoading({
+        title: '加载中',
+      })
+      that.setData({
+        submitLoading: true
+      });
+      data["fun"] = function (res) {
+        console.log(res);
+        wx.hideLoading();
         that.setData({
-          list: fL
+          submitLoading: false
         });
-      } else {
-        that.setData({
-          error: res.msg
-        });
+        if (res.status > 0) {
+          const fL = list.filter((obj, key) => {
+            if (!cks.includes(obj['Id'])) {
+              console.log(obj)
+              return obj
+            }
+          });
+          that.setData({
+            list: fL
+          });
+          wx.showToast({
+            title: '转出成功',
+          })
+        } else {
+          that.setData({
+            error: res.msg
+          });
+        }
       }
+      util.getData(data)
+    } else {
+      that.setData({
+        error: "请选择订单"
+      });
     }
-    // util.getData(data)
   },
   iconClick(e) {
     const name = e.currentTarget.dataset.name;
@@ -250,8 +284,14 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+    that.setData({
+      loading: true
+    });
     data["fun"] = function (res) {
       console.log(res);
+      that.setData({
+        loading: false
+      });
       wx.hideLoading()
       if (res.status > 0) {
         const _list = res.data;
@@ -306,7 +346,7 @@ Page({
     const that = this;
     const data = e.detail;
     let parm = that.data.parm;
-    parm['CarrierId'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    parm['CarrierId'] = parseInt(data.id) != 999999 ? parseInt(data.id) : null;
     that.setData({
       carrier: {
         CarrierId: parseInt(data.id),
@@ -324,7 +364,7 @@ Page({
     const that = this;
     const data = e.detail;
     let parm = that.data.parm;
-    parm['Status'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    parm['Status'] = parseInt(data.id) != 999999 ? parseInt(data.id) : -1;
     that.setData({
       orderStatusVal: {
         id: parseInt(data.id),
@@ -345,7 +385,7 @@ Page({
       selectCarrierShow: !this.data.selectCarrierShow
     })
   },
-  selectCarrier(e) {
+  selectCarrier(e) { //选择承运商后提交（目前不需）
     const that = this;
     const data = e.detail;
     let parm = that.data.parm;
