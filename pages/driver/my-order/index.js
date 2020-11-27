@@ -120,6 +120,9 @@ Page({
     const that = this;
     const parm = that.data.parm;
     parm['page'] == 1;
+    that.setData({
+      parm
+    });
     that.getList();
   },
 
@@ -131,9 +134,12 @@ Page({
     const that = this;
     const parm = that.data.parm;
     if (that.data.list.length >= that.data.count) {
-      return
+      return false
     }
     parm['page']++;
+    that.setData({
+      parm
+    });
     that.getList('more');
   },
 
@@ -159,17 +165,21 @@ Page({
     const ck = e.detail.value[0];
     let cks = [];
     list.map((obj) => {
-      obj.checked = ck == 'all' ? true : false;
-      if (ck == 'all') {
-        cks.push(parseInt(obj.Id))
-      } else {
-        cks = [];
+      if (obj.FreightType == 1) {
+        let c = ck == 'all' ? true : false;
+        obj.checked = c;
+        if (c) {
+          cks.push(parseInt(obj.Id))
+        } else {
+          cks = [];
+        }
       }
     });
     that.setData({
       list,
       cks
     });
+    console.log(cks);
   },
   checkboxChange(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail)
@@ -229,18 +239,34 @@ Page({
           submitLoading: false
         });
         if (res.status > 0) {
-          const fL = list.filter((obj, key) => {
-            if (!cks.includes(obj['Id'])) {
-              console.log(obj)
-              return obj
+          // const fL = list.filter((obj, key) => {
+          //   //"该订单已经转出过, 请勿重复操作."
+          //   if (!cks.includes(obj['Id'])) {
+          //     console.log(obj)
+          //     return obj
+          //   }
+          // });
+          // that.setData({
+          //   list: fL
+          // });
+          let errList = [];
+          res.data.filter((obj, key) => {
+            if (obj["result"].toString() != "1") {
+              errList.push('[' + obj["dn_no"] + ']' + obj["result"]);
             }
           });
           that.setData({
-            list: fL
+            errList,
+            errListShow: true
           });
-          wx.showToast({
-            title: '转出成功',
-          })
+          if (errList.length < cks.length) {
+            wx.showToast({
+              title: '转出成功',
+            })
+          }
+          setTimeout(() => {
+            that.getList();
+          }, 3000);
         } else {
           that.setData({
             error: res.msg
@@ -298,14 +324,17 @@ Page({
         /** 设置列表可选择 **/
         _list.map(obj => {
           // obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
-          obj['checked'] = false;
-          obj['hasCheck'] = true;
+          if (obj.FreightType == 1) {
+            obj['checked'] = false;
+            obj['hasCheck'] = true;
+          }
         });
         console.log(_list)
         /** /设置列表可选择 **/
         if (type == 'more') {
           that.setData({
-            list: [...that.data.list, ..._list]
+            list: [...that.data.list, ..._list],
+            count: res.count
           });
         } else {
           that.setData({

@@ -1,6 +1,11 @@
 <!--pages/driver/my-order/index.wxml-->
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<top-tips type="error" show="{{errListShow}}">
+		<block wx:if="{{errList}}" wx:for="{{errList}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
+			<view>{{item}}</view>
+		</block>
+	</top-tips>
 	<view class="page-init">
 		<view class="my-order">
 			<view class="filter-box">
