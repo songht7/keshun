@@ -1,10 +1,12 @@
 <!--pages/driver/customer-sign/index.wxml-->
 <view class="container">
-	<scan-code bind:seachCode="onSubmit">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}">
 		<view slot="cont">
 			<view class="cust-block">
 				<view class="code-box">
-					<input class="code-inut" name="receivingCode" model:value="{{receivingCode}}" placeholder="请输入收货码"></input>
+					<input class=" code-inut" name="DeliveryCheckCode" model:value="{{DeliveryCheckCode}}" placeholder="请输入收货码"></input>
+					<!-- <icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="DeliveryCheckCode"></icon-font> -->
 				</view>
 			</view>
 			<view class="cust-block">
@@ -13,13 +15,13 @@
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files">
-								<block wx:for="{{imageList}}" wx:for-item="image" wx:key="*this" wx:for-index="idx">
+								<block wx:if="{{tempImg||datas.Images}}">
 									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 										<view class="delete" bindtap="chooseImage" data-idx="{{idx}}">[重传]</view>
-										<image wx:if="{{image}}" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+										<image class="weui-uploader__img" src="{{tempImg?tempImg:datas.Images}}" data-src="{{tempImg?tempImg:datas.Images}}" bindtap="previewImage"></image>
 									</view>
 								</block>
-								<block wx:if="{{imageList.length<=0}}">
+								<block wx:else>
 									<view class="weui-uploader__file order-pic">
 										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage"></image>
 									</view>

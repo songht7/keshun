@@ -15,6 +15,7 @@
 					<input class="cks-input cks-input-40" type="text" name="code" model:value="{{code}}" data-type="code" bindfocus="onFocus" bindblur="onBlur" placeholder="短信验证码" />
 					<view class="get-code {{btnLoading?'get-code-off':''}}" bindtap="getCode">{{getCodeTxt}}</view>
 				</view>
+				<view wx:if="{{siteType=='dev'}}">{{msgCode?'验证码：'+msgCode:""}}</view>
 				<view class="btn-area">
 					<button type="primary" class="btn-primary" formType="submit">注册</button>
 				</view>

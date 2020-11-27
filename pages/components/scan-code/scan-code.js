@@ -15,6 +15,10 @@ Component({
     disabled: {
       type: Boolean,
       value: false
+    },
+    auto: { //自动提交
+      type: Boolean,
+      value: false
     }
   },
   data: {
@@ -31,14 +35,26 @@ Component({
     var that = this;
   },
   methods: {
+    setCode(code = '') {
+      const that = this;
+      let myCode = that.data.orderCode || code;
+      if (myCode && that.data.auto) {
+        let formData = {
+          orderCode: myCode
+        }
+        this.triggerEvent('setCode', formData) //访问父组件事件
+      }
+    },
     scanCode() {
-      const that = this
+      const that = this;
       wx.scanCode({
         success(res) {
           console.log(res);
-          that.setData({
+          let code = {
             orderCode: res.result
-          })
+          }
+          that.setData(code);
+          that.setCode(code)
         },
         fail(err) {
           console.log(err);

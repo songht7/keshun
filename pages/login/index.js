@@ -19,7 +19,8 @@ Page({
     msgCode: "",
     wxInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    siteType:""
   },
   Create() {
     console.log("Create")
@@ -32,6 +33,9 @@ Page({
     const that = this;
     wx.showLoading({
       title: '加载中',
+    });
+    that.setData({
+      siteType:util.config.siteType
     });
     util.checkUser();
   },
@@ -125,16 +129,25 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
-        wx.showToast({
-          title: '验证码已发送',
-          icon: 'success',
-          duration: 2000
-        })
         if (res.status > 0) {
+          wx.showToast({
+            title: '验证码已发送',
+            icon: 'success',
+            duration: 2000
+          })
           that.setData({
             msgCode: res.msg
           });
-        } else {}
+        } else {
+          if (util.config.siteType == 'dev') {
+            that.setData({
+              msgCode: '123' //*****测试用****
+            });
+          }
+          that.setData({
+            error: res.msg
+          });
+        }
       }
       util.getData(data)
       that.setData({
@@ -170,7 +183,8 @@ Page({
     const that = this;
     console.log(e.detail.value);
     let _formData = e.detail.value;
-    _formData['msgCode'] = that.data.msgCode;
+    const _msgCode = that.data.msgCode;
+    _formData['msgCode'] = _msgCode;
     var rule = [{
       name: "phone",
       checkType: "phoneno",
@@ -183,12 +197,12 @@ Page({
       errorMsg: "请输入验证码"
     }];
     let r = [{
-      name: "msgCode",
+      name: "code",
       checkType: "same",
-      checkRule: "code",
+      checkRule: _msgCode,
       errorMsg: "验证码有误"
     }]
-    // rule = [...rule, ...r];
+    rule = [...rule, ...r];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let data = {
