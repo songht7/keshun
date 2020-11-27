@@ -144,7 +144,7 @@ Page({
       if (res.status > 0 && res.data) {
         that.setData({
           orderData: res.data,
-          DeliveryCheckCode: res.data.DeliveryCheckCode
+          // DeliveryCheckCode: res.data.DeliveryCheckCode
         });
       } else {
         that.setData({
