@@ -16,6 +16,7 @@ Page({
     getCodeTxt: "获取短信验证码",
     phone: "",
     code: "",
+    msgCode: "",
     wxInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -129,7 +130,11 @@ Page({
           icon: 'success',
           duration: 2000
         })
-        if (res.status > 0) {} else {}
+        if (res.status > 0) {
+          that.setData({
+            msgCode: res.msg
+          });
+        } else {}
       }
       util.getData(data)
       that.setData({
@@ -165,6 +170,7 @@ Page({
     const that = this;
     console.log(e.detail.value);
     let _formData = e.detail.value;
+    _formData['msgCode'] = that.data.msgCode;
     var rule = [{
       name: "phone",
       checkType: "phoneno",
@@ -176,6 +182,13 @@ Page({
       checkRule: "",
       errorMsg: "请输入验证码"
     }];
+    let r = [{
+      name: "msgCode",
+      checkType: "same",
+      checkRule: "code",
+      errorMsg: "验证码有误"
+    }]
+    // rule = [...rule, ...r];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let data = {

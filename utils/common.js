@@ -53,6 +53,7 @@ export default {
       "driverDelete": "/api/Driver/Delete", //司机删除【post】
       "batchDeliveryOrderOut": "/api/Order/BatchDeliveryOrderOut", //批量转出交货单【post】
       "deliveryOrderIn": "/api/Order/DeliveryOrderIn", //转入交货单【post】
+      "uploadReceipt": "/api/ReceiptImage/UploadReceipt", //上传回单【post】
       "updateForwarder": "/api/Order/UpdateForwarder", //手动分配承运商【post】
       "orderList": "/api/Order/QueryByPage", //获取订单列表
       "orderList2": "/api/Order/GetOrderInfo", //获取订单列表(分配车辆司机用)(只显示 待处理，已派车)
