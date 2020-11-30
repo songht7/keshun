@@ -65,6 +65,7 @@ export default {
       "signWHGroup": "/api/AccessSign/SignWHGroup", //获取可签到的仓库组合【post】
       "sign": "/api/AccessSign/Sign", //签到【post】
       "signInfo": "/api/AccessSign/SignInfo", //获取签到数据
+      "queryInfoApplets": "/api/AccessSign/QueryInfoApplets", //获取厂内排队信息
     }
   }
 }

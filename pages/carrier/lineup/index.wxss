@@ -20,7 +20,7 @@ page {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
   align-content: center;
   align-items: center;
 }
@@ -37,7 +37,7 @@ page {
   align-content: center;
   align-items: center;
   padding: 0 5rpx;
-  /* margin: 0 20rpx 20rpx 0; */
+  margin: 0 20rpx 20rpx 0;
 }
 
 .fnumb-small {
@@ -70,4 +70,8 @@ page {
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.hasNo {
+  opacity: 0.5;
 }

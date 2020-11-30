@@ -1,52 +1,90 @@
 // pages/carrier/lineup/index.js
+// import graceChecker from "../../../common/graceChecker.js";
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    fieldNumber: ['1', '3', '4', '24', '28', '30'],
-    list: [{
-      id: 1,
-      no: '沪AG123',
-      name: '曹操',
-      phone: '13918181811',
-      field: 1
-    }, {
-      id: 2,
-      no: '沪AG456',
-      name: '荀彧',
-      phone: '13918181812',
-      field: 99
-    }, {
-      id: 3,
-      no: '沪AG789',
-      name: '郭嘉',
-      phone: '13918181813',
-      field: 999
-    }]
+    userInfo: util.userInfo,
+    userType: util.userType,
+    parm: {
+      Status: 0,
+      WareHouseGroupId: 0
+    },
+    lineupShow: false,
+    lineupList: [{
+        "Id": 0,
+        "Value": "待入场"
+      },
+      {
+        "Id": 1,
+        "Value": "可入场"
+      },
+      {
+        "Id": 2,
+        "Value": "已入场"
+      },
+      {
+        "Id": 3,
+        "Value": "可出场"
+      },
+      {
+        "Id": 4,
+        "Value": "已出场"
+      },
+    ],
+    lineupData: {
+      id: 0,
+      value: "待入场"
+    },
+    field: {
+      id: 'Id',
+      val: 'Value'
+    },
+    groupShow: false,
+    groupList: [],
+    groupData: {
+      id: "",
+      value: ""
+    },
+    field2: {
+      id: 'Id',
+      val: 'WarehouseAddress'
+    },
+    dataList: [],
+    fieldNumber: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    let parm = that.data.parm;
+    parm['WareHouseGroupId'] = util.userInfo.loginInfo.WareHouseId;
+    that.setData({
+      userInfo: util.userInfo,
+      userType: util.userType,
+      parm
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const that = this;
+    that.getData();
+    that.getGroup();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -81,5 +119,107 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getData() {
+    const that = this;
+    const _parm = that.data.parm;
+    var params = Object.keys(_parm).map(function (key) {
+      return key + "=" + _parm[key];
+    }).join("&");
+    wx.showLoading({
+      title: '加载中...',
+    })
+    let data = {
+      "inter": "queryInfoApplets",
+      "parm": "?" + params
+    }
+    data["fun"] = function (res) {
+      console.log(res);
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      if (res.status > 0) {
+        let fieldNumber = [];
+        res.data.map((obj, key) => {
+          fieldNumber.push(obj.SortNo);
+        });
+        that.setData({
+          fieldNumber,
+          dataList: res.data
+        });
+      } else {
+        that.setData({
+          error: res.msg
+        });
+      }
+    }
+    util.getData(data)
+  },
+  getGroup() {
+    const that = this;
+    let data = {
+      "inter": "signWHGroup",
+      "method": "POST",
+      "data": {
+        WeChatID: util.userInfo.openid,
+        PhoneNumber: util.userInfo.loginInfo.PhoneNumber
+      }
+    }
+    data["fun"] = function (res) {
+      console.log("getGroup:", res);
+      if (res.status > 0) {
+        that.setData({
+          groupList: res.data
+        });
+      }
+    }
+    util.getData(data)
+  },
+  pickerLineup(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['Status'] = parseInt(data.id);
+    that.setData({
+      parm,
+      lineupData: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      lineupShow: false
+    })
+    that.getData();
+  },
+  lineupShow(parm) { ///选择仓库
+    this.setData({
+      lineupShow: !this.data.lineupShow
+    })
+  },
+  pickerGroup(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['WareHouseGroupId'] = parseInt(data.id);
+    that.setData({
+      groupData: {
+        id: parseInt(data.id),
+        value: data.val
+      },
+      groupShow: false
+    })
+    that.getData();
+  },
+  groupShow(parm) { ///选择仓库
+    this.setData({
+      groupShow: !this.data.groupShow
+    })
+  },
+  maskClose(e) {
+    const that = this;
+    const data = e.detail;
+    that.setData({
+      lineupShow: false,
+      groupShow: false
+    })
+  },
 })

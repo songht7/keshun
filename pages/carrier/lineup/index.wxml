@@ -1,35 +1,74 @@
 <!--pages/carrier/lineup/index.wxml-->
 <view class="container">
-	<view class="line-block">
-		<view class="line-title">当前可进场号</view>
-		<view class="line-main">
-			<view class="field-number">
-				<block wx:for="{{fieldNumber}}" wx:key="*this" wx:for-item="item">
-					<view class="fnumb">{{item}}</view>
-				</block>
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<!-- <view class="top-station"></view>
+	<view class="top-filter">
+		<filter-box id="FilterBox" bind:filterSubmit="filterSubmit">
+			<view slot="cont">
+				<view class="form-box">
+					<form catchsubmit="formSubmit" catchreset="formReset">
+						<view class="form-row">
+							<view class="form-title">更多搜索条件</view>
+						</view>
+						<view class="form-row form-column" bindtap="groupShow">
+							<view class="f-row-label">选择仓库</view>
+							<view class="f-row-val">{{groupData['value']?groupData['value']:'请选择...'}}</view>
+						</view>
+					</form>
+				</view>
 			</view>
-		</view>
+		</filter-box>
+	</view> -->
+	<view class="form-row" bindtap="lineupShow">
+		<view class="f-row-label not-null">入场状态</view>
+		<view class="f-row-val">{{lineupData['value']?lineupData['value']:'请选择...'}}</view>
 	</view>
-	<view class="line-block">
-		<view class="line-title">排队信息</view>
-		<view class="line-main">
-			<view class="field-info">
-				<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
-					<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
-						<view class="panel-block">
-							<view class="panel-left">
-								<view class="panel-title">{{item.no}}</view>
-								<view class="panel-overview">{{item.name}} {{item.phone}}</view>
-							</view>
-							<view class="panel-right">
-								<view class="field-number">
-									<view class="fnumb fnumb-small">{{item.field}}</view>
+	<view class="form-row" bindtap="groupShow">
+		<view class="f-row-label not-null">仓库</view>
+		<view class="f-row-val">{{groupData['value']?groupData['value']:'请选择...'}}</view>
+	</view>
+
+	<block wx:if="{{dataList.length<=0}}">
+		<view class="page-tips">无车辆排队</view>
+	</block>
+	<block wx:else>
+		<view class="{{dataList.length<=0?'hasNo':''}}">
+			<view class="line-block">
+				<view class="line-title">当前可进场号</view>
+				<view class="line-main">
+					<view class="field-number">
+						<block wx:for="{{fieldNumber}}" wx:key="*this" wx:for-item="item">
+							<view class="fnumb">{{item}}</view>
+						</block>
+					</view>
+				</view>
+			</view>
+			<view class="line-block">
+				<view class="line-title">排队信息</view>
+				<view class="line-main">
+					<view class="field-info">
+						<block wx:for="{{dataList}}" wx:key="*this" wx:for-item="item">
+							<view class="panel-row" bindtap="onTap" data-id="{{item.id}}">
+								<view class="panel-block">
+									<view class="panel-left">
+										<view class="panel-title">{{item.CarNo}}</view>
+										<view class="panel-overview">{{item.DriverName}} {{item.DriverPhone}}</view>
+									</view>
+									<view class="panel-right">
+										<view class="field-number">
+											<view class="fnumb fnumb-small">{{item.SortNo}}</view>
+										</view>
+									</view>
 								</view>
 							</view>
-						</view>
+						</block>
 					</view>
-				</block>
+				</view>
 			</view>
 		</view>
-	</view>
+	</block>
+	<!---筛选选择器--->
+	<picker-search list="{{lineupList}}" title="选择入场状态" show="{{lineupShow}}" field="{{field}}" type="lineupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerLineup"></picker-search>
+	<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field2}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
+	<!--- 、筛选选择器 --->
 </view>

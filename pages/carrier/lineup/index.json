@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "排队信息",
-  "usingComponents": {}
+  "usingComponents": {
+    "filter-box": "/pages/components/filter-box/filter-box",
+    "picker-search": "/pages/components/picker-search/picker-search"
+  }
 }
