@@ -173,6 +173,7 @@ const funs = {
           success() {}
         });
         that.userInfo = _userInfo;
+        that.userType = parm.data.PostId;
         wx.showToast({
           title: '登录成功',
           icon: 'success',

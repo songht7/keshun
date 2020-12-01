@@ -42,7 +42,7 @@
 			</view>
 			<view class="form-row" bindtap="driverShow">
 				<view class="f-row-label not-null">选择司机</view>
-				<view class="f-row-val">{{driverData['value']?driverData['value']+(driverData['phone']?'-'+driverData['phone']:''):'请选择...'}}</view>
+				<view class="f-row-val">{{driverData['value']?driverData['value']:'请选择...'}}</view>
 			</view>
 			<!-- <view class="form-row" bindtap="carrierShow">
 				<view class="f-row-label not-null">选择承运商</view>

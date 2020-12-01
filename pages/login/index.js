@@ -17,10 +17,11 @@ Page({
     phone: "",
     code: "",
     msgCode: "",
+    tempPhone: "",
     wxInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    siteType:""
+    siteType: ""
   },
   Create() {
     console.log("Create")
@@ -35,7 +36,7 @@ Page({
       title: '加载中',
     });
     that.setData({
-      siteType:util.config.siteType
+      siteType: util.config.siteType
     });
     util.checkUser();
   },
@@ -136,11 +137,13 @@ Page({
             duration: 2000
           })
           that.setData({
+            tempPhone: _formData['phone'],
             msgCode: res.msg
           });
         } else {
           if (util.config.siteType == 'dev') {
             that.setData({
+              tempPhone: _formData['phone'],
               msgCode: '123' //*****测试用****
             });
           }
@@ -201,6 +204,11 @@ Page({
       checkType: "same",
       checkRule: _msgCode,
       errorMsg: "验证码有误"
+    }, {
+      name: "phone",
+      checkType: "same",
+      checkRule: that.data.tempPhone,
+      errorMsg: "请重新获取验证码"
     }]
     rule = [...rule, ...r];
     var checkRes = graceChecker.check(_formData, rule);
@@ -221,6 +229,11 @@ Page({
       data["fun"] = function (res) {
         console.log(res);
         if (res.status > 0) {
+          that.setData({
+            code: "",
+            msgCode: "",
+            tempPhone: ""
+          });
           that.setUserInfo(res.data);
           util.setStorageUser({
             data: res.data
@@ -243,7 +256,8 @@ Page({
   },
   onFocus(e) {
     console.log(e);
-    this.setData({
+    const that = this;
+    that.setData({
       inputFocus: e.currentTarget.dataset.type
     });
   },
@@ -251,6 +265,14 @@ Page({
     this.setData({
       inputFocus: false
     });
+  },
+  onInput(e) {
+    const that = this;
+    if (that.data.phone.length < 11) {
+      that.setData({
+        code: ""
+      });
+    }
   },
   getUserInfo(e) {
     const that = this;

@@ -30,13 +30,13 @@
 								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="InsuranceCertificateNumber"></icon-font>
 							</view>
 						</view>
-						<view class="form-row form-column">
+						<!-- <view class="form-row form-column">
 							<view class="f-row-label">其他</view>
 							<view class="f-row-val">
-								<input class="form-row-input" data-name="Remark" name="Remark" bindinput="bindInput" value="{{parm.Remark}}" />
-								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="Remark"></icon-font>
+								<input class="form-row-input" data-name="remark" name="remark" bindinput="bindInput" value="{{parm.remark}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="remark"></icon-font>
 							</view>
-						</view>
+						</view> -->
 					</form>
 				</view>
 			</view>

@@ -215,7 +215,7 @@ Page({
     const carrierVal = that.data.carrierVal;
     const cks = that.data.cks;
     console.log(cks, carrierVal);
-    if (cks.length > 0) {
+    if (cks && cks.length > 0) {
       const user = util.userInfo.loginInfo;
       let data = {
         "inter": "batchDeliveryOrderOut",

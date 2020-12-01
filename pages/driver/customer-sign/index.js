@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: false,
     receivingCode: "",
     datas: {
       Images: '',
@@ -156,6 +157,9 @@ Page({
   },
   onSubmit(e) {
     const that = this;
+    if (that.data.loading) {
+      return false
+    }
     const _data = that.data;
     let _formData = {
       OrderId: _data.orderData.Id,
@@ -171,6 +175,11 @@ Page({
       checkRule: "",
       errorMsg: "请查看订单号是否正确"
     }, {
+      name: "DeliveryCheckCode",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请填写收货码"
+    }, {
       name: "Images",
       checkType: "notnull",
       checkRule: "",
@@ -184,6 +193,9 @@ Page({
         "method": "POST",
         "data": _formData
       }
+      that.setData({
+        loading: true
+      })
       data["fun"] = function (res) {
         console.log(res);
         if (res.status > 0) {
@@ -196,6 +208,9 @@ Page({
             })
           }, 2000);
         } else {
+          that.setData({
+            loading: false
+          })
           that.setData({
             error: res.msg
           });

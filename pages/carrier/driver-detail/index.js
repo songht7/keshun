@@ -31,7 +31,7 @@ Page({
         id: options.id,
         datas: util.tempData,
         carrier: {
-          CarrierId: util.tempData.CarrierId,
+          CarrierId: parseInt(util.tempData.CarrierId),
           CarrierDesc: util.tempData.CarrierDesc
         },
       });
@@ -166,7 +166,7 @@ Page({
     }
     if (that.data.userType == 2) {
       const user = that.data.userInfo.loginInfo;
-      _formData["CarrierId"] = user.ForwarderId;
+      _formData["CarrierId"] = parseInt(user.ForwarderId);
       _formData["CarrierDesc"] = user.ForwarderName;
     }
     // console.log("formSubmit:rule:", rule)

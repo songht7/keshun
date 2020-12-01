@@ -65,14 +65,15 @@ Page({
         id: _temp.CarId || "",
         value: _temp.CarNo || ""
       };
+      let dVal = _temp.DriverName + (_temp.DriverPhone ? '-' + _temp.DriverPhone : "")
       let driver = {
         id: _temp.DriverId || "",
-        value: _temp.DriverName || "",
-        phone: _temp.DriverPhone || ""
+        value: dVal
       };
       that.setData({
         id: options.id,
         list: [_temp],
+        temp: _temp,
         date: _temp.PlanArriveDate1 ? _temp['PlanArriveDate1'].split(" ")[0] : d.split(" ")[0],
         PlanArriveDate2: _temp.PlanArriveDate2 ? _temp.PlanArriveDate2 : "",
         carType: _temp.FreightType ? _temp.FreightType : 0,
@@ -407,7 +408,7 @@ Page({
         if (res.data.length > 0) {
           const _data = res.data[0];
           that.setData({
-            pic1: _data.EntrustImage ? _data.EntrustImage : (_data.FrontImage ? _data.FrontImage : ""),
+            pic1: _data.EntrustBookImage ? _data.EntrustBookImage : (_data.FrontImage ? _data.FrontImage : ""),
             pic2: _data.MiddleImage || "",
             pic3: _data.AfterImage || "",
           });
