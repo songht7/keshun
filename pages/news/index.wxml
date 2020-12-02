@@ -4,6 +4,7 @@
 		<my-swiper wx:if="{{detail.length}}" is="swiper" data="{{detail}}"></my-swiper>
 		<view class="page-init" style="padding:25rpx 30rpx">
 			<rich-text nodes="{{detail[0]['Title']}}"></rich-text>
+			<rich-text nodes="{{detail[0]['Content']?detail[0]['Content']:''}}"></rich-text>
 			<rich-text nodes="{{detail[0]['Remark']?detail[0]['Remark']:''}}"></rich-text>
 		</view>
 	</block>
