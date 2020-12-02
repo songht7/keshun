@@ -27,6 +27,7 @@ Page({
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填
     });
+    console.log("util.config.gpsInterval:", util.config.gpsInterval)
     wx.getLocation({
       type: 'wgs84',
       success(res) {
@@ -71,7 +72,7 @@ Page({
       if (!(that.data._location.speed > 0)) {
         return false;
       }
-    }, 10000)
+    }, util.config.gpsInterval)
   },
 
   /**
