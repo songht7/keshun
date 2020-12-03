@@ -7,7 +7,7 @@
 	<slot name="cont"></slot>
 	<view class="page-init">
 		<view class="btn-area">
-			<button type="primary" class="btn-primary" bindtap="seachCode">确定</button>
+			<button type="primary" class="btn-primary {{btnFix?'btn-fix':''}}" bindtap="seachCode">确定</button>
 		</view>
 	</view>
 </view>

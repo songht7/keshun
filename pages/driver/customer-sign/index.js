@@ -73,8 +73,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-  chooseImage() {
+  chooseImage(e) {
     const that = this
+    console.log(e);
+    let key = e.currentTarget.dataset.idx;
     wx.chooseImage({
       sourceType: ['camera', 'album'],
       sizeType: ['compressed', 'original'],

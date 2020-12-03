@@ -16,6 +16,10 @@ Component({
       type: Boolean,
       value: false
     },
+    btnFix: {
+      type: Boolean,
+      value: false
+    },
     auto: { //自动提交
       type: Boolean,
       value: false

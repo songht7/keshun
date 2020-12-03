@@ -23,3 +23,8 @@
   width: 50rpx;
   height: 50rpx;
 }
+.btn-fix{
+  position: fixed;
+  bottom: 50rpx;
+  left: 0;
+}

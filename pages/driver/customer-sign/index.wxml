@@ -1,7 +1,7 @@
 <!--pages/driver/customer-sign/index.wxml-->
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
-	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}">
+	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" disabled="{{true}}" btnFix='{{true}}'>
 		<view slot="cont">
 			<view class="cust-block">
 				<view class="code-box">
@@ -11,13 +11,16 @@
 			</view>
 			<view class="cust-block">
 				<view class="update">
-					<view class="update-title">交货单照片</view>
+					<view class="update-title">
+						交货单照片
+						<view class="upload-btn" bindtap="chooseImage">+上传</view>
+					</view>
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files">
 								<block wx:if="{{tempImg||datas.Images}}">
 									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-										<view class="delete" bindtap="chooseImage" data-idx="{{idx}}">[重传]</view>
+										<view class="delete" bindtap="chooseImage" data-idx="{{0}}">[重传]</view>
 										<image class="weui-uploader__img" src="{{tempImg?tempImg:datas.Images}}" data-src="{{tempImg?tempImg:datas.Images}}" bindtap="previewImage"></image>
 									</view>
 								</block>
