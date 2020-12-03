@@ -1,0 +1,10 @@
+<!--pages/scoring/index.wxml-->
+<view class="container">
+  <top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+  <block wx:if="{{orderCode==''}}">
+    <scan-code bind:seachCode="seachCode"></scan-code>
+  </block>
+  <block wx:else>
+    <web-view src="{{H5link}}" bindmessage="bindmessage" bindload="bindload" binderror="binderror"></web-view>
+  </block>
+</view>

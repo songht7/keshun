@@ -38,6 +38,12 @@ Component({
         tap: "linkTo",
         url: "/pages/driver/location/index"
       }, {
+        label: "交货单评价",
+        icon: "icon-21.png",
+        sw: "100",
+        tap: "linkTo",
+        url: "/pages/scoring/index"
+      }, {
         label: "进入后台",
         icon: "icon-3.png",
         sw: "100",
