@@ -1,6 +1,6 @@
 // pages/scoring/index.js
 import graceChecker from "../../common/graceChecker.js";
-import base64 from "../../common/base64.js";
+var base64  = require('../../common/base64.js');
 // const app = getApp();
 // const util = app.globalData;
 Page({
@@ -77,7 +77,9 @@ Page({
       let random = parseInt(Math.random() * (99 - 10 + 1) + 10, 10);
       let key = formData.orderCode + random;
       key = parseInt(key)
+      console.log("key:", key)
       let b64Key = base64.encode(key);
+      console.log("b64Key:", b64Key)
       H5link = H5link + b64Key;
       console.log("H5link:", H5link)
       that.setData({
