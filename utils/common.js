@@ -13,8 +13,8 @@ var api = {
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   },
   "dev": {
-    "apiurl": "https://www.codesystem.com.cn/cks_api", //接口 https://www.codesystem.com.cn/cks_api
-    "imgurl": "https://www.codesystem.com.cn", //图片域名
+    "apiurl": "https://tms.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api
+    "imgurl": "https://tms.keshun.com.cn", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
@@ -43,6 +43,7 @@ export default {
       "register": "/api/WxAppletsLoginAndRegister/Register", //注册
       "login": "/api/WxAppletsLoginAndRegister/Login", //登录
       "uploadImage": "/api/File/UploadImage", //图片上传【post】
+      "uploadImageForReceiptInMinipro": "/api/File/UploadImageForReceiptInMinipro", //图片上传（回单使用）【post】
       "imageList": "/api/Order/OrderCarImageList", //获取图片 OrderID
       "notice": "/api/Notice/QueryList", //获取公告信息
       "carList": "/api/Car/QueryByPage", //车辆列表

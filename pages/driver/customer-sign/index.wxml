@@ -1,8 +1,7 @@
 <!--pages/driver/customer-sign/index.wxml-->
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
-	<!-- disabled="{{true}}" -->
-	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" btnFix='{{true}}'> 
+	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" btnFix='{{true}}' disabled="{{true}}"> 
 		<view slot="cont">
 			<view class="cust-block">
 				<view class="code-box">

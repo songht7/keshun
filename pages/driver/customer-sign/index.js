@@ -10,6 +10,7 @@ Page({
   data: {
     loading: false,
     receivingCode: "",
+    DN_No: "",
     datas: {
       Images: [],
       tempImg: [],
@@ -85,19 +86,31 @@ Page({
       success(res) {
         console.log("chooseImage:", res);
         const _tempFile = res.tempFilePaths[0];
+        wx.showLoading({
+          title: '上传中...',
+        })
         let data = {
-          "inter": "uploadImage",
+          "inter": "uploadImageForReceiptInMinipro",
           "filePath": _tempFile
         }
         data["fun"] = function (res) {
           console.log(res);
+          wx.hideLoading()
           if (res.status > 0) {
-            let _datas = that.data.datas;
-            _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
-            _datas["Images"] = [..._datas["Images"], res.msg];
-            that.setData({
-              ..._datas
-            });
+            let qrCode = res.data.qrCode;
+            let DN_No = that.data.DN_No;
+            if (qrCode && DN_No == qrCode) {
+              let _datas = that.data.datas;
+              _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
+              _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
+              that.setData({
+                ..._datas
+              });
+            } else {
+              that.setData({
+                error: "请重新上传清晰二维码图"
+              });
+            }
           } else {
             that.setData({
               error: res.msg
@@ -130,6 +143,9 @@ Page({
     const that = this;
     // console.log("setCode::setCode:", e.detail.orderCode);
     if (e.detail.orderCode) {
+      that.setData({
+        DN_No: e.detail.orderCode
+      });
       that.getData(e.detail.orderCode);
     }
   },
@@ -190,7 +206,6 @@ Page({
     }];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
-      _formData['Images'] = [_formData['Images']];
       let data = {
         "inter": "uploadReceipt",
         "method": "POST",
