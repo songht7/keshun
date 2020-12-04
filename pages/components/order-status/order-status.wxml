@@ -14,7 +14,7 @@
 					</view>
 					<view wx:if="{{!item.ReceiptImage}}" class="status-subtitle {{index>0&&!item.ReceiptImage&&(index+1!=count||index==0)?'status-subtitle-icon':''}}">{{item.Address}}</view>
 					<view class="status-pic-list" wx:if="{{item.ReceiptImage}}">
-						<image class="status-pic" src="{{item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit" bindtap="previewImage" data-src="{{item.ReceiptImage[0]['ImageAddress']}}"></image>
+						<image class="status-pic" src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit" bindtap="previewImage" data-src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}"></image>
 					</view>
 				</view>
 			</view>

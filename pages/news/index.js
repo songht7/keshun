@@ -18,7 +18,8 @@ Page({
     const that = this;
     const id = options.id ? options.id : 0;
     that.setData({
-      id
+      id,
+      imgurl: util.config.imgurl
     });
     console.log(util.tempData)
     if (util.tempData.Id) {

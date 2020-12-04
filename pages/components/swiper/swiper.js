@@ -15,7 +15,9 @@ Component({
       value: false
     }
   },
-  data: {},
+  data: {
+    imgurl: util.config.imgurl
+  },
   created: function () {},
   attached: function () {},
   ready: function () {

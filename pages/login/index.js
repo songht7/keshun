@@ -130,12 +130,12 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
+        wx.showToast({
+          title: '验证码已发送',
+          icon: 'success',
+          duration: 2000
+        })
         if (res.status > 0) {
-          wx.showToast({
-            title: '验证码已发送',
-            icon: 'success',
-            duration: 2000
-          })
           that.setData({
             tempPhone: _formData['phone'],
             msgCode: res.msg

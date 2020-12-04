@@ -1,11 +1,13 @@
 <!--pages/driver/customer-sign/index.wxml-->
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
-	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" disabled="{{true}}" btnFix='{{true}}'>
+	<!-- disabled="{{true}}" -->
+	<scan-code bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" btnFix='{{true}}'> 
 		<view slot="cont">
 			<view class="cust-block">
 				<view class="code-box">
-					<input class=" code-inut" name="DeliveryCheckCode" model:value="{{DeliveryCheckCode}}" placeholder="请输入收货码"></input>
+					<input class=" code-inut" name="DeliveryCheckCode" model:value="{{DeliveryCheckCode}}"
+						placeholder="请输入收货码"></input>
 					<!-- <icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="DeliveryCheckCode"></icon-font> -->
 				</view>
 			</view>
@@ -18,17 +20,18 @@
 					<view class="update-img">
 						<view class="weui-uploader__bd">
 							<view class="weui-uploader__files">
-								<block wx:if="{{tempImg||datas.Images}}">
+								<block wx:if="{{tempImg.length}}" wx:for="{{tempImg}}" wx:key="*this" wx:for-item="item"
+									wx:for-index="index">
 									<view class="weui-uploader__file order-pic" hover-class="pic-hover">
-										<view class="delete" bindtap="chooseImage" data-idx="{{0}}">[重传]</view>
-										<image class="weui-uploader__img" src="{{tempImg?tempImg:datas.Images}}" data-src="{{tempImg?tempImg:datas.Images}}" bindtap="previewImage"></image>
+										<!-- <view class="delete" bindtap="chooseImage" data-idx="{{0}}">[重传]</view> -->
+										<image class="weui-uploader__img" src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
 									</view>
 								</block>
-								<block wx:else>
+								<!-- <block wx:else>
 									<view class="weui-uploader__file order-pic">
 										<image class="weui-uploader__img" src="/static/default.jpg" bindtap="chooseImage"></image>
 									</view>
-								</block>
+								</block> -->
 							</view>
 							<!-- <view class="weui-uploader__input-box">
 								<view class="weui-uploader__input" bindtap="chooseImage"></view>

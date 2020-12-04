@@ -59,7 +59,7 @@
 									<block wx:if="{{tempImg1||pic1}}">
 										<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-											<image class="weui-uploader__img" src="{{tempImg1?tempImg1:pic1}}" data-src="{{tempImg1?tempImg1:pic1}}" bindtap="previewImage" data-idx="1"></image>
+											<image class="weui-uploader__img" src="{{tempImg1?tempImg1:imgurl+pic1}}" data-src="{{tempImg1?tempImg1:imgurl+pic1}}" bindtap="previewImage" data-idx="1"></image>
 										</view>
 									</block>
 									<block wx:else>
@@ -74,7 +74,7 @@
 										<block wx:if="{{tempImg2||pic2}}">
 											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 												<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
-												<image class="weui-uploader__img" src="{{tempImg2?tempImg2:pic2}}" data-src="{{tempImg2?tempImg2:pic2}}" bindtap="previewImage" data-idx="2"></image>
+												<image class="weui-uploader__img" src="{{tempImg2?tempImg2:imgurl+pic2}}" data-src="{{tempImg2?tempImg2:imgurl+pic2}}" bindtap="previewImage" data-idx="2"></image>
 											</view>
 										</block>
 										<block wx:else>
@@ -88,7 +88,7 @@
 										<block wx:if="{{tempImg3||pic3}}">
 											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 												<view class="delete" bindtap="chooseImage" data-idx="3">[重传]</view>
-												<image class="weui-uploader__img" src="{{tempImg3?tempImg3:pic3}}" data-src="{{tempImg3?tempImg3:pic3}}" bindtap="previewImage" data-idx="3"></image>
+												<image class="weui-uploader__img" src="{{tempImg3?tempImg3:imgurl+pic3}}" data-src="{{tempImg3?tempImg3:imgurl+pic3}}" bindtap="previewImage" data-idx="3"></image>
 											</view>
 										</block>
 										<block wx:else>

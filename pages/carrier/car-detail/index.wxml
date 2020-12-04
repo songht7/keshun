@@ -9,7 +9,8 @@
 			</view>
 			<view class="form-row">
 				<view class="f-row-label not-null">车牌号码</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="NumberPlate" name="NumberPlate" bindinput="bindInput" value="{{datas.NumberPlate}}" /></view>
+				<view class="f-row-val"><input class="form-row-input" data-name="NumberPlate" name="NumberPlate"
+						bindinput="bindInput" value="{{datas.NumberPlate}}" /></view>
 			</view>
 			<!-- <view class="form-row">
 				<view class="f-row-label">所属运输公司</view>
@@ -17,11 +18,14 @@
 			</view> -->
 			<view class="form-row">
 				<view class="f-row-label not-null">车辆行驶证</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="DrivingIicense" name="DrivingIicense" bindinput="bindInput" value="{{datas.DrivingIicense}}" /></view>
+				<view class="f-row-val"><input class="form-row-input" data-name="DrivingIicense" name="DrivingIicense"
+						bindinput="bindInput" value="{{datas.DrivingIicense}}" /></view>
 			</view>
 			<view class="form-row">
 				<view class="f-row-label not-null">车辆保险证明单号</view>
-				<view class="f-row-val"><input class="form-row-input" data-name="InsuranceCertificateNumber" name="InsuranceCertificateNumber" bindinput="bindInput" value="{{datas.InsuranceCertificateNumber}}" /></view>
+				<view class="f-row-val"><input class="form-row-input" data-name="InsuranceCertificateNumber"
+						name="InsuranceCertificateNumber" bindinput="bindInput" value="{{datas.InsuranceCertificateNumber}}" />
+				</view>
 			</view>
 			<!-- <view class="form-row">
 				<view class="f-row-label">车辆尺寸（MM）</view>
@@ -49,12 +53,14 @@
 									<block wx:if="{{tempImg||datas.Images}}">
 										<view class="weui-uploadr__file order-pic order-pic-big" hover-class="pic-hover">
 											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
-											<image class="weui-uploader__img" src="{{tempImg?tempImg:datas.Images}}" data-src="{{tempImg?tempImg:datas.Images}}" bindtap="previewImage"></image>
+											<image class="weui-uploader__img" src="{{tempImg?tempImg:imgurl+datas.Images}}"
+												data-src="{{tempImg?tempImg:imgurl+datas.Images}}" bindtap="previewImage"></image>
 										</view>
 									</block>
 									<block wx:else>
 										<view class="weui-uploader__file order-pic order-pic-nomal">
-											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage" mode="aspectFit"></image>
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage"
+												mode="aspectFit"></image>
 										</view>
 									</block>
 								</view>
@@ -68,7 +74,8 @@
 				<view class="f-row-label">备注</view>
 				<view class="f-row-area">
 					<!-- bindblur="bindTextAreaBlur" -->
-					<textarea class="form-row-area" data-name="Remark" name="Remark" bindinput="bindInput" auto-height value="{{datas.Remark}}" placeholder="" />
+					<textarea class="form-row-area" data-name="Remark" name="Remark" bindinput="bindInput" auto-height
+						value="{{datas.Remark}}" placeholder="" />
 					</view>
 			</view>
 			<view class="page-init">

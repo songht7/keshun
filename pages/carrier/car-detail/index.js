@@ -48,9 +48,11 @@ Page({
   onReady: function () {
     const that = this;
     that.getCarrier();
+    console.log("imgurl::", util.config.imgurl)
     that.setData({
       userInfo: util.userInfo,
       userType: util.userType,
+      imgurl: util.config.imgurl
     });
   },
 
@@ -155,7 +157,7 @@ Page({
     const current = e.target.dataset.src
     const url1 = that.data.datas['Images'];
     const url2 = that.data.datas['tempImg'];
-    const url = url2 ? url2 : url1;
+    const url = url2 ? url2 : (that.data.imgurl + url1);
     wx.previewImage({
       current,
       urls: [url]

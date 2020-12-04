@@ -99,6 +99,7 @@ Page({
     that.setData({
       userInfo: util.userInfo,
       userType: util.userType,
+      imgurl: util.config.imgurl
     });
   },
 

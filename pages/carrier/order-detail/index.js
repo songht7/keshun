@@ -45,7 +45,8 @@ Page({
   onLoad: function (options) {
     const that = this;
     that.setData({
-      code: options.code
+      code: options.code,
+      imgurl: util.config.imgurl
     });
     that.getList()
   },

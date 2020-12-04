@@ -62,6 +62,9 @@ module.exports = {
 				case 'notsame':
 					if (data[rule[i].name] == rule[i].checkRule) { this.error = rule[i].errorMsg; return false; }
 				break;
+				case 'greater':
+					if (data[rule[i].name].length == rule[i].checkRule) { this.error = rule[i].errorMsg; return false; }
+				break;
 				case 'email':
 					var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 					if (!reg.test(data[rule[i].name])) { this.error = rule[i].errorMsg; return false; }

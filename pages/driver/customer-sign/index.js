@@ -11,9 +11,10 @@ Page({
     loading: false,
     receivingCode: "",
     datas: {
-      Images: '',
-      tempImg: '',
+      Images: [],
+      tempImg: [],
     },
+    imgCount: 0,
     orderData: {},
     DeliveryCheckCode: ""
   },
@@ -92,8 +93,8 @@ Page({
           console.log(res);
           if (res.status > 0) {
             let _datas = that.data.datas;
-            _datas["tempImg"] = _tempFile;
-            _datas["Images"] = res.msg;
+            _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
+            _datas["Images"] = [..._datas["Images"], res.msg];
             that.setData({
               ..._datas
             });
@@ -115,7 +116,7 @@ Page({
     const url = url2 ? url2 : url1;
     wx.previewImage({
       current,
-      urls: [url]
+      urls: url
     })
   },
   delImage(e) {
@@ -183,8 +184,8 @@ Page({
       errorMsg: "请填写收货码"
     }, {
       name: "Images",
-      checkType: "notnull",
-      checkRule: "",
+      checkType: "greater",
+      checkRule: 0,
       errorMsg: "请上传交货单照片"
     }];
     var checkRes = graceChecker.check(_formData, rule);

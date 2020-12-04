@@ -46,7 +46,8 @@ Page({
     const that = this;
     this.setData({
       user: util.userInfo,
-      siteType: util.config.siteType
+      siteType: util.config.siteType,
+      imgurl: util.config.imgurl
     });
     if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
       util.subscribeMessage();
