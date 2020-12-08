@@ -38,6 +38,11 @@ Page({
     that.setData({
       siteType: util.config.siteType
     });
+    if (util.config.siteType != 'dev') {
+      that.setData({
+        loginAuto: true
+      });
+    }
     util.checkUser();
   },
 
