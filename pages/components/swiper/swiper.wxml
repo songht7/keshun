@@ -4,7 +4,7 @@
 		interval="3000" duration="500" indicator-color="#8aa4c5" indicator-active-color="#225597">
 		<block wx:for="{{data}}" wx:for-item="item" wx:for-index="index" wx:key="*this">
 			<swiper-item bindtap="navTo" data-id="{{item.Id?item.Id:''}}" data-index="{{index}}">
-				<image class="silde-img" src="{{imgurl+item.TitleImage}}" mode="aspectFill"></image>
+				<image class="silde-img" src="{{item.Id?imgurl+item.TitleImage:item.TitleImage}}" mode="aspectFill"></image>
 			</swiper-item>
 		</block>
 	</swiper>
