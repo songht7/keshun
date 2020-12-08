@@ -3,7 +3,8 @@
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="form-box">
 		<form catchsubmit="formSubmit" catchreset="formReset">
-			<view wx-if="{{userType&&userType!=2}}" class="form-row" bindtap="carrierShow">
+			<!-- bindtap="carrierShow" -->
+			<view wx-if="{{userType&&userType!=2}}" class="form-row">
 				<view class="f-row-label not-null">承运商名称</view>
 				<view class="f-row-val">{{carrier['CarrierDesc']}}</view>
 			</view>
