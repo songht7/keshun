@@ -115,7 +115,7 @@ Page({
       });
       if (that.data.userType == 1) {//物流干事 承运商id：1 自提 
         let userType1 = cList.filter(obj => obj.key == "1");
-        console.log("userType1:", userType1);
+        // console.log("userType1:", userType1);
         that.setData({
           carrier: {
             CarrierId: parseInt(userType1[0].key),
