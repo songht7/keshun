@@ -27,6 +27,7 @@ Page({
   onLoad: function (options) {
     const that = this;
     if (options.id) {
+      console.log("tempData::", util.tempData);
       that.setData({
         id: options.id,
         datas: util.tempData,

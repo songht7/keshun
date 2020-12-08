@@ -35,7 +35,7 @@ export default {
     "mapkey": "6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q", //腾讯地图mapkey
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
-    "gpsInterval": lks == 'dev' ? 10000 : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时）
+    "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时）
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】

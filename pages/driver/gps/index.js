@@ -45,7 +45,17 @@ Page({
     wx.startLocationUpdateBackground({
       success() {
         wx.onLocationChange((loc) => {
-          that.setLocation(loc);
+          console.log("startLocationUpdateBackground：", loc);
+          const date = util.formatTime(new Date(), '年月日');
+          const _location = {
+            ...loc,
+            time: Date.now(),
+            date: date
+          }
+          that.setData({
+            _location
+          });
+          // that.setLocation(_location);
         })
       },
       fail(e) {
@@ -55,12 +65,12 @@ Page({
     clearInterval(that.data.timer)
     that.data.timer = setInterval(() => {
       const _location = that.data._location;
-      const date = util.formatTime(new Date(), '年月日');
-      that.data._location = {
-        ..._location,
-        time: Date.now(),
-        date: date
-      }
+      // const date = util.formatTime(new Date(), '年月日');
+      // that.data._location = {
+      //   ..._location,
+      //   time: Date.now(),
+      //   date: date
+      // }
       /// 异常点返回
       if (!_location.latitude && !_location.latitude) {
         return false;
@@ -69,7 +79,7 @@ Page({
       that.getSDKAddress(_location)
       ////////////////////////////////////////////////
       /// 速度大于1才记录
-      if (!(that.data._location.speed > 0)) {
+      if (!(_location.speed > 0)) {
         return false;
       }
     }, util.config.gpsInterval)

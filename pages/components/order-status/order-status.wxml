@@ -9,12 +9,21 @@
 				</view>
 				<view class="status-block status-right">
 					<view wx:if="{{item.ReceiptImage||index+1==count}}" class="status-title">
-						<image wx:if="{{index+1==count||index==0}}" class="order-icon" src="/static/goods-{{!item.ReceiptImage?'1':'2'}}.png" mode="aspectFit"></image>
-						{{item.Address}}
+						<image wx:if="{{index+1==count||index==0}}" class="order-icon"
+							src="/static/goods-{{!item.ReceiptImage?'1':'2'}}.png" mode="aspectFit"></image>
+						<view wx:if="{{!item.ReceiptImage}}">已发货</view>
+						<view wx:else>
+							<view>已签收</view>
+							<view>{{item.Address?item.Address:""}}</view>
+						</view>
 					</view>
-					<view wx:if="{{!item.ReceiptImage}}" class="status-subtitle {{index>0&&!item.ReceiptImage&&(index+1!=count||index==0)?'status-subtitle-icon':''}}">{{item.Address}}</view>
+					<!-- index+1!=count 底下一条不显示地址 -->
+					<view wx:if="{{!item.ReceiptImage&&index+1!=count}}"
+						class="status-subtitle {{index>0&&!item.ReceiptImage&&(index+1!=count||index==0)?'status-subtitle-icon':''}}">
+						{{item.Address?item.Address:""}}</view>
 					<view class="status-pic-list" wx:if="{{item.ReceiptImage}}">
-						<image class="status-pic" src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit" bindtap="previewImage" data-src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}"></image>
+						<image class="status-pic" src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}" mode="aspectFit"
+							bindtap="previewImage" data-src="{{imgurl+item.ReceiptImage[0]['ImageAddress']}}"></image>
 					</view>
 				</view>
 			</view>
