@@ -119,7 +119,7 @@ Page({
   onPullDownRefresh: function () {
     const that = this;
     const parm = that.data.parm;
-    parm['page'] == 1;
+    parm['page'] = 1;
     that.setData({
       parm
     });
@@ -319,6 +319,7 @@ Page({
         loading: false
       });
       wx.hideLoading()
+      wx.stopPullDownRefresh()
       if (res.status > 0) {
         const _list = res.data;
         /** 设置列表可选择 **/
@@ -360,7 +361,7 @@ Page({
           key: 999999,
           value: "全部"
         }, ...res.data],
-        count: res.count
+        carrierCount: res.count
       });
     }
     util.getData(data)

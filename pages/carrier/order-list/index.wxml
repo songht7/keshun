@@ -1,4 +1,4 @@
-<!--pages/carrier/distribute/index.wxml-->
+<!--pages/carrier/order-list/index.wxml-->
 <view class="container">
 	<view class="page-init">
 		<view class="my-order">

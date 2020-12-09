@@ -22,6 +22,8 @@
     "pages/carrier/car-detail/index",
     "pages/carrier/order/index",
     "pages/carrier/order-detail/index",
+    "pages/carrier/order-list/index",
+    "pages/carrier/order-list-detail/index",
     "pages/carrier/lineup/index",
     "pages/carrier/distribute/index",
     "pages/carrier/distribute-detail/index",

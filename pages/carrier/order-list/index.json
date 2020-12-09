@@ -3,5 +3,7 @@
   "usingComponents": {
     "order-card": "/pages/components/order-card/order-card",
     "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }

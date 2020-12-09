@@ -94,7 +94,7 @@ Page({
   onPullDownRefresh: function () {
     const that = this;
     const parm = that.data.parm;
-    parm['page'] == 1;
+    parm['page'] = 1;
     that.getList();
   },
 
@@ -135,17 +135,26 @@ Page({
     data["fun"] = function (res) {
       console.log(res);
       wx.hideLoading()
-      if (type == 'more') {
-        const _list = res.data;
-        that.setData({
-          list: [...that.data.list, ..._list],
-          count: res.count
-        });
-      } else {
-        that.setData({
-          list: res.data,
-          count: res.count
-        });
+      wx.stopPullDownRefresh()
+      if (res.status >= 1) {
+        var _list = res.data;
+        _list = _list.map((obj, k) => {
+          if (obj.PlanDeliveryDate) {
+            obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0]
+          }
+          return obj
+        })
+        if (type == 'more') {
+          that.setData({
+            list: [...that.data.list, ..._list],
+            count: res.count
+          });
+        } else {
+          that.setData({
+            list: _list,
+            count: res.count
+          });
+        }
       }
     }
     util.getData(data)
@@ -163,7 +172,7 @@ Page({
           key: 999999,
           value: "全部"
         }, ...res.data],
-        count: res.count
+        carrierCount: res.count
       });
     }
     util.getData(data)

@@ -16,7 +16,7 @@
 							货物数量：<text>{{item.numb}}</text>
 						</view> -->
 						<view class="order-init">
-							总重量：<text>{{item.weight}}</text>
+							总重量：<text>{{item.TotalWeight>=0?item.TotalWeight+'吨':''}}</text>
 						</view>
 					</view>
 				</view>

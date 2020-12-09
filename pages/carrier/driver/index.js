@@ -74,7 +74,7 @@ Page({
   onPullDownRefresh: function () {
     const that = this;
     const parm = that.data.parm;
-    parm['page'] == 1;
+    parm['page'] = 1;
     that.getList();
   },
 
@@ -113,6 +113,7 @@ Page({
     data["fun"] = function (res) {
       console.log(res);
       wx.hideLoading()
+      wx.stopPullDownRefresh()
       if (type == 'more') {
         const _list = res.data;
         that.setData({
@@ -189,7 +190,7 @@ Page({
           key: 999999,
           value: "全部"
         }, ...res.data],
-        count: res.count
+        carrierCount: res.count
       });
     }
     util.getData(data)
