@@ -2,6 +2,8 @@
 import graceChecker from "../../../common/graceChecker.js";
 const app = getApp();
 const util = app.globalData;
+var QQMapWX = require('../../../common/qqmap-wx-jssdk.min.js');
+var qqmapsdk, interval = "";
 Page({
 
   /**
@@ -17,6 +19,15 @@ Page({
     },
     imgCount: 0,
     orderData: {},
+    source: "JK",
+    location: {},
+    locationList: [{
+      "address": "",
+      "date": ""
+    }],
+    latitude: "",
+    longitude: "",
+    address: "",
     DeliveryCheckCode: ""
   },
 
@@ -24,7 +35,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        console.log(res);
+        that.setData({
+          location: res
+        });
+        that.getSDKAddress()
+      },
+      fail() {
+        that.setData({
+          error: "定位失败,请尝试重载界面"
+        });
+      }
+    })
+    qqmapsdk = new QQMapWX({
+      key: util.config.mapkey // 必填
+    });
   },
 
   /**
@@ -187,7 +216,7 @@ Page({
       CreateUser: _data.orderData.CreateUser,
       LastUpdateUser: _data.orderData.LastUpdateUser,
     };
-    console.log(_formData);
+    // console.log(_formData);
     var rule = [{
       name: "OrderId",
       checkType: "notnull",
@@ -217,14 +246,10 @@ Page({
       data["fun"] = function (res) {
         console.log(res);
         if (res.status > 0) {
+          that.uploadOrderGPS()
           wx.showToast({
             title: res.msg || "提交成功",
           });
-          setTimeout(() => {
-            wx.navigateBack({
-              delta: 0
-            })
-          }, 2000);
         } else {
           that.setData({
             loading: false
@@ -240,5 +265,62 @@ Page({
         error: graceChecker.error
       });
     }
+  },
+  uploadOrderGPS() {
+    const that = this;
+    const _data = that.data;
+    let data = {
+      "inter": "uploadOrderGPS",
+      "method": "POST",
+      "data": {
+        Dn_No: _data.DN_No,
+        Longitude: _data.location.longitude,
+        Latitude: _data.location.latitude,
+        Address: _data.address,
+        Source: _data.source
+      }
+    }
+    // console.log("uploadOrderGPS：：：", data);
+    data["fun"] = function (res) {
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 0
+        })
+      }, 2000);
+      if (res.status > 0) {} else {}
+    }
+    util.getData(data)
+  },
+  getSDKAddress() {
+    const that = this;
+    const date = util.formatTime(new Date(), '年月日');
+    //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: that.data.location.latitude,
+        longitude: that.data.location.longitude
+      },
+      success: function (addressRes) {
+        // console.log("address:", addressRes)
+        var city = addressRes.result.address_component.city + ',' + addressRes.result.address_component.district;
+        var address = addressRes.result.formatted_addresses.recommend;
+        // var address = addressRes.result.address;
+        const _locationList = [{
+          "address": city + ',' + address,
+          "date": date
+        }]
+        that.setData({
+          address: city + ',' + address,
+          locationList: _locationList
+        });
+      },
+      fail(err) {
+        wx.hideLoading();
+        that.setData({
+          error: "获取位置信息失败"
+        });
+        // console.log("===qqmapsdk-err===", err);
+      }
+    })
   }
 })
