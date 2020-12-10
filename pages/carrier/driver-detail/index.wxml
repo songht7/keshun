@@ -24,6 +24,32 @@
 						bindinput="bindInput" value="{{datas.ContactPhone}}" /></view>
 			</view>
 			<view class="form-row form-column">
+				<view class="f-row-label not-null">驾驶证图片</view>
+				<view class="f-row-img pic-big">
+					<view class="update-img">
+						<view class="weui-uploader__bd">
+							<view class="weui-uploader__files pic-box">
+								<view class="pic-block">
+									<block wx:if="{{tempImg||datas.Images}}">
+										<view class="weui-uploadr__file order-pic order-pic-big" hover-class="pic-hover">
+											<view class="delete" bindtap="chooseImage" data-idx="1">[重传]</view>
+											<image class="weui-uploader__img" src="{{tempImg?tempImg:imgurl+datas.Images}}"
+												data-src="{{tempImg?tempImg:imgurl+datas.Images}}" bindtap="previewImage"></image>
+										</view>
+									</block>
+									<block wx:else>
+										<view class="weui-uploader__file order-pic order-pic-nomal">
+											<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage"
+												mode="aspectFit"></image>
+										</view>
+									</block>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="form-row form-column">
 				<view class="f-row-label">备注</view>
 				<view class="f-row-area">
 					<textarea class="form-row-area" data-name="Remark" name="Remark" bindinput="bindInput" auto-height

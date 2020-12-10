@@ -12,7 +12,10 @@ Page({
     userType: util.userType,
     loading: false,
     id: "",
-    datas: {},
+    datas: {
+      Images: '',
+      tempImg: '',
+    },
     carrier: {
       CarrierId: "",
       CarrierDesc: ""
@@ -31,6 +34,7 @@ Page({
       that.setData({
         id: options.id,
         datas: util.tempData,
+        imgurl: util.config.imgurl,
         carrier: {
           CarrierId: parseInt(util.tempData.CarrierId),
           CarrierDesc: util.tempData.CarrierDesc
@@ -113,7 +117,7 @@ Page({
         carrierList: cList,
         count: res.count
       });
-      if (that.data.userType == 1) {//物流干事 承运商id：1 自提 
+      if (that.data.userType == 1) { //物流干事 承运商id：1 自提 
         let userType1 = cList.filter(obj => obj.key == "1");
         // console.log("userType1:", userType1);
         that.setData({
@@ -141,6 +145,7 @@ Page({
       return false;
     }
     let _formData = e.detail.value;
+    _formData["Images"] = that.data.datas.Images;
     const Id = that.data.id;
     _formData = {
       ...that.data.carrier,
@@ -166,6 +171,11 @@ Page({
       checkType: "phoneno",
       checkRule: "",
       errorMsg: "请填写正确的联系电话"
+    }, {
+      name: "Images",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请上传驾驶证图片"
     }];
     if (that.data.userType != 2) {
       let r = [{
@@ -259,6 +269,49 @@ Page({
           util.getData(data)
         } else if (res.cancel) {}
       }
+    })
+  },
+  chooseImage(e) {
+    const that = this
+    wx.chooseImage({
+      sourceType: ['camera', 'album'],
+      sizeType: ['compressed', 'original'],
+      count: 1,
+      success(res) {
+        console.log("chooseImage:", res);
+        const _tempFile = res.tempFilePaths[0];
+        let data = {
+          "inter": "uploadImage",
+          "filePath": _tempFile
+        }
+        data["fun"] = function (res) {
+          console.log(res);
+          if (res.status > 0) {
+            let _datas = that.data.datas;
+            _datas["tempImg"] = _tempFile;
+            _datas["Images"] = res.msg;
+            that.setData({
+              ..._datas
+            });
+          } else {
+            that.setData({
+              error: res.msg
+            });
+          }
+        }
+        util.uploadFile(data)
+      }
+    })
+  },
+  previewImage(e) {
+    const that = this;
+    const current = e.target.dataset.src
+    const url1 = that.data.datas['Images'];
+    const url2 = that.data.datas['tempImg'];
+    const url = url2 ? url2 : (that.data.imgurl + url1);
+    wx.previewImage({
+      current,
+      urls: [url]
     })
   },
   carrierShow(parm) { ///选择承运商
