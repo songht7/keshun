@@ -13,6 +13,9 @@ Page({
     loading: false,
     receivingCode: "",
     DN_No: "",
+    ISSendDCCode: 0, //0无收货码 1有收货码
+    DeliveryCheckCode: "", //详细返回的收货码
+    Status: 0, //6,7不能提交
     datas: {
       Images: [],
       tempImg: [],
@@ -27,8 +30,7 @@ Page({
     }],
     latitude: "",
     longitude: "",
-    address: "",
-    DeliveryCheckCode: ""
+    address: ""
   },
 
   /**
@@ -107,48 +109,54 @@ Page({
   chooseImage(e) {
     const that = this
     console.log(e);
-    let key = e.currentTarget.dataset.idx;
-    wx.chooseImage({
-      sourceType: ['camera', 'album'],
-      sizeType: ['compressed', 'original'],
-      count: 1,
-      success(res) {
-        console.log("chooseImage:", res);
-        const _tempFile = res.tempFilePaths[0];
-        wx.showLoading({
-          title: '上传中...',
-        })
-        let data = {
-          "inter": "uploadImageForReceiptInMinipro",
-          "filePath": _tempFile
-        }
-        data["fun"] = function (res) {
-          console.log(res);
-          wx.hideLoading()
-          if (res.status > 0) {
-            let qrCode = res.data.qrCode;
-            let DN_No = that.data.DN_No;
-            if (qrCode && DN_No == qrCode) {
-              let _datas = that.data.datas;
-              _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
-              _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
-              that.setData({
-                ..._datas
-              });
+    if (that.data.DN_No == '') {
+      that.setData({
+        error: "请先扫描交货单号"
+      });
+    } else {
+      let key = e.currentTarget.dataset.idx;
+      wx.chooseImage({
+        sourceType: ['camera', 'album'],
+        sizeType: ['compressed', 'original'],
+        count: 1,
+        success(res) {
+          console.log("chooseImage:", res);
+          const _tempFile = res.tempFilePaths[0];
+          wx.showLoading({
+            title: '上传中...',
+          })
+          let data = {
+            "inter": "uploadImageForReceiptInMinipro",
+            "filePath": _tempFile
+          }
+          data["fun"] = function (res) {
+            console.log(res);
+            wx.hideLoading()
+            if (res.status > 0) {
+              let qrCode = res.data.qrCode;
+              let DN_No = that.data.DN_No;
+              if (qrCode && DN_No == qrCode) {
+                let _datas = that.data.datas;
+                _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
+                _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
+                that.setData({
+                  ..._datas
+                });
+              } else {
+                that.setData({
+                  error: "请重新上传清晰二维码图"
+                });
+              }
             } else {
               that.setData({
-                error: "请重新上传清晰二维码图"
+                error: res.msg
               });
             }
-          } else {
-            that.setData({
-              error: res.msg
-            });
           }
+          util.uploadFile(data)
         }
-        util.uploadFile(data)
-      }
-    })
+      })
+    }
   },
   previewImage(e) {
     const that = this;
@@ -180,6 +188,7 @@ Page({
   },
   getData(val) {
     const that = this;
+    const SCode = this.selectComponent('#SCode');
     let data = {
       "inter": "getOrderByDNNO",
       "parm": "?dn_no=" + val
@@ -191,12 +200,25 @@ Page({
       console.log(res);
       wx.hideLoading();
       if (res.status > 0 && res.data) {
-        that.setData({
-          orderData: res.data,
-          // DeliveryCheckCode: res.data.DeliveryCheckCode
-        });
+        let _Status = res.data.Status;
+        if (_Status == 6 || _Status == 7) {
+          SCode.reCode()
+          that.setData({
+            DN_No: "",
+            error: "该订单已提交过"
+          });
+        } else {
+          that.setData({
+            orderData: res.data,
+            ISSendDCCode: res.data.ISSendDCCode,
+            Status: _Status,
+            DeliveryCheckCode: res.data.DeliveryCheckCode
+          });
+        }
       } else {
+        SCode.reCode()
         that.setData({
+          DN_No: "",
           error: "暂无获取该订单信息"
         });
       }
@@ -222,19 +244,26 @@ Page({
       checkType: "notnull",
       checkRule: "",
       errorMsg: "请查看订单号是否正确"
-    }
-    // , {
-    //   name: "DeliveryCheckCode",
-    //   checkType: "notnull",
-    //   checkRule: "",
-    //   errorMsg: "请填写收货码"
-    // }
-    , {
+    }, {
       name: "Images",
       checkType: "greater",
       checkRule: 0,
       errorMsg: "请上传交货单照片"
     }];
+    if (_data.ISSendDCCode) {
+      let r = [{
+        name: "DeliveryCheckCode",
+        checkType: "notnull",
+        checkRule: "",
+        errorMsg: "请填写收货码"
+      }, {
+        name: "DeliveryCheckCode",
+        checkType: "same",
+        checkRule: _data.DeliveryCheckCode,
+        errorMsg: "请确认收货码"
+      }]
+      rule = [...rule, ...r]
+    }
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let data = {

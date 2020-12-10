@@ -3,7 +3,7 @@ Component({
   options: {
     multipleSlots: true,
     addGlobalClass: true,
-    virtualHost: true, //将这个自定义组件设置为“虚拟的”
+    // virtualHost: true, //将这个自定义组件设置为“虚拟的”
   },
   externalClasses: ['class'], //接受外部传入的样式类
   properties: { // 定义 参数 属性可以拿到 对应 属性上设置的值
@@ -76,6 +76,11 @@ Component({
         orderCode: that.data.orderCode
       }
       this.triggerEvent('seachCode', formData) //访问父组件事件
+    },
+    reCode(orderCode = '') {
+      this.setData({
+        orderCode
+      })
     }
   }
 })
