@@ -222,12 +222,14 @@ Page({
       checkType: "notnull",
       checkRule: "",
       errorMsg: "请查看订单号是否正确"
-    }, {
-      name: "DeliveryCheckCode",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请填写收货码"
-    }, {
+    }
+    // , {
+    //   name: "DeliveryCheckCode",
+    //   checkType: "notnull",
+    //   checkRule: "",
+    //   errorMsg: "请填写收货码"
+    // }
+    , {
       name: "Images",
       checkType: "greater",
       checkRule: 0,

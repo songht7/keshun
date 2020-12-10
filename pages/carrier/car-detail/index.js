@@ -209,7 +209,7 @@ Page({
       name: "Images",
       checkType: "notnull",
       checkRule: "",
-      errorMsg: "请上传车辆图片"
+      errorMsg: "请上传行驶证图片"
     }];
     if (that.data.userType != 2) {
       let r = [{
