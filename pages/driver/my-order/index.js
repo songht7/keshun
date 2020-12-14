@@ -165,7 +165,7 @@ Page({
     const ck = e.detail.value[0];
     let cks = [];
     list.map((obj) => {
-      if (obj.FreightType == 1) {
+      if (obj.FreightType <= 0) {
         let c = ck == 'all' ? true : false;
         obj.checked = c;
         if (c) {
@@ -255,10 +255,12 @@ Page({
               errList.push('[' + obj["dn_no"] + ']' + obj["result"]);
             }
           });
-          that.setData({
-            errList,
-            errListShow: true
-          });
+          if (errList.length > 0) {
+            that.setData({
+              errList,
+              errListShow: true
+            });
+          }
           if (errList.length < cks.length) {
             wx.showToast({
               title: '转出成功',
@@ -325,7 +327,7 @@ Page({
         /** 设置列表可选择 **/
         _list.map(obj => {
           // obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
-          if (obj.FreightType == 1) {
+          if (obj.FreightType <= 0) {
             obj['checked'] = false;
             obj['hasCheck'] = true;
           }

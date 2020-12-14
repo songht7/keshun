@@ -32,7 +32,7 @@ export default {
     "tmplIds2": ['WOuSGOStDcSThrsFPsYzb5lVqDH58NClQqBq4hCqo2s'], //车辆入场通知
     "tmplIds3": ['L1-kaHy258MuLl1Ed89JX6Zx7J_0dGGL-Z_Rwut37p0'], //排队到号通知
     "source": 'JK',
-    "mapkey": "6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q", //腾讯地图mapkey
+    "mapkey": "56CBZ-YGVHD-HQV42-PYBTQ-P6FZ7-J6BQY", //腾讯地图mapkey - 6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
     "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 5), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 60 * 2)
