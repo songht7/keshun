@@ -75,7 +75,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '/pages/carrier/order-detail/index?code=' + formData.orderCode,
+      url: '/pages/carrier/order-block/index?code=' + formData.orderCode,
     })
   }
 })

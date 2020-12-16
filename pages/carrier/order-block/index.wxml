@@ -1,0 +1,62 @@
+<!--pages/carrier/order/index.wxml-->
+<view class="container">
+	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+	<view class="page-init">
+		<view class="order-row">
+			<view class="order-head">
+				<label>
+					交货单号：{{code}}
+				</label>
+			</view>
+			<view class="order-main">
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							总重量：<text>{{item.TotalWeight>=0?item.TotalWeight+'吨':''}}</text>
+						</view>
+					</view>
+				</view>
+				<view wx:if="{{item.ForwarderDesc}}" class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							承运商：<text>{{item.ForwarderDesc}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-10.png" mode="scaleToFill"></image>
+							收货地址：<text>{{item.ArrivalAddress}}</text>
+						</view>
+					</view>
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
+							收货人及电话：<text>{{item.DeliveryPhoneNum}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="order-block">
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
+							发货地：<text>{{item.WareHouseName?item.WareHouseName:''}}</text>
+						</view>
+					</view>
+					<!-- wx:if="" -->
+					<view class="order-line">
+						<view class="order-init">
+							<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
+							预计到货时间：<text>{{item.PlanDeliveryDate}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="order-more"></view>
+			</view>
+		</view>
+		<view class="btn-area">
+			<button type="primary" class="btn-primary" bindtap="showGPS">查看轨迹</button>
+		</view>
+	</view>
+</view>

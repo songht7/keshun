@@ -1,0 +1,27 @@
+/* pages/carrier/order/index.wxss */
+@import "../../../common/base.wxss";
+@import "/common/order-card.wxss";
+
+page {
+  background-color: #f3f3f3
+}
+
+.btn-area,
+.order-head {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.order-head {
+  bottom: auto;
+  top: 0;
+}
+
+.order-main {
+  padding: 100rpx 0 150rpx;
+}
+.order-more{
+  height: 2000rpx;
+}
