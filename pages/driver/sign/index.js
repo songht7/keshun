@@ -202,7 +202,7 @@ Page({
     }
     data["fun"] = function (res) {
       console.log("mySignMySign:", res);
-      if (res.status) {
+      if (res.status > 0) {
         that.tapHandler(res.data.Id);
         that.setData({
           signInfo: 1,
@@ -216,7 +216,7 @@ Page({
         });
       } else {
         that.setData({
-          error: res.msg
+          error: "签到失败，请重试" //res.msg
         });
       }
     }
