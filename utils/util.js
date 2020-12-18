@@ -50,6 +50,10 @@ const funs = {
             success() {},
             complete() {
               that.checkToken();
+              wx.navigateTo({
+                url: 'pages/index/index',
+                success: function (res) {}
+              })
               // wx.navigateBack({delta: 1});
             }
           })
