@@ -22,6 +22,3 @@ page {
 .order-main {
   padding: 100rpx 0 150rpx;
 }
-.order-more{
-  height: 2000rpx;
-}

@@ -41,18 +41,54 @@
 					<view class="order-line">
 						<view class="order-init">
 							<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
-							发货地：<text>{{item.WareHouseName?item.WareHouseName:''}}</text>
+							装运点：<text>{{item.ShippingPointDesc?item.ShippingPointDesc:''}}</text>
 						</view>
 					</view>
 					<!-- wx:if="" -->
 					<view class="order-line">
 						<view class="order-init">
 							<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
-							预计到货时间：<text>{{item.PlanDeliveryDate}}</text>
+							预计到货时间：<text>{{item.Date}}</text>
 						</view>
 					</view>
 				</view>
-				<view class="order-more"></view>
+				
+				<block wx:for="{{item.OrderLogisticsTrackDetails}}" wx:key="*this" wx:for-item="obj">
+					<view class="order-block">
+						<view class="order-line">
+							<view class="order-init">
+								物料名称：<text>{{obj.SkuDesc}}</text>
+							</view>
+						</view>
+						<view class="order-line">
+							<view class="order-init">
+								物料编码：<text>{{obj.SkuNo}}</text>
+							</view>
+						</view>
+						<view class="order-line">
+							<view class="order-init">
+								规格：<text>{{obj.Spec}}</text>
+							</view>
+						</view>
+						<view class="order-line">
+							<view class="order-init">
+								主数量：<text>{{obj.Qty}}</text>
+							</view>
+							<view class="order-init">
+								主单位：<text>{{obj.Unit}}</text>
+							</view>
+						</view>
+						<view class="order-line">
+							<view class="order-init">
+								辅数量：<text>{{obj.AsQty?obj.AsQty:'-'}}</text>
+							</view>
+							<view class="order-init">
+								辅单位：<text>{{obj.AsUnit?obj.AsUnit:'-'}}</text>
+							</view>
+						</view>
+					</view>
+				</block>
+
 			</view>
 		</view>
 		<view class="btn-area">

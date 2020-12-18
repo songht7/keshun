@@ -9,7 +9,6 @@ Page({
   data: {
     code: "",
     item: {},
-    list: [],
     count: 0
   },
 
@@ -76,11 +75,12 @@ Page({
   getList(type) {
     const that = this;
     let data = {
-      "inter": "orderGPS",
-      "method": "POST",
-      "data": {
-        Dn_No: that.data.code
-      }
+      "inter": "getOrderLogisticsTrack",
+      "parm": "?dn_no=" + that.data.code
+      // "method": "POST",
+      // "data": {
+      //   Dn_No: that.data.code
+      // }
     }
     wx.showLoading({
       title: '加载中',
@@ -88,15 +88,12 @@ Page({
     data["fun"] = function (res) {
       wx.hideLoading()
       if (res.status > 0) {
-        const _list = res.data;
-        _list.map((obj, key) => {
-          let date = obj['CreateDate'].split(" ");
-          obj['Date'] = date[0];
-          obj['Time'] = date[1];
-        });
+        const item = res.data;
+        let date = item['PlanArriveDate1'] ? item['PlanArriveDate1'].split(" ") : "";
+        item['Date'] = date[0] ? date[0] : "";
+        item['Time'] = date[1] ? date[1] : "";
         that.setData({
-          list: _list,
-          count: _list.length
+          item
         });
       } else {
         wx.showToast({
@@ -107,7 +104,7 @@ Page({
     }
     util.getData(data)
   },
-  showGPS(){
+  showGPS() {
     wx.navigateTo({
       url: '/pages/carrier/order-detail/index?code=' + this.data.code,
     })
