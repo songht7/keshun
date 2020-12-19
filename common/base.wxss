@@ -183,6 +183,12 @@ button.btn-primary.btn-half,
   margin-bottom: 20rpx;
 }
 
+.list-row {
+  padding: 10rpx 20rpx;
+  margin-bottom: 10rpx;
+  border-bottom: 1px solid #eee;
+}
+
 .form-column {
   flex-direction: column;
   justify-content: start;

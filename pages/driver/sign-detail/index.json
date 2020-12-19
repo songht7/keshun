@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "签到仓库列表",
+  "navigationBarTitleText": "取号签到",
   "usingComponents": {
     "mp-toptips": "../../components/toptips/toptips",
     "picker-search": "/pages/components/picker-search/picker-search"

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    groupId: 0,
     qrCode: {
       QRCodeImg: "",
       QRSize: 240
@@ -35,11 +36,18 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    let groupId = options.id ? parseInt(options.id) : 0;
+    that.setData({
+      groupId,
+      groupData: {
+        id: groupId
+      }
+    });
+    that.signInfo(groupId);
     that.getGroup(); //获取仓库
     that.getLocation();
     that.QRCode();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -254,13 +262,7 @@ Page({
       }
     })
   },
-  toSign(e) { //页面点击仓库后
-    const that = this;
-    wx.navigateTo({
-      url: '/pages/driver/sign-detail/index?id=' + e.currentTarget.dataset.id,
-    })
-  },
-  pickerGroup(e) { //下拉点击仓库后
+  pickerGroup(e) {
     const that = this;
     const data = e.detail;
     that.setData({
