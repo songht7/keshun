@@ -7,45 +7,48 @@
 				<view class="f-row-label">{{item.WarehouseAddress}}</view>
 			</view>
 		</block>
-		<view class="form-row list-row" bindtap="toSign" data-id="1">
-			<view class="f-row-label">静态测试仓库1</view>
-		</view>
-		<view class="form-row list-row" bindtap="toSign" data-id="3">
-			<view class="f-row-label">静态测试仓库2</view>
-		</view>
-		<view class="form-row list-row" bindtap="toSign" data-id="4">
-			<view class="f-row-label">静态测试仓库3</view>
-		</view>
-
-		<block wx:if="{{signStatus<=1}}">
-			<view class="form-row" bindtap="groupShow">
-				<view class="f-row-label not-null">选择仓库</view>
-				<view class="f-row-val">{{groupData['value']?groupData['value']:'请选择...'}}</view>
+		<block wx:if="{{groupList.length<=0}}">
+			<view class="form-row list-row" bindtap="toSign" data-id="1">
+				<view class="f-row-label">静态测试仓库1</view>
 			</view>
-			<view wx:if="{{signStatus<=0}}" class="sign-box">
-				<view class="sign-status" bindtap="mySign">
-					<image class="sign-loading animate__rotate" src="/static/loading.png" mode="aspectFit"></image>
-					<image class="sign-bg" src="/static/sign-bg.png" mode="aspectFit"></image>
-					<view class="sing-label">{{signStatus==1?'已签到':'未签到'}}</view>
-				</view>
+			<view class="form-row list-row" bindtap="toSign" data-id="3">
+				<view class="f-row-label">静态测试仓库2</view>
 			</view>
-			<view wx:if="{{signInfo}}" class="sign-info">
-				<!-- <image class="icons sign-info-icon" src="/static/{{signInfo>=1?'face-smile.png':'face-cry.png'}}" mode="aspectFit"></image>{{signInfo>=1?'签到成功':'签到失败请重新签到'}} -->
+			<view class="form-row list-row" bindtap="toSign" data-id="4">
+				<view class="f-row-label">静态测试仓库3</view>
 			</view>
 		</block>
-		<view wx:if="{{signInfo>0&&signData.Id}}" class="sign-qr-box">
-			<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
-			<view class="sign-qr-main">
-				<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
-				<view class="qr-code">
-					<canvas class="qr-canvas" canvas-id="qrcode-canvas" style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
-					<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
-					<view>进场时请出示二维码</view>
+		<block wx:if="{{false}}">
+			<block wx:if="{{signStatus<=1}}">
+				<view class="form-row" bindtap="groupShow">
+					<view class="f-row-label not-null">选择仓库</view>
+					<view class="f-row-val">{{groupData['value']?groupData['value']:'请选择...'}}</view>
+				</view>
+				<view wx:if="{{signStatus<=0}}" class="sign-box">
+					<view class="sign-status" bindtap="mySign">
+						<image class="sign-loading animate__rotate" src="/static/loading.png" mode="aspectFit"></image>
+						<image class="sign-bg" src="/static/sign-bg.png" mode="aspectFit"></image>
+						<view class="sing-label">{{signStatus==1?'已签到':'未签到'}}</view>
+					</view>
+				</view>
+				<view wx:if="{{signInfo}}" class="sign-info">
+					<!-- <image class="icons sign-info-icon" src="/static/{{signInfo>=1?'face-smile.png':'face-cry.png'}}" mode="aspectFit"></image>{{signInfo>=1?'签到成功':'签到失败请重新签到'}} -->
+				</view>
+			</block>
+			<view wx:if="{{signInfo>0&&signData.Id}}" class="sign-qr-box">
+				<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
+				<view class="sign-qr-main">
+					<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
+					<view class="qr-code">
+						<canvas class="qr-canvas" canvas-id="qrcode-canvas" style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
+						<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
+						<view>进场时请出示二维码</view>
+					</view>
 				</view>
 			</view>
-		</view>
-		<!---筛选选择器--->
-		<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
-		<!--- 、筛选选择器 --->
+			<!---筛选选择器--->
+			<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
+			<!--- 、筛选选择器 --->
+		</block>
 	</view>
 </view>
