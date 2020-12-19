@@ -109,7 +109,8 @@ Page({
   chooseImage(e) {
     const that = this
     console.log(e);
-    if (that.data.DN_No == '') {
+    let needCheck_DN_No = false; //是否效验交货单号
+    if (that.data.DN_No == '' && needCheck_DN_No) {
       that.setData({
         error: "请先扫描交货单号"
       });
@@ -135,16 +136,25 @@ Page({
             if (res.status > 0) {
               let qrCode = res.data.qrCode;
               let DN_No = that.data.DN_No;
-              if (qrCode && DN_No == qrCode) {
+              if (needCheck_DN_No) {
+                if (qrCode && DN_No == qrCode) {
+                  let _datas = that.data.datas;
+                  _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
+                  _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
+                  that.setData({
+                    ..._datas
+                  });
+                } else {
+                  that.setData({
+                    error: "请重新上传清晰二维码图"
+                  });
+                }
+              } else {
                 let _datas = that.data.datas;
                 _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
                 _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
                 that.setData({
                   ..._datas
-                });
-              } else {
-                that.setData({
-                  error: "请重新上传清晰二维码图"
                 });
               }
             } else {

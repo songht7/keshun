@@ -7,14 +7,14 @@
 var api = {
   "formal": {
     "apiurl": "https://tms.keshun.com.cn", //接口
-    "imgurl": "https://tms.keshun.com.cn", //图片域名
+    "imgurl": "", //图片域名https://tms.keshun.com.cn
     "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   },
   "dev": {
     "apiurl": "https://tms.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api
-    "imgurl": "https://tms.keshun.com.cn", //图片域名
+    "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"

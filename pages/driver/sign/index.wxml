@@ -2,6 +2,10 @@
 <view class="container">
 	<view class="page-init">
 		<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
+		<block wx:for="{{groupList}}" wx:key="*this" wx:for-item="item">
+			<view data-id="{{item.Id}}">{{item.WarehouseAddress}}</view>
+		</block>
+
 		<block wx:if="{{signStatus<=1}}">
 			<view class="form-row" bindtap="groupShow">
 				<view class="f-row-label not-null">选择仓库</view>
