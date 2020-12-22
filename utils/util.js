@@ -1,4 +1,5 @@
 import common from "./common.js"
+var base64 = require('../common/base64.js');
 const ctx = common.Interface
 
 const funs = {
@@ -195,15 +196,19 @@ const funs = {
   login(parm = {}) {
     const that = this;
     console.log("login-fun-userInfo:", that.userInfo);
-    const openid = parm.openid ? parm.openid : (that.userInfo.openid ? that.userInfo.openid : '');
-    if (openid == '') {
+    let openid = parm.openid ? parm.openid : (that.userInfo.openid ? that.userInfo.openid : '');
+    let unionid = parm.unionid ? parm.unionid : (that.userInfo.unionid ? that.userInfo.unionid : '');
+    if (openid == '' || unionid) {
       return
     }
+    openid = base64.decode(openid);
+    unionid = base64.decode(unionid);
     let data = {
       "inter": "login",
       "method": "POST",
       "data": {
-        WeChatID: openid
+        WeChatID: openid,
+        UnionID: unionid
       }
     }
     data["fun"] = function (res) {

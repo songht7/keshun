@@ -224,7 +224,7 @@ Page({
         });
       } else {
         that.setData({
-          error: "签到失败，请重试" //res.msg
+          error: res.msg
         });
       }
     }

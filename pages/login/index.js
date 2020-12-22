@@ -1,5 +1,6 @@
 // pages/sign/sign.js
 import graceChecker from "../../common/graceChecker.js";
+var base64 = require('../../common/base64.js');
 const app = getApp();
 const util = app.globalData;
 Page({
@@ -304,20 +305,29 @@ Page({
         // console.log(data);
         data["fun"] = function (res) {
           wx.hideLoading()
-          let _data = {
-            ...e.detail.userInfo,
-            ...res.data
-          }
-          that.setUserInfo(_data);
-          wx.setStorage({
-            key: 'userInfo',
-            data: _data,
-            success() {
-              if (that.data.loginAuto) {
-                util.login(_data); //授权后自动登录
-              }
+          if (res.status > 0) {
+            let uData = res.data;
+            uData['openid'] = uData['openid'] ? base64.encode(uData['openid']) : null;
+            uData['unionid'] = uData['unionid'] ? base64.encode(uData['unionid']) : null;
+            let _data = {
+              ...e.detail.userInfo,
+              ...uData
             }
-          })
+            that.setUserInfo(_data);
+            wx.setStorage({
+              key: 'userInfo',
+              data: _data,
+              success() {
+                if (that.data.loginAuto) {
+                  util.login(_data); //授权后自动登录
+                }
+              }
+            })
+          } else {
+            that.setData({
+              error: '授权失败'
+            });
+          }
         }
         util.getData(data)
       },
