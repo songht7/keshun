@@ -108,8 +108,9 @@ Page({
   },
   getLocation() {
     const that = this;
+    // console.log("util.config.locationType:", util.config.locationType)
     wx.getLocation({
-      type: 'wgs84',
+      type: util.config.locationType,
       success(res) {
         console.log("getLocation:", res);
         that.setData({

@@ -27,9 +27,9 @@ Page({
     qqmapsdk = new QQMapWX({
       key: util.config.mapkey // 必填
     });
-    console.log("util.config.gpsInterval:", util.config.gpsInterval)
+    // console.log("util.config.locationType:", util.config.locationType)
     wx.getLocation({
-      type: 'wgs84',
+      type: util.config.locationType,
       success(res) {
         console.log("getLocationgetLocationgetLocation:", res);
         const date = util.formatTime(new Date(), '年月日');

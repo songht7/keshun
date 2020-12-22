@@ -38,8 +38,9 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    // console.log("util.config.locationType:", util.config.locationType)
     wx.getLocation({
-      type: 'wgs84',
+      type: util.config.locationType,
       success(res) {
         console.log(res);
         that.setData({

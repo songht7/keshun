@@ -21,9 +21,10 @@ Page({
     that.setData({
       date: date
     });
-    console.log(date);
+    // console.log(date);
+    // console.log("util.config.locationType:", util.config.locationType)
     wx.getLocation({
-      type: 'wgs84',
+      type: util.config.locationType,
       success(res) {
         const latitude = res.latitude
         const longitude = res.longitude
