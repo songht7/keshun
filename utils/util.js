@@ -198,7 +198,7 @@ const funs = {
     console.log("login-fun-userInfo:", that.userInfo);
     let openid = parm.openid ? parm.openid : (that.userInfo.openid ? that.userInfo.openid : '');
     let unionid = parm.unionid ? parm.unionid : (that.userInfo.unionid ? that.userInfo.unionid : '');
-    if (openid == '' || unionid) {
+    if (openid == '') {
       return
     }
     openid = base64.decode(openid);
