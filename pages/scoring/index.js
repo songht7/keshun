@@ -1,15 +1,15 @@
 // pages/scoring/index.js
 import graceChecker from "../../common/graceChecker.js";
-var base64  = require('../../common/base64.js');
-// const app = getApp();
-// const util = app.globalData;
+var base64 = require('../../common/base64.js');
+const app = getApp();
+const util = app.globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    H5link: "http://tms.keshun.com.cn:8099/src/views/Evaluate/OrderEvaluate.html?key=",
+    H5link: "/src/views/Evaluate/OrderEvaluate.html?key=",
     orderCode: ""
   },
 
@@ -31,7 +31,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // let H5link = util.config.pageurl + this.data.H5link;
+    // // console.log("web-view src:", H5link);
+    // this.setData({
+    //   H5link
+    // });
   },
 
   /**
@@ -73,12 +77,12 @@ Page({
     // console.log(e.detail);
     let formData = e.detail;
     if (formData.orderCode) {
-      let H5link = that.data.H5link;
+      let H5link = util.config.pageurl + that.data.H5link;
       let random = parseInt(Math.random() * (99 - 10 + 1) + 10, 10);
-      let key = formData.orderCode + random;
-      key = parseInt(key)
-      console.log("key:", key)
-      let b64Key = base64.encode(key);
+      var kkk = formData.orderCode + random;
+      kkk = kkk.toString();
+      console.log("key:", kkk)
+      let b64Key = base64.encode(kkk);
       console.log("b64Key:", b64Key)
       H5link = H5link + b64Key;
       console.log("H5link:", H5link)
