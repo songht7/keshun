@@ -3,8 +3,9 @@
 	<view class="page-init">
 		<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 		<block wx:for="{{groupList}}" wx:key="*this" wx:for-item="item">
-			<view class="form-row list-row" bindtap="toSign" data-id="{{item.Id}}">
-				<view class="f-row-label">{{item.WarehouseAddress}}</view>
+			<view class="form-column list-row" bindtap="toSign" data-id="{{item.Id}}">
+				<view class="f-row-label">{{item.GroupDesc}}</view>
+				<view class="f-row-label f-row-sub-label">{{item.WarehouseAddress}}</view>
 			</view>
 		</block>
 		<block wx:if="{{groupList.length<=0}}">

@@ -200,6 +200,16 @@ button.btn-primary.btn-half,
   font-size: 38rpx;
 }
 
+.f-row-label {
+  font-size: 32rpx;
+  /* font-weight: bold; */
+}
+.f-row-sub-label {
+  color: #999;
+  font-weight: normal;
+  font-size: 28rpx;
+}
+
 .f-row-val {
   text-align: right;
   min-width: 40%;
