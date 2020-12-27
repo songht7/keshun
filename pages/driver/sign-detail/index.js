@@ -166,9 +166,9 @@ Page({
           signData: res.data
         });
       } else {
-        that.setData({
-          error: res.msg
-        });
+        // that.setData({
+        //   error: res.msg
+        // });
         that.setData({
           signInfo: 0,
           signStatus: 0
