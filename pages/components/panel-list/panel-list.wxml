@@ -1,6 +1,6 @@
 <!--pages/components/panel-list/panel-list.wxml-->
 <view class="panel-list">
-	<view class="searchbar">
+	<view wx:if="{{topSearch}}" class="searchbar">
 		<image class="search-icon" src="/static/icon-search.png" mode="scaleToFill"></image>
 		<input type="text" class="search-input" bindinput="search" placeholder="{{holder}}"></input>
 	</view>

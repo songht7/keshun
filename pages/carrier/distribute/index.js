@@ -29,6 +29,39 @@ Page({
       Type: "手动分配",
       FreightType: '' // 运输方式（0.专车 1.零担)
     },
+    orderStatus: {
+      orderStatusId: "",
+      orderStatusDesc: ""
+    },
+    orderStatusList: [{
+      key: 999999,
+      value: "全部"
+    }, {
+      key: 0,
+      value: "待处理"
+    }, {
+      key: 1,
+      value: "已派车"
+    }, {
+      key: 2,
+      value: "已签到"
+    }, {
+      key: 3,
+      value: "已入场"
+    }, {
+      key: 4,
+      value: "已出厂"
+    }, {
+      key: 5,
+      value: "已跟踪"
+    }, {
+      key: 6,
+      value: "已回单"
+    }, {
+      key: 7,
+      value: "已结单"
+    }],
+    orderStatusShow: false,
     carrier: {
       CarrierId: "",
       CarrierDesc: ""
@@ -66,7 +99,7 @@ Page({
     const list = that.data.list;
     const user = util.userInfo.loginInfo;
     let parm = that.data.parm;
-    parm['ForwarderId'] = user.ForwarderId ? user.ForwarderId : 1;
+    parm['ForwarderId'] = user.ForwarderId ? parseInt(user.ForwarderId) : 1;
     // that.setData({
     //   parm: [...parm]
     // })
@@ -194,6 +227,25 @@ Page({
         CarrierDesc: data.val
       },
       carrierShow: false
+    })
+  },
+  orderStatusShow(parm) { ///选择承运商
+    console.log('orderStatusShow', parm)
+    this.setData({
+      orderStatusShow: !this.data.orderStatusShow
+    })
+  },
+  pickerOrderStatus(e) {
+    const that = this;
+    const data = e.detail;
+    let parm = that.data.parm;
+    parm['Status'] = parseInt(data.id) != 999999 ? parseInt(data.id) : '';
+    that.setData({
+      orderStatus: {
+        orderStatusId: parseInt(data.id),
+        orderStatusDesc: data.val
+      },
+      orderStatusShow: false
     })
   },
   maskClose(e) {

@@ -10,7 +10,7 @@ Page({
     parm: {
       page: 1,
       limit: 15,
-      CarrierId: "",
+      CarrierId: 1, //1：自提
       NumberPlate: "",
       DrivingIicense: "",
       InsuranceCertificateNumber: "",
@@ -49,6 +49,14 @@ Page({
    */
   onShow: function () {
     const that = this;
+    let parm = that.data.parm;
+    let ForwarderId = util.userInfo.loginInfo.ForwarderId;
+    if (ForwarderId) {
+      parm['CarrierId'] = ForwarderId;
+      that.setData({
+        parm
+      });
+    }
     that.getList()
     that.getCarrier();
   },

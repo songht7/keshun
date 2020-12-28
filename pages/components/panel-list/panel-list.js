@@ -18,7 +18,11 @@ Component({
       type: String,
       value: "搜索..."
     },
-    storageSearch: {
+    topSearch: { //列表头部搜索
+      type: Boolean,
+      value: true
+    },
+    storageSearch: { //是否本地遍历
       type: Boolean,
       value: true
     },
@@ -28,7 +32,7 @@ Component({
         id: "Id",
         name: "Name",
         title: "Title",
-        subTitle:"SubTitle"
+        subTitle: "SubTitle"
       }
     }
   },
