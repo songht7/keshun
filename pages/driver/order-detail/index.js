@@ -11,8 +11,8 @@ Page({
     code: "",
     subKey: '',
     map: {
-      latitude: "39.906930", //
-      longitude: "116.397570", //
+      latitude: "", //39.906930
+      longitude: "", //116.397570
       scale: 4,
       markers: []
     },
