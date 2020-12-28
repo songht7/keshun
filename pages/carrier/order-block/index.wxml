@@ -2,97 +2,101 @@
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="page-init">
-		<view class="order-row">
-			<view class="order-head">
-				<label>
-					交货单号：{{code}}
-				</label>
-			</view>
-			<view class="order-main">
-				<view class="order-block">
-					<view class="order-line">
-						<view class="order-init">
-							总重量：<text>{{item.TotalWeight>=0?item.TotalWeight+'吨':''}}</text>
-						</view>
-					</view>
+		<block wx:if="{{item.status<0}}">
+			<view class="page-tips">暂无订单[{{code}}]信息</view>
+		</block>
+		<block wx:else>
+			<view class="order-row">
+				<view class="order-head">
+					<label>
+						交货单号：{{code}}
+					</label>
 				</view>
-				<view wx:if="{{item.ForwarderDesc}}" class="order-block">
-					<view class="order-line">
-						<view class="order-init">
-							承运商：<text>{{item.ForwarderDesc}}</text>
-						</view>
-					</view>
-				</view>
-				<view class="order-block">
-					<view class="order-line">
-						<view class="order-init">
-							<image class="icons" src="/static/icon-10.png" mode="scaleToFill"></image>
-							收货地址：<text>{{item.ArrivalAddress}}</text>
-						</view>
-					</view>
-					<view class="order-line">
-						<view class="order-init">
-							<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
-							收货人及电话：<text>{{item.DeliveryPhoneNum}}</text>
-						</view>
-					</view>
-				</view>
-				<view class="order-block">
-					<view class="order-line">
-						<view class="order-init">
-							<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
-							装运点：<text>{{item.ShippingPointDesc?item.ShippingPointDesc:''}}</text>
-						</view>
-					</view>
-					<!-- wx:if="" -->
-					<view class="order-line">
-						<view class="order-init">
-							<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
-							预计到货时间：<text>{{item.Date}}</text>
-						</view>
-					</view>
-				</view>
-				
-				<block wx:for="{{item.OrderLogisticsTrackDetails}}" wx:key="*this" wx:for-item="obj">
+				<view class="order-main">
 					<view class="order-block">
 						<view class="order-line">
 							<view class="order-init">
-								物料名称：<text>{{obj.SkuDesc}}</text>
-							</view>
-						</view>
-						<view class="order-line">
-							<view class="order-init">
-								物料编码：<text>{{obj.SkuNo}}</text>
-							</view>
-						</view>
-						<view class="order-line">
-							<view class="order-init">
-								规格：<text>{{obj.Spec}}</text>
-							</view>
-						</view>
-						<view class="order-line">
-							<view class="order-init">
-								主数量：<text>{{obj.Qty}}</text>
-							</view>
-							<view class="order-init">
-								主单位：<text>{{obj.Unit}}</text>
-							</view>
-						</view>
-						<view class="order-line">
-							<view class="order-init">
-								辅数量：<text>{{obj.AsQty?obj.AsQty:'-'}}</text>
-							</view>
-							<view class="order-init">
-								辅单位：<text>{{obj.AsUnit?obj.AsUnit:'-'}}</text>
+								总重量：<text>{{item.TotalWeight>=0?item.TotalWeight+'吨':''}}</text>
 							</view>
 						</view>
 					</view>
-				</block>
+					<view wx:if="{{item.ForwarderDesc}}" class="order-block">
+						<view class="order-line">
+							<view class="order-init">
+								承运商：<text>{{item.ForwarderDesc}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="order-block">
+						<view class="order-line">
+							<view class="order-init">
+								<image class="icons" src="/static/icon-10.png" mode="scaleToFill"></image>
+								收货地址：<text>{{item.ArrivalAddress}}</text>
+							</view>
+						</view>
+						<view class="order-line">
+							<view class="order-init">
+								<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
+								收货人及电话：<text>{{item.DeliveryPhoneNum}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="order-block">
+						<view class="order-line">
+							<view class="order-init">
+								<image class="icons" src="/static/icon-13.png" mode="scaleToFill"></image>
+								装运点：<text>{{item.ShippingPointDesc?item.ShippingPointDesc:''}}</text>
+							</view>
+						</view>
+						<!-- wx:if="" -->
+						<view class="order-line">
+							<view class="order-init">
+								<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
+								预计到货时间：<text>{{item.Date}}</text>
+							</view>
+						</view>
+					</view>
 
+					<block wx:for="{{item.OrderLogisticsTrackDetails}}" wx:key="*this" wx:for-item="obj">
+						<view class="order-block">
+							<view class="order-line">
+								<view class="order-init">
+									物料名称：<text>{{obj.SkuDesc}}</text>
+								</view>
+							</view>
+							<view class="order-line">
+								<view class="order-init">
+									物料编码：<text>{{obj.SkuNo}}</text>
+								</view>
+							</view>
+							<view class="order-line">
+								<view class="order-init">
+									规格：<text>{{obj.Spec}}</text>
+								</view>
+							</view>
+							<view class="order-line">
+								<view class="order-init">
+									主数量：<text>{{obj.Qty}}</text>
+								</view>
+								<view class="order-init">
+									主单位：<text>{{obj.Unit}}</text>
+								</view>
+							</view>
+							<view class="order-line">
+								<view class="order-init">
+									辅数量：<text>{{obj.AsQty?obj.AsQty:'-'}}</text>
+								</view>
+								<view class="order-init">
+									辅单位：<text>{{obj.AsUnit?obj.AsUnit:'-'}}</text>
+								</view>
+							</view>
+						</view>
+					</block>
+				</view>
 			</view>
-		</view>
-		<view class="btn-area">
-			<button type="primary" class="btn-primary" bindtap="showGPS">查看轨迹</button>
-		</view>
+			<view class="btn-area">
+				<button type="primary" class="btn-primary" bindtap="showGPS">查看轨迹</button>
+			</view>
+		</block>
 	</view>
 </view>

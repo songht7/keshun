@@ -1,4 +1,5 @@
 // pages/carrier/car/index.js
+import carLicens from '../../../common/carLicens'
 const app = getApp();
 const util = app.globalData;
 Page({
@@ -10,7 +11,7 @@ Page({
     parm: {
       page: 1,
       limit: 15,
-      CarrierId: "",
+      CarrierId: 1, //1：自提
       NumberPlate: "",
       DrivingIicense: "",
       InsuranceCertificateNumber: "",
@@ -37,7 +38,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    // let c = "沪AG10520";
+    // let licens = carLicens.isCarLicens(c)
+    // console.log("licens:::", c, licens);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -49,6 +54,14 @@ Page({
    */
   onShow: function () {
     const that = this;
+    let parm = that.data.parm;
+    let ForwarderId = util.userInfo.loginInfo.ForwarderId;
+    if (ForwarderId) {
+      parm['CarrierId'] = ForwarderId;
+      that.setData({
+        parm
+      });
+    }
     that.getList()
     that.getCarrier();
   },

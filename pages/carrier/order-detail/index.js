@@ -10,17 +10,10 @@ Page({
     code: "",
     subKey: '',
     map: {
-      latitude: 31.233501,
-      longitude: 121.505406,
-      scale: 14,
-      markers: [{
-        latitude: 31.233501,
-        longitude: 121.505406,
-        iconPath: '/static/icon-car.png',
-        width: 25,
-        height: 25
-        // name: 'T.I.T 创意园'
-      }]
+      latitude: "", //39.906930
+      longitude: "", //116.397570
+      scale: 4,
+      markers: []
     },
     order: [
     //   {
@@ -115,22 +108,39 @@ Page({
       wx.hideLoading()
       if (res.status > 0) {
         const _list = res.data;
-        _list.map((obj, key) => {
-          let date = obj['CreateDate'].split(" ");
-          obj['Date'] = date[0];
-          obj['Time'] = date[1];
-        });
-        let map = that.data.map;
-        map['latitude'] = _list[0]['Latitude'];
-        map['longitude'] = _list[0]['Longitude'];
-        map['markers'][0]['latitude'] = parseFloat(_list[0]['Latitude']);
-        map['markers'][0]['longitude'] = parseFloat(_list[0]['Longitude']);
-        console.log(map)
-        that.setData({
-          map,
-          list: _list,
-          count: _list.length
-        });
+        if (_list.length) {
+          _list.map((obj, key) => {
+            let date = obj['CreateDate'].split(" ");
+            obj['Date'] = date[0];
+            obj['Time'] = date[1];
+          });
+          let map = that.data.map;
+          let mapLocation = _list[0];
+          if (mapLocation['Latitude'] && mapLocation['Longitude']) {
+            map['latitude'] = mapLocation['Latitude'];
+            map['longitude'] = mapLocation['Longitude'];
+            map['scale'] = 14;
+            let marker = [{
+              latitude: parseFloat(mapLocation['Latitude']),
+              longitude: parseFloat(mapLocation['Longitude']),
+              iconPath: '/static/icon-car.png',
+              width: 25,
+              height: 25
+              // name: 'T.I.T 创意园'
+            }]
+            map['markers'] = [...marker];
+          }
+          console.log(map)
+          that.setData({
+            map,
+            list: _list,
+            count: _list.length
+          });
+        } else {
+          that.setData({
+            msg: res.msg
+          });
+        }
       } else {
         wx.showToast({
           title: '获取订单信息失败！',

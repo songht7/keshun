@@ -3,7 +3,8 @@
   "usingComponents": {
     "order-card": "/pages/components/order-card/order-card",
     "filter-box": "/pages/components/filter-box/filter-box",
-    "fixed-btns": "/pages/components/fixed-btns/fixed-btns"
+    "fixed-btns": "/pages/components/fixed-btns/fixed-btns",
+    "picker-search": "/pages/components/picker-search/picker-search"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50

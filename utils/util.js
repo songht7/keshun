@@ -8,7 +8,7 @@ const funs = {
   },
   cksToken: "",
   userInfo: {},
-  userType: 0,
+  userType: 0,//POSTID
   tempData: {},
   getData(parm = {}) {
     const that = this;

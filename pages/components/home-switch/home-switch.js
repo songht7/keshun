@@ -2,8 +2,8 @@
 /*"T202011050001" "6100067363" "6200000124" 6100468012 "6100067681" "6100067472" */
 /*"T202011050002" "6100067368"*/
 /*
- * 12312312313  1 对应科顺员工(物流干事)
- * 12312312314  2  对应承运商
+ * 13226678907  7 对应科顺员工(物流干事) old：1，new：7
+ * 13220098900  2  对应承运商 12312312314
  * 12312312312  3 对应司机 
  * 12312312315  4  对应科顺员工(商务)
  * 13220046241  3 对应司机 带仓库 18877777777
@@ -115,16 +115,18 @@ Component({
         url: "/pages/carrier/lineup/index"
       }],
       /*科顺员工(物流干事)switch-D*/
-      "switch-D": [{
-        label: "承运商分配",
-        icon: "icon-7.png",
-        sw: "38",
-        tap: "linkTo",
-        url: "/pages/carrier/order-list/index"
-      }, {
+      "switch-D": [
+      //   {
+      //   label: "承运商分配",
+      //   icon: "icon-7.png",
+      //   sw: "38",
+      //   tap: "linkTo",
+      //   url: "/pages/carrier/order-list/index"
+      // }, 
+      {
         label: "车辆/司机分配",
         icon: "icon-15.png",
-        sw: "60",
+        sw: "100",
         tap: "linkTo",
         url: "/pages/carrier/distribute/index"
       }, {
@@ -162,9 +164,9 @@ Component({
     const menus = that.properties.btns;
     const _loginInfo = util.userInfo.loginInfo || '';
     const userType = _loginInfo && _loginInfo['PostId'] ? _loginInfo['PostId'].toString() : '';
-    /* PostId 对应 1是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）*/
+    /* PostId 对应 7是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）*/
     switch (userType) {
-      case "1":
+      case "7":
         that.setData({
           pageTpe: "科顺员工(物流干事)",
           switchBtns: menus["switch-D"]

@@ -75,7 +75,7 @@ Page({
   getList(type) {
     const that = this;
     let data = {
-      "inter": "getOrderLogisticsTrack",
+      "inter": "getOrderByDNNO", //getOrderLogisticsTrack getOrderByDNNO
       "parm": "?dn_no=" + that.data.code
       // "method": "POST",
       // "data": {
@@ -87,18 +87,28 @@ Page({
     })
     data["fun"] = function (res) {
       wx.hideLoading()
+      console.log(res);
       if (res.status > 0) {
-        const item = res.data;
-        let date = item['PlanArriveDate1'] ? item['PlanArriveDate1'].split(" ") : "";
-        item['Date'] = date[0] ? date[0] : "";
-        item['Time'] = date[1] ? date[1] : "";
-        that.setData({
-          item
-        });
+        let item = res.data;
+        if (item) {
+          let date = item['PlanArriveDate1'] ? item['PlanArriveDate1'].split(" ") : "";
+          item['Date'] = date[0] ? date[0] : "";
+          item['Time'] = date[1] ? date[1] : "";
+          that.setData({
+            item
+          });
+        } else {
+          item = {
+            status: -1
+          }
+          that.setData({
+            item
+          });
+        }
       } else {
-        wx.showToast({
-          title: '获取订单信息失败！',
-        })
+        that.setData({
+          item: res
+        });
       }
 
     }

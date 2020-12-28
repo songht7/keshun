@@ -20,6 +20,19 @@
   line-height: 2;
   color: #fff;
   padding: 10rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.bg-red {
+  background: #f96935;
+}
+
+.head-tag {
+  font-size: 28rpx
 }
 
 .order-block {
