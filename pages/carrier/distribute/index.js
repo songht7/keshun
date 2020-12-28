@@ -25,6 +25,7 @@ Page({
       FactoryNo: "",
       WareHouseNo: "",
       ArrivalAddress: "",
+      ShippingTypeNo: "001", //
       Status: "", //状态: 0.待处理 1.已派车 2.已签到 3.已入场 4.已出厂 5.已跟踪 6.已回单 7.已结单
       Type: "手动分配",
       FreightType: '' // 运输方式（0.专车 1.零担)
