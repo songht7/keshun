@@ -1,4 +1,5 @@
 // pages/carrier/car/index.js
+import carLicens from '../../../common/carLicens'
 const app = getApp();
 const util = app.globalData;
 Page({
@@ -37,7 +38,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    // let c = "沪AG10520";
+    // let licens = carLicens.isCarLicens(c)
+    // console.log("licens:::", c, licens);
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
