@@ -78,7 +78,8 @@ Page({
   onReady: function () {
     const that = this;
     that.getData();
-    that.getGroup();
+    that.getUserGroup();
+    //that.getGroup();
   },
 
   /**
@@ -154,6 +155,27 @@ Page({
       }
     }
     util.getData(data)
+  },
+  getUserGroup() {
+    const that = this;
+    let group = util.userInfo.loginInfo.GroupId;
+    let groupDesc = util.userInfo.loginInfo.GroupDesc;
+    group = group ? group.split(',') : [];
+    groupDesc = groupDesc ? groupDesc.split(',') : [];
+    if (group.length) {
+      let groupList = [];
+      group.map((obj, k) => {
+        let g = {
+          Id: obj,
+          WarehouseAddress: groupDesc[k]
+        }
+        groupList = [...groupList, g]
+      });
+      console.log(groupList);
+      that.setData({
+        groupList
+      });
+    }
   },
   getGroup() {
     const that = this;

@@ -13,6 +13,10 @@
 							<view class="f-row-label">订单状态</view>
 							<view class="f-row-val">{{orderStatus['orderStatusDesc']?orderStatus['orderStatusDesc']:'请选择...'}}</view>
 						</view>
+						<view class="form-row form-column" bindtap="isUrgentShow">
+							<view class="f-row-label">是否加急</view>
+							<view class="f-row-val">{{isUrgent['isUrgentDesc']?isUrgent['isUrgentDesc']:'请选择...'}}</view>
+						</view>
 						<view class="form-row form-column">
 							<view class="f-row-label">DN单号</view>
 							<view class="f-row-val">
@@ -22,7 +26,7 @@
 								</icon-font>
 							</view>
 						</view>
-						<view class="form-row form-column">
+						<!-- <view class="form-row form-column">
 							<view class="f-row-label">到货地址</view>
 							<view class="f-row-val">
 								<input class="form-row-input" data-name="ArrivalAddress" name="ArrivalAddress" bindinput="bindInput"
@@ -30,7 +34,7 @@
 								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick"
 									data-name="ArrivalAddress"></icon-font>
 							</view>
-						</view>
+						</view> -->
 					</form>
 				</view>
 			</view>
@@ -48,5 +52,7 @@
 	<!---筛选选择器--->
 	<picker-search list="{{orderStatusList}}" title="选择订单状态" show="{{orderStatusShow}}" type="orderStatusShow"
 		bind:maskClose="maskClose" bind:pickerSelected="pickerOrderStatus"></picker-search>
+	<picker-search list="{{isUrgentList}}" title="是否加急" show="{{isUrgentShow}}" type="isUrgentShow"
+		bind:maskClose="maskClose" bind:pickerSelected="pickerIsUrgent"></picker-search>
 	<!--- 、筛选选择器 --->
 </view>

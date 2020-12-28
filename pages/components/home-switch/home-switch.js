@@ -3,7 +3,7 @@
 /*"T202011050002" "6100067368"*/
 /*
  * 13226678907  7 对应科顺员工(物流干事) old：1，new：7
- * 12312312314  2  对应承运商
+ * 13220098900  2  对应承运商 12312312314
  * 12312312312  3 对应司机 
  * 12312312315  4  对应科顺员工(商务)
  * 13220046241  3 对应司机 带仓库 18877777777
@@ -164,7 +164,7 @@ Component({
     const menus = that.properties.btns;
     const _loginInfo = util.userInfo.loginInfo || '';
     const userType = _loginInfo && _loginInfo['PostId'] ? _loginInfo['PostId'].toString() : '';
-    /* PostId 对应 1是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）*/
+    /* PostId 对应 7是科顺员工（物流干事） 2是承运商 3是司机 4科顺员工（商务）*/
     switch (userType) {
       case "7":
         that.setData({

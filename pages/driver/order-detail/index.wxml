@@ -1,9 +1,14 @@
 <!--pages/driver/order-detail/index.wxml-->
 <view class="container">
-	<map subkey="{{subKey}}" style="width: 100%; height: 300px;" latitude="{{map.latitude}}" longitude="{{map.longitude}}" scale="{{map.scale}}" min-scale="3" max-scale="20" markers="{{map.markers}}">
+	<map subkey="{{subKey}}" wx:if="{{map.latitude&&map.longitude}}" style="width: 100%; height: 300px;"
+		latitude="{{map.latitude}}" longitude="{{map.longitude}}" scale="{{map.scale}}" min-scale="3" max-scale="20"
+		markers="{{map.markers}}">
 	</map>
 	<view class="code-info">
-	<text>交货单号：{{code}}</text>
+		<text>交货单号：{{code}}</text>
 	</view>
 	<order-status list="{{list}}" count="{{count}}"></order-status>
+	<block wx:if="{{msg}}">
+		<view class="page-tips">{{msg}}</view>
+	</block>
 </view>
