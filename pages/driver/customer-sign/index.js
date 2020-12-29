@@ -135,9 +135,9 @@ Page({
             console.log(res);
             wx.hideLoading()
             if (res.status > 0) {
-              let qrCode = res.data.qrCode;
               let DN_No = that.data.DN_No;
               if (needCheck_DN_No) {
+                let qrCode = res.data.qrCode;
                 if (qrCode && DN_No == qrCode) {
                   let _datas = that.data.datas;
                   _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
@@ -153,7 +153,7 @@ Page({
               } else {
                 let _datas = that.data.datas;
                 _datas["tempImg"] = [..._datas["tempImg"], _tempFile];
-                _datas["Images"] = [..._datas["Images"], res.data.imgUrl];
+                _datas["Images"] = [..._datas["Images"], res.msg];
                 that.setData({
                   ..._datas
                 });

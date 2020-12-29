@@ -17,7 +17,7 @@
 		<view wx:if="{{signInfo>0&&signData.Id}}" class="sign-qr-box">
 			<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
 			<view class="sign-qr-main">
-				<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
+				<view class="wait">您的排队号：<text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
 				<view class="qr-code">
 					<canvas class="qr-canvas" canvas-id="qrcode-canvas" style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
 					<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
