@@ -15,7 +15,7 @@ var api = {
   },
   "dev": {
     "apiurl": "https://tmstest.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
-    "pageurl": "http://tmstest.keshun.com.cn", //业务域名
+    "pageurl": "https://tmstest.keshun.com.cn", //业务域名
     "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
