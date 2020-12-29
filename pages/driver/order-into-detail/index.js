@@ -1,4 +1,5 @@
 // pages/driver/order-into-detail/index.js
+import graceChecker from "../../../common/graceChecker.js";
 const app = getApp();
 const util = app.globalData;
 Page({
@@ -79,45 +80,56 @@ Page({
     const user = util.userInfo.loginInfo;
     const list = that.data.list[0];
     const numberPlate = that.data.numberPlate;
-    if (numberPlate == '') {
+    let _formData = {
+      NumberPlate: numberPlate
+    };
+    var rule = [{
+      name: "NumberPlate",
+      checkType: "isCarLicens",
+      checkRule: "",
+      errorMsg: "请填写正确的车牌"
+    }];
+    // console.log(_formData, rule);
+    var checkRes = graceChecker.check(_formData, rule);
+    if (checkRes) {
+      let data = {
+        "inter": "deliveryOrderIn",
+        "method": "POST",
+        "data": {
+          OrderId: e.detail,
+          UserId: user.Id,
+          UserMobile: user.PhoneNumber,
+          CarrierId: list.ForwarderId,
+          NumberPlate: numberPlate
+        }
+      }
+      wx.showLoading({
+        title: '加载中...',
+      })
+      data["fun"] = function (res) {
+        console.log(res);
+        wx.hideLoading();
+        if (res.status > 0) {
+          wx.showToast({
+            title: '转入成功',
+          });
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 0
+            })
+          }, 2000)
+        } else {
+          that.setData({
+            error: res.msg || "转入失败"
+          });
+        }
+      }
+      util.getData(data)
+    } else {
       that.setData({
-        error: "请填写您的车牌号",
+        error: graceChecker.error
       });
-      return false
     }
-    let data = {
-      "inter": "deliveryOrderIn",
-      "method": "POST",
-      "data": {
-        OrderId: e.detail,
-        UserId: user.Id,
-        UserMobile: user.PhoneNumber,
-        CarrierId: list.ForwarderId,
-        NumberPlate: numberPlate
-      }
-    }
-    wx.showLoading({
-      title: '加载中...',
-    })
-    data["fun"] = function (res) {
-      console.log(res);
-      wx.hideLoading();
-      if (res.status > 0) {
-        wx.showToast({
-          title: '转入成功',
-        });
-        setTimeout(() => {
-          wx.navigateBack({
-            delta: 0
-          })
-        }, 2000)
-      } else {
-        that.setData({
-          error: res.msg
-        });
-      }
-    }
-    util.getData(data)
   },
   getData() {
     const that = this;

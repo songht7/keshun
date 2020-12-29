@@ -192,9 +192,9 @@ Page({
     console.log(_formData);
     var rule = [{
       name: "NumberPlate",
-      checkType: "notnull",
+      checkType: "isCarLicens",
       checkRule: "",
-      errorMsg: "请填写车牌号"
+      errorMsg: "请填写正确的车牌"
     }, {
       name: "DrivingIicense",
       checkType: "notnull",
@@ -259,6 +259,25 @@ Page({
       }
       util.getData(data)
     } else {
+      that.setData({
+        error: graceChecker.error
+      });
+    }
+  },
+  checkCarLicens(e) {
+    const that = this;
+    let _formData = {
+      NumberPlate: e.detail.value
+    };
+    var rule = [{
+      name: "NumberPlate",
+      checkType: "isCarLicens",
+      checkRule: "",
+      errorMsg: "请填写正确的车牌"
+    }];
+    // console.log(_formData, rule);
+    var checkRes = graceChecker.check(_formData, rule);
+    if (checkRes) {} else {
       that.setData({
         error: graceChecker.error
       });
