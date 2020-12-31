@@ -31,36 +31,40 @@ Page({
     },
     selectCarrierShow: false,
     orderStatus: [{
-      key: 999999,
-      value: "全部"
-    }, {
-      key: 0,
-      value: "待处理"
-    }, {
-      key: 1,
-      value: "已派车"
-    }, {
-      key: 2,
-      value: "已签到"
-    }, {
-      key: 3,
-      value: "已入厂"
-    }, {
-      key: 4,
-      value: "已出厂"
-    }, {
-      key: 5,
-      value: "已跟踪"
-    }, {
-      key: 6,
-      value: "已回单"
-    }, {
-      key: 7,
-      value: "已结单"
-    }, {
-      key: 8,
-      value: "已转出"
-    }],
+        key: 999999,
+        value: "全部"
+      }
+      // , {
+      //   key: 0,
+      //   value: "待处理"
+      // }
+      , {
+        key: 1,
+        value: "已派车"
+      }, {
+        key: 2,
+        value: "已签到"
+      }, {
+        key: 3,
+        value: "已入厂"
+      }, {
+        key: 4,
+        value: "已出厂"
+      }, {
+        key: 5,
+        value: "已跟踪"
+      }
+      // , {
+      //   key: 6,
+      //   value: "已回单"
+      // }, {
+      //   key: 7,
+      //   value: "已结单"
+      // }, {
+      //   key: 8,
+      //   value: "已转出"
+      // }
+    ],
     orderStatusShow: false,
     orderStatusVal: {
       id: "",
