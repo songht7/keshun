@@ -183,6 +183,7 @@ Page({
     let _formData = e.detail.value;
     const Id = parseInt(that.data.id);
     _formData["Images"] = that.data.datas.Images;
+    // _formData["CarLength"] = that.data.datas.CarLength ? that.data.datas.CarLength + "米" : "";
     _formData = {
       Id,
       ...that.data.carrier,

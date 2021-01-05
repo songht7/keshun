@@ -204,6 +204,7 @@ button.btn-primary.btn-half,
   font-size: 32rpx;
   /* font-weight: bold; */
 }
+
 .f-row-sub-label {
   color: #999;
   font-weight: normal;
@@ -216,6 +217,12 @@ button.btn-primary.btn-half,
   max-width: 55%;
   color: #9a9a9a;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
 }
 
 .f-row-icon {
@@ -243,10 +250,15 @@ button.btn-primary.btn-half,
   min-width: auto;
 }
 
-.form-row-input {
+.form-row-input,
+.input-suffix {
   line-height: 3;
   font-size: 28rpx;
   color: #9a9a9a;
+}
+
+.input-suffix {
+  padding-left: 10rpx;
 }
 
 textarea.form-row-area {
