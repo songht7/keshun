@@ -196,6 +196,11 @@ Page({
       checkRule: "",
       errorMsg: "请填写正确的车牌"
     }, {
+      name: "CarLength",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请填写车长"
+    }, {
       name: "DrivingIicense",
       checkType: "notnull",
       checkRule: "",
@@ -227,7 +232,7 @@ Page({
     }
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
-      console.log("graceChecker---true");
+      // console.log("graceChecker---true");
       that.setData({
         loading: true
       });

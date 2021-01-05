@@ -219,6 +219,8 @@ Page({
     rule = [...rule, ...r];
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
+      let openid = util.userInfo.openid ? util.userInfo.openid : '';
+      openid = base64.decode(openid);
       let data = {
         "inter": "register",
         "method": "POST",
@@ -227,7 +229,7 @@ Page({
           // WeChatOpenId: util.userInfo.openid,
           HeadPortrait: util.userInfo.avatarUrl,
           Nickname: util.userInfo.nickName,
-          WeChatID: util.userInfo.openid,
+          WeChatID: openid,
           //PhoneNumber: _formData['phone'],
           //code: _formData['code']
         }
