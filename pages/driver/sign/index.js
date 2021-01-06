@@ -109,13 +109,18 @@ Page({
   getLocation() {
     const that = this;
     // console.log("util.config.locationType:", util.config.locationType)
-    util.checkLocation();//检查小程序是否开启定位服务
+    util.checkLocation(); //检查小程序是否开启定位服务
     wx.getLocation({
       type: util.config.locationType,
       success(res) {
         console.log("getLocation:", res);
         that.setData({
           location: res
+        });
+      },
+      fail() {
+        that.setData({
+          error: "定位失败！请检查网络、GPS是否正常"
         });
       }
     })
