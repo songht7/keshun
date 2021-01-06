@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: false,
     dn_no: "",
     list: [],
     numberPlate: "", //车牌号
@@ -77,6 +78,10 @@ Page({
   orderCardSubmit(e) {
     console.log("子组件返回值ID：", e.detail);
     const that = this;
+    const loading = that.data.loading;
+    if (loading) {
+      return false;
+    }
     const user = util.userInfo.loginInfo;
     const list = that.data.list[0];
     const numberPlate = that.data.numberPlate;
@@ -103,6 +108,9 @@ Page({
           NumberPlate: numberPlate
         }
       }
+      that.setData({
+        loading: true
+      });
       wx.showLoading({
         title: '加载中...',
       })
@@ -120,6 +128,7 @@ Page({
           }, 2000)
         } else {
           that.setData({
+            loading: false,
             error: res.msg || "转入失败"
           });
         }

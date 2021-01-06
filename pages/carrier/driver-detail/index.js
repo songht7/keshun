@@ -199,6 +199,9 @@ Page({
       that.setData({
         loading: true
       });
+      wx.showLoading({
+        title: '正在提交',
+      })
       let data = {
         "inter": Id ? "driverUpdate" : "driverAdd",
         "method": "POST",
@@ -206,6 +209,7 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
+        wx.hideLoading();
         if (res.status > 0) {
           wx.showToast({
             title: Id ? "编辑成功！" : "添加成功！",
@@ -218,12 +222,10 @@ Page({
           }, 2000)
         } else {
           that.setData({
+            loading: false,
             error: res.msg
           });
         }
-        that.setData({
-          loading: false
-        });
       }
       util.getData(data)
     } else {

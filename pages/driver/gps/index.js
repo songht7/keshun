@@ -40,6 +40,11 @@ Page({
         }
         that.data._location = _location
         that.getSDKAddress(_location)
+      },
+      fail() {
+        that.setData({
+          error: "定位失败！请检查网络、GPS是否正常"
+        });
       }
     })
     wx.startLocationUpdateBackground({
@@ -97,37 +102,7 @@ Page({
    */
   onShow: function () {
     const that = this;
-    wx.getSetting({
-      // withSubscriptions: true,
-      success(res) {
-        console.log("getSetting-success:", res.authSetting)
-        if (!res.authSetting['scope.userLocation'] || !res.authSetting['scope.userLocationBackground']) {
-          res.authSetting = {
-            "scope.userLocationBackground": true,
-            "scope.userLocation": true
-          }
-          wx.showModal({
-            title: '请开启位置服务',
-            content: '“使用小程序期间和离开后”',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                wx.openSetting({
-                  success(res) {
-                    console.log("openSetting-success:", res.authSetting)
-                  },
-                  fail(err) {
-                    console.log("openSetting-err:", err)
-                  }
-                })
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        }
-      }
-    })
+    util.checkLocation();//检查小程序是否开启定位服务
   },
 
   /**

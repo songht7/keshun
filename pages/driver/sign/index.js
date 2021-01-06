@@ -109,6 +109,7 @@ Page({
   getLocation() {
     const that = this;
     // console.log("util.config.locationType:", util.config.locationType)
+    util.checkLocation();//检查小程序是否开启定位服务
     wx.getLocation({
       type: util.config.locationType,
       success(res) {

@@ -23,6 +23,7 @@ Page({
     });
     // console.log(date);
     // console.log("util.config.locationType:", util.config.locationType)
+    util.checkLocation();//检查小程序是否开启定位服务
     wx.getLocation({
       type: util.config.locationType,
       success(res) {
@@ -37,7 +38,7 @@ Page({
       },
       fail() {
         that.setData({
-          error: "定位失败,请尝试重载界面"
+          error: "定位失败！请检查网络、GPS是否正常"
         });
       }
     })

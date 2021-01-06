@@ -8,7 +8,7 @@ const funs = {
   },
   cksToken: "",
   userInfo: {},
-  userType: 0,//POSTID
+  userType: 0, //POSTID
   tempData: {},
   getData(parm = {}) {
     const that = this;
@@ -61,6 +61,39 @@ const funs = {
         }
         if (parm.fun) {
           new parm.fun(result)
+        }
+      }
+    })
+  },
+  checkLocation() {
+    //检查小程序是否开启定位服务
+    wx.getSetting({
+      // withSubscriptions: true,
+      success(res) {
+        console.log("checkLocation-success:", res.authSetting)
+        if (!res.authSetting['scope.userLocation']) {
+          res.authSetting = {
+            "scope.userLocation": true
+          }
+          wx.showModal({
+            title: '请开启位置服务',
+            content: '“使用小程序期间和离开后”',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success(res) {
+                    console.log("openSetting-success:", res.authSetting)
+                  },
+                  fail(err) {
+                    console.log("openSetting-err:", err)
+                  }
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
         }
       }
     })

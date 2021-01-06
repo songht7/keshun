@@ -15,6 +15,10 @@ Page({
       Images: '',
       tempImg: '',
     },
+    carLengthPicker: ['4.2M', '6.8M', '9.6M', '13M'],
+    carLengthIndex: 0,
+    CarLength: "",
+    carLengthNomel: 0,
     carrier: {
       CarrierId: "",
       CarrierDesc: ""
@@ -34,6 +38,8 @@ Page({
       that.setData({
         id: options.id,
         datas: util.tempData,
+        CarLength: util.tempData.CarLength ? util.tempData.CarLength : "",
+        carLengthNomel: util.tempData.CarLength ? 1 : 0,
         carrier: {
           CarrierId: util.tempData.CarrierId,
           CarrierDesc: util.tempData.CarrierDesc
@@ -174,6 +180,13 @@ Page({
       urls: [url]
     })
   },
+  bindPickerChange(e) { //选择时间段
+    this.setData({
+      carLengthIndex: e.detail.value,
+      CarLength: "",
+      carLengthNomel: 1
+    })
+  },
   formSubmit(e) {
     const that = this;
     const loading = that.data.loading;
@@ -181,9 +194,10 @@ Page({
       return false;
     }
     let _formData = e.detail.value;
-    const Id = parseInt(that.data.id);
-    _formData["Images"] = that.data.datas.Images;
-    // _formData["CarLength"] = that.data.datas.CarLength ? that.data.datas.CarLength + "米" : "";
+    const _data = that.data;
+    const Id = parseInt(_data.id);
+    _formData["Images"] = _data.datas.Images;
+    _formData["CarLength"] = _data.CarLength ? _data.CarLength : (_data.carLengthNomel >= 1 ? _data.carLengthPicker[_data.carLengthIndex] : '');
     _formData = {
       Id,
       ...that.data.carrier,
@@ -200,7 +214,7 @@ Page({
       name: "CarLength",
       checkType: "notnull",
       checkRule: "",
-      errorMsg: "请填写车长"
+      errorMsg: "请选择车长"
     }, {
       name: "DrivingIicense",
       checkType: "notnull",
@@ -237,6 +251,9 @@ Page({
       that.setData({
         loading: true
       });
+      wx.showLoading({
+        title: '正在提交',
+      })
       let data = {
         "inter": Id ? "carUpdate" : "carAdd",
         "method": "POST",
@@ -244,6 +261,7 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
+        wx.hideLoading();
         if (res.status > 0) {
           wx.showToast({
             title: Id ? "编辑成功！" : "添加成功！",
@@ -256,12 +274,10 @@ Page({
           }, 2000)
         } else {
           that.setData({
+            loading: false,
             error: res.msg
           });
         }
-        that.setData({
-          loading: false
-        });
       }
       util.getData(data)
     } else {

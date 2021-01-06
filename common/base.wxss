@@ -217,12 +217,16 @@ button.btn-primary.btn-half,
   max-width: 55%;
   color: #9a9a9a;
   position: relative;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   justify-items: center;
   align-content: center;
-  align-items: center;
+  align-items: center; */
+}
+
+.f-picker {
+  width: 100%;
 }
 
 .f-row-icon {

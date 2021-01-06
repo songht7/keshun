@@ -1,6 +1,7 @@
 // pages/driver/sign/index.js
 const app = getApp();
 const util = app.globalData;
+var base64 = require('../../../common/base64.js');
 import graceChecker from "../../../common/graceChecker.js";
 import QRCode from "../../../common/qrcode.js";
 var qrcode = ""
@@ -9,12 +10,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading: false,
     groupId: 0,
     qrCode: {
       QRCodeImg: "",
       QRSize: 240
     },
-    location: {},
+    location: {
+      latitude: "",
+      longitude: ""
+    },
     signStatus: 1, //页面状态 0:未签到 1:已签到
     signInfo: 0, //接口返回 0:签到失败 1:签到成功
     wait: 20,
@@ -43,6 +48,7 @@ Page({
         id: groupId
       }
     });
+    util.checkLocation();//检查小程序是否开启定位服务
     that.signInfo(groupId);
     that.getGroup(); //获取仓库
     that.getLocation();
@@ -123,6 +129,11 @@ Page({
         that.setData({
           location: res
         });
+      },
+      fail() {
+        that.setData({
+          error: "定位失败！请检查网络、GPS是否正常"
+        });
       }
     })
   },
@@ -184,6 +195,10 @@ Page({
     // that.setData({
     //   signStatus: t
     // });
+    const loading = that.data.loading;
+    if (loading) {
+      return false;
+    }
     const location = that.data.location;
     if (that.data.groupData.id == '') {
       that.setData({
@@ -197,19 +212,29 @@ Page({
       });
       return false
     }
+
+    that.setData({
+      loading: true
+    });
+    wx.showLoading({
+      title: '正在提交',
+    })
+    let openid = util.userInfo.openid ? util.userInfo.openid : '';
+    openid = base64.decode(openid);
     let data = {
       "inter": "sign",
       "method": "POST",
       "data": {
         PhoneNumber: util.userInfo.loginInfo.PhoneNumber,
-        WeChatID: util.userInfo.openid,
+        WeChatID: openid,
         WHGroupId: that.data.groupData.id, //仓库组合ID
-        Latitude: location.latitude,
-        Longitude: location.longitude
+        Latitude: parseFloat(location.latitude),
+        Longitude: parseFloat(location.longitude)
       }
     }
     data["fun"] = function (res) {
       console.log("mySignMySign:", res);
+      wx.hideLoading();
       if (res.status > 0) {
         that.tapHandler(res.data.Id);
         that.setData({
@@ -224,6 +249,7 @@ Page({
         });
       } else {
         that.setData({
+          loading: false,
           error: res.msg
         });
       }

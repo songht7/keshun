@@ -239,9 +239,6 @@ Page({
       data["fun"] = function (res) {
         console.log(res);
         wx.hideLoading();
-        that.setData({
-          submitLoading: false
-        });
         if (res.status > 0) {
           // const fL = list.filter((obj, key) => {
           //   //"该订单已经转出过, 请勿重复操作."
@@ -271,10 +268,14 @@ Page({
             })
           }
           setTimeout(() => {
+            that.setData({
+              submitLoading: false
+            });
             that.getList();
           }, 3000);
         } else {
           that.setData({
+            submitLoading: false,
             error: res.msg
           });
         }

@@ -39,6 +39,7 @@ Page({
   onLoad: function (options) {
     const that = this;
     // console.log("util.config.locationType:", util.config.locationType)
+    util.checkLocation();//检查小程序是否开启定位服务
     wx.getLocation({
       type: util.config.locationType,
       success(res) {
@@ -50,7 +51,7 @@ Page({
       },
       fail() {
         that.setData({
-          error: "定位失败,请尝试重载界面"
+          error: "定位失败！请检查网络、GPS是否正常"
         });
       }
     })
@@ -285,8 +286,12 @@ Page({
       that.setData({
         loading: true
       })
+      wx.showLoading({
+        title: '正在提交',
+      })
       data["fun"] = function (res) {
         console.log(res);
+        wx.hideLoading();
         if (res.status > 0) {
           that.uploadOrderGPS()
           wx.showToast({
@@ -294,9 +299,7 @@ Page({
           });
         } else {
           that.setData({
-            loading: false
-          })
-          that.setData({
+            loading: false,
             error: res.msg
           });
         }

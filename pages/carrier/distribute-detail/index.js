@@ -364,6 +364,9 @@ Page({
       that.setData({
         loading: true
       });
+      wx.showLoading({
+        title: '正在提交',
+      })
       let data = {
         "inter": "addCarAndDriver",
         "method": "POST",
@@ -371,6 +374,7 @@ Page({
       }
       data["fun"] = function (res) {
         console.log(res);
+        wx.hideLoading();
         if (res.status > 0) {
           wx.showToast({
             title: res.msg,
@@ -383,12 +387,10 @@ Page({
           }, 2000)
         } else {
           that.setData({
+            loading: false,
             error: res.msg
           });
         }
-        that.setData({
-          loading: false
-        });
       }
       util.getData(data)
     } else {
