@@ -32,6 +32,9 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    this.setData({
+      imgurl: util.config.imgurl
+    });
     that.getData({
       inter: '',
       method: "POST"
@@ -46,8 +49,7 @@ Page({
     const that = this;
     this.setData({
       user: util.userInfo,
-      siteType: util.config.siteType,
-      imgurl: util.config.imgurl
+      siteType: util.config.siteType
     });
     if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
       util.subscribeMessage();

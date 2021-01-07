@@ -56,7 +56,8 @@ Page({
     let d = util.formatTime(new Date());
     that.setData({
       date: d.split(" ")[0],
-      today: d.split(" ")[0]
+      today: d.split(" ")[0],
+      imgurl: util.config.imgurl
     });
     if (options.id) {
       const _temp = util.tempData;
@@ -95,11 +96,11 @@ Page({
    */
   onReady: function () {
     const that = this;
+    console.log("util.config.imgurl:::", util.config.imgurl)
     that.getCarrier();
     that.setData({
       userInfo: util.userInfo,
-      userType: util.userType,
-      imgurl: util.config.imgurl
+      userType: util.userType
     });
   },
 

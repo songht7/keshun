@@ -44,6 +44,7 @@ Page({
           CarrierId: util.tempData.CarrierId,
           CarrierDesc: util.tempData.CarrierDesc
         },
+        imgurl: util.config.imgurl
       });
     }
   },
@@ -57,8 +58,7 @@ Page({
     console.log("imgurl::", util.config.imgurl)
     that.setData({
       userInfo: util.userInfo,
-      userType: util.userType,
-      imgurl: util.config.imgurl
+      userType: util.userType
     });
   },
 
