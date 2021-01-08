@@ -1,4 +1,7 @@
 // pages/driver/my-order/index.js
+
+
+//可转出转出条件 if (obj.FreightType <= 0 && (obj.Status == 4 || obj.Status == 5))
 const app = getApp();
 const util = app.globalData;
 
@@ -169,7 +172,7 @@ Page({
     const ck = e.detail.value[0];
     let cks = [];
     list.map((obj) => {
-      if (obj.FreightType <= 0) {
+      if (obj.FreightType <= 0 && (obj.Status == 4 || obj.Status == 5)) {
         let c = ck == 'all' ? true : false;
         obj.checked = c;
         if (c) {
@@ -332,7 +335,7 @@ Page({
         /** 设置列表可选择 **/
         _list.map(obj => {
           // obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
-          if (obj.FreightType <= 0) {
+          if (obj.FreightType <= 0 && (obj.Status == 4 || obj.Status == 5)) {
             obj['checked'] = false;
             obj['hasCheck'] = true;
           }

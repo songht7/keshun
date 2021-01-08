@@ -39,7 +39,7 @@
     "useApiHostProcess": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.0",
+  "libVersion": "2.14.3",
   "appid": "wx25f61e4ffcead9c7",
   "projectname": "keshun",
   "debugOptions": {

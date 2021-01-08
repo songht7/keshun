@@ -15,8 +15,10 @@ const funs = {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
     var result = [];
-    console.log("request-url:", _url)
-    console.log("request-parm:", parm)
+    if (ctx.siteType == 'dev') {
+      console.log("request-url:", _url)
+      console.log("request-parm:", parm)
+    }
     wx.request({
       url: _url,
       data: parm.data || {},
@@ -31,7 +33,7 @@ const funs = {
           result = res.data
         } else {
           result = {
-            "status": false,
+            "status": res.data.status,
             "msg": res.data.msg
           }
         }
@@ -39,7 +41,7 @@ const funs = {
       fail(err) {
         console.log("getData-err-", parm.inter, "：", err)
         result = {
-          "status": false,
+          "status": 0,
           "msg": "接口请求失败",
           "err": err
         }
@@ -70,7 +72,9 @@ const funs = {
     wx.getSetting({
       // withSubscriptions: true,
       success(res) {
-        console.log("checkLocation-success:", res.authSetting)
+        if (ctx.siteType == 'dev') {
+          console.log("checkLocation-success:", res.authSetting)
+        }
         if (!res.authSetting['scope.userLocation']) {
           res.authSetting = {
             "scope.userLocation": true
@@ -83,14 +87,20 @@ const funs = {
               if (res.confirm) {
                 wx.openSetting({
                   success(res) {
-                    console.log("openSetting-success:", res.authSetting)
+                    if (ctx.siteType == 'dev') {
+                      console.log("openSetting-success:", res.authSetting)
+                    }
                   },
                   fail(err) {
-                    console.log("openSetting-err:", err)
+                    if (ctx.siteType == 'dev') {
+                      console.log("openSetting-err:", err)
+                    }
                   }
                 })
               } else if (res.cancel) {
-                console.log('用户点击取消')
+                if (ctx.siteType == 'dev') {
+                  console.log('用户点击取消')
+                }
               }
             }
           })
@@ -228,7 +238,7 @@ const funs = {
   },
   login(parm = {}) {
     const that = this;
-    console.log("login-fun-userInfo:", that.userInfo);
+    // console.log("login-fun-userInfo:", that.userInfo);
     let openid = parm.openid ? parm.openid : (that.userInfo.openid ? that.userInfo.openid : '');
     let unionid = parm.unionid ? parm.unionid : (that.userInfo.unionid ? that.userInfo.unionid : '');
     if (openid == '') {
@@ -245,11 +255,17 @@ const funs = {
       }
     }
     data["fun"] = function (res) {
-      console.log("app-login-res:", res);
+      // console.log("app-login-res:", res);
       if (res.status > 0) {
         that.setStorageUser({
           data: res.data
         });
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'error',
+          duration: 2000
+        })
       }
     }
     that.getData(data)

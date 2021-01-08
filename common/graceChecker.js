@@ -136,27 +136,31 @@ module.exports = {
 					}
 					break;
 				case 'isCarLicens':
-					var leng = data[rule[i].name].length;
-					// console.log("isCarLicens::", leng)
-					if (leng && leng == 7) {
-						var reg = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使]{1}[A-Z]{1}[0-9a-zA-Z]{5}$/u;
-						if (!reg.test(data[rule[i].name])) {
-							this.error = rule[i].errorMsg;
-							return false;
-						}
-					} else if (leng && leng == 8) {
-						//小型新能源车
-						var reg = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]{1}[A-Z]{1}[DFG]{1}[0-9a-zA-Z]{5}$/u;
-						//大型新能源车
-						var reg2 = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]{1}[A-Z]{1}[0-9a-zA-Z]{5}[DFG]{1}$/u;
-						if (reg.test(data[rule[i].name]) || reg2.test(data[rule[i].name])) {} else {
-							this.error = rule[i].errorMsg;
-							return false;
-						}
-					} else {
+					var reg = /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DFG])|([DFG]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/;
+					if (!reg.test(data[rule[i].name])) {
 						this.error = rule[i].errorMsg;
 						return false;
 					}
+					// var leng = data[rule[i].name].length;
+					// if (leng && leng == 7) {
+					// 	var reg = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使]{1}[A-Z]{1}[0-9a-zA-Z]{5}$/u;
+					// 	if (!reg.test(data[rule[i].name])) {
+					// 		this.error = rule[i].errorMsg;
+					// 		return false;
+					// 	}
+					// } else if (leng && leng == 8) {
+					// 	//小型新能源车
+					// 	var reg = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]{1}[A-Z]{1}[DFG]{1}[0-9a-zA-Z]{5}$/u;
+					// 	//大型新能源车
+					// 	var reg2 = /[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]{1}[A-Z]{1}[0-9a-zA-Z]{5}[DFG]{1}$/u;
+					// 	if (reg.test(data[rule[i].name]) || reg2.test(data[rule[i].name])) {} else {
+					// 		this.error = rule[i].errorMsg;
+					// 		return false;
+					// 	}
+					// } else {
+					// 	this.error = rule[i].errorMsg;
+					// 	return false;
+					// }
 					break;
 			}
 		}

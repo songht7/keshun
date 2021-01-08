@@ -135,13 +135,13 @@ Page({
         // }
       }
       data["fun"] = function (res) {
-        console.log(res);
-        wx.showToast({
-          title: '验证码已发送',
-          icon: 'success',
-          duration: 2000
-        })
+        // console.log(res);
         if (res.status > 0) {
+          wx.showToast({
+            title: '验证码已发送',
+            icon: 'success',
+            duration: 2000
+          })
           that.setData({
             tempPhone: _formData['phone'],
             msgCode: res.msg
@@ -150,11 +150,12 @@ Page({
           if (util.config.siteType == 'dev') {
             that.setData({
               tempPhone: _formData['phone'],
-              msgCode: '123' //*****测试用****
+              msgCode: '123', //*****测试用****
+              seconds: 5, //*****dev短信发送失败计时5s****
             });
           }
           that.setData({
-            error: res.msg
+            error: res.msg || '短信发送失败'
           });
         }
       }
@@ -263,7 +264,7 @@ Page({
     console.log('form发生了reset事件，携带数据为：', e.detail.value)
   },
   onFocus(e) {
-    console.log(e);
+    // console.log(e);
     const that = this;
     that.setData({
       inputFocus: e.currentTarget.dataset.type
@@ -284,14 +285,14 @@ Page({
   },
   getUserInfo(e) {
     const that = this;
-    console.log("getUserInfo:", e)
+    // console.log("getUserInfo:", e)
     wx.showLoading({
       title: '授权中...',
     })
     // 登录
     wx.login({
       success: res => {
-        console.log("wx.login:", res)
+        // console.log("wx.login:", res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         let data = {
           "inter": "getOpenId",
