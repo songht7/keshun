@@ -14,10 +14,11 @@ Page({
     id: "",
     orderCode: "",
     list: [],
-    date: "/-/-/",
-    today: "/-/-/",
+    date: "",
+    today: "",
     timeSlot: ['00:00 ~ 02:00', '02:00 ~ 04:00', '04:00 ~ 06:00', '06:00 ~ 08:00', '08:00 ~ 10:00', '10:00 ~ 12:00', '12:00 ~ 14:00', '14:00 ~ 16:00', '16:00 ~ 18:00', '18:00 ~ 20:00', '20:00 ~ 22:00', '22:00 ~ 00:00'],
     timeSlotIndex: 2,
+    timeSlotDefault: 0,
     PlanArriveDate2: "",
     carType: "0",
     selectCar: false,
@@ -55,7 +56,7 @@ Page({
     const that = this;
     let d = util.formatTime(new Date());
     that.setData({
-      date: d.split(" ")[0],
+      date: "", //d.split(" ")[0]
       today: d.split(" ")[0],
       imgurl: util.config.imgurl
     });
@@ -75,9 +76,10 @@ Page({
         id: options.id,
         list: [_temp],
         temp: _temp,
-        date: _temp.PlanArriveDate1 ? _temp['PlanArriveDate1'].split(" ")[0] : d.split(" ")[0],
+        date: _temp.PlanArriveDate1 ? _temp['PlanArriveDate1'].split(" ")[0] : "", //d.split(" ")[0],
         PlanArriveDate2: _temp.PlanArriveDate2 ? _temp.PlanArriveDate2 : "",
-        carType: _temp.FreightType ? _temp.FreightType : 0,
+        timeSlotDefault: _temp.PlanArriveDate2 ? 1 : 0,
+        carType: util.userType == 7 ? 1 : (_temp.FreightType ? _temp.FreightType : 0),
         carData: car,
         driverData: driver,
         pic1: _temp.EntrustImage ? _temp.EntrustImage : (_temp.FrontImage ? _temp.FrontImage : ''),
@@ -153,7 +155,8 @@ Page({
   bindPickerChange(e) { //选择时间段
     this.setData({
       timeSlotIndex: e.detail.value,
-      PlanArriveDate2: ""
+      PlanArriveDate2: "",
+      timeSlotDefault: 1
     })
   },
   selectRadio(e) { //运输类型
@@ -308,10 +311,20 @@ Page({
       DriverName: _data.driverData['value'],
       FreightType: parseInt(_data.carType),
       PlanArriveDate1: _data.date,
-      PlanArriveDate2: _data.PlanArriveDate2 ? _data.PlanArriveDate2 : _data.timeSlot[_data.timeSlotIndex],
+      PlanArriveDate2: _data.PlanArriveDate2 ? _data.PlanArriveDate2 : (_data.timeSlotDefault >= 1 ? _data.timeSlot[_data.timeSlotIndex] : ''),
       CreateUser: _data.userInfo.loginInfo.CreateUser
     };
     var rule = [{
+      name: "PlanArriveDate1",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请选择装货日期"
+    }, {
+      name: "PlanArriveDate2",
+      checkType: "notnull",
+      checkRule: "",
+      errorMsg: "请选择装货时间段"
+    }, {
       name: "CarId",
       checkType: "notnull",
       checkRule: "",
