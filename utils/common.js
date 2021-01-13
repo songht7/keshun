@@ -6,7 +6,7 @@
  */
 var api = {
   "formal": {
-    "apiurl": "https://tmskeshun.com.cn", //接口 https://tmskeshun.com.cn/ https://tms.keshun.com.cn
+    "apiurl": "https://tmstest.keshun.com.cn", //接口 https://tmskeshun.com.cn/ https://tms.keshun.com.cn
     "pageurl": "https://tmstest.keshun.com.cn",
     "imgurl": "", //图片域名https://tms.keshun.com.cn
     "domain": "",
