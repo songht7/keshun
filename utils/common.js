@@ -69,7 +69,7 @@ export default {
       "deliveryList": "/api/Order/GetDeliveryOrderList", //根据条件获取交货单列表
       "getOrderByDNNO": "/api/Order/GetOrderByDNNO", //根据DN单号查询订单信息
       "orderGPS": "/api/OrderGPS/SelectOrderTrackGPSInfo", //根据订单号查询订单所有的跟踪信息【post】
-      "getOrderLogisticsTrack": "/api/Order/GetOrderLogisticsTrack", //获取订单轨迹追踪(未用)
+      "getOrderLogisticsTrack": "/api/Order/GetOrderLogisticsTrack", //获取订单轨迹追踪
       "uploadOrderGPS": "/api/OrderGPS/UploadOrderGPS", //根据订单号保存经度纬度地址信息【post】
       "uploadPhoneGPS": "/api/OrderGPS/UploadPhoneGPS", //根据用户手机号找到订单保存经度纬度地址信息【post】
       "signWHGroup": "/api/AccessSign/SignWHGroup", //获取可签到的仓库组合【post】

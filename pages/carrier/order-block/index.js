@@ -1,4 +1,5 @@
 // pages/carrier/order/index.js
+var base64 = require('../../../common/base64.js');
 const app = getApp();
 const util = app.globalData;
 Page({
@@ -17,11 +18,19 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    that.setData({
-      code: options.code,
-      imgurl: util.config.imgurl
-    });
-    that.getList()
+    if (options.code) {
+      let _code = options.code;
+      let random = parseInt(Math.random() * (99 - 10 + 1) + 10, 10);
+      var kkk = _code + random;
+      kkk = kkk.toString();
+      let b64Key = base64.encode(kkk);
+      that.setData({
+        code: b64Key,
+        code2: _code,
+        imgurl: util.config.imgurl
+      });
+      that.getList()
+    }
   },
 
   /**
@@ -75,7 +84,7 @@ Page({
   getList(type) {
     const that = this;
     let data = {
-      "inter": "getOrderByDNNO", //getOrderLogisticsTrack getOrderByDNNO
+      "inter": "getOrderLogisticsTrack", //getOrderLogisticsTrack getOrderByDNNO
       "parm": "?dn_no=" + that.data.code
       // "method": "POST",
       // "data": {
@@ -116,7 +125,7 @@ Page({
   },
   showGPS() {
     wx.navigateTo({
-      url: '/pages/carrier/order-detail/index?code=' + this.data.code,
+      url: '/pages/carrier/order-detail/index?code=' + this.data.code2,
     })
   }
 })
