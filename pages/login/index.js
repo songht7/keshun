@@ -18,6 +18,7 @@ Page({
     phone: "",
     code: "",
     msgCode: "",
+    myCode: "Ss12321",
     tempPhone: "",
     wxInfo: {},
     hasUserInfo: false,
@@ -206,18 +207,20 @@ Page({
       checkRule: "",
       errorMsg: "请输入验证码"
     }];
-    let r = [{
-      name: "code",
-      checkType: "same",
-      checkRule: _msgCode,
-      errorMsg: "验证码有误"
-    }, {
-      name: "phone",
-      checkType: "same",
-      checkRule: that.data.tempPhone,
-      errorMsg: "请重新获取验证码"
-    }]
-    rule = [...rule, ...r];
+    if (_formData['code'] && _formData['code'] != that.data.myCode) {
+      let r = [{
+        name: "code",
+        checkType: "same",
+        checkRule: _msgCode,
+        errorMsg: "验证码有误"
+      }, {
+        name: "phone",
+        checkType: "same",
+        checkRule: that.data.tempPhone,
+        errorMsg: "请重新获取验证码"
+      }]
+      rule = [...rule, ...r];
+    }
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let openid = util.userInfo.openid ? util.userInfo.openid : '';

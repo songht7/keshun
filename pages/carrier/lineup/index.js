@@ -51,8 +51,8 @@ Page({
       value: ""
     },
     field2: {
-      id: 'Id',
-      val: 'WarehouseAddress'
+      id: 'Key',
+      val: 'Value'
     },
     dataList: [],
     fieldNumber: []
@@ -78,8 +78,8 @@ Page({
   onReady: function () {
     const that = this;
     that.getData();
-    that.getUserGroup();
-    //that.getGroup();
+    that.getUserGroup(); //获取仓库 用户登录信息中 方式1
+    // that.getGroup();//获取仓库 接口 方式2
   },
 
   /**
@@ -166,8 +166,8 @@ Page({
       let groupList = [];
       group.map((obj, k) => {
         let g = {
-          Id: obj,
-          WarehouseAddress: groupDesc[k]
+          Key: obj,
+          Value: groupDesc[k]
         }
         groupList = [...groupList, g]
       });
@@ -180,12 +180,8 @@ Page({
   getGroup() {
     const that = this;
     let data = {
-      "inter": "signWHGroup",
-      "method": "POST",
-      "data": {
-        WeChatID: util.userInfo.openid,
-        PhoneNumber: util.userInfo.loginInfo.PhoneNumber
-      }
+      "inter": "getWarehousGroup",
+      "parm": "?UserId=" + util.userInfo.loginInfo.Id
     }
     data["fun"] = function (res) {
       console.log("getGroup:", res);

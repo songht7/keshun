@@ -1,12 +1,10 @@
 // pages/component/home-switch/home-switch.js
-/*"T202011050001" "6100067363" "6200000124" 6100468012 "6100067681" "6100067472" */
-/*"T202011050002" "6100067368"*/
+/*"T202011050001" "6100468366" */
 /*
  * 13226678907  7 对应科顺员工(物流干事) old：1，new：7
- * 13220098900  2  对应承运商 12312312314
- * 12312312312  3 对应司机 
- * 12312312315  4  对应科顺员工(商务)
- * 13220046241  3 对应司机 带仓库 18877777777
+ * 16621700229  2  对应承运商
+ * 13482500065  3 对应司机 
+ * 18917634077  4  对应科顺员工(商务)
  */
 const app = getApp();
 const util = app.globalData;
@@ -116,32 +114,33 @@ Component({
       }],
       /*科顺员工(物流干事)switch-D*/
       "switch-D": [
-      //   {
-      //   label: "承运商分配",
-      //   icon: "icon-7.png",
-      //   sw: "38",
-      //   tap: "linkTo",
-      //   url: "/pages/carrier/order-list/index"
-      // }, 
-      {
-        label: "车辆/司机分配",
-        icon: "icon-15.png",
-        sw: "100",
-        tap: "linkTo",
-        url: "/pages/carrier/distribute/index"
-      }, {
-        label: "司机管理",
-        icon: "icon-16.png",
-        sw: "60",
-        tap: "linkTo",
-        url: "/pages/carrier/driver/index"
-      }, {
-        label: "车辆管理",
-        icon: "icon-17.png",
-        sw: "38",
-        tap: "linkTo",
-        url: "/pages/carrier/car/index"
-      }],
+        //   {
+        //   label: "承运商分配",
+        //   icon: "icon-7.png",
+        //   sw: "38",
+        //   tap: "linkTo",
+        //   url: "/pages/carrier/order-list/index"
+        // }, 
+        {
+          label: "车辆/司机分配",
+          icon: "icon-15.png",
+          sw: "100",
+          tap: "linkTo",
+          url: "/pages/carrier/distribute/index"
+        }, {
+          label: "司机管理",
+          icon: "icon-16.png",
+          sw: "60",
+          tap: "linkTo",
+          url: "/pages/carrier/driver/index"
+        }, {
+          label: "车辆管理",
+          icon: "icon-17.png",
+          sw: "38",
+          tap: "linkTo",
+          url: "/pages/carrier/car/index"
+        }
+      ],
       /*科顺员工(商务)switch-E*/
       "switch-E": [{
         label: "交货单查询",

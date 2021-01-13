@@ -13,7 +13,8 @@ Page({
       CarrierId: 1, //1：自提
       DriverName: "",
       DriverLicense: "",
-      ContactPhone: ""
+      ContactPhone: "",
+      State: 1
     },
     carrier: {
       CarrierId: "",

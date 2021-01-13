@@ -13,6 +13,7 @@ Page({
     parm: {
       page: 1, //必须, 页码
       limit: 15, //必须, 页大小
+      UserId: 0,
       ForwarderId: 0, //必须, 承运商ID
       // ForwarderNo: "",
       OrderNo: "",
@@ -122,6 +123,7 @@ Page({
     const user = util.userInfo.loginInfo;
     let parm = that.data.parm;
     parm['ForwarderId'] = user.ForwarderId ? parseInt(user.ForwarderId) : 1;
+    parm['UserId'] = user.Id ? parseInt(user.Id) : 0;
     if (util.userType == 2) { //7物流干事是001 2承运商是002
       parm['ShippingTypeNo'] = '002';
     } else if (util.userType == 7) {
@@ -186,7 +188,7 @@ Page({
       return key + "=" + _parm[key];
     }).join("&");
     let data = {
-      "inter": "orderList2",
+      "inter": "orderList3",
       "parm": "?" + params
     }
     wx.showLoading({

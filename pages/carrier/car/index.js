@@ -15,7 +15,8 @@ Page({
       NumberPlate: "",
       DrivingIicense: "",
       InsuranceCertificateNumber: "",
-      remark: ""
+      remark: "",
+      State: 1
     },
     carrier: {
       CarrierId: "",
