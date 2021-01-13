@@ -3,13 +3,13 @@
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<view class="page-init">
 		<block wx:if="{{item.status<0}}">
-			<view class="page-tips">暂无订单[{{code}}]信息</view>
+			<view class="page-tips">暂无订单[{{code2}}]信息</view>
 		</block>
 		<block wx:else>
 			<view class="order-row">
 				<view class="order-head">
 					<label>
-						交货单号：{{code}}
+						交货单号：{{code2}}
 					</label>
 				</view>
 				<view class="order-main">
