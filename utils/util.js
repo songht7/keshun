@@ -214,7 +214,10 @@ const funs = {
         if (parm.reLogin) {
           // console.log("relogin:::", _toDay)
           _userInfo = ress.data;
-          _userInfo["loginInfo"]["loginTime"] = _toDay;
+          _userInfo["loginInfo"] = {
+            ...parm.data,
+            loginTime: _toDay
+          }
         } else {
           _userInfo = {
             ...ress.data,
