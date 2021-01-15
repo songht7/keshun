@@ -215,17 +215,20 @@ Page({
       checkType: "notnull",
       checkRule: "",
       errorMsg: "请选择车长"
-    }, {
-      name: "DrivingIicense",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请填写行驶证"
-    }, {
-      name: "InsuranceCertificateNumber",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请填写保险证明单号"
-    }, {
+    }
+    // , {
+    //   name: "DrivingIicense",
+    //   checkType: "notnull",
+    //   checkRule: "",
+    //   errorMsg: "请填写行驶证"
+    // }
+    // , {
+    //   name: "InsuranceCertificateNumber",
+    //   checkType: "notnull",
+    //   checkRule: "",
+    //   errorMsg: "请填写保险证明单号"
+    // }
+    , {
       name: "Images",
       checkType: "notnull",
       checkRule: "",

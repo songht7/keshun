@@ -22,7 +22,7 @@ var api = {
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   }
 }
-var lks = "dev";
+var lks = "formal";
 export default {
   Interface: {
     "siteType": lks, //发布类型

@@ -31,12 +31,12 @@
 				<view class="f-row-val"><input class="form-row-input" data-name="logistics" bindinput="bindInput" value="{{datas.logistics}}" /></view>
 			</view> -->
 			<view class="form-row">
-				<view class="f-row-label not-null">车辆行驶证</view>
+				<view class="f-row-label">车辆行驶证</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="DrivingIicense" name="DrivingIicense"
 						bindinput="bindInput" value="{{datas.DrivingIicense}}" /></view>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label not-null">车辆保险证明单号</view>
+				<view class="f-row-label">车辆保险证明单号</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="InsuranceCertificateNumber"
 						name="InsuranceCertificateNumber" bindinput="bindInput" value="{{datas.InsuranceCertificateNumber}}" />
 				</view>
