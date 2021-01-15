@@ -2,7 +2,7 @@
 <import src="../components/swiper.wxml" />
 <view class="container">
 	<!-- <template wx:if="silde.length" is="swiper" data="{{silde}}" /> -->
-	<view wx:if="{{user.loginInfo&&user.loginInfo.Id&&siteType=='dev'}}" class="logout" bindtap="logout">登出</view>
+	<view wx:if="{{user.loginInfo&&user.loginInfo.Id}}" class="logout" bindtap="logout">登出</view>
 	<view class="page-init">
 		<my-swiper is="swiper" data="{{silde}}" navto="true"></my-swiper>
 		<home-switch bind:parTap="parTap" switchType="{{switchType}}" siteType="{{siteType}}"></home-switch>

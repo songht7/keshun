@@ -9,6 +9,7 @@ App({
     // wx.setStorageSync('logs', logs)
     this.globalData.checkToken();
     this.globalData.checkUser();
+    this.globalData.relogin();
   },
   onShow: function () {
     console.log('App Show')

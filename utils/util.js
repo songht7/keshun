@@ -209,12 +209,21 @@ const funs = {
     wx.getStorage({
       key: 'userInfo',
       success(ress) {
-        const _userInfo = {
-          ...ress.data,
-          loginInfo: {
-            ...parm.data
-          }
-        };
+        let _toDay = that.today();
+        let _userInfo = {};
+        if (parm.reLogin) {
+          // console.log("relogin:::", _toDay)
+          _userInfo = ress.data;
+          _userInfo["loginInfo"]["loginTime"] = _toDay;
+        } else {
+          _userInfo = {
+            ...ress.data,
+            loginInfo: {
+              ...parm.data,
+              loginTime: _toDay
+            }
+          };
+        }
         wx.setStorage({
           key: 'userInfo',
           data: _userInfo,
@@ -222,16 +231,18 @@ const funs = {
         });
         that.userInfo = _userInfo;
         that.userType = parm.data.PostId;
-        wx.showToast({
-          title: '登录成功',
-          icon: 'success',
-          duration: 2000,
-          complete() {
-            wx.redirectTo({
-              url: '/pages/index/index',
-            })
-          }
-        })
+        if (!parm.reLogin) {
+          wx.showToast({
+            title: '登录成功',
+            icon: 'success',
+            duration: 2000,
+            complete() {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
+          })
+        }
       },
       fail() {}
     })
@@ -257,8 +268,10 @@ const funs = {
     data["fun"] = function (res) {
       // console.log("app-login-res:", res);
       if (res.status > 0) {
+        let _reLogin = parm.reLogin ? parm.reLogin : false
         that.setStorageUser({
-          data: res.data
+          data: res.data,
+          reLogin: _reLogin
         });
       } else {
         wx.showToast({
@@ -269,6 +282,21 @@ const funs = {
       }
     }
     that.getData(data)
+  },
+  relogin() {
+    const that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success(ress) {
+        let _toDay = that.today();
+        if (ress.data.loginInfo && ress.data.loginInfo.loginTime != _toDay) {
+          that.login({
+            reLogin: true
+          });
+        }
+      },
+      fail() {}
+    })
   },
   subscribeMessage() { //订阅消息
     const that = this;
@@ -432,6 +460,14 @@ const funs = {
         console.log("checkUser", that.userInfo)
       }
     })
+  },
+  today() {
+    const that = this;
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    return year + "/" + month + "/" + day;
   },
   setDeadline(parm = {}) {
     const that = this;
