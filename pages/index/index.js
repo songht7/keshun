@@ -51,21 +51,28 @@ Page({
       user: util.userInfo,
       siteType: util.config.siteType
     });
-    if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
-      util.subscribeMessage();
-      that.getData({
-        inter: "notice",
-        parm: "?page=1&limit=5"
-      });
-    } else {
-      that.setData({
-        silde: [{
-          TitleImage: '/static/default/cks1.jpg'
-        }, {
-          TitleImage: '/static/default/cks2.jpg'
-        }]
-      });
-    }
+    // if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
+    //   util.subscribeMessage();
+    //   that.getData({
+    //     inter: "notice",
+    //     parm: "?page=1&limit=5"
+    //   });
+    // } else {
+    //   that.setData({
+    //     silde: [{
+    //       TitleImage: '/static/default/cks1.jpg'
+    //     }, {
+    //       TitleImage: '/static/default/cks2.jpg'
+    //     }]
+    //   });
+    // }
+    that.setData({
+      silde: [{
+        TitleImage: '/static/default/cks1.jpg'
+      }, {
+        TitleImage: '/static/default/cks2.jpg'
+      }]
+    });
   },
 
   /**
@@ -175,6 +182,14 @@ Page({
     console.log(e.detail)
   },
   logout() {
-    util.logout()
+    wx.showModal({
+      title: '确认登出？',
+      content: '',
+      success: function (res) {
+        if (res.confirm) {
+          util.logout()
+        } else if (res.cancel) {}
+      }
+    });
   }
 })

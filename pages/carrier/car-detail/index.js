@@ -15,7 +15,12 @@ Page({
       Images: '',
       tempImg: '',
     },
-    carLengthPicker: ['4.2M', '6.8M', '9.6M', '13M'],
+    carLengthPicker: [
+      "4.2M平板", "4.2M高栏", "4.2M箱式",
+      "6.8M平板", "6.8M高栏", "6.8M箱式",
+      "9.6M平板", "9.6M高栏", "9.6M箱式",
+      "13M平板", "13M高栏", "13M箱式"
+    ],
     carLengthIndex: 0,
     CarLength: "",
     carLengthNomel: 0,
@@ -206,34 +211,35 @@ Page({
     // let _formData = this.data.datas;
     console.log(_formData);
     var rule = [{
-      name: "NumberPlate",
-      checkType: "isCarLicens",
-      checkRule: "",
-      errorMsg: "请填写正确的车牌"
-    }, {
-      name: "CarLength",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请选择车长"
-    }
-    // , {
-    //   name: "DrivingIicense",
-    //   checkType: "notnull",
-    //   checkRule: "",
-    //   errorMsg: "请填写行驶证"
-    // }
-    // , {
-    //   name: "InsuranceCertificateNumber",
-    //   checkType: "notnull",
-    //   checkRule: "",
-    //   errorMsg: "请填写保险证明单号"
-    // }
-    , {
-      name: "Images",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请上传行驶证图片"
-    }];
+        name: "NumberPlate",
+        checkType: "isCarLicens",
+        checkRule: "",
+        errorMsg: "请填写正确的车牌"
+      }, {
+        name: "CarLength",
+        checkType: "notnull",
+        checkRule: "",
+        errorMsg: "请选择车型"
+      }
+      // , {
+      //   name: "DrivingIicense",
+      //   checkType: "notnull",
+      //   checkRule: "",
+      //   errorMsg: "请填写行驶证"
+      // }
+      // , {
+      //   name: "InsuranceCertificateNumber",
+      //   checkType: "notnull",
+      //   checkRule: "",
+      //   errorMsg: "请填写保险证明单号"
+      // }
+      , {
+        name: "Images",
+        checkType: "notnull",
+        checkRule: "",
+        errorMsg: "请上传行驶证图片"
+      }
+    ];
     if (that.data.userType != 2) {
       let r = [{
         name: "CarrierId",

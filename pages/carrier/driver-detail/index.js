@@ -161,12 +161,14 @@ Page({
       checkType: "notnull",
       checkRule: "",
       errorMsg: "请填写司机姓名"
-    }, {
-      name: "DriverLicense",
-      checkType: "notnull",
-      checkRule: "",
-      errorMsg: "请填写驾驶证"
-    }, {
+    }
+    // , {
+    //   name: "DriverLicense",
+    //   checkType: "notnull",
+    //   checkRule: "",
+    //   errorMsg: "请填写驾驶证"
+    // }
+    , {
       name: "ContactPhone",
       checkType: "phoneno",
       checkRule: "",

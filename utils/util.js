@@ -390,7 +390,7 @@ const funs = {
       success() {
         that.userInfo = {};
         that.userType = 0;
-        wx.redirectTo({
+        wx.reLaunch({
           url: '/pages/index/index',
         })
       }

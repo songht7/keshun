@@ -14,7 +14,7 @@
 						bindinput="bindInput" value="{{datas.DriverName}}" /></view>
 			</view>
 			<view class="form-row">
-				<view class="f-row-label not-null">驾驶证编号</view>
+				<view class="f-row-label">驾驶证编号</view>
 				<view class="f-row-val"><input class="form-row-input" data-name="DriverLicense" name="DriverLicense"
 						bindinput="bindInput" value="{{datas.DriverLicense}}" /></view>
 			</view>
