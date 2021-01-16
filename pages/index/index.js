@@ -51,6 +51,9 @@ Page({
       user: util.userInfo,
       siteType: util.config.siteType
     });
+    if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
+      util.subscribeMessage();
+    }
     // if (util.userInfo.loginInfo && util.userInfo.loginInfo.PostId) {
     //   util.subscribeMessage();
     //   that.getData({
