@@ -20,6 +20,7 @@ Page({
       latitude: "",
       longitude: ""
     },
+    singNO: "", //签到时间
     signStatus: 1, //页面状态 0:未签到 1:已签到
     signInfo: 0, //接口返回 0:签到失败 1:签到成功
     wait: 20,
@@ -48,7 +49,7 @@ Page({
         id: groupId
       }
     });
-    util.checkLocation();//检查小程序是否开启定位服务
+    util.checkLocation(); //检查小程序是否开启定位服务
     that.signInfo(groupId);
     that.getGroup(); //获取仓库
     that.getLocation();
@@ -171,10 +172,12 @@ Page({
       // console.log("signInfo:::signInfo:::", res);
       if (res.status > 0) {
         that.tapHandler(res.data.Id);
+        let _data = res.data;
+        let singNO = that.singNO(_data.SignDate, _data.SortNo);
         that.setData({
           signInfo: 1,
           signStatus: 1,
-          signData: res.data
+          signData: _data
         });
       } else {
         // that.setData({
@@ -237,10 +240,12 @@ Page({
       wx.hideLoading();
       if (res.status > 0) {
         that.tapHandler(res.data.Id);
+        let _data = res.data;
+        let singNO = that.singNO(_data.SignDate, _data.SortNo);
         that.setData({
           signInfo: 1,
           signStatus: 1,
-          signData: res.data
+          signData: _data
         });
         wx.showToast({
           title: "签到成功！",
@@ -255,6 +260,15 @@ Page({
       }
     }
     util.getData(data)
+  },
+  singNO: function (date, no) {
+    const that = this;
+    let signDate = date.split(" ")[0];
+    signDate = signDate.split("-");
+    let singNO = signDate[0] + signDate[1] + signDate[2] + "-" + no;
+    that.setData({
+      singNO
+    });
   },
   confirmHandler: function (e) {
     var value = e.detail.value
