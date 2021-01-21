@@ -73,7 +73,7 @@
 									</block>
 								</view>
 								<block wx:if="{{list[0]['ShippingTypeNo']=='002'}}">
-									<view class="pic-block">
+									<!-- <view class="pic-block">
 										<block wx:if="{{tempImg2||pic2}}">
 											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
 												<view class="delete" bindtap="chooseImage" data-idx="2">[重传]</view>
@@ -88,7 +88,7 @@
 												<view class="pic-txt">上传车身照</view>
 											</view>
 										</block>
-									</view>
+									</view> -->
 									<view class="pic-block">
 										<block wx:if="{{tempImg3||pic3}}">
 											<view class="weui-uploader__file order-pic" hover-class="pic-hover">
@@ -101,7 +101,7 @@
 											<view class="weui-uploader__file order-pic order-pic-nomal">
 												<image class="weui-uploader__img" src="/static/icon-20.png" bindtap="chooseImage"
 													mode="aspectFit" data-idx="3"></image>
-												<view class="pic-txt">上传车尾照</view>
+												<view class="pic-txt">上传车厢底板照</view>
 											</view>
 										</block>
 									</view>
