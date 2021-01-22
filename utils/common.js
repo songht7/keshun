@@ -5,7 +5,7 @@
  * 科顺员工（商务） Business = 4
  */
 var api = {
-  "formal": {
+  "formal": { //正式接口，正式功能
     "apiurl": "https://tms.keshun.com.cn", //接口 https://tmskeshun.com.cn/ https://tms.keshun.com.cn
     "pageurl": "https://tms.keshun.com.cn",
     "imgurl": "", //图片域名https://tms.keshun.com.cn
@@ -13,7 +13,15 @@ var api = {
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   },
-  "dev": {
+  "dev": { //测试接口，测试功能
+    "apiurl": "https://tmstest.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
+    "pageurl": "https://tmstest.keshun.com.cn", //业务域名
+    "imgurl": "", //图片域名
+    "domain": "",
+    "appName": "CKS 科顺",
+    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
+  },
+  "dev2": { //测试接口，正式功能
     "apiurl": "https://tmstest.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
     "pageurl": "https://tmstest.keshun.com.cn", //业务域名
     "imgurl": "", //图片域名
@@ -22,7 +30,7 @@ var api = {
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   }
 }
-var lks = "formal";
+var lks = "dev2";
 export default {
   Interface: {
     "siteType": lks, //发布类型
@@ -39,7 +47,7 @@ export default {
     "mapkey": "56CBZ-YGVHD-HQV42-PYBTQ-P6FZ7-J6BQY", //腾讯地图mapkey - 6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
-    "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 60 * 2)
+    "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 5) 5分 (1000 * 60 * 60 * 2) 2小时
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】
