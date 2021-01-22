@@ -6,8 +6,8 @@
  */
 var api = {
   "formal": {
-    "apiurl": "https://tmstest.keshun.com.cn", //接口 https://tmskeshun.com.cn/ https://tms.keshun.com.cn
-    "pageurl": "https://tmstest.keshun.com.cn",
+    "apiurl": "https://tms.keshun.com.cn", //接口 https://tmskeshun.com.cn/ https://tms.keshun.com.cn
+    "pageurl": "https://tms.keshun.com.cn",
     "imgurl": "", //图片域名https://tms.keshun.com.cn
     "domain": "",
     "appName": "CKS 科顺",
@@ -39,7 +39,7 @@ export default {
     "mapkey": "56CBZ-YGVHD-HQV42-PYBTQ-P6FZ7-J6BQY", //腾讯地图mapkey - 6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
-    "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 5), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 60 * 2)
+    "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 60 * 2)
     "addr": {
       "getToken": "/api/InterfaceUser/GetToken?itype=minipro", //GetToken
       "getOpenId": "/api/WxAppletsLoginAndRegister/GetOpenIdByCode", //获取openid【post】
