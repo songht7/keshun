@@ -56,7 +56,7 @@ Component({
         tap: "linkTo",
         url: "/pages/driver/sign/index"
       }, {
-        label: "客户签收",
+        label: "司机回单签收",
         icon: "icon-5.png",
         sw: "60",
         tap: "linkTo",
