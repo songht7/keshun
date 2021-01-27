@@ -351,21 +351,24 @@ Page({
         _formData['MiddleImage'] = _data.pic2;
         _formData['AfterImage'] = _data.pic3;
         let rr = [{
-          name: "FrontImage",
-          checkType: "notnull",
-          checkRule: "",
-          errorMsg: "请上传车辆车头照片"
-        }, {
-          name: "MiddleImage",
-          checkType: "notnull",
-          checkRule: "",
-          errorMsg: "请上传车辆车身照片"
-        }, {
-          name: "AfterImage",
-          checkType: "notnull",
-          checkRule: "",
-          errorMsg: "请上传车辆车尾照片"
-        }]
+            name: "FrontImage",
+            checkType: "notnull",
+            checkRule: "",
+            errorMsg: "请上传车辆车头照片"
+          }
+          // , {
+          //   name: "MiddleImage",
+          //   checkType: "notnull",
+          //   checkRule: "",
+          //   errorMsg: "请上传车辆车身照片"
+          // }
+          , {
+            name: "AfterImage",
+            checkType: "notnull",
+            checkRule: "",
+            errorMsg: "请上传车厢底板照片"
+          }
+        ]
         rule = [...rule, ...rr];
         break;
 

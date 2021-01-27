@@ -87,12 +87,11 @@
 .sign-qr-main {
   position: relative;
   z-index: 1;
-  padding: 20rpx 60rpx;
+  padding: 10rpx 60rpx;
 }
 
 .wait {
-  font-size: 34rpx;
-  font-weight: bold;
+  font-size: 28rpx;
   text-align: center;
   line-height: 1.4;
 }
@@ -102,7 +101,7 @@
 }
 
 .sing-NO {
-  font-size: 38rpx;
+  font-size: 34rpx;
 }
 
 .wait-red {

@@ -15,10 +15,10 @@ const funs = {
     let _parm = parm.parm || '';
     let _url = ctx.apiurl + ctx.addr[parm.inter] + _parm
     var result = [];
-    if (ctx.siteType == 'dev') {
-      console.log("request-url:", _url)
-      console.log("request-parm:", parm)
-    }
+    // if (ctx.siteType == 'dev') {
+    console.log("request-url:", _url)
+    console.log("request-parm:", parm)
+    // }
     wx.request({
       url: _url,
       data: parm.data || {},
@@ -282,6 +282,11 @@ const funs = {
           icon: 'error',
           duration: 2000
         })
+        // if (res.msg == '用户不存在') {
+        //   that.checkUser({
+        //     userErr: res.msg
+        //   });
+        // }
       }
     }
     that.getData(data)

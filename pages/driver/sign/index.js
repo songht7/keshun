@@ -1,6 +1,7 @@
 // pages/driver/sign/index.js
 const app = getApp();
 const util = app.globalData;
+var base64 = require('../../../common/base64.js');
 import graceChecker from "../../../common/graceChecker.js";
 import QRCode from "../../../common/qrcode.js";
 var qrcode = ""
@@ -127,11 +128,13 @@ Page({
   },
   getGroup() {
     const that = this;
+    let openid = util.userInfo.openid ? util.userInfo.openid : '';
+    openid = base64.decode(openid);
     let data = {
       "inter": "signWHGroup",
       "method": "POST",
       "data": {
-        WeChatID: util.userInfo.openid,
+        WeChatID: openid,
         PhoneNumber: util.userInfo.loginInfo.PhoneNumber
       }
     }
@@ -196,12 +199,14 @@ Page({
       });
       return false
     }
+    let openid = util.userInfo.openid ? util.userInfo.openid : '';
+    openid = base64.decode(openid);
     let data = {
       "inter": "sign",
       "method": "POST",
       "data": {
         PhoneNumber: util.userInfo.loginInfo.PhoneNumber,
-        WeChatID: util.userInfo.openid,
+        WeChatID: openid,
         WHGroupId: that.data.groupData.id, //仓库组合ID
         Latitude: location.latitude,
         Longitude: location.longitude

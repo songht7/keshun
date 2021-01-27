@@ -15,11 +15,12 @@ Page({
       Images: '',
       tempImg: '',
     },
-    carLengthPicker: [
+    carLengthPicker: [//车型
       "4.2M平板", "4.2M高栏", "4.2M箱式",
       "6.8M平板", "6.8M高栏", "6.8M箱式",
       "9.6M平板", "9.6M高栏", "9.6M箱式",
-      "13M平板", "13M高栏", "13M箱式"
+      "13M平板", "13M高栏", "13M箱式",
+      "外贸货柜"
     ],
     carLengthIndex: 0,
     CarLength: "",
