@@ -258,8 +258,8 @@ const funs = {
     if (openid == '') {
       return
     }
-    openid = base64.decode(openid);
-    unionid = base64.decode(unionid);
+    // openid = base64.decode(openid);
+    // unionid = base64.decode(unionid);
     let data = {
       "inter": "login",
       "method": "POST",
@@ -277,11 +277,12 @@ const funs = {
           reLogin: _reLogin
         });
       } else {
-        wx.showToast({
-          title: res.msg,
-          icon: 'error',
-          duration: 2000
-        })
+        // wx.showToast({
+        //   title: res.msg,//'用户不存在'
+        //   icon: 'error',
+        //   duration: 2000
+        // })
+        
         // if (res.msg == '用户不存在') {
         //   that.checkUser({
         //     userErr: res.msg
