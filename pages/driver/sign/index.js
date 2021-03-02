@@ -129,7 +129,7 @@ Page({
   getGroup() {
     const that = this;
     let openid = util.userInfo.openid ? util.userInfo.openid : '';
-    openid = base64.decode(openid);
+    // openid = base64.decode(openid);
     let data = {
       "inter": "signWHGroup",
       "method": "POST",
@@ -200,7 +200,7 @@ Page({
       return false
     }
     let openid = util.userInfo.openid ? util.userInfo.openid : '';
-    openid = base64.decode(openid);
+    // openid = base64.decode(openid);
     let data = {
       "inter": "sign",
       "method": "POST",

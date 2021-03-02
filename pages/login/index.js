@@ -223,7 +223,7 @@ Page({
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let openid = util.userInfo.openid ? util.userInfo.openid : '';
-      openid = base64.decode(openid);
+      // openid = base64.decode(openid);
       let data = {
         "inter": "register",
         "method": "POST",
@@ -312,8 +312,10 @@ Page({
           wx.hideLoading()
           if (res.status > 0) {
             let uData = res.data;
-            uData['openid'] = uData['openid'] ? base64.encode(uData['openid']) : null;
-            uData['unionid'] = uData['unionid'] ? base64.encode(uData['unionid']) : null;
+            // uData['openid'] = uData['openid'] ? base64.encode(uData['openid']) : null;
+            // uData['unionid'] = uData['unionid'] ? base64.encode(uData['unionid']) : null;
+            uData['openid'] = uData['openid'] ? uData['openid'] : null;
+            uData['unionid'] = uData['unionid'] ? uData['unionid'] : null;
             let _data = {
               ...e.detail.userInfo,
               ...uData
