@@ -36,7 +36,7 @@
 								收货地址：<text>{{item.ArrivalAddress}}</text>
 							</view>
 						</view>
-						<view class="order-line">
+						<view class="order-line" wx:if="{{item.Status>3}}">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-11.png" mode="scaleToFill"></image>
 								收货人及电话：<text>{{item.DeliveryPhoneNum}}</text>
@@ -54,7 +54,7 @@
 						<view class="order-line">
 							<view class="order-init">
 								<image class="icons" src="/static/icon-14.png" mode="scaleToFill"></image>
-								预计到货时间：<text>{{item.PlanDeliveryDate}}</text>
+								预计到货时间：<text>{{item.PlanDeliveryDate?item.PlanDeliveryDate:""}}</text>
 							</view>
 						</view>
 					</view>
