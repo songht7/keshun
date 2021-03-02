@@ -117,7 +117,7 @@ Page({
     }
     var rule = [{
       name: "phone",
-      checkType: "phoneno",
+      checkType: "phoneno2",
       checkRule: "",
       errorMsg: "请填写正确的手机号"
     }];

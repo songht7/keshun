@@ -109,6 +109,13 @@ module.exports = {
 						return false;
 					}
 					break;
+				case 'phoneno2':
+					var reg = Number.isInteger(data[rule[i].name]);
+					if (!reg && data[rule[i].name].length != 11) {
+						this.error = rule[i].errorMsg;
+						return false;
+					}
+					break;
 				case 'zipcode':
 					var reg = /^[0-9]{6}$/;
 					if (!reg.test(data[rule[i].name])) {
