@@ -270,19 +270,22 @@ const funs = {
     }
     data["fun"] = function (res) {
       // console.log("app-login-res:", res);
+      let _reLogin = parm.reLogin ? parm.reLogin : false
       if (res.status > 0) {
-        let _reLogin = parm.reLogin ? parm.reLogin : false
         that.setStorageUser({
           data: res.data,
           reLogin: _reLogin
         });
       } else {
+        if (_reLogin && res.msg == '用户不存在') {
+          that.logout();
+        }
         // wx.showToast({
         //   title: res.msg,//'用户不存在'
         //   icon: 'error',
         //   duration: 2000
         // })
-        
+
         // if (res.msg == '用户不存在') {
         //   that.checkUser({
         //     userErr: res.msg
