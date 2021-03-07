@@ -50,10 +50,7 @@ Page({
       }
     });
     util.checkLocation(); //检查小程序是否开启定位服务
-    that.signInfo(groupId);
-    that.getGroup(); //获取仓库
-    that.getLocation();
-    that.QRCode();
+    // that.QRCode();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -66,7 +63,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    const that = this;
+    let groupId = that.data.groupId;
+    that.signInfo(groupId);
+    that.getGroup(); //获取仓库
+    that.getLocation();
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -104,22 +107,29 @@ Page({
   },
   QRCode(val) {
     const that = this;
-    qrcode = new QRCode('qrcode-canvas', {
-      // usingIn: this,
-      text: val || "CKS 科顺",
-      image: '/static/logo-2.png',
-      padding: 5,
-      width: that.data.qrCode['QRSize'],
-      height: that.data.qrCode['QRSize'],
-      colorDark: "#333",
-      colorLight: "white",
-      correctLevel: QRCode.CorrectLevel.H,
-      callback: (res) => {
-        // 生成二维码的临时文件
-        console.log("生成二维码:")
-        // that.data.qrCode['QRCodeImg'] = res.path;
-      }
-    });
+    if (val) {
+      qrcode = new QRCode('qrcode-canvas', {
+        // usingIn: this,
+        text: val || "CKS 科顺",
+        image: '/static/logo-2.png',
+        padding: 5,
+        width: that.data.qrCode['QRSize'],
+        height: that.data.qrCode['QRSize'],
+        colorDark: "#333",
+        colorLight: "white",
+        correctLevel: QRCode.CorrectLevel.H,
+        callback: (res) => {
+          // 生成二维码的临时文件
+          console.log("生成二维码:", val)
+          // that.data.qrCode['QRCodeImg'] = res.path;
+        }
+      });
+    } else {
+      console.log("二维码生成失败");
+      that.setData({
+        qrCodeTips: "二维码生成失败"
+      })
+    }
   },
   getLocation() {
     const that = this;
@@ -173,7 +183,8 @@ Page({
     data["fun"] = function (res) {
       // console.log("signInfo:::signInfo:::", res);
       if (res.status > 0) {
-        that.tapHandler(res.data.Id);
+        // that.tapHandler(res.data.Id);
+        that.QRCode(res.data.Id);
         let _data = res.data;
         let singNO = that.singNO(_data.SignDate, _data.SortNo);
         that.setData({
@@ -241,7 +252,8 @@ Page({
       console.log("mySignMySign:", res);
       wx.hideLoading();
       if (res.status > 0) {
-        that.tapHandler(res.data.Id);
+        // that.tapHandler(res.data.Id);
+        that.QRCode(res.data.Id)
         let _data = res.data;
         let singNO = that.singNO(_data.SignDate, _data.SortNo);
         that.setData({
@@ -285,6 +297,7 @@ Page({
   tapHandler: function (txt) {
     // console.log(txt);
     // 传入字符串生成qrcode
+    console.log("===tapHandler===:", txt)
     qrcode.makeCode(txt)
   },
   // 长按保存

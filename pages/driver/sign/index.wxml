@@ -8,8 +8,8 @@
 				<view class="f-row-label f-row-sub-label">{{item.WarehouseAddress}}</view>
 			</view>
 		</block>
-		<block wx:if="{{groupList.length<=0}}">
-				<view class="page-tips">暂无关联仓库</view>
+		<block wx:if="{{groupList.length<=0&&!listLoading}}">
+			<view class="page-tips">暂无关联仓库</view>
 		</block>
 		<block wx:if="{{false}}">
 			<block wx:if="{{signStatus<=1}}">
@@ -31,16 +31,19 @@
 			<view wx:if="{{signInfo>0&&signData.Id}}" class="sign-qr-box">
 				<image class="qr-bg" src="/static/code-bg.jpg" mode="aspectFit"></image>
 				<view class="sign-qr-main">
-					<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
+					<view class="wait">你的牌号为 <text class="wait-numb">{{signData.SortNo}}</text>，前面还有 <text
+							class="wait-numb">{{signData.BeginSortNo}}</text> 人</view>
 					<view class="qr-code">
-						<canvas class="qr-canvas" canvas-id="qrcode-canvas" style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
+						<canvas class="qr-canvas" canvas-id="qrcode-canvas"
+							style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
 						<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
 						<view>进场时请出示二维码</view>
 					</view>
 				</view>
 			</view>
 			<!---筛选选择器--->
-			<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow" bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
+			<picker-search list="{{groupList}}" title="选择仓库" show="{{groupShow}}" field="{{field}}" type="groupShow"
+				bind:maskClose="maskClose" bind:pickerSelected="pickerGroup"></picker-search>
 			<!--- 、筛选选择器 --->
 		</block>
 	</view>

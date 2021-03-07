@@ -19,6 +19,7 @@ Page({
     signInfo: 0, //接口返回 0:签到失败 1:签到成功
     wait: 20,
     myNO: 18,
+    listLoading: true, //仓库列表加载中
     groupShow: false,
     groupList: [],
     groupData: {
@@ -36,6 +37,9 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
     that.getGroup(); //获取仓库
     that.getLocation();
     that.QRCode();
@@ -140,6 +144,12 @@ Page({
     }
     data["fun"] = function (res) {
       console.log("getGroup:", res);
+      that.setData({
+        listLoading: false
+      });
+      wx.hideLoading({
+        success: (res) => {},
+      })
       if (res.status > 0) {
         that.setData({
           groupList: res.data

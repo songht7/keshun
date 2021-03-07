@@ -37,10 +37,16 @@
 					</view>
 				</view>
 				<view class="qr-code">
-					<canvas class="qr-canvas" canvas-id="qrcode-canvas"
-						style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
-					<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
-					<view>进场时请出示二维码</view>
+					<block wx:if="{{qrCodeTips}}">
+						<view>进场号</view>
+						<view>{{signData.Id}}</view>
+					</block>
+					<block wx:else>
+						<canvas class="qr-canvas" canvas-id="qrcode-canvas"
+							style="width:{{qrCode['QRSize']}}px;height:{{qrCode['QRSize']}}px" bindlongtap='save' />
+						<!-- <image class="qr" src="/static/qr-text.png" mode="aspectFit"></image> -->
+						<view>进场时请出示二维码</view>
+					</block>
 				</view>
 			</view>
 		</view>
