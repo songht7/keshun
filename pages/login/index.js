@@ -128,7 +128,7 @@ Page({
     if (checkRes) {
       let data = {
         "inter": "getVerify",
-        "parm": "?phone=" + _formData['phone'],
+        "parm": "?phone=" + parseInt(_formData['phone']),
         // "method": "POST",
         // "data": {
         //   phone: _formData['phone']

@@ -110,8 +110,11 @@ module.exports = {
 					}
 					break;
 				case 'phoneno2':
-					var reg = Number.isInteger(data[rule[i].name]);
-					if (!reg && data[rule[i].name].length != 11) {
+					let n = data[rule[i].name];
+					let numb = parseInt(n);
+					var reg = Number.isInteger(numb);
+					// console.log("phoneno2:", numb, reg, numb.toString().length);
+					if (!reg || numb.toString().length != 11 || n.toString().length != 11) {
 						this.error = rule[i].errorMsg;
 						return false;
 					}
