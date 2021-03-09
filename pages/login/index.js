@@ -3,6 +3,7 @@ import graceChecker from "../../common/graceChecker.js";
 var base64 = require('../../common/base64.js');
 const app = getApp();
 const util = app.globalData;
+var countdown = "";
 Page({
 
   /**
@@ -73,21 +74,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const that = this;
     util.checkUser();
+    wx.getStorage({
+      key: 'msgCountDown',
+      success(res) {
+        if (res.data) {
+          let cd = res.data.countDown;
+          that.setData({
+            phone: res.data.phone
+          });
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("onHide");
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    const that = this;
   },
 
   /**
@@ -112,18 +125,44 @@ Page({
   },
   getCode() {
     const that = this;
+    let _formData = {
+      "phone": that.data.phone
+    };
     if (that.data.btnLoading) {
       return
     }
+    
+    wx.getStorage({
+      key: 'msgCountDown',
+      success(res) {
+        if (res.data) {
+          let cd = res.data.countDown;
+          let p = res.data.phone;
+          let d = new Date(util.formatTime(new Date())).getTime() / 1000;
+          // console.log(parseInt(cd), d, p, _formData['phone'].toString());
+          if (parseInt(cd) >= d && p == _formData['phone'].toString()) {
+            that.setData({
+              error: "该手机号获取短信过于频繁"
+            });
+          } else {
+            that.setCode(_formData)
+          }
+        }
+      },
+      fail() {
+        that.setCode(_formData)
+      }
+    })
+  },
+  setCode(formData) {
+    const that = this;
+    let _formData = formData;
     var rule = [{
       name: "phone",
       checkType: "phoneno2",
       checkRule: "",
       errorMsg: "请填写正确的手机号"
     }];
-    let _formData = {
-      "phone": that.data.phone
-    };
     var checkRes = graceChecker.check(_formData, rule);
     if (checkRes) {
       let data = {
@@ -151,7 +190,7 @@ Page({
             that.setData({
               tempPhone: _formData['phone'],
               msgCode: '123', //*****测试用****
-              seconds: 5, //*****dev短信发送失败计时5s****
+              seconds: 60, //*****dev短信发送失败计时10s****
             });
           }
           that.setData({
@@ -164,30 +203,53 @@ Page({
         btnLoading: true
       });
       //that.data.seconds = 10;
-      var countdown = setInterval(() => {
-        var s = that.data.seconds;
-        s--;
-        that.setData({
-          seconds: s
-        });
-        if (that.data.seconds < 0) {
-          that.setData({
-            getCodeTxt: "获取短信验证码",
-            seconds: 60,
-            btnLoading: false
-          });
-          clearInterval(countdown)
-          return
-        }
-        that.setData({
-          getCodeTxt: `${that.data.seconds} 秒后重试`
-        });
-      }, 1000)
+      that.countDown();
+      /* 3分钟后可再发验证码 */
+      var x = util.formatTime(new Date())
+      var time = new Date(x);
+      time.setMinutes(time.getMinutes() + 3);
+      var t = new Date(util.formatTime(time)).getTime() / 1000;
+      //console.log("timeCount:", x, new Date(x).getTime() / 1000, util.formatTime(time), t);
+      wx.setStorage({
+        data: {
+          countDown: t,
+          phone: _formData['phone']
+        },
+        key: 'msgCountDown',
+      })
+      /* 3分钟后可再发验证码 */
+
     } else {
       that.setData({
         error: graceChecker.error
       });
     }
+  },
+  countDown() { //倒计时
+    const that = this;
+    countdown = setInterval(() => {
+      var s = that.data.seconds;
+      s--;
+      that.setData({
+        seconds: s
+      });
+      if (that.data.seconds < 0) {
+        that.setData({
+          getCodeTxt: "获取短信验证码",
+          seconds: 60,
+          btnLoading: false
+        });
+        wx.removeStorage({
+          key: 'msgCountDown',
+        })
+        clearInterval(countdown)
+        countdown = "";
+        return
+      }
+      that.setData({
+        getCodeTxt: `${that.data.seconds} 秒后重试`
+      });
+    }, 1000)
   },
   formSubmit(e) {
     const that = this;

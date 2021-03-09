@@ -26,6 +26,7 @@ Page({
       FactoryNo: "",
       WareHouseNo: "",
       ArrivalAddress: "",
+      CarNo: "",
       ShippingTypeNo: "", //物流干事是001 承运商是002
       IsUrgent: "", //1.是 0.不是 
       Status: "", //状态: 0.未派车 1.已派车 2.已签到 3.已入厂 4.已出厂 5.已跟踪 6.已回单 7.已结单 8.已转出

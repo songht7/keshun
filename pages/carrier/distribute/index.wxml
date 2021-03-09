@@ -26,6 +26,15 @@
 								</icon-font>
 							</view>
 						</view>
+						<view class="form-row form-column">
+							<view class="f-row-label">车牌号</view>
+							<view class="f-row-val">
+								<input class="form-row-input" data-name="CarNo" name="CarNo" bindinput="bindInput"
+									value="{{parm.CarNo}}" />
+								<icon-font class="f-row-icon" type="shanchu4" color="#BBB" bind:iconClick="iconClick" data-name="CarNo">
+								</icon-font>
+							</view>
+						</view>
 						<!-- <view class="form-row form-column">
 							<view class="f-row-label">到货地址</view>
 							<view class="f-row-val">
