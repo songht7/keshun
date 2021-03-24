@@ -51,7 +51,7 @@
 			</view> -->
 			<!-- 物流干事 上传委托书，承运商上传 车头 车身 车厢 -->
 			<view class="form-row form-column">
-				<view class="f-row-label not-null">{{list[0]['ShippingTypeNo']=='001'?'上传委托书':'上传车辆照片'}}</view>
+				<view class="f-row-label {{list[0]['ShippingTypeNo']=='001'?'not-null':''}}">{{list[0]['ShippingTypeNo']=='001'?'上传委托书':'上传车辆照片'}}</view>
 				<view class="f-row-val">
 					<view class="update-img">
 						<view class="weui-uploader__bd">

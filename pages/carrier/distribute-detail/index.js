@@ -369,7 +369,7 @@ Page({
             errorMsg: "请上传车厢底板照片"
           }
         ]
-        rule = [...rule, ...rr];
+        // rule = [...rule, ...rr];//
         break;
 
       default:
