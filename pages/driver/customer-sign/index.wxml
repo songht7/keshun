@@ -2,7 +2,7 @@
 <view class="container">
 	<top-tips msg="{{error}}" type="error" show="{{error}}"></top-tips>
 	<scan-code id="SCode" bind:seachCode="onSubmit" bind:setCode="setCode" auto="{{true}}" btnFix='{{true}}'
-		disabled="{{false}}">
+		disabled="{{true}}">
 		<view slot="cont">
 			<view wx:if="{{ISSendDCCode>=1}}" class="cust-block">
 				<view class="code-box">
