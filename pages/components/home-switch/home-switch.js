@@ -50,36 +50,38 @@ Component({
       }],
       /*司机switch-B*/
       "switch-B": [{
-        label: "排队取号",
-        icon: "icon-4.png",
-        sw: "38",
-        tap: "linkTo",
-        url: "/pages/driver/sign/index"
-      }, {
-        label: "司机回单签收",
-        icon: "icon-5.png",
-        sw: "60",
-        tap: "linkTo",
-        url: "/pages/driver/customer-sign/index"
-      }, {
-        label: "GPS上传",
-        icon: "icon-6.png",
-        sw: "100",
-        tap: "linkTo",
-        url: "/pages/driver/gps/index"
-      }, {
-        label: "我的交货单",
-        icon: "icon-7.png",
-        sw: "60",
-        tap: "linkTo",
-        url: "/pages/driver/my-order/index"
-      }, {
-        label: "交货单转入",
-        icon: "icon-8.png",
-        sw: "38",
-        tap: "linkTo",
-        url: "/pages/driver/order-into/index"
-      }],
+          label: "排队取号",
+          icon: "icon-4.png",
+          sw: "38",
+          tap: "linkTo",
+          url: "/pages/driver/sign/index"
+        }, {
+          label: "司机回单签收",
+          icon: "icon-5.png",
+          sw: "60",
+          tap: "linkTo",
+          url: "/pages/driver/customer-sign/index"
+        }, {
+          label: "GPS上传",
+          icon: "icon-6.png",
+          sw: "100",
+          tap: "linkTo",
+          url: "/pages/driver/gps/index"
+        }, {
+          label: "我的交货单",
+          icon: "icon-7.png",
+          sw: "100", //60
+          tap: "linkTo",
+          url: "/pages/driver/my-order/index"
+        }
+        // , {
+        //   label: "交货单转入",
+        //   icon: "icon-8.png",
+        //   sw: "38",
+        //   tap: "linkTo",
+        //   url: "/pages/driver/order-into/index"
+        // }
+      ],
       /*承运商switch-C*/
       "switch-C": [{
         label: "车辆/司机分配",

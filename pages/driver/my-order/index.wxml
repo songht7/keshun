@@ -49,9 +49,9 @@
 			<block wx:if="{{!loading&&list.length<=0}}">
 				<view class="page-tips">暂无 {{orderStatusVal['value']!='全部'?' '+orderStatusVal['value']+' ':''}} 订单</view>
 			</block>
-			<view class="btn-area">
+			<!-- <view class="btn-area">
 				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
-			</view>
+			</view> -->
 			<!---搜索条件-承运商--->
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!---搜索条件-承运商--->
