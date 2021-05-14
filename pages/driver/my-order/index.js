@@ -319,22 +319,14 @@ Page({
         console.log(res);
         wx.hideLoading();
         if (res.status > 0) {
-          if (obj["result"]) {
-            that.setData({
-              error: obj["result"]
-            });
-          } else {
-            wx.showToast({
-              title: '打卡成功',
-            })
-            setTimeout(() => {
-              that.getList();
-            }, 3000);
-          }
+          wx.showToast({
+            title: res.msg || '打卡成功',
+          })
           setTimeout(() => {
             that.setData({
               submitLoading: false
             });
+            that.getList();
           }, 3000);
         } else {
           that.setData({
