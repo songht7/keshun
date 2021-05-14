@@ -1,0 +1,2 @@
+/* pages/components/order-card/order-card.wxss */
+@import "/common/order-card.wxss";

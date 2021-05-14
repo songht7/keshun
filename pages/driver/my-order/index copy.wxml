@@ -9,11 +9,11 @@
 	<view class="page-init">
 		<view class="my-order">
 			<view class="filter-box">
-				<!-- <checkbox-group bindchange="checkAll">
+				<checkbox-group bindchange="checkAll">
 					<label>
 						<checkbox value="all" checked="{{checkedAll}}" />全部选择
 					</label>
-				</checkbox-group> -->
+				</checkbox-group>
 				<view class="top-filter">
 					<filter-box id="FilterBox" bind:filterSubmit="filterSubmit">
 						<view slot="cont">
@@ -44,7 +44,7 @@
 				</view>
 			</view>
 			<block wx:if="{{list.length>0}}">
-				<order-card list="{{list}}" bind:checkboxChange="checkboxChange" checkType="{{checkType}}"></order-card>
+				<order-card list="{{list}}" bind:checkboxChange="checkboxChange"></order-card>
 			</block>
 			<block wx:if="{{!loading&&list.length<=0}}">
 				<view class="page-tips">暂无 {{orderStatusVal['value']!='全部'?' '+orderStatusVal['value']+' ':''}} 订单</view>
@@ -52,20 +52,12 @@
 			<!-- <view class="btn-area">
 				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
 			</view> -->
-			<!-- <block wx:if="{{checkType=='radio'}}">
-				<view class="btn-area">
-					<button type="primary" class="btn-primary" bindtap="onSubmit2">打卡</button>
-				</view>
-			</block> -->
 			<!---搜索条件-承运商--->
-			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow"
-				bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow" bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
 			<!---搜索条件-承运商--->
-			<picker-search list="{{orderStatus}}" title="订单状态" show="{{orderStatusShow}}" type="orderStatusShow"
-				bind:maskClose="maskClose" bind:pickerSelected="orderStatusSelected"></picker-search>
+			<picker-search list="{{orderStatus}}" title="订单状态" show="{{orderStatusShow}}" type="orderStatusShow" bind:maskClose="maskClose" bind:pickerSelected="orderStatusSelected"></picker-search>
 			<!---转出对象-承运商--->
-			<picker-search list="{{carrierList}}" title="选择承运商" show="{{selectCarrierShow}}" type="selectCarrierShow"
-				bind:maskClose="maskClose" bind:pickerSelected="selectCarrier"></picker-search>
+			<picker-search list="{{carrierList}}" title="选择承运商" show="{{selectCarrierShow}}" type="selectCarrierShow" bind:maskClose="maskClose" bind:pickerSelected="selectCarrier"></picker-search>
 			<!--- 、筛选选择器 --->
 		</view>
 	</view>

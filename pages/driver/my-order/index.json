@@ -3,6 +3,7 @@
   "usingComponents": {
     "scan-code": "/pages/components/scan-code/scan-code",
     "order-card": "/pages/components/order-card/order-card",
+    "order-card-checkbox": "/pages/components/order-card-checkbox/order-card-checkbox",
     "filter-box": "/pages/components/filter-box/filter-box",
     "picker-search": "/pages/components/picker-search/picker-search"
   },

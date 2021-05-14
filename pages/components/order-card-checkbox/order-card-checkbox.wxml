@@ -1,11 +1,11 @@
 <!--pages/components/order-card/order-card.wxml-->
 <view class="order-card">
-	<radio-group bindchange="checkboxChange">
+	<checkbox-group bindchange="checkboxChange">
 		<block wx:for="{{list}}" wx:key="*this" wx:for-item="item">
 			<view class="order-row {{listFull?'no-radius':''}}" bindtap="navDetail" data-id="{{item.Id}}">
 				<view class="order-head {{item.IsUrgent==1?'bg-red':''}}">
 					<label>
-							<radio wx:if="{{item.hasRadio}}" value="{{item.Id}}" />
+						<checkbox wx:if="{{item.hasCheck}}" value="{{item.Id}}" checked="{{item.checked}}"></checkbox>
 						交货单号：{{item.DN_No}} {{item.StatusEnum?'['+item.StatusEnum+']':''}}
 					</label>
 					<view class="head-tag">{{item.IsUrgent==1?'加急':''}}</view>
@@ -69,5 +69,5 @@
 				</block>
 			</view>
 		</block>
-	</radio-group>
+	</checkbox-group>
 </view>

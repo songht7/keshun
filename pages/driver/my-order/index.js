@@ -75,7 +75,8 @@ Page({
     },
     list: [],
     count: 0,
-    checkedAll: false
+    checkedAll: false,
+    checkType: 'radio' //radio checkbox
   },
 
   /**
@@ -290,6 +291,65 @@ Page({
       });
     }
   },
+  onSubmit2() {
+    const that = this;
+    if (that.data.submitLoading) {
+      return
+    }
+    const list = that.data.list;
+    if (cks && cks.length > 0) {
+      const user = util.userInfo.loginInfo;
+      let data = {
+        "inter": "gpsElectronicFence",
+        "method": "POST",
+        "data": {
+          UserId: user.Id,
+          DN_NO: '',
+          Latitude: '',
+          Longitude: ''
+        }
+      }
+      wx.showLoading({
+        title: '加载中',
+      })
+      that.setData({
+        submitLoading: true
+      });
+      data["fun"] = function (res) {
+        console.log(res);
+        wx.hideLoading();
+        if (res.status > 0) {
+          if (obj["result"]) {
+            that.setData({
+              error: obj["result"]
+            });
+          } else {
+            wx.showToast({
+              title: '打卡成功',
+            })
+            setTimeout(() => {
+              that.getList();
+            }, 3000);
+          }
+          setTimeout(() => {
+            that.setData({
+              submitLoading: false
+            });
+          }, 3000);
+        } else {
+          that.setData({
+            submitLoading: false,
+            error: res.msg
+          });
+        }
+      }
+      util.getData(data)
+    } else {
+      that.setData({
+        error: "请选择订单"
+      });
+    }
+  },
   iconClick(e) {
     const name = e.currentTarget.dataset.name;
     let parm = this.data.parm;
@@ -339,6 +399,11 @@ Page({
             obj['checked'] = false;
             obj['hasCheck'] = true;
           }
+          //hasRadio
+          // if (obj.FreightType <= 1 && (obj.Status == 4 || obj.Status == 5)) {
+          //   obj['checked'] = false;
+          //   obj['hasRadio'] = true;
+          // }
         });
         console.log(_list)
         /** /设置列表可选择 **/

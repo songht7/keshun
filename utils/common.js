@@ -85,7 +85,8 @@ export default {
       "getWarehousGroup": "/api/Common/GetWarehousGroupKeyValues", //获取仓库组合
       "sign": "/api/AccessSign/Sign", //签到【post】
       "signInfo": "/api/AccessSign/SignInfo", //获取签到数据
-      "queryInfoApplets": "/api/AccessSign/QueryInfoApplets", //获取厂内排队信息
+      "queryInfoApplets": "/api/AccessSign/QueryInfoApplets", //获取厂内排队信息 
+      "gpsElectronicFence": "/api/OrderGPS/GPSElectronicFence", //GPS电子围栏
     }
   }
 }
