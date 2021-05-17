@@ -76,6 +76,7 @@ Page({
     list: [],
     count: 0,
     checkedAll: false,
+    location: {},
     checkType: 'radio' //radio checkbox
   },
 
@@ -85,6 +86,25 @@ Page({
   onLoad: function (options) {
     const that = this;
     that.getCarrier();
+    util.checkLocation(); //检查小程序是否开启定位服务
+    wx.getLocation({
+      type: util.config.locationType,
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+        console.log(res);
+        that.setData({
+          location: res
+        });
+      },
+      fail() {
+        that.setData({
+          error: "定位失败！请检查网络、GPS是否正常"
+        });
+      }
+    })
   },
 
   /**
@@ -192,27 +212,33 @@ Page({
   checkboxChange(e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail)
     const that = this;
-    const list = that.data.list;
-    const values = e.detail;
-    const cks = [];
-    values.map((obj, key) => {
-      cks.push(parseInt(obj))
-    });
-    that.setData({
-      cks
-    });
-    for (let i = 0, lenI = list.length; i < lenI; ++i) {
-      list[i].checked = false;
-      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
-        if (list[i]["Id"].toString() === values[j].toString()) {
-          list[i].checked = true
-          break
+    if (that.checkType == 'radio') {
+      that.setData({
+        DN_NO:e.detail.id
+      });
+    } else {
+      const list = that.data.list;
+      const values = e.detail;
+      const cks = [];
+      values.map((obj, key) => {
+        cks.push(parseInt(obj))
+      });
+      that.setData({
+        cks
+      });
+      for (let i = 0, lenI = list.length; i < lenI; ++i) {
+        list[i].checked = false;
+        for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (list[i]["Id"].toString() === values[j].toString()) {
+            list[i].checked = true
+            break
+          }
         }
-      }
-    };
-    that.setData({
-      checkedAll: false
-    });
+      };
+      that.setData({
+        checkedAll: false
+      });
+    }
   },
   onSubmit() {
     const that = this;
@@ -296,8 +322,7 @@ Page({
     if (that.data.submitLoading) {
       return
     }
-    const list = that.data.list;
-    if (cks && cks.length > 0) {
+    if (that.DN_NO) {
       const user = util.userInfo.loginInfo;
       let data = {
         "inter": "gpsElectronicFence",
@@ -305,8 +330,8 @@ Page({
         "data": {
           UserId: user.Id,
           DN_NO: '',
-          Latitude: '',
-          Longitude: ''
+          Latitude: that.location.latitude,
+          Longitude: that.location.longitude
         }
       }
       wx.showLoading({
@@ -320,7 +345,7 @@ Page({
         wx.hideLoading();
         if (res.status > 0) {
           wx.showToast({
-            title: res.msg || '打卡成功',
+            title: res.msg || '已送达',
           })
           setTimeout(() => {
             that.setData({

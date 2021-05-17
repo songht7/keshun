@@ -9,11 +9,11 @@
 	<view class="page-init">
 		<view class="my-order">
 			<view class="filter-box">
-				<!-- <checkbox-group bindchange="checkAll">
+				<checkbox-group wx:if="{{checkType=='checkbox'}}" bindchange="checkAll">
 					<label>
 						<checkbox value="all" checked="{{checkedAll}}" />全部选择
 					</label>
-				</checkbox-group> -->
+				</checkbox-group>
 				<view class="top-filter">
 					<filter-box id="FilterBox" bind:filterSubmit="filterSubmit">
 						<view slot="cont">
@@ -49,14 +49,17 @@
 			<block wx:if="{{!loading&&list.length<=0}}">
 				<view class="page-tips">暂无 {{orderStatusVal['value']!='全部'?' '+orderStatusVal['value']+' ':''}} 订单</view>
 			</block>
-			<!-- <view class="btn-area">
-				<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
-			</view> -->
-			<!-- <block wx:if="{{checkType=='radio'}}">
+
+			<block wx:if="{{checkType=='checkbox'&&list.length>0}}">
 				<view class="btn-area">
-					<button type="primary" class="btn-primary" bindtap="onSubmit2">打卡</button>
+					<button type="primary" class="btn-primary" bindtap="onSubmit">转出</button>
 				</view>
-			</block> -->
+			</block>
+			<block wx:if="{{checkType=='radio'&&list.length>0}}">
+				<view class="btn-area">
+					<button type="primary" class="btn-primary" bindtap="onSubmit2">确认送达</button>
+				</view>
+			</block>
 			<!---搜索条件-承运商--->
 			<picker-search list="{{carrierList}}" title="选择承运商" show="{{carrierShow}}" type="carrierShow"
 				bind:maskClose="maskClose" bind:pickerSelected="pickerSelected"></picker-search>
