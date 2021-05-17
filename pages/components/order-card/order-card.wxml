@@ -5,7 +5,7 @@
 			<view class="order-row {{listFull?'no-radius':''}}" bindtap="navDetail" data-id="{{item.Id}}">
 				<view class="order-head {{item.IsUrgent==1?'bg-red':''}}">
 					<label>
-						<radio wx:if="{{item.hasRadio}}" value="{{item.Id}}" data-dnNo="{{item.DN_No}}" />
+						<radio wx:if="{{item.hasRadio}}" value="{{item.DN_No}}" data-dnNo="{{item.Id}}" />
 						交货单号：{{item.DN_No}} {{item.StatusEnum?'['+item.StatusEnum+']':''}}
 					</label>
 					<view class="head-tag">{{item.IsUrgent==1?'加急':''}}</view>

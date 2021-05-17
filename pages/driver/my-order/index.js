@@ -210,11 +210,11 @@ Page({
     console.log(cks);
   },
   checkboxChange(e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail)
+    // console.log('checkbox发生change事件，携带value值为：', e.detail, e)
     const that = this;
-    if (that.checkType == 'radio') {
+    if (that.data.checkType == "radio") {
       that.setData({
-        DN_NO:e.detail.id
+        DN_NO: e.detail
       });
     } else {
       const list = that.data.list;
@@ -322,18 +322,19 @@ Page({
     if (that.data.submitLoading) {
       return
     }
-    if (that.DN_NO) {
+    if (that.data.DN_NO) {
       const user = util.userInfo.loginInfo;
       let data = {
         "inter": "gpsElectronicFence",
         "method": "POST",
         "data": {
           UserId: user.Id,
-          DN_NO: '',
-          Latitude: that.location.latitude,
-          Longitude: that.location.longitude
+          DN_NO: that.data.DN_NO,
+          Latitude: that.data.location.latitude,
+          Longitude: that.data.location.longitude
         }
       }
+      console.log(data);
       wx.showLoading({
         title: '加载中',
       })
@@ -412,15 +413,18 @@ Page({
         /** 设置列表可选择 **/
         _list.map(obj => {
           // obj['PlanDeliveryDate'] = obj.PlanDeliveryDate.split(" ")[0];
-          if (obj.FreightType <= 1 && (obj.Status == 4 || obj.Status == 5)) {
-            obj['checked'] = false;
-            obj['hasCheck'] = true;
+          if (that.checkType == 'checkbox') {
+            if (obj.FreightType <= 1 && (obj.Status == 4 || obj.Status == 5)) {
+              obj['checked'] = false;
+              obj['hasCheck'] = true;
+            }
+          } else {
+            //hasRadio
+            if (!obj.ActualArrivalDate) {
+              // obj['checked'] = false;
+              obj['hasRadio'] = true;
+            }
           }
-          //hasRadio
-          // if (obj.FreightType <= 1 && (obj.Status == 4 || obj.Status == 5)) {
-          //   obj['checked'] = false;
-          //   obj['hasRadio'] = true;
-          // }
         });
         console.log(_list)
         /** /设置列表可选择 **/

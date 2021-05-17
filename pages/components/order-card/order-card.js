@@ -48,7 +48,7 @@ Component({
   methods: {
     checkboxChange(e) {
       const that = this;
-      //console.log(e.detail.value);
+      // console.log(e.detail.value);
       this.triggerEvent('checkboxChange', e.detail.value) //访问父组件事件
     },
     orderCardSubmit(e) {
