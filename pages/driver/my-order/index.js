@@ -94,7 +94,7 @@ Page({
         const longitude = res.longitude
         const speed = res.speed
         const accuracy = res.accuracy
-        console.log(res);
+        // console.log(res);
         that.setData({
           location: res
         });
@@ -158,7 +158,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("onReachBottom");
+    // console.log("onReachBottom");
     const that = this;
     const parm = that.data.parm;
     if (that.data.list.length >= that.data.count) {
@@ -207,7 +207,7 @@ Page({
       list,
       cks
     });
-    console.log(cks);
+    // console.log(cks);
   },
   checkboxChange(e) {
     // console.log('checkbox发生change事件，携带value值为：', e.detail, e)
@@ -248,7 +248,7 @@ Page({
     const list = that.data.list;
     const carrierVal = that.data.carrierVal;
     const cks = that.data.cks;
-    console.log(cks, carrierVal);
+    // console.log(cks, carrierVal);
     if (cks && cks.length > 0) {
       const user = util.userInfo.loginInfo;
       let data = {
@@ -267,7 +267,7 @@ Page({
         submitLoading: true
       });
       data["fun"] = function (res) {
-        console.log(res);
+        // console.log(res);
         wx.hideLoading();
         if (res.status > 0) {
           // const fL = list.filter((obj, key) => {
@@ -334,7 +334,7 @@ Page({
           Longitude: that.data.location.longitude
         }
       }
-      console.log(data);
+      // console.log(data);
       wx.showLoading({
         title: '加载中',
       })

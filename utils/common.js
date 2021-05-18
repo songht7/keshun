@@ -14,16 +14,16 @@ var api = {
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   },
   "dev": { //测试接口，测试功能
-    "apiurl": "https://tmstest.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
-    "pageurl": "https://tmstest.keshun.com.cn", //业务域名
+    "apiurl": "https://tmstest.keshun.com.cn:9021", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
+    "pageurl": "https://tmstest.keshun.com.cn:9021", //业务域名
     "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
     "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
   },
   "dev2": { //测试接口，正式功能
-    "apiurl": "https://tmstest.keshun.com.cn", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
-    "pageurl": "https://tmstest.keshun.com.cn", //业务域名
+    "apiurl": "https://tmstest.keshun.com.cn:9021", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
+    "pageurl": "https://tmstest.keshun.com.cn:9021", //业务域名
     "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
