@@ -11,7 +11,7 @@ var api = {
     "imgurl": "", //图片域名https://tms.keshun.com.cn
     "domain": "",
     "appName": "CKS 科顺",
-    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
+    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7--213123fdsajkfhkj"
   },
   "dev": { //测试接口，测试功能
     "apiurl": "https://tmstest.keshun.com.cn:9021", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
@@ -19,7 +19,7 @@ var api = {
     "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
-    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
+    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7--213123fdsajkfhkj"
   },
   "dev2": { //测试接口，正式功能
     "apiurl": "https://tmstest.keshun.com.cn:9021", //接口 https://www.codesystem.com.cn/cks_api https://tms.keshun.com.cn
@@ -27,7 +27,7 @@ var api = {
     "imgurl": "", //图片域名
     "domain": "",
     "appName": "CKS 科顺",
-    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7-wx69ecaa1a4fb809ff-213123fdsajkfhkj"
+    "ai": "jjlsdjksafh-wx25f61e4ffcead9c7-wxcead9c7--213123fdsajkfhkj"
   }
 }
 var lks = "dev2";
@@ -44,7 +44,7 @@ export default {
     "tmplIds3": ['L1-kaHy258MuLl1Ed89JX6Zx7J_0dGGL-Z_Rwut37p0'], //排队到号通知
     "source": 'JK',
     "locationType": 'gcj02', //默认为 wgs84: gps 坐标; gcj02:国测局坐标
-    "mapkey": "56CBZ-YGVHD-HQV42-PYBTQ-P6FZ7-J6BQY", //腾讯地图mapkey - 6TABZ-OO2WW-7TVRV-RIDWK-2IGQZ-LJF3Q
+    "mapkey": "56CBZ-YGVHD-HQV42-PYBTQ-P6FZ7-J6BQY", //腾讯地图mapkey
     "Itype": "minipro",
     "deadline": 2, //token失效时间n小时
     "gpsInterval": lks == 'dev' ? (1000 * 60 * 5) : (1000 * 60 * 60 * 2), //GPS上传间隔（毫秒*秒*分*时） (1000 * 60 * 5) 5分 (1000 * 60 * 60 * 2) 2小时
