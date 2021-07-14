@@ -8,7 +8,7 @@ Page({
    */
   data: {
     id: 0,
-    detail:[]
+    detail: []
   },
 
   /**
@@ -17,15 +17,31 @@ Page({
   onLoad: function (options) {
     const that = this;
     const id = options.id ? options.id : 0;
-    that.setData({
-      id,
-      imgurl: util.config.imgurl
-    });
-    console.log(util.tempData)
-    if (util.tempData.Id) {
+    if (id == 999999) {
+      //home-switch 直送司机须知
+      let _title = '司机须知';
+      wx.setNavigationBarTitle({
+        title: _title,
+      })
       that.setData({
-        detail: [util.tempData]
+        id,
+        detail: [{
+          'Id': id,
+          'Title': _title,
+          'Content': ''
+        }]
       });
+    } else {
+      that.setData({
+        id,
+        imgurl: util.config.imgurl
+      });
+      console.log(util.tempData)
+      if (util.tempData.Id) {
+        that.setData({
+          detail: [util.tempData]
+        });
+      }
     }
   },
 

@@ -1,11 +1,45 @@
 <!--pages/news/index.wxml-->
 <view class="container">
-	<block wx:if="detail.Id">
-		<my-swiper wx:if="{{detail.length}}" is="swiper" data="{{detail}}"></my-swiper>
-		<view class="page-init" style="padding:25rpx 30rpx">
-			<rich-text nodes="{{detail[0]['Title']}}"></rich-text>
-			<rich-text nodes="{{detail[0]['Content']?detail[0]['Content']:''}}"></rich-text>
-			<rich-text nodes="{{detail[0]['Remark']?detail[0]['Remark']:''}}"></rich-text>
+	<block wx:if="{{detail.length}}">
+		<view class="news-box">
+			<block wx:if="{{id<999999}}">
+				<my-swiper wx:if="{{detail[0]['TitleImage']}}" is="swiper" data="{{detail}}"></my-swiper>
+				<view class="page-init note-main">
+					<rich-text nodes="{{detail[0]['Title']}}"></rich-text>
+					<rich-text nodes="{{detail[0]['Content']?detail[0]['Content']:''}}"></rich-text>
+					<rich-text nodes="{{detail[0]['Remark']?detail[0]['Remark']:''}}"></rich-text>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="page-init note-main">
+					<view class="section">
+						<view class="news-row row-title">一、进厂前：</view>
+						<view class="news-row">1、手机微信关注“科顺智造”；用于提、送货信息消息。</view>
+						<view class="news-row">2、微信搜索“科顺运输服务”小程序，注册、签到排队，等待通知进厂。</view>
+						<view class="news-row">3、进厂穿好反光衣（门卫处），厂内禁止抽烟，不闲逛、不乱丢垃圾、不穿漏脚指头鞋进厂。</view>
+						<view class="news-row">4、粉包货物装车，车底板必须确保干燥，易受潮。</view>
+					</view>
+					<view class="section">
+						<view class="news-row row-title">二、运输途中</view>
+						<view class="news-row">1、货物出厂后，第一时间联系收货人，告知预计到货时间（23点不要联系客户，可发短信），特殊要求除外。</view>
+						<view class="news-row">2、手机微信打开“科顺运输服务”小程序，“进入后台”，点击“GPS上传”，2-4小时点击一次GPS（可多点，不能少点），到达目的地再点击一次。</view>
+						<view class="news-row">3、距客户约2公里处，再次检查货物外观是否完好（未破损、未倾斜）。发现异常，及时联系物流公司，有问题不得继续送货。</view>
+					</view>
+					<view class="section">
+						<view class="news-row row-title">三、到达收货地</view>
+						<view class="news-row">打开微信“科顺运输服务”小程序，点击“我的交货单”进入，选择对应的单号，点击“确认送达”。</view>
+					</view>
+					<view class="section">
+						<view class="news-row row-title">四、回单签收</view>
+						<view class="news-row">1、客户签收后，手机微信打开“科顺运输服务”小程序，进入后台，点击“客户签收”，扫描单上的二维码，拍照上传客户已签收的发货单。</view>
+						<view class="news-row">2、纸质回单：（特别重要）要求拿回红、黄两联。</view>
+					</view>
+					<view class="section">
+						<view class="news-row row-title">五、严禁</view>
+						<view class="news-row">任何时候，不得与工厂、收货客户发生冲突。</view>
+					</view>
+				</view>
+			</block>
 		</view>
 	</block>
 	<block wx:else>

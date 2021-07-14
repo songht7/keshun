@@ -1,2 +1,23 @@
 /* pages/news/index.wxss */
 @import "../../common/base.wxss";
+
+.note-main {
+  padding: 25rpx 30rpx 50rpx;
+}
+
+.section {
+  padding: 0 0 30rpx 0;
+  line-height: 1.6;
+}
+
+.news-row {
+  color: #666;
+  font-size: 28rpx;
+  padding-bottom: 15rpx;
+}
+
+.news-row.row-title {
+  font-weight: bold;
+  line-height: 2;
+  font-size: 30rpx;
+}

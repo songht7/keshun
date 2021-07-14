@@ -38,9 +38,15 @@ Component({
       }, {
         label: "交货单评价",
         icon: "icon-21.png",
-        sw: "100",
+        sw: "60",
         tap: "linkTo",
         url: "/pages/scoring/index"
+      }, {
+        label: "直送司机须知",
+        icon: "icon-22.png",
+        sw: "38",
+        tap: "linkTo",
+        url: "/pages/news/index?id=999999"
       }, {
         label: "进入后台",
         icon: "icon-3.png",
