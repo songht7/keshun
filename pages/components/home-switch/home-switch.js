@@ -30,7 +30,7 @@ Component({
         tap: "linkTo", //按钮点击事件 childFun parTap linkTo
         url: "/pages/driver/order/index" //按钮setdata值
       }, {
-        label: "司机扫码定位",
+        label: "零担订单扫码定位",
         icon: "icon-2.png",
         sw: "60",
         tap: "linkTo",

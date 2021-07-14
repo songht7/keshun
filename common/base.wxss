@@ -15,6 +15,10 @@ view {
   color: #999;
 }
 
+.txt-blod {
+  font-weight: bold;
+}
+
 /*轮播*/
 .swiper-box {
   display: block;
